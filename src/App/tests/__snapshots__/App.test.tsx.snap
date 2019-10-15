@@ -1,0 +1,1797 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders App correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <App>
+    <Container
+      className="form-container"
+      tag="div"
+    >
+      <div
+        className="form-container container"
+      >
+        <Row
+          className="welcome-box"
+          tag="div"
+        >
+          <div
+            className="welcome-box row"
+          >
+            <Col
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="col"
+              >
+                <h3>
+                  Welcome to Odk Form Renderer
+                </h3>
+              </div>
+            </Col>
+          </div>
+        </Row>
+        <GroupTypeEvaluator
+          fieldElements={
+            Array [
+              Object {
+                "name": "start",
+                "type": "start",
+              },
+              Object {
+                "name": "end",
+                "type": "end",
+              },
+              Object {
+                "name": "username",
+                "type": "username",
+              },
+              Object {
+                "label": Object {
+                  "English": "Capacity Building Entry Field",
+                },
+                "name": "note",
+                "type": "note",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Name of the event",
+                },
+                "name": "event_name",
+                "type": "text",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "English": "Training",
+                    },
+                    "name": "1",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Workshop",
+                    },
+                    "name": "2",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Conference",
+                    },
+                    "name": "3",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Seminar",
+                    },
+                    "name": "4",
+                  },
+                ],
+                "label": Object {
+                  "English": "Event Type",
+                },
+                "name": "event_type",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "English": "In house Training",
+                    },
+                    "name": "1",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Out of Office",
+                    },
+                    "name": "2",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Training in Abroad",
+                    },
+                    "name": "3",
+                  },
+                ],
+                "label": Object {
+                  "English": "Training Type",
+                },
+                "name": "training_type",
+                "type": "select one",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "English": "Life skills / Social Skills",
+                    },
+                    "name": "1",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Gender Issues",
+                    },
+                    "name": "2",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Legal Issues",
+                    },
+                    "name": "3",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Skill based training",
+                    },
+                    "name": "4",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Survivor'r rights",
+                    },
+                    "name": "5",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Burn Care Training",
+                    },
+                    "name": "6",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Mental health",
+                    },
+                    "name": "7",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Organization Development",
+                    },
+                    "name": "8",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "HR management",
+                    },
+                    "name": "9",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Others",
+                    },
+                    "name": "99",
+                  },
+                ],
+                "label": Object {
+                  "English": "Subject of capacity building",
+                },
+                "name": "capacity_building_subject",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "relevant": "\${capacity_building_subject}=99",
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Specify the Subject of capacity building",
+                },
+                "name": "capacity_building_subject_other",
+                "type": "text",
+              },
+              Object {
+                "label": Object {
+                  "English": "Duration",
+                },
+                "name": "duration",
+                "type": "note",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Start Date",
+                },
+                "name": "event_start_date",
+                "type": "date",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "End Date",
+                },
+                "name": "event_end_date",
+                "type": "date",
+              },
+              Object {
+                "label": Object {
+                  "English": "Location",
+                },
+                "name": "location",
+                "type": "note",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "Bangla": "division_name",
+                      "English": "division_name",
+                    },
+                    "name": "division_code",
+                  },
+                ],
+                "control": Object {
+                  "appearance": "search('geo')",
+                },
+                "label": Object {
+                  "English": "Division",
+                },
+                "name": "division",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "relevant": "\${division}",
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "Bangla": "district_name",
+                      "English": "district_name",
+                    },
+                    "name": "district_code",
+                  },
+                ],
+                "control": Object {
+                  "appearance": "search('geo', 'matches', 'division_code', \${division})",
+                },
+                "label": Object {
+                  "English": "District",
+                },
+                "name": "district",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "relevant": "\${district}",
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "Bangla": "upazila_name",
+                      "English": "upazila_name",
+                    },
+                    "name": "upazila_code",
+                  },
+                ],
+                "control": Object {
+                  "appearance": "search('geo', 'matches', 'district_code', \${district})",
+                },
+                "label": Object {
+                  "English": "Upazila",
+                },
+                "name": "upazila",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "relevant": "\${upazila}",
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "Bangla": "union_name",
+                      "English": "union_name",
+                    },
+                    "name": "union_code",
+                  },
+                ],
+                "control": Object {
+                  "appearance": "search('geo', 'matches', 'upazila_code', \${upazila})",
+                },
+                "label": Object {
+                  "English": "Union",
+                },
+                "name": "union",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "relevant": "\${union}",
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "English": "1",
+                    },
+                    "name": "1",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "2",
+                    },
+                    "name": "2",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "3",
+                    },
+                    "name": "3",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "4",
+                    },
+                    "name": "4",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "5",
+                    },
+                    "name": "5",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "6",
+                    },
+                    "name": "6",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "7",
+                    },
+                    "name": "7",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "8",
+                    },
+                    "name": "8",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "9",
+                    },
+                    "name": "9",
+                  },
+                ],
+                "label": Object {
+                  "English": "Ward",
+                },
+                "name": "ward",
+                "type": "select one",
+              },
+              Object {
+                "label": Object {
+                  "English": "Participants",
+                },
+                "name": "participant",
+                "type": "note",
+              },
+              Object {
+                "bind": Object {
+                  "constraint": ".>=0",
+                  "jr:constraintMsg": Object {
+                    "English": "Negative value not allowed",
+                  },
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Male",
+                },
+                "name": "participant_male",
+                "type": "integer",
+              },
+              Object {
+                "bind": Object {
+                  "constraint": ".>=0",
+                  "jr:constraintMsg": Object {
+                    "English": "Negative value not allowed",
+                  },
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Female",
+                },
+                "name": "participant_female",
+                "type": "integer",
+              },
+              Object {
+                "bind": Object {
+                  "constraint": ".>=0",
+                  "jr:constraintMsg": Object {
+                    "English": "Negative value not allowed",
+                  },
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Girls",
+                },
+                "name": "participant_girl",
+                "type": "integer",
+              },
+              Object {
+                "bind": Object {
+                  "constraint": ".>=0",
+                  "jr:constraintMsg": Object {
+                    "English": "Negative value not allowed",
+                  },
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Boys",
+                },
+                "name": "participant_boy",
+                "type": "integer",
+              },
+              Object {
+                "bind": Object {
+                  "constraint": ".>=0",
+                  "jr:constraintMsg": Object {
+                    "English": "Negative value not allowed",
+                  },
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Transgender",
+                },
+                "name": "participant_trangender",
+                "type": "integer",
+              },
+              Object {
+                "bind": Object {
+                  "calculate": "\${participant_male}+\${participant_female}+\${participant_girl}+\${participant_boy}+\${participant_trangender}",
+                  "readonly": "TRUE",
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Total",
+                },
+                "name": "particiapnt_total",
+                "type": "text",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "children": Array [
+                  Object {
+                    "label": Object {
+                      "English": "ASF",
+                    },
+                    "name": "1",
+                  },
+                  Object {
+                    "label": Object {
+                      "English": "Others",
+                    },
+                    "name": "99",
+                  },
+                ],
+                "label": Object {
+                  "English": "Organized by",
+                },
+                "name": "organized_by",
+                "type": "select one",
+              },
+              Object {
+                "bind": Object {
+                  "relevant": "\${organized_by}=99",
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Specify the organizer",
+                },
+                "name": "organized_by_other",
+                "type": "text",
+              },
+              Object {
+                "bind": Object {
+                  "required": "Yes",
+                },
+                "label": Object {
+                  "English": "Funding Source",
+                },
+                "name": "funding_source",
+                "type": "text",
+              },
+              Object {
+                "bind": Object {
+                  "required": "No",
+                },
+                "label": Object {
+                  "English": "Report Attachment",
+                },
+                "name": "reporting_attachment",
+                "type": "photo",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "bind": Object {
+                      "calculate": "concat('uuid:', uuid())",
+                      "readonly": "true()",
+                    },
+                    "name": "instanceID",
+                    "type": "calculate",
+                  },
+                ],
+                "control": Object {
+                  "bodyless": true,
+                },
+                "name": "meta",
+                "type": "group",
+              },
+            ]
+          }
+        >
+          <div>
+            <div
+              key="group_start"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "name": "start",
+                    "type": "start",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  start
+                   
+                  start
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_end"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "name": "end",
+                    "type": "end",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  end
+                   
+                  end
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_username"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "name": "username",
+                    "type": "username",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  username
+                   
+                  username
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_note"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "label": Object {
+                      "English": "Capacity Building Entry Field",
+                    },
+                    "name": "note",
+                    "type": "note",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  note
+                   
+                  note
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_event_name"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Name of the event",
+                    },
+                    "name": "event_name",
+                    "type": "text",
+                  }
+                }
+              >
+                <Connect(Text)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "Name of the event",
+                      },
+                      "name": "event_name",
+                      "type": "text",
+                    }
+                  }
+                >
+                  <Text
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "Name of the event",
+                        },
+                        "name": "event_name",
+                        "type": "text",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Input
+                          name="event_name"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="event_name"
+                            onChange={[Function]}
+                            type="text"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Text>
+                </Connect(Text)>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_event_type"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "English": "Training",
+                        },
+                        "name": "1",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Workshop",
+                        },
+                        "name": "2",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Conference",
+                        },
+                        "name": "3",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Seminar",
+                        },
+                        "name": "4",
+                      },
+                    ],
+                    "label": Object {
+                      "English": "Event Type",
+                    },
+                    "name": "event_type",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  event_type
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_training_type"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "English": "In house Training",
+                        },
+                        "name": "1",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Out of Office",
+                        },
+                        "name": "2",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Training in Abroad",
+                        },
+                        "name": "3",
+                      },
+                    ],
+                    "label": Object {
+                      "English": "Training Type",
+                    },
+                    "name": "training_type",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  training_type
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_capacity_building_subject"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "English": "Life skills / Social Skills",
+                        },
+                        "name": "1",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Gender Issues",
+                        },
+                        "name": "2",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Legal Issues",
+                        },
+                        "name": "3",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Skill based training",
+                        },
+                        "name": "4",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Survivor'r rights",
+                        },
+                        "name": "5",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Burn Care Training",
+                        },
+                        "name": "6",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Mental health",
+                        },
+                        "name": "7",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Organization Development",
+                        },
+                        "name": "8",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "HR management",
+                        },
+                        "name": "9",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Others",
+                        },
+                        "name": "99",
+                      },
+                    ],
+                    "label": Object {
+                      "English": "Subject of capacity building",
+                    },
+                    "name": "capacity_building_subject",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  capacity_building_subject
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_capacity_building_subject_other"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "relevant": "\${capacity_building_subject}=99",
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Specify the Subject of capacity building",
+                    },
+                    "name": "capacity_building_subject_other",
+                    "type": "text",
+                  }
+                }
+              >
+                <Connect(Text)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "relevant": "\${capacity_building_subject}=99",
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "Specify the Subject of capacity building",
+                      },
+                      "name": "capacity_building_subject_other",
+                      "type": "text",
+                    }
+                  }
+                >
+                  <Text
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "relevant": "\${capacity_building_subject}=99",
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "Specify the Subject of capacity building",
+                        },
+                        "name": "capacity_building_subject_other",
+                        "type": "text",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Input
+                          name="capacity_building_subject_other"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="capacity_building_subject_other"
+                            onChange={[Function]}
+                            type="text"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Text>
+                </Connect(Text)>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_duration"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "label": Object {
+                      "English": "Duration",
+                    },
+                    "name": "duration",
+                    "type": "note",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  note
+                   
+                  duration
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_event_start_date"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Start Date",
+                    },
+                    "name": "event_start_date",
+                    "type": "date",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  date
+                   
+                  event_start_date
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_event_end_date"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "End Date",
+                    },
+                    "name": "event_end_date",
+                    "type": "date",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  date
+                   
+                  event_end_date
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_location"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "label": Object {
+                      "English": "Location",
+                    },
+                    "name": "location",
+                    "type": "note",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  note
+                   
+                  location
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_division"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "Bangla": "division_name",
+                          "English": "division_name",
+                        },
+                        "name": "division_code",
+                      },
+                    ],
+                    "control": Object {
+                      "appearance": "search('geo')",
+                    },
+                    "label": Object {
+                      "English": "Division",
+                    },
+                    "name": "division",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  division
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_district"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "relevant": "\${division}",
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "Bangla": "district_name",
+                          "English": "district_name",
+                        },
+                        "name": "district_code",
+                      },
+                    ],
+                    "control": Object {
+                      "appearance": "search('geo', 'matches', 'division_code', \${division})",
+                    },
+                    "label": Object {
+                      "English": "District",
+                    },
+                    "name": "district",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  district
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_upazila"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "relevant": "\${district}",
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "Bangla": "upazila_name",
+                          "English": "upazila_name",
+                        },
+                        "name": "upazila_code",
+                      },
+                    ],
+                    "control": Object {
+                      "appearance": "search('geo', 'matches', 'district_code', \${district})",
+                    },
+                    "label": Object {
+                      "English": "Upazila",
+                    },
+                    "name": "upazila",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  upazila
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_union"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "relevant": "\${upazila}",
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "Bangla": "union_name",
+                          "English": "union_name",
+                        },
+                        "name": "union_code",
+                      },
+                    ],
+                    "control": Object {
+                      "appearance": "search('geo', 'matches', 'upazila_code', \${upazila})",
+                    },
+                    "label": Object {
+                      "English": "Union",
+                    },
+                    "name": "union",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  union
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_ward"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "relevant": "\${union}",
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "English": "1",
+                        },
+                        "name": "1",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "2",
+                        },
+                        "name": "2",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "3",
+                        },
+                        "name": "3",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "4",
+                        },
+                        "name": "4",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "5",
+                        },
+                        "name": "5",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "6",
+                        },
+                        "name": "6",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "7",
+                        },
+                        "name": "7",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "8",
+                        },
+                        "name": "8",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "9",
+                        },
+                        "name": "9",
+                      },
+                    ],
+                    "label": Object {
+                      "English": "Ward",
+                    },
+                    "name": "ward",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  ward
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_participant"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "label": Object {
+                      "English": "Participants",
+                    },
+                    "name": "participant",
+                    "type": "note",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  note
+                   
+                  participant
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_participant_male"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Male",
+                    },
+                    "name": "participant_male",
+                    "type": "integer",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_male
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_participant_female"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Female",
+                    },
+                    "name": "participant_female",
+                    "type": "integer",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_female
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_participant_girl"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Girls",
+                    },
+                    "name": "participant_girl",
+                    "type": "integer",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_girl
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_participant_boy"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Boys",
+                    },
+                    "name": "participant_boy",
+                    "type": "integer",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_boy
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_participant_trangender"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Transgender",
+                    },
+                    "name": "participant_trangender",
+                    "type": "integer",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_trangender
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_particiapnt_total"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "calculate": "\${participant_male}+\${participant_female}+\${participant_girl}+\${participant_boy}+\${participant_trangender}",
+                      "readonly": "TRUE",
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Total",
+                    },
+                    "name": "particiapnt_total",
+                    "type": "text",
+                  }
+                }
+              >
+                <Connect(Text)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "calculate": "\${participant_male}+\${participant_female}+\${participant_girl}+\${participant_boy}+\${participant_trangender}",
+                        "readonly": "TRUE",
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "Total",
+                      },
+                      "name": "particiapnt_total",
+                      "type": "text",
+                    }
+                  }
+                >
+                  <Text
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "calculate": "\${participant_male}+\${participant_female}+\${participant_girl}+\${participant_boy}+\${participant_trangender}",
+                          "readonly": "TRUE",
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "Total",
+                        },
+                        "name": "particiapnt_total",
+                        "type": "text",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Input
+                          name="particiapnt_total"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="particiapnt_total"
+                            onChange={[Function]}
+                            type="text"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Text>
+                </Connect(Text)>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_organized_by"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "children": Array [
+                      Object {
+                        "label": Object {
+                          "English": "ASF",
+                        },
+                        "name": "1",
+                      },
+                      Object {
+                        "label": Object {
+                          "English": "Others",
+                        },
+                        "name": "99",
+                      },
+                    ],
+                    "label": Object {
+                      "English": "Organized by",
+                    },
+                    "name": "organized_by",
+                    "type": "select one",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  select one
+                   
+                  organized_by
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_organized_by_other"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "relevant": "\${organized_by}=99",
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Specify the organizer",
+                    },
+                    "name": "organized_by_other",
+                    "type": "text",
+                  }
+                }
+              >
+                <Connect(Text)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "relevant": "\${organized_by}=99",
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "Specify the organizer",
+                      },
+                      "name": "organized_by_other",
+                      "type": "text",
+                    }
+                  }
+                >
+                  <Text
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "relevant": "\${organized_by}=99",
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "Specify the organizer",
+                        },
+                        "name": "organized_by_other",
+                        "type": "text",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Input
+                          name="organized_by_other"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="organized_by_other"
+                            onChange={[Function]}
+                            type="text"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Text>
+                </Connect(Text)>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_funding_source"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "Yes",
+                    },
+                    "label": Object {
+                      "English": "Funding Source",
+                    },
+                    "name": "funding_source",
+                    "type": "text",
+                  }
+                }
+              >
+                <Connect(Text)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "Funding Source",
+                      },
+                      "name": "funding_source",
+                      "type": "text",
+                    }
+                  }
+                >
+                  <Text
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "Funding Source",
+                        },
+                        "name": "funding_source",
+                        "type": "text",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Input
+                          name="funding_source"
+                          onChange={[Function]}
+                          type="text"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="funding_source"
+                            onChange={[Function]}
+                            type="text"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Text>
+                </Connect(Text)>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_reporting_attachment"
+            >
+              <BaseTypeEvaluator
+                fieldElement={
+                  Object {
+                    "bind": Object {
+                      "required": "No",
+                    },
+                    "label": Object {
+                      "English": "Report Attachment",
+                    },
+                    "name": "reporting_attachment",
+                    "type": "photo",
+                  }
+                }
+              >
+                <div>
+                  Other 
+                  photo
+                   
+                  reporting_attachment
+                </div>
+              </BaseTypeEvaluator>
+            </div>
+            <div
+              key="group_meta"
+            >
+              <div>
+                GROUP 
+                group
+                 
+                meta
+              </div>
+            </div>
+          </div>
+        </GroupTypeEvaluator>
+      </div>
+    </Container>
+  </App>
+</Provider>
+`;
