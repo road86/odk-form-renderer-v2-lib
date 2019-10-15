@@ -11,12 +11,19 @@ export interface FormState {
 
 /** FIELD_VALUE_ASSIGNED action type */
 export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
+/** RESET_STORE action type */
+export const RESET_STORE = 'odk/reducer/form/RESET_STORE';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
   fieldTreeName: string;
   fieldValue: any;
   type: typeof FIELD_VALUE_ASSIGNED;
+}
+
+/** interface for RESET_STORE action */
+export interface ResetStoreAction extends AnyAction {
+  type: typeof RESET_STORE;
 }
 
 /** Assigns the value to the proper field name
@@ -33,8 +40,18 @@ export const assignFieldValueAction = (
   type: FIELD_VALUE_ASSIGNED,
 });
 
+/** Resets the redux store state to initial state
+ * @return {ResetStoreAction} - an action to reset the redux store state
+ */
+export const resetStoreAction = (): ResetStoreAction => ({
+  type: RESET_STORE,
+});
+
 /** Create type for forms reducer actions */
-export type FormActionTypes = AssignFieldValueAction | AnyAction;
+export type FormActionTypes =
+  | AssignFieldValueAction
+  | ResetStoreAction
+  | AnyAction;
 
 /** Create an immutable form state */
 export type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
