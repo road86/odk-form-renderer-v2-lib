@@ -74,6 +74,8 @@ export default function reducer(
         ...state,
         userInput: { ...state.userInput, ...tmpUserInput },
       });
+    case RESET_STORE:
+      return initialState;
     default:
       return state;
   }
