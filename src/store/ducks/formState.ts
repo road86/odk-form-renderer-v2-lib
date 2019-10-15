@@ -57,7 +57,7 @@ export type FormActionTypes =
 export type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 
 /** initial form state */
-const initialState: ImmutableFormState = SeamlessImmutable({
+export const initialState: ImmutableFormState = SeamlessImmutable({
   errors: [],
   userInput: {},
 });
