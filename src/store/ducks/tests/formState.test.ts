@@ -11,7 +11,7 @@ import {
   modifiedFieldExample1,
 } from './fixtures';
 
-describe('store', () => {
+describe('store/ducks/formState', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     store.dispatch(resetStoreAction());
