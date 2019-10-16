@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/base/Text renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(Text)
+    assignFieldValueActionCreator={[MockFunction]}
+    fieldElement={
+      Object {
+        "bind": Object {
+          "required": "Yes",
+        },
+        "label": Object {
+          "English": "Name of the event",
+        },
+        "name": "event_name",
+        "type": "text",
+      }
+    }
+    fieldValue="hello"
+  >
+    <Text
+      assignFieldValueActionCreator={[Function]}
+      fieldElement={
+        Object {
+          "bind": Object {
+            "required": "Yes",
+          },
+          "label": Object {
+            "English": "Name of the event",
+          },
+          "name": "event_name",
+          "type": "text",
+        }
+      }
+      fieldValue="hello"
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Input
+            name="event_name"
+            onChange={[Function]}
+            type="text"
+            value="hello"
+          >
+            <input
+              className="form-control"
+              name="event_name"
+              onChange={[Function]}
+              type="text"
+              value="hello"
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </Text>
+  </Connect(Text)>
+</Provider>
+`;
