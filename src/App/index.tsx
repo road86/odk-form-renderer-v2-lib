@@ -5,7 +5,10 @@ import { DEMO_FORM_JSON } from '../constants';
 
 class App extends React.Component {
   public render() {
-    const props = { fieldElements: DEMO_FORM_JSON.children };
+    const props = {
+      fieldElements: DEMO_FORM_JSON.children,
+      fieldParentTreeName: '',
+    };
     return (
       <Container className="form-container">
         <Row className="welcome-box">
