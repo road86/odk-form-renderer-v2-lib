@@ -2,7 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Input } from 'reactstrap';
 import { Store } from 'redux';
-import { FieldElement } from '../../../../components/typeEvalutors/Base';
+import {
+  FieldElement,
+  FieldParentTreeName,
+} from '../../../../components/typeEvalutors/Base';
 import {
   assignFieldValueAction,
   getFieldValue,
@@ -11,6 +14,7 @@ import {
 /** props interface for the text component */
 export interface TextProps {
   fieldElement: FieldElement;
+  fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
 }
