@@ -26,6 +26,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
         "type": "text",
       }
     }
+    fieldParentTreeName=""
     fieldValue="hello"
   >
     <Text
@@ -42,7 +43,9 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
           "type": "text",
         }
       }
+      fieldParentTreeName=""
       fieldValue="hello"
+      getEvaluatedExpressionSelector={[Function]}
     >
       <FormGroup
         tag="div"
