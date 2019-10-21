@@ -17,6 +17,7 @@ describe('containers/fields/base/Text', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: textFieldElement1,
+      fieldParentTreeName: '',
       fieldValue: 'hello',
     };
     shallow(
@@ -31,6 +32,7 @@ describe('containers/fields/base/Text', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: textFieldElement1,
+      fieldParentTreeName: '',
       fieldValue: 'hello',
     };
     store.dispatch(
