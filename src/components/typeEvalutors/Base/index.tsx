@@ -5,12 +5,21 @@ import Text from '../../../containers/fields/base/Text';
 /** type of fieldParentTreeName */
 export type FieldParentTreeName = string;
 
+/** interface for bind property */
+interface BindProperty {
+  calculate?: string;
+  relevant?: string;
+  readonly?: string;
+  appearance?: string;
+  required?: string;
+}
+
 /** interface for kobo field element */
 export interface FieldElement {
   name: string;
   type: string;
   children?: any[];
-  bind?: object;
+  bind?: BindProperty;
   label?: string | object;
 }
 
