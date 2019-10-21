@@ -8,6 +8,7 @@ import {
 } from '../../../../components/typeEvalutors/Base';
 import {
   assignFieldValueAction,
+  getEvaluatedExpression,
   getFieldValue,
 } from '../../../../store/ducks/formState';
 
@@ -17,21 +18,38 @@ export interface TextProps {
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  getEvaluatedExpressionSelector: any;
 }
 
 class Text extends React.Component<TextProps> {
   public render() {
-    const { fieldElement, fieldValue } = this.props;
-    return (
-      <FormGroup>
-        <Input
-          type="text"
-          name={fieldElement.name}
-          onChange={this.onChangeHandler}
-          value={fieldValue}
-        />
-      </FormGroup>
-    );
+    const {
+      fieldElement,
+      fieldParentTreeName,
+      fieldValue,
+      getEvaluatedExpressionSelector,
+    } = this.props;
+    let isComponentRender = true;
+    if (fieldElement && fieldElement.bind && fieldElement.bind.relevant) {
+      isComponentRender = getEvaluatedExpressionSelector(
+        fieldElement.bind.relevant,
+        fieldParentTreeName + fieldElement.name
+      );
+    }
+    if (isComponentRender) {
+      return (
+        <FormGroup>
+          <Input
+            type="text"
+            name={fieldElement.name}
+            onChange={this.onChangeHandler}
+            value={fieldValue}
+          />
+        </FormGroup>
+      );
+    } else {
+      return null;
+    }
   }
 
   /** sets the value of field element in store
@@ -50,6 +68,7 @@ class Text extends React.Component<TextProps> {
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
   fieldValue: string;
+  getEvaluatedExpressionSelector: any;
 }
 
 /** Interface to describe props from parent */
@@ -65,6 +84,10 @@ const mapStateToProps = (
   const { fieldElement } = parentProps;
   const result = {
     fieldValue: getFieldValue(state, fieldElement.name) || '',
+    getEvaluatedExpressionSelector: (
+      expression: string,
+      fieldTreeName: string
+    ) => getEvaluatedExpression(state, expression, fieldTreeName),
   };
   return result;
 };
