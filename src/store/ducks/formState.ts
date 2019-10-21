@@ -1,5 +1,6 @@
 import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
+import evaluater from '../../utils/compiler';
 
 /** interface for the store state */
 export interface FormState {
@@ -85,6 +86,7 @@ export default function reducer(
 
 /** get the value by their respective element tree name
  * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the field
  * @return {any | null} value if the element name is found else null
  */
 export function getFieldValue(
@@ -92,4 +94,18 @@ export function getFieldValue(
   fieldTreeName: string
 ): any {
   return (state as any).userInput[fieldTreeName] || null;
+}
+
+/** get the value of the evaluated expression
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} expression - the expression that needs to be evaluated
+ * @param {string} fieldTreeName - the hierchical tree name of the field
+ * @return {any | null} - the evaluated value or null if syntax error
+ */
+export function getEvaluatedExpression(
+  state: Partial<Store>,
+  expression: string,
+  fieldTreeName: string
+): any {
+  return evaluater(expression, (state as any).userInput, null, fieldTreeName);
 }
