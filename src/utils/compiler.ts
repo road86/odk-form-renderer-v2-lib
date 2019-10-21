@@ -1,69 +1,69 @@
-let actualExpression;
-let currentHierarchicalName = null;
-let formItemProperty = {};
-let userInput = {};
+let actualExpression: string;
+let currentHierarchicalName: string = '';
+let formItemProperty: any = {};
+let userInput: any = {};
 
-function tokenizeCharacter(type, value, input, current) {
-  return (value === input[current]) ? [1, { type, value }] : [0, null];
+function tokenizeCharacter(type: any, value: any, input: any, current: any) {
+  return value === input[current] ? [1, { type, value }] : [0, null];
 }
 
-function tokenizeParenOpen(input, current) {
+function tokenizeParenOpen(input: any, current: any) {
   return tokenizeCharacter('paren', '(', input, current);
 }
 
-function tokenizeBrakeOpen(input, current) {
+function tokenizeBrakeOpen(input: any, current: any) {
   return tokenizeCharacter('brac', '[', input, current);
 }
 
-function tokenizeBrakeClose(input, current) {
+function tokenizeBrakeClose(input: any, current: any) {
   return tokenizeCharacter('brac', ']', input, current);
 }
 
-function tokenizeParenClose(input, current) {
+function tokenizeParenClose(input: any, current: any) {
   return tokenizeCharacter('paren', ')', input, current);
 }
 
-function tokenizeEqual(input, current) {
+function tokenizeEqual(input: any, current: any) {
   return tokenizeCharacter('equal', '=', input, current);
 }
 
-function tokenizePlus(input, current) {
+function tokenizePlus(input: any, current: any) {
   return tokenizeCharacter('plus', '+', input, current);
 }
 
-function tokenizeMinus(input, current) {
+function tokenizeMinus(input: any, current: any) {
   return tokenizeCharacter('minus', '-', input, current);
 }
 
-function tokenizeMultiply(input, current) {
+function tokenizeMultiply(input: any, current: any) {
   return tokenizeCharacter('multiply', '*', input, current);
 }
 
-function tokenizeDivide(input, current) {
+function tokenizeDivide(input: any, current: any) {
   return tokenizeCharacter('divide', '/', input, current);
 }
 
-function tokenizeLessThan(input, current) {
+function tokenizeLessThan(input: any, current: any) {
   return tokenizeCharacter('lessThan', '<', input, current);
 }
 
-function tokenizeGreaterThan(input, current) {
+function tokenizeGreaterThan(input: any, current: any) {
   return tokenizeCharacter('greaterThan', '>', input, current);
 }
 
-function tokenizeNot(input, current) {
+function tokenizeNot(input: any, current: any) {
   return tokenizeCharacter('not', '!', input, current);
 }
 
-function tokenizeComma(input, current) {
+function tokenizeComma(input: any, current: any) {
   return tokenizeCharacter('comma', ',', input, current);
 }
 
-function tokenizeDot(input, current) {
+function tokenizeDot(input: any, current: any) {
   return tokenizeCharacter('dot', '.', input, current);
 }
 
-function tokenizePattern(type, pattern, input, current) {
+function tokenizePattern(type: any, pattern: any, input: any, current: any) {
   let char = input[current];
   let consumedChars = 0;
   if (pattern.test(char)) {
@@ -78,7 +78,7 @@ function tokenizePattern(type, pattern, input, current) {
   return [0, null];
 }
 
-function tokenizeString(input, current) {
+function tokenizeString(input: any, current: any) {
   if (input[current] === '"' || input[current] === "'") {
     const matchQuote = input[current];
     let value = '';
@@ -98,7 +98,7 @@ function tokenizeString(input, current) {
   return [0, null];
 }
 
-function tokenizeFunction(input, current) {
+function tokenizeFunction(input: any, current: any) {
   if (/[a-z_]/i.test(input[current])) {
     let value = '';
     let consumedChars = 0;
@@ -123,7 +123,7 @@ function tokenizeFunction(input, current) {
   return [0, null];
 }
 
-function tokenizeNumber(input, current) {
+function tokenizeNumber(input: any, current: any) {
   if (/[0-9]/i.test(input[current])) {
     let value = '';
     let consumedChars = 0;
@@ -144,8 +144,7 @@ function tokenizeNumber(input, current) {
   return [0, null];
 }
 
-
-function tokenizeDecimal(input, current) {
+function tokenizeDecimal(input: any, current: any) {
   if (/[0-9.]/i.test(input[current])) {
     let value = '';
     let consumedChars = 0;
@@ -179,9 +178,9 @@ function tokenizeDecimal(input, current) {
   return [0, null];
 }
 
-function tokenizeVariable(input, current) {
+function tokenizeVariable(input: any, current: any) {
   if (input[current] === '#' || input[current] === '$') {
-    if (input[current + 1] && (input[current + 1] === '{')) {
+    if (input[current + 1] && input[current + 1] === '{') {
       let value = '';
       let consumedChars = 1;
       consumedChars += 1;
@@ -200,10 +199,13 @@ function tokenizeVariable(input, current) {
   return [0, null];
 }
 
-function tokenizeOr(input, current) {
+function tokenizeOr(input: any, current: any) {
   if (input[current] === 'o') {
     if (input[current + 1] && input[current + 1] === 'r') {
-      if (input[current + 2] === undefined || /[0-9\s]/.test(input[current + 2])) {
+      if (
+        input[current + 2] === undefined ||
+        /[0-9\s]/.test(input[current + 2])
+      ) {
         return [2, { type: 'or', value: 'or' }];
       }
     }
@@ -211,10 +213,13 @@ function tokenizeOr(input, current) {
   return [0, null];
 }
 
-function tokenizeIf(input, current) {
+function tokenizeIf(input: any, current: any) {
   if (input[current] === 'i') {
     if (input[current + 1] && input[current + 1] === 'f') {
-      if (input[current + 2] === undefined || !/[a-z]i/.test(input[current + 2])) {
+      if (
+        input[current + 2] === undefined ||
+        !/[a-z]i/.test(input[current + 2])
+      ) {
         return [2, { type: 'if', value: 'if' }];
       }
     }
@@ -222,12 +227,14 @@ function tokenizeIf(input, current) {
   return [0, null];
 }
 
-
-function tokenizeAnd(input, current) {
+function tokenizeAnd(input: any, current: any) {
   if (input[current] === 'a') {
     if (input[current + 1] && input[current + 1] === 'n') {
       if (input[current + 2] && input[current + 2] === 'd') {
-        if (input[current + 3] === undefined || /[0-9\s]/.test(input[current + 3])) {
+        if (
+          input[current + 3] === undefined ||
+          /[0-9\s]/.test(input[current + 3])
+        ) {
           return [3, { type: 'and', value: 'and' }];
         }
       }
@@ -236,12 +243,14 @@ function tokenizeAnd(input, current) {
   return [0, null];
 }
 
-
-function tokenizeDiv(input, current) {
+function tokenizeDiv(input: any, current: any) {
   if (input[current] === 'd') {
     if (input[current + 1] && input[current + 1] === 'i') {
       if (input[current + 2] && input[current + 2] === 'v') {
-        if (input[current + 3] === undefined || /[0-9\s]/.test(input[current + 3])) {
+        if (
+          input[current + 3] === undefined ||
+          /[0-9\s]/.test(input[current + 3])
+        ) {
           return [3, { type: 'divide', value: '/' }];
         }
       }
@@ -250,12 +259,12 @@ function tokenizeDiv(input, current) {
   return [0, null];
 }
 
-function tokenizeName(input, current) {
+function tokenizeName(input: any, current: any) {
   return tokenizePattern('name', /[a-z]/i, input, current);
 }
 
-function skipWhiteSpace(input, current) {
-  return (/\s/.test(input[current])) ? [1, null] : [0, null];
+function skipWhiteSpace(input: any, current: any) {
+  return /\s/.test(input[current]) ? [1, null] : [0, null];
 }
 
 const tokenizers = [
@@ -283,18 +292,19 @@ const tokenizers = [
   tokenizeComma,
   tokenizeNumber,
   tokenizeDecimal,
-  tokenizeName];
+  tokenizeName,
+];
 
-
-function tokenizer(input) {
-  let current = 0;
-  const tokens = [];
+function tokenizer(input: any) {
+  let current: number = 0;
+  const tokens: any = [];
   while (current < input.length) {
     let tokenized = false;
-    // eslint-disable-next-line no-loop-func
-    tokenizers.forEach((tokenizerFn) => {
-      if (tokenized) { return; }
-      const [consumedChars, token] = tokenizerFn(input, current);
+    tokenizers.forEach(tokenizerFn => {
+      if (tokenized) {
+        return;
+      }
+      const [consumedChars, token]: any = tokenizerFn(input, current);
       if (consumedChars !== 0) {
         tokenized = true;
         current += consumedChars;
@@ -304,34 +314,34 @@ function tokenizer(input) {
       }
     });
     if (!tokenized) {
-      throw new TypeError(`I dont know what this character is: ${input[current]}`);
+      throw new TypeError(
+        `I dont know what this character is: ${input[current]}`
+      );
     }
   }
   return tokens;
 }
 
-
-// eslint-disable-next-line no-unused-vars
-function kbSelected(funcName, params, _paramsTokens) {
+// tslint:disable-next-line: variable-name
+function kbSelected(funcName: any, params: any, _paramsTokens: any) {
   if (funcName === 'selected') {
     let tmp = false;
     if (Array.isArray(params[0])) {
-      params[0].forEach((element) => {
-        // eslint-disable-next-line eqeqeq
+      params[0].forEach((element: any) => {
+        // tslint:disable-next-line: triple-equals
         tmp = tmp || element == params[1];
       });
       return [true, tmp];
     }
-    // eslint-disable-next-line eqeqeq
+    // tslint:disable-next-line: triple-equals
     return [true, params[0] == params[1]];
   }
   return [false, null];
 }
 
-
-// eslint-disable-next-line no-unused-vars
-function kbToday(funcName, _params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbToday(funcName: any, _params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'today') {
     const d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -340,15 +350,15 @@ function kbToday(funcName, _params, _paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbRound(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbRound(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'round') {
     if (params[0] && params[1]) {
-      if (typeof (params[0]) === 'number' && typeof (params[1]) === 'number') {
+      if (typeof params[0] === 'number' && typeof params[1] === 'number') {
         return [true, params[0].toFixed(params[1])];
       }
-      if (typeof (params[0]) === 'string' && typeof (params[1]) === 'number') {
+      if (typeof params[0] === 'string' && typeof params[1] === 'number') {
         return [true, parseFloat(params[0]).toFixed(params[1])];
       }
     }
@@ -356,9 +366,9 @@ function kbRound(funcName, params, _paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbRegex(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbRegex(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'regex') {
     const regex = RegExp(params[1]);
     return [true, regex.test(params[0])];
@@ -366,14 +376,14 @@ function kbRegex(funcName, params, _paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbCountSelected(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbCountSelected(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'count-selected') {
     if (params[0] && Array.isArray(params[0])) {
       return [true, params[0].length];
     }
-    if (params[0] && typeof (params[0]) !== 'object') {
+    if (params[0] && typeof params[0] !== 'object') {
       return [true, 1];
     }
     return [true, 0];
@@ -381,20 +391,20 @@ function kbCountSelected(funcName, params, _paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbInt(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbInt(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'int') {
-    if (typeof (params[0]) === 'string') {
+    if (typeof params[0] === 'string') {
       return [true, parseInt(params[0], 10)];
     }
   }
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbCoalesce(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbCoalesce(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'coalesce') {
     if (!params[0] && params[0] !== 0) {
       return [true, params[1]];
@@ -404,9 +414,9 @@ function kbCoalesce(funcName, params, _paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbPosition(funcName, _params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbPosition(funcName: any, _params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'position') {
     if (currentHierarchicalName) {
       const tmpName = currentHierarchicalName.split('/');
@@ -418,26 +428,21 @@ function kbPosition(funcName, _params, _paramsTokens) {
   return [false, null];
 }
 
-function sumValuesOverJsn(sum, jsnObj, variableName) {
+function sumValuesOverJsn(sum: any, jsnObj: any, variableName: any) {
   if (Array.isArray(jsnObj)) {
     let i;
     for (i = 0; i < jsnObj.length; i += 1) {
-      // eslint-disable-next-line no-param-reassign
       sum = sumValuesOverJsn(sum, jsnObj[i], variableName);
     }
-  } else if (typeof (jsnObj) === 'object') {
-    // eslint-disable-next-line no-restricted-syntax
+  } else if (typeof jsnObj === 'object') {
     for (const key in jsnObj) {
-      if (typeof (jsnObj[key]) === 'object') {
-        // eslint-disable-next-line no-param-reassign
+      if (typeof jsnObj[key] === 'object') {
         sum = sumValuesOverJsn(sum, jsnObj[key], variableName);
       } else if (key === variableName) {
-        if (typeof (jsnObj[key]) === 'string') {
-          // eslint-disable-next-line no-param-reassign
+        if (typeof jsnObj[key] === 'string') {
           sum += parseFloat(jsnObj[key]);
         }
-        if (typeof (jsnObj[key]) === 'number') {
-          // eslint-disable-next-line no-param-reassign
+        if (typeof jsnObj[key] === 'number') {
           sum += jsnObj[key];
         }
       }
@@ -446,11 +451,18 @@ function sumValuesOverJsn(sum, jsnObj, variableName) {
   return sum;
 }
 
-function kbSum(funcName, _params, paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbSum(funcName: any, _params: any, paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'sum') {
     let sumValue = null;
-    if (paramsTokens && paramsTokens.length > 0 && paramsTokens[0] && paramsTokens[0].length > 0 && paramsTokens[0][0].type === 'variable') {
+    if (
+      paramsTokens &&
+      paramsTokens.length > 0 &&
+      paramsTokens[0] &&
+      paramsTokens[0].length > 0 &&
+      paramsTokens[0][0].type === 'variable'
+    ) {
       sumValue = sumValuesOverJsn(0, userInput, paramsTokens[0][0].value);
     }
     return [true, sumValue];
@@ -458,14 +470,17 @@ function kbSum(funcName, _params, paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbConcat(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbConcat(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'concat') {
     if (params && params.length > 0) {
       let concatStr = '';
+      // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < params.length; i += 1) {
-        if (params[i] == null) return [false, null];
+        if (params[i] == null) {
+          return [false, null];
+        }
         concatStr += params[i];
       }
       return [true, concatStr];
@@ -474,9 +489,9 @@ function kbConcat(funcName, params, _paramsTokens) {
   return [false, null];
 }
 
-// eslint-disable-next-line no-unused-vars
-function kbSubstr(funcName, params, _paramsTokens) {
-  // eslint-disable-next-line eqeqeq
+// tslint:disable-next-line: variable-name
+function kbSubstr(funcName: any, params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
   if (funcName == 'substr') {
     if (params && params.length > 0) {
       if (params[0] && params[1] !== null) {
@@ -491,12 +506,14 @@ function kbSubstr(funcName, params, _paramsTokens) {
   return [false, null];
 }
 
-function outerScopedVariables(variableName, tmpUserInput) {
+function outerScopedVariables(variableName: any, tmpUserInput: any): any {
   let variableValue = null;
-  // eslint-disable-next-line guard-for-in, no-restricted-syntax
+  // tslint:disable-next-line: forin
   for (const key in tmpUserInput) {
-    if (key === variableName) return tmpUserInput[key];
-    if (typeof (tmpUserInput[key]) === 'object') {
+    if (key === variableName) {
+      return tmpUserInput[key];
+    }
+    if (typeof tmpUserInput[key] === 'object') {
       if (variableValue == null) {
         variableValue = outerScopedVariables(variableName, tmpUserInput[key]);
       }
@@ -505,7 +522,7 @@ function outerScopedVariables(variableName, tmpUserInput) {
   return variableValue;
 }
 
-function parseMostClosestScopedVariable(variableName) {
+function parseMostClosestScopedVariable(variableName: any) {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
   let tmpUserInput = userInput;
@@ -513,8 +530,8 @@ function parseMostClosestScopedVariable(variableName) {
   if (variableName in tmpUserInput) {
     variableValue = tmpUserInput[variableName];
   }
-  for (i = 0; i < tmpHierchicalName.length - 1;) {
-    // eslint-disable-next-line eqeqeq
+  for (i = 0; i < tmpHierchicalName.length - 1; ) {
+    // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;
       if (tmpUserInput) {
@@ -530,21 +547,24 @@ function parseMostClosestScopedVariable(variableName) {
       }
       i += 2;
     }
-    // eslint-disable-next-line eqeqeq
-    if (tmpUserInput != undefined && tmpUserInput != null && variableName in tmpUserInput) {
+    if (
+      // tslint:disable-next-line: triple-equals
+      tmpUserInput != undefined &&
+      tmpUserInput != null &&
+      variableName in tmpUserInput
+    ) {
       variableValue = tmpUserInput[variableName];
     }
   }
   return variableValue;
 }
 
-
 function parseDot() {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
   let tmpUserInput = userInput;
-  for (i = 0; i < tmpHierchicalName.length - 1;) {
-    // eslint-disable-next-line eqeqeq
+  for (i = 0; i < tmpHierchicalName.length - 1; ) {
+    // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;
       if (tmpUserInput) {
@@ -565,7 +585,8 @@ function parseDot() {
   return tmpUserInput;
 }
 
-function parseLiterals(tmpOutput, tokens, current) {
+// tslint:disable-next-line: variable-name
+function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
   if (tokens[current].type === 'number') {
     return [1, parseInt(tokens[current].value, 10)];
   }
@@ -596,8 +617,8 @@ function parseLiterals(tmpOutput, tokens, current) {
   return [0, null];
 }
 
-
-function parseFunction(_output, tokens, current) {
+// tslint:disable-next-line: variable-name
+function parseFunction(_output: any, tokens: any, current: any) {
   const possibleFunctions = [
     kbSelected,
     kbCountSelected,
@@ -609,28 +630,37 @@ function parseFunction(_output, tokens, current) {
     kbSum,
     kbConcat,
     kbSubstr,
-    kbRound];
+    kbRound,
+  ];
   if (tokens[current].type === 'function') {
     const funcName = tokens[current].value;
-    const arrayOfParams = [];
-    const arrayOfOriginalTokens = [];
+    const arrayOfParams: any = [];
+    const arrayOfOriginalTokens: any = [];
     let i = 1;
-    if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+    if (
+      tokens[current + i].type === 'paren' &&
+      tokens[current + i].value === '('
+    ) {
       const tmpQueue = [];
       tmpQueue.push(1);
       i += 1;
       let tmpTokens = [];
       while (tokens[current + i] && tmpQueue.length) {
         tmpTokens.push(tokens[current + i]);
-        if (tokens[current + i].type === 'paren' && tokens[current + i].value === ')') {
+        if (
+          tokens[current + i].type === 'paren' &&
+          tokens[current + i].value === ')'
+        ) {
           tmpQueue.pop();
         }
-        if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+        if (
+          tokens[current + i].type === 'paren' &&
+          tokens[current + i].value === '('
+        ) {
           tmpQueue.push(1);
         }
         if (tokens[current + i].type === 'comma' && tmpQueue.length === 1) {
           tmpTokens.pop();
-          // eslint-disable-next-line no-use-before-define
           const tmpVal = parser(null, tmpTokens, 0);
           arrayOfParams.push(tmpVal);
           arrayOfOriginalTokens.push(tmpTokens);
@@ -640,17 +670,25 @@ function parseFunction(_output, tokens, current) {
       }
       i -= 1;
 
-      if (tokens[current + i].type === 'paren' && tokens[current + i].value === ')') {
+      if (
+        tokens[current + i].type === 'paren' &&
+        tokens[current + i].value === ')'
+      ) {
         tmpTokens.pop();
-        // eslint-disable-next-line no-use-before-define
         const tmpVal = parser(null, tmpTokens, 0);
         arrayOfParams.push(tmpVal);
         arrayOfOriginalTokens.push(tmpTokens);
         let parsedFn = false;
         let parsedVal = null;
-        possibleFunctions.forEach((functionFn) => {
-          if (parsedFn) { return; }
-          [parsedFn, parsedVal] = functionFn(funcName, arrayOfParams, arrayOfOriginalTokens);
+        possibleFunctions.forEach(functionFn => {
+          if (parsedFn) {
+            return;
+          }
+          [parsedFn, parsedVal] = functionFn(
+            funcName,
+            arrayOfParams,
+            arrayOfOriginalTokens
+          );
         });
         if (parsedFn) {
           return [i + 1, parsedVal];
@@ -661,27 +699,35 @@ function parseFunction(_output, tokens, current) {
   return [0, null];
 }
 
-
-function parseIf(_output, tokens, current) {
+// tslint:disable-next-line: variable-name
+function parseIf(_output: any, tokens: any, current: any) {
   if (tokens[current].type === 'if') {
     const arrayOfParams = [];
     let i = 1;
-    if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+    if (
+      tokens[current + i].type === 'paren' &&
+      tokens[current + i].value === '('
+    ) {
       const tmpQueue = [];
       tmpQueue.push(1);
       i += 1;
       let tmpTokens = [];
       while (tokens[current + i] && tmpQueue.length) {
         tmpTokens.push(tokens[current + i]);
-        if (tokens[current + i].type === 'paren' && tokens[current + i].value === ')') {
+        if (
+          tokens[current + i].type === 'paren' &&
+          tokens[current + i].value === ')'
+        ) {
           tmpQueue.pop();
         }
-        if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+        if (
+          tokens[current + i].type === 'paren' &&
+          tokens[current + i].value === '('
+        ) {
           tmpQueue.push(1);
         }
         if (tokens[current + i].type === 'comma' && tmpQueue.length === 1) {
           tmpTokens.pop();
-          // eslint-disable-next-line no-use-before-define
           const tmpVal = parser(null, tmpTokens, 0);
           arrayOfParams.push(tmpVal);
           tmpTokens = [];
@@ -690,9 +736,11 @@ function parseIf(_output, tokens, current) {
       }
       i -= 1;
 
-      if (tokens[current + i].type === 'paren' && tokens[current + i].value === ')') {
+      if (
+        tokens[current + i].type === 'paren' &&
+        tokens[current + i].value === ')'
+      ) {
         tmpTokens.pop();
-        // eslint-disable-next-line no-use-before-define
         const tmpVal = parser(null, tmpTokens, 0);
         arrayOfParams.push(tmpVal);
         if (arrayOfParams.length % 2 === 0) {
@@ -717,7 +765,7 @@ function parseIf(_output, tokens, current) {
   return [0, null];
 }
 
-function parseNot(output, tokens, current) {
+function parseNot(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'not') {
     let tmpTokens;
     let i = 1;
@@ -725,26 +773,33 @@ function parseNot(output, tokens, current) {
       tmpTokens = [];
       i += 1;
       const terminatingTokens = ['and', 'or'];
-      while (tokens[current + i] && terminatingTokens.indexOf(tokens[current + i].type) === -1) {
+      while (
+        tokens[current + i] &&
+        terminatingTokens.indexOf(tokens[current + i].type) === -1
+      ) {
         tmpTokens.push(tokens[current + i]);
         i += 1;
       }
       let newOutput;
       if (tmpTokens.length) {
-        // eslint-disable-next-line no-use-before-define
         newOutput = parser(null, tmpTokens, 0);
-        // eslint-disable-next-line eqeqeq
+        // tslint:disable-next-line: triple-equals
         return [i, output != newOutput];
       }
     } else {
       let parsed = false;
-      // eslint-disable-next-line no-use-before-define
-      const possibleParsers = [parseLiterals, parseMinus, parseParen, parseFunction];
+      const possibleParsers = [
+        parseLiterals,
+        parseMinus,
+        parseParen,
+        parseFunction,
+      ];
       let consumedTokens;
       let newOutput;
-      possibleParsers.forEach((parserFn) => {
-        if (parsed) { return; }
-        // eslint-disable-next-line no-use-before-define
+      possibleParsers.forEach(parserFn => {
+        if (parsed) {
+          return;
+        }
         if (parserFn === parseMinus) {
           [consumedTokens, newOutput] = parserFn(null, tokens, current + 1);
         } else {
@@ -763,24 +818,28 @@ function parseNot(output, tokens, current) {
   return [0, null];
 }
 
-function parseAnd(output, tokens, current) {
+function parseAnd(output: any, tokens: any, current: any): any {
   if (tokens[current].type === 'and' && output != null) {
     const tmpTokens = [];
     let i = 1;
     let newOutput = null;
-    if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+    if (
+      tokens[current + i].type === 'paren' &&
+      tokens[current + i].value === '('
+    ) {
       let consumedChars;
-      // eslint-disable-next-line no-use-before-define
       [consumedChars, newOutput] = parseParen(null, tokens, current + i);
       i += consumedChars;
     } else {
       const terminatingTokens = ['and', 'or'];
-      while (tokens[current + i] && terminatingTokens.indexOf(tokens[current + i].type) === -1) {
+      while (
+        tokens[current + i] &&
+        terminatingTokens.indexOf(tokens[current + i].type) === -1
+      ) {
         tmpTokens.push(tokens[current + i]);
         i += 1;
       }
       if (tmpTokens.length) {
-        // eslint-disable-next-line no-use-before-define
         newOutput = parser(null, tmpTokens, 0);
       }
     }
@@ -797,24 +856,28 @@ function parseAnd(output, tokens, current) {
   return [0, null];
 }
 
-function parseOr(output, tokens, current) {
+function parseOr(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'or' && output != null) {
     const tmpTokens = [];
     let i = 1;
     let newOutput = null;
-    if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+    if (
+      tokens[current + i].type === 'paren' &&
+      tokens[current + i].value === '('
+    ) {
       let consumedChars;
-      // eslint-disable-next-line no-use-before-define
       [consumedChars, newOutput] = parseParen(null, tokens, current + i);
       i += consumedChars;
     } else {
       const terminatingTokens = ['and', 'or'];
-      while (tokens[current + i] && terminatingTokens.indexOf(tokens[current + i].type) === -1) {
+      while (
+        tokens[current + i] &&
+        terminatingTokens.indexOf(tokens[current + i].type) === -1
+      ) {
         tmpTokens.push(tokens[current + i]);
         i += 1;
       }
       if (tmpTokens.length) {
-        // eslint-disable-next-line no-use-before-define
         newOutput = parser(null, tmpTokens, 0);
       }
     }
@@ -830,27 +893,29 @@ function parseOr(output, tokens, current) {
   return [0, null];
 }
 
-function parseEqual(output, tokens, current) {
+function parseEqual(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'equal' && output != null) {
     const tmpTokens = [];
     let i = 1;
     const terminatingTokens = ['and', 'or'];
-    while (tokens[current + i] && terminatingTokens.indexOf(tokens[current + i].type) === -1) {
+    while (
+      tokens[current + i] &&
+      terminatingTokens.indexOf(tokens[current + i].type) === -1
+    ) {
       tmpTokens.push(tokens[current + i]);
       i += 1;
     }
     let newOutput;
     if (tmpTokens.length) {
-      // eslint-disable-next-line no-use-before-define
       newOutput = parser(null, tmpTokens, 0);
-      // eslint-disable-next-line eqeqeq
+      // tslint:disable-next-line: triple-equals
       return [i, output == newOutput];
     }
   }
   return [0, null];
 }
 
-function parseLessThan(output, tokens, current) {
+function parseLessThan(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'lessThan' && output != null) {
     let flagLessThanOrEqual = false;
     const tmpTokens = [];
@@ -860,13 +925,15 @@ function parseLessThan(output, tokens, current) {
       flagLessThanOrEqual = true;
     }
     const terminatingTokens = ['and', 'or'];
-    while (tokens[current + i] && terminatingTokens.indexOf(tokens[current + i].type) === -1) {
+    while (
+      tokens[current + i] &&
+      terminatingTokens.indexOf(tokens[current + i].type) === -1
+    ) {
       tmpTokens.push(tokens[current + i]);
       i += 1;
     }
     let newOutput;
     if (tmpTokens.length) {
-      // eslint-disable-next-line no-use-before-define
       newOutput = parser(null, tmpTokens, 0);
       if (flagLessThanOrEqual) {
         return [i, output <= newOutput];
@@ -877,7 +944,7 @@ function parseLessThan(output, tokens, current) {
   return [0, null];
 }
 
-function parseGreaterThan(output, tokens, current) {
+function parseGreaterThan(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'greaterThan' && output != null) {
     let flagGreaterThanOrEqual = false;
     const tmpTokens = [];
@@ -887,13 +954,15 @@ function parseGreaterThan(output, tokens, current) {
       flagGreaterThanOrEqual = true;
     }
     const terminatingTokens = ['and', 'or'];
-    while (tokens[current + i] && terminatingTokens.indexOf(tokens[current + i].type) === -1) {
+    while (
+      tokens[current + i] &&
+      terminatingTokens.indexOf(tokens[current + i].type) === -1
+    ) {
       tmpTokens.push(tokens[current + i]);
       i += 1;
     }
     let newOutput;
     if (tmpTokens.length) {
-      // eslint-disable-next-line no-use-before-define
       newOutput = parser(null, tmpTokens, 0);
 
       if (flagGreaterThanOrEqual) {
@@ -905,7 +974,8 @@ function parseGreaterThan(output, tokens, current) {
   return [0, null];
 }
 
-function parseParen(_output, tokens, current) {
+// tslint:disable-next-line: variable-name
+function parseParen(_output: any, tokens: any, current: any) {
   if (tokens[current].type === 'paren' && tokens[current].value === '(') {
     const tmpQueue = [];
     tmpQueue.push(1);
@@ -913,19 +983,27 @@ function parseParen(_output, tokens, current) {
     const tmpTokens = [];
     while (tokens[current + i] && tmpQueue.length) {
       tmpTokens.push(tokens[current + i]);
-      if (tokens[current + i].type === 'paren' && tokens[current + i].value === ')') {
+      if (
+        tokens[current + i].type === 'paren' &&
+        tokens[current + i].value === ')'
+      ) {
         tmpQueue.pop();
       }
-      if (tokens[current + i].type === 'paren' && tokens[current + i].value === '(') {
+      if (
+        tokens[current + i].type === 'paren' &&
+        tokens[current + i].value === '('
+      ) {
         tmpQueue.push(1);
       }
       i += 1;
     }
     i -= 1;
 
-    if (tokens[current + i].type === 'paren' && tokens[current + i].value === ')') {
+    if (
+      tokens[current + i].type === 'paren' &&
+      tokens[current + i].value === ')'
+    ) {
       tmpTokens.pop();
-      // eslint-disable-next-line no-use-before-define
       const tmpVal = parser(null, tmpTokens, 0);
       return [i + 1, tmpVal];
     }
@@ -933,19 +1011,34 @@ function parseParen(_output, tokens, current) {
   return [0, null];
 }
 
-function parseDivide(output, tokens, current) {
-  if (output != null && (tokens[current].type === 'divide')) {
-    const possibleTokens = ['number', 'decimal', 'minus', 'paren', 'variable', 'function'];
-    if (current < tokens.length && possibleTokens.indexOf(tokens[current + 1].type) !== -1) {
+function parseDivide(output: any, tokens: any, current: any) {
+  if (output != null && tokens[current].type === 'divide') {
+    const possibleTokens = [
+      'number',
+      'decimal',
+      'minus',
+      'paren',
+      'variable',
+      'function',
+    ];
+    if (
+      current < tokens.length &&
+      possibleTokens.indexOf(tokens[current + 1].type) !== -1
+    ) {
       let parsed = false;
-      let ct = null;
-      // eslint-disable-next-line no-use-before-define
-      const possibleParsers = [parseLiterals, parseMinus, parseParen, parseFunction];
-      possibleParsers.forEach((parserFn) => {
-        if (parsed) { return; }
+      let ct: any = null;
+      const possibleParsers = [
+        parseLiterals,
+        parseMinus,
+        parseParen,
+        parseFunction,
+      ];
+      possibleParsers.forEach(parserFn => {
+        if (parsed) {
+          return;
+        }
         let consumedTokens;
-        let newOutput;
-        // eslint-disable-next-line no-use-before-define
+        let newOutput: any;
         if (parserFn === parseMinus) {
           [consumedTokens, newOutput] = parserFn(null, tokens, current + 1);
         } else {
@@ -954,18 +1047,22 @@ function parseDivide(output, tokens, current) {
         if (consumedTokens !== 0) {
           parsed = true;
           consumedTokens += 1;
-          // eslint-disable-next-line no-param-reassign
           current += consumedTokens;
           ct = consumedTokens;
         }
-        // eslint-disable-next-line no-use-before-define
         const precedentParsers = [parseDivide, parseMultiply];
         let preParsed = false;
         let preOutput;
-        precedentParsers.forEach((preParseFn) => {
-          if (preParsed) { return; }
+        precedentParsers.forEach(preParseFn => {
+          if (preParsed) {
+            return;
+          }
           if (tokens[current]) {
-            [consumedTokens, preOutput] = preParseFn(newOutput, tokens, current);
+            [consumedTokens, preOutput] = preParseFn(
+              newOutput,
+              tokens,
+              current
+            );
             ct += consumedTokens;
             if (consumedTokens !== 0) {
               preParsed = true;
@@ -975,7 +1072,6 @@ function parseDivide(output, tokens, current) {
         });
 
         if (newOutput != null) {
-          // eslint-disable-next-line no-param-reassign
           output /= newOutput;
         }
       });
@@ -987,19 +1083,34 @@ function parseDivide(output, tokens, current) {
   return [0, null];
 }
 
-function parseMultiply(output, tokens, current) {
-  if (output != null && (tokens[current].type === 'multiply')) {
-    const possibleTokens = ['number', 'decimal', 'minus', 'paren', 'variable', 'function'];
-    if (current < tokens.length && possibleTokens.indexOf(tokens[current + 1].type) !== -1) {
+function parseMultiply(output: any, tokens: any, current: any) {
+  if (output != null && tokens[current].type === 'multiply') {
+    const possibleTokens = [
+      'number',
+      'decimal',
+      'minus',
+      'paren',
+      'variable',
+      'function',
+    ];
+    if (
+      current < tokens.length &&
+      possibleTokens.indexOf(tokens[current + 1].type) !== -1
+    ) {
       let parsed = false;
-      let ct = null;
-      // eslint-disable-next-line no-use-before-define
-      const possibleParsers = [parseLiterals, parseMinus, parseParen, parseFunction];
-      possibleParsers.forEach((parserFn) => {
-        if (parsed) { return; }
+      let ct: any = null;
+      const possibleParsers = [
+        parseLiterals,
+        parseMinus,
+        parseParen,
+        parseFunction,
+      ];
+      possibleParsers.forEach(parserFn => {
+        if (parsed) {
+          return;
+        }
         let consumedTokens;
-        let newOutput;
-        // eslint-disable-next-line no-use-before-define
+        let newOutput: any;
         if (parserFn === parseMinus) {
           [consumedTokens, newOutput] = parserFn(null, tokens, current + 1);
         } else {
@@ -1008,17 +1119,22 @@ function parseMultiply(output, tokens, current) {
         if (consumedTokens !== 0) {
           parsed = true;
           consumedTokens += 1;
-          // eslint-disable-next-line no-param-reassign
           current += consumedTokens;
           ct = consumedTokens;
         }
         const precedentParsers = [parseDivide, parseMultiply];
         let preParsed = false;
         let preOutput;
-        precedentParsers.forEach((preParseFn) => {
-          if (preParsed) { return; }
+        precedentParsers.forEach(preParseFn => {
+          if (preParsed) {
+            return;
+          }
           if (tokens[current]) {
-            [consumedTokens, preOutput] = preParseFn(newOutput, tokens, current);
+            [consumedTokens, preOutput] = preParseFn(
+              newOutput,
+              tokens,
+              current
+            );
             ct += consumedTokens;
             if (consumedTokens !== 0) {
               preParsed = true;
@@ -1028,7 +1144,6 @@ function parseMultiply(output, tokens, current) {
         });
 
         if (newOutput != null) {
-          // eslint-disable-next-line no-param-reassign
           output *= newOutput;
         }
       });
@@ -1040,20 +1155,35 @@ function parseMultiply(output, tokens, current) {
   return [0, null];
 }
 
-
-function parsePlus(output, tokens, current) {
-  if (output != null && (tokens[current].type === 'plus')) {
-    const possibleTokens = ['number', 'decimal', 'string', 'minus', 'paren', 'variable', 'function'];
-    if (current < tokens.length && possibleTokens.indexOf(tokens[current + 1].type) !== -1) {
+function parsePlus(output: any, tokens: any, current: any) {
+  if (output != null && tokens[current].type === 'plus') {
+    const possibleTokens = [
+      'number',
+      'decimal',
+      'string',
+      'minus',
+      'paren',
+      'variable',
+      'function',
+    ];
+    if (
+      current < tokens.length &&
+      possibleTokens.indexOf(tokens[current + 1].type) !== -1
+    ) {
       let parsed = false;
-      let ct = null;
-      // eslint-disable-next-line no-use-before-define
-      const possibleParsers = [parseLiterals, parseMinus, parseParen, parseFunction];
-      possibleParsers.forEach((parserFn) => {
-        if (parsed) { return; }
+      let ct: any = null;
+      const possibleParsers = [
+        parseLiterals,
+        parseMinus,
+        parseParen,
+        parseFunction,
+      ];
+      possibleParsers.forEach(parserFn => {
+        if (parsed) {
+          return;
+        }
         let consumedTokens;
-        let newOutput;
-        // eslint-disable-next-line no-use-before-define
+        let newOutput: any;
         if (parserFn === parseMinus) {
           [consumedTokens, newOutput] = parserFn(null, tokens, current + 1);
         } else {
@@ -1062,16 +1192,21 @@ function parsePlus(output, tokens, current) {
         if (consumedTokens !== 0) {
           parsed = true;
           consumedTokens += 1;
-          // eslint-disable-next-line no-param-reassign
           current += consumedTokens;
           ct = consumedTokens;
           const precedentParsers = [parseDivide, parseMultiply];
           let preParsed = false;
           let preOutput;
-          precedentParsers.forEach((preParseFn) => {
-            if (preParsed) { return; }
+          precedentParsers.forEach(preParseFn => {
+            if (preParsed) {
+              return;
+            }
             if (tokens[current]) {
-              [consumedTokens, preOutput] = preParseFn(newOutput, tokens, current);
+              [consumedTokens, preOutput] = preParseFn(
+                newOutput,
+                tokens,
+                current
+              );
               ct += consumedTokens;
               if (consumedTokens !== 0) {
                 preParsed = true;
@@ -1081,7 +1216,6 @@ function parsePlus(output, tokens, current) {
           });
         }
         if (newOutput != null) {
-          // eslint-disable-next-line no-param-reassign
           output += newOutput;
         }
       });
@@ -1093,30 +1227,45 @@ function parsePlus(output, tokens, current) {
   return [0, null];
 }
 
-
-function parseMinus(output, tokens, current) {
-  if ((tokens[current].type === 'minus')) {
-    const possibleTokens = ['number', 'decimal', 'paren', 'variable', 'function'];
-    if (current < tokens.length && possibleTokens.indexOf(tokens[current + 1].type) !== -1) {
+function parseMinus(output: any, tokens: any, current: any) {
+  if (tokens[current].type === 'minus') {
+    const possibleTokens = [
+      'number',
+      'decimal',
+      'paren',
+      'variable',
+      'function',
+    ];
+    if (
+      current < tokens.length &&
+      possibleTokens.indexOf(tokens[current + 1].type) !== -1
+    ) {
       let parsed = false;
-      let ct = null;
+      let ct: any = null;
       const possibleParsers = [parseLiterals, parseParen, parseFunction];
-      possibleParsers.forEach((parserFn) => {
-        if (parsed) { return; }
+      possibleParsers.forEach(parserFn => {
+        if (parsed) {
+          return;
+        }
         let [consumedTokens, newOutput] = parserFn(output, tokens, current + 1);
         if (consumedTokens !== 0) {
           parsed = true;
           consumedTokens += 1;
-          // eslint-disable-next-line no-param-reassign
           current += consumedTokens;
           ct = consumedTokens;
           const precedentParsers = [parseDivide, parseMultiply];
           let preParsed = false;
           let preOutput;
-          precedentParsers.forEach((preParseFn) => {
-            if (preParsed) { return; }
+          precedentParsers.forEach(preParseFn => {
+            if (preParsed) {
+              return;
+            }
             if (tokens[current]) {
-              [consumedTokens, preOutput] = preParseFn(newOutput, tokens, current);
+              [consumedTokens, preOutput] = preParseFn(
+                newOutput,
+                tokens,
+                current
+              );
               ct += consumedTokens;
               if (consumedTokens !== 0) {
                 preParsed = true;
@@ -1127,45 +1276,39 @@ function parseMinus(output, tokens, current) {
         }
         if (newOutput) {
           if (output) {
-            if (Object.prototype.toString.call(newOutput) === '[object Date]' && Object.prototype.toString.call(output) === '[object Date]') {
-              // eslint-disable-next-line no-restricted-globals
+            if (
+              Object.prototype.toString.call(newOutput) === '[object Date]' &&
+              Object.prototype.toString.call(output) === '[object Date]'
+            ) {
               if (!isNaN(output.getTime()) && !isNaN(newOutput.getTime())) {
-                // eslint-disable-next-line no-param-reassign
                 output -= newOutput;
-                // eslint-disable-next-line no-param-reassign
                 output = Math.ceil(output / (1000 * 60 * 60 * 24));
               } else {
-                // eslint-disable-next-line no-param-reassign
                 output = NaN;
               }
-            } else if (Object.prototype.toString.call(newOutput) === '[object Date]' || Object.prototype.toString.call(output) === '[object Date]') {
-              // eslint-disable-next-line no-param-reassign
+            } else if (
+              Object.prototype.toString.call(newOutput) === '[object Date]' ||
+              Object.prototype.toString.call(output) === '[object Date]'
+            ) {
               output = NaN;
             } else if (newOutput === '' || output === '') {
-              // eslint-disable-next-line no-param-reassign
               output = NaN;
             } else {
-              // eslint-disable-next-line no-param-reassign
               output -= newOutput;
             }
           } else {
-            // eslint-disable-next-line no-lonely-if
             if (Object.prototype.toString.call(newOutput) === '[object Date]') {
-              // eslint-disable-next-line no-param-reassign
               output = NaN;
             } else {
-              // eslint-disable-next-line no-param-reassign
               output = -newOutput;
             }
           }
         } else {
-          // eslint-disable-next-line no-param-reassign
           output = NaN;
         }
       });
       if (parsed) {
         if (output === '') {
-          // eslint-disable-next-line no-param-reassign
           output = NaN;
         }
         return [ct, output];
@@ -1189,16 +1332,18 @@ const parsers = [
   parseAnd,
   parseOr,
   parseNot,
-  parseFunction];
+  parseFunction,
+];
 
-function parser(leftOutput, tokens, pos) {
+function parser(leftOutput: any, tokens: any, pos: any) {
   let current = pos;
   let output = leftOutput;
   while (current < tokens.length) {
     let parsed = false;
-    // eslint-disable-next-line no-loop-func
-    parsers.forEach((parserFn) => {
-      if (parsed) { return; }
+    parsers.forEach(parserFn => {
+      if (parsed) {
+        return;
+      }
       const [consumedTokens, newOutput] = parserFn(output, tokens, current);
       if (consumedTokens !== 0) {
         parsed = true;
@@ -1210,9 +1355,9 @@ function parser(leftOutput, tokens, pos) {
     });
     if (!parsed) {
       // throw new TypeError('syntax error');
-      // eslint-disable-next-line no-console
+      // tslint:disable-next-line: no-console
       console.log('syntax error');
-      // eslint-disable-next-line no-console
+      // tslint:disable-next-line: no-console
       console.log(actualExpression);
       return null;
     }
@@ -1221,13 +1366,12 @@ function parser(leftOutput, tokens, pos) {
 }
 
 export default function evaluater(
-  expression,
-  tmpUserInput,
-  tmpFormItemProperty,
-  tmpCurrentHierarchicalName,
+  expression: string,
+  tmpUserInput: any,
+  tmpFormItemProperty: any,
+  tmpCurrentHierarchicalName: string
 ) {
   if (!tmpUserInput) {
-    // eslint-disable-next-line no-param-reassign
     tmpUserInput = {};
   }
   currentHierarchicalName = tmpCurrentHierarchicalName;
