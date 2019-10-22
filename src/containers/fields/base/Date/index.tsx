@@ -7,6 +7,7 @@ import {
   assignFieldValueAction,
   getFieldValue,
 } from '../../../../store/ducks/formState';
+import labelEvaluater from '../../../../utils/helpers';
 
 /** props interface for the text component */
 export interface DateProps {
@@ -18,9 +19,10 @@ export interface DateProps {
 class Date extends React.Component<DateProps> {
   public render() {
     const { fieldElement, fieldValue } = this.props;
+    const fieldLabel = labelEvaluater(fieldElement);
     return (
       <FormGroup>
-        <Label>date</Label>
+        <Label>{fieldLabel}</Label>
         <Input
           type="date"
           name={fieldElement.name}
