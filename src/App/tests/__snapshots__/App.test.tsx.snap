@@ -1026,12 +1026,78 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <div>
-                  Other 
-                  date
-                   
-                  event_start_date
-                </div>
+                <Connect(Date)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "Start Date",
+                      },
+                      "name": "event_start_date",
+                      "type": "date",
+                    }
+                  }
+                >
+                  <Date
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "Start Date",
+                        },
+                        "name": "event_start_date",
+                        "type": "date",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Label
+                          tag="label"
+                          widths={
+                            Array [
+                              "xs",
+                              "sm",
+                              "md",
+                              "lg",
+                              "xl",
+                            ]
+                          }
+                        >
+                          <label
+                            className=""
+                          >
+                            Start Date
+                          </label>
+                        </Label>
+                        <Input
+                          name="event_start_date"
+                          onChange={[Function]}
+                          type="date"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="event_start_date"
+                            onChange={[Function]}
+                            type="date"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Date>
+                </Connect(Date)>
               </BaseTypeEvaluator>
             </div>
             <div
@@ -1052,12 +1118,78 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <div>
-                  Other 
-                  date
-                   
-                  event_end_date
-                </div>
+                <Connect(Date)
+                  fieldElement={
+                    Object {
+                      "bind": Object {
+                        "required": "Yes",
+                      },
+                      "label": Object {
+                        "English": "End Date",
+                      },
+                      "name": "event_end_date",
+                      "type": "date",
+                    }
+                  }
+                >
+                  <Date
+                    assignFieldValueActionCreator={[Function]}
+                    fieldElement={
+                      Object {
+                        "bind": Object {
+                          "required": "Yes",
+                        },
+                        "label": Object {
+                          "English": "End Date",
+                        },
+                        "name": "event_end_date",
+                        "type": "date",
+                      }
+                    }
+                    fieldValue=""
+                  >
+                    <FormGroup
+                      tag="div"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <Label
+                          tag="label"
+                          widths={
+                            Array [
+                              "xs",
+                              "sm",
+                              "md",
+                              "lg",
+                              "xl",
+                            ]
+                          }
+                        >
+                          <label
+                            className=""
+                          >
+                            End Date
+                          </label>
+                        </Label>
+                        <Input
+                          name="event_end_date"
+                          onChange={[Function]}
+                          type="date"
+                          value=""
+                        >
+                          <input
+                            className="form-control"
+                            name="event_end_date"
+                            onChange={[Function]}
+                            type="date"
+                            value=""
+                          />
+                        </Input>
+                      </div>
+                    </FormGroup>
+                  </Date>
+                </Connect(Date)>
               </BaseTypeEvaluator>
             </div>
             <div
