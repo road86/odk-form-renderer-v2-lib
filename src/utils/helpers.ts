@@ -13,3 +13,34 @@ export default function labelEvaluater(fieldElement: FieldElement) {
   }
   return fieldLabel;
 }
+
+export function getLabelSuffixText(fieldElement: FieldElement): string {
+  let textSuffix = '';
+  if (isRequiredProperties(fieldElement)) {
+    textSuffix = '*';
+  }
+  return textSuffix;
+}
+
+export function getInputSuffixText(fieldElement: FieldElement): string {
+  let inputSuffix = '';
+  if (isRequiredProperties(fieldElement)) {
+    inputSuffix = 'This field is required';
+  }
+  return inputSuffix;
+}
+
+function isRequiredProperties(fieldElement: FieldElement): boolean {
+  let isRequired = false;
+  if (fieldElement.bind) {
+    if (fieldElement.bind.required) {
+      if (
+        typeof fieldElement.bind.required === 'string' &&
+        fieldElement.bind.required === 'Yes'
+      ) {
+        isRequired = true;
+      }
+    }
+  }
+  return isRequired;
+}

@@ -7,7 +7,10 @@ import {
   assignFieldValueAction,
   getFieldValue,
 } from '../../../../store/ducks/formState';
-import labelEvaluater from '../../../../utils/helpers';
+import labelEvaluater, {
+  getInputSuffixText,
+  getLabelSuffixText,
+} from '../../../../utils/helpers';
 
 /** props interface for the text component */
 export interface DateProps {
@@ -20,15 +23,20 @@ class Date extends React.Component<DateProps> {
   public render() {
     const { fieldElement, fieldValue } = this.props;
     const fieldLabel = labelEvaluater(fieldElement);
+    const textSuffix = getLabelSuffixText(fieldElement);
+    const inputSuffix = getInputSuffixText(fieldElement);
     return (
       <FormGroup>
-        <Label>{fieldLabel}</Label>
+        <Label>
+          {fieldLabel} {textSuffix}
+        </Label>
         <Input
           type="date"
           name={fieldElement.name}
           onChange={this.onChangeHandler}
           value={fieldValue}
         />
+        <Label>{inputSuffix}</Label>
       </FormGroup>
     );
   }

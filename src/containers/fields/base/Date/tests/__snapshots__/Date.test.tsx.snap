@@ -66,6 +66,8 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
               className=""
             >
               End Date
+               
+              *
             </label>
           </Label>
           <Input
@@ -82,6 +84,24 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
               value="2019-10-11"
             />
           </Input>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              This field is required
+            </label>
+          </Label>
         </div>
       </FormGroup>
     </Date>

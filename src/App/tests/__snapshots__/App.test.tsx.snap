@@ -1078,6 +1078,8 @@ exports[`App renders App correctly 1`] = `
                             className=""
                           >
                             Start Date
+                             
+                            *
                           </label>
                         </Label>
                         <Input
@@ -1094,6 +1096,24 @@ exports[`App renders App correctly 1`] = `
                             value=""
                           />
                         </Input>
+                        <Label
+                          tag="label"
+                          widths={
+                            Array [
+                              "xs",
+                              "sm",
+                              "md",
+                              "lg",
+                              "xl",
+                            ]
+                          }
+                        >
+                          <label
+                            className=""
+                          >
+                            This field is required
+                          </label>
+                        </Label>
                       </div>
                     </FormGroup>
                   </Date>
@@ -1170,6 +1190,8 @@ exports[`App renders App correctly 1`] = `
                             className=""
                           >
                             End Date
+                             
+                            *
                           </label>
                         </Label>
                         <Input
@@ -1186,6 +1208,24 @@ exports[`App renders App correctly 1`] = `
                             value=""
                           />
                         </Input>
+                        <Label
+                          tag="label"
+                          widths={
+                            Array [
+                              "xs",
+                              "sm",
+                              "md",
+                              "lg",
+                              "xl",
+                            ]
+                          }
+                        >
+                          <label
+                            className=""
+                          >
+                            This field is required
+                          </label>
+                        </Label>
                       </div>
                     </FormGroup>
                   </Date>
