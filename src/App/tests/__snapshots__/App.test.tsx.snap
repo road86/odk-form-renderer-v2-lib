@@ -1538,106 +1538,12 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <Connect(Integer)
-                  fieldElement={
-                    Object {
-                      "bind": Object {
-                        "constraint": ".>=0",
-                        "jr:constraintMsg": Object {
-                          "English": "Negative value not allowed",
-                        },
-                        "required": "Yes",
-                      },
-                      "label": Object {
-                        "English": "Male",
-                      },
-                      "name": "participant_male",
-                      "type": "integer",
-                    }
-                  }
-                >
-                  <Integer
-                    assignFieldValueActionCreator={[Function]}
-                    fieldElement={
-                      Object {
-                        "bind": Object {
-                          "constraint": ".>=0",
-                          "jr:constraintMsg": Object {
-                            "English": "Negative value not allowed",
-                          },
-                          "required": "Yes",
-                        },
-                        "label": Object {
-                          "English": "Male",
-                        },
-                        "name": "participant_male",
-                        "type": "integer",
-                      }
-                    }
-                    fieldValue=""
-                  >
-                    <FormGroup
-                      tag="div"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            Male
-                             
-                            *
-                          </label>
-                        </Label>
-                        <Input
-                          name="participant_male"
-                          onChange={[Function]}
-                          type="number"
-                          value=""
-                        >
-                          <input
-                            className="form-control"
-                            name="participant_male"
-                            onChange={[Function]}
-                            type="number"
-                            value=""
-                          />
-                        </Input>
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            This field is required
-                          </label>
-                        </Label>
-                      </div>
-                    </FormGroup>
-                  </Integer>
-                </Connect(Integer)>
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_male
+                </div>
               </BaseTypeEvaluator>
             </div>
             <div
@@ -1662,106 +1568,12 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <Connect(Integer)
-                  fieldElement={
-                    Object {
-                      "bind": Object {
-                        "constraint": ".>=0",
-                        "jr:constraintMsg": Object {
-                          "English": "Negative value not allowed",
-                        },
-                        "required": "Yes",
-                      },
-                      "label": Object {
-                        "English": "Female",
-                      },
-                      "name": "participant_female",
-                      "type": "integer",
-                    }
-                  }
-                >
-                  <Integer
-                    assignFieldValueActionCreator={[Function]}
-                    fieldElement={
-                      Object {
-                        "bind": Object {
-                          "constraint": ".>=0",
-                          "jr:constraintMsg": Object {
-                            "English": "Negative value not allowed",
-                          },
-                          "required": "Yes",
-                        },
-                        "label": Object {
-                          "English": "Female",
-                        },
-                        "name": "participant_female",
-                        "type": "integer",
-                      }
-                    }
-                    fieldValue=""
-                  >
-                    <FormGroup
-                      tag="div"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            Female
-                             
-                            *
-                          </label>
-                        </Label>
-                        <Input
-                          name="participant_female"
-                          onChange={[Function]}
-                          type="number"
-                          value=""
-                        >
-                          <input
-                            className="form-control"
-                            name="participant_female"
-                            onChange={[Function]}
-                            type="number"
-                            value=""
-                          />
-                        </Input>
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            This field is required
-                          </label>
-                        </Label>
-                      </div>
-                    </FormGroup>
-                  </Integer>
-                </Connect(Integer)>
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_female
+                </div>
               </BaseTypeEvaluator>
             </div>
             <div
@@ -1786,106 +1598,12 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <Connect(Integer)
-                  fieldElement={
-                    Object {
-                      "bind": Object {
-                        "constraint": ".>=0",
-                        "jr:constraintMsg": Object {
-                          "English": "Negative value not allowed",
-                        },
-                        "required": "Yes",
-                      },
-                      "label": Object {
-                        "English": "Girls",
-                      },
-                      "name": "participant_girl",
-                      "type": "integer",
-                    }
-                  }
-                >
-                  <Integer
-                    assignFieldValueActionCreator={[Function]}
-                    fieldElement={
-                      Object {
-                        "bind": Object {
-                          "constraint": ".>=0",
-                          "jr:constraintMsg": Object {
-                            "English": "Negative value not allowed",
-                          },
-                          "required": "Yes",
-                        },
-                        "label": Object {
-                          "English": "Girls",
-                        },
-                        "name": "participant_girl",
-                        "type": "integer",
-                      }
-                    }
-                    fieldValue=""
-                  >
-                    <FormGroup
-                      tag="div"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            Girls
-                             
-                            *
-                          </label>
-                        </Label>
-                        <Input
-                          name="participant_girl"
-                          onChange={[Function]}
-                          type="number"
-                          value=""
-                        >
-                          <input
-                            className="form-control"
-                            name="participant_girl"
-                            onChange={[Function]}
-                            type="number"
-                            value=""
-                          />
-                        </Input>
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            This field is required
-                          </label>
-                        </Label>
-                      </div>
-                    </FormGroup>
-                  </Integer>
-                </Connect(Integer)>
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_girl
+                </div>
               </BaseTypeEvaluator>
             </div>
             <div
@@ -1910,106 +1628,12 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <Connect(Integer)
-                  fieldElement={
-                    Object {
-                      "bind": Object {
-                        "constraint": ".>=0",
-                        "jr:constraintMsg": Object {
-                          "English": "Negative value not allowed",
-                        },
-                        "required": "Yes",
-                      },
-                      "label": Object {
-                        "English": "Boys",
-                      },
-                      "name": "participant_boy",
-                      "type": "integer",
-                    }
-                  }
-                >
-                  <Integer
-                    assignFieldValueActionCreator={[Function]}
-                    fieldElement={
-                      Object {
-                        "bind": Object {
-                          "constraint": ".>=0",
-                          "jr:constraintMsg": Object {
-                            "English": "Negative value not allowed",
-                          },
-                          "required": "Yes",
-                        },
-                        "label": Object {
-                          "English": "Boys",
-                        },
-                        "name": "participant_boy",
-                        "type": "integer",
-                      }
-                    }
-                    fieldValue=""
-                  >
-                    <FormGroup
-                      tag="div"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            Boys
-                             
-                            *
-                          </label>
-                        </Label>
-                        <Input
-                          name="participant_boy"
-                          onChange={[Function]}
-                          type="number"
-                          value=""
-                        >
-                          <input
-                            className="form-control"
-                            name="participant_boy"
-                            onChange={[Function]}
-                            type="number"
-                            value=""
-                          />
-                        </Input>
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            This field is required
-                          </label>
-                        </Label>
-                      </div>
-                    </FormGroup>
-                  </Integer>
-                </Connect(Integer)>
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_boy
+                </div>
               </BaseTypeEvaluator>
             </div>
             <div
@@ -2034,106 +1658,12 @@ exports[`App renders App correctly 1`] = `
                 }
                 fieldParentTreeName=""
               >
-                <Connect(Integer)
-                  fieldElement={
-                    Object {
-                      "bind": Object {
-                        "constraint": ".>=0",
-                        "jr:constraintMsg": Object {
-                          "English": "Negative value not allowed",
-                        },
-                        "required": "Yes",
-                      },
-                      "label": Object {
-                        "English": "Transgender",
-                      },
-                      "name": "participant_trangender",
-                      "type": "integer",
-                    }
-                  }
-                >
-                  <Integer
-                    assignFieldValueActionCreator={[Function]}
-                    fieldElement={
-                      Object {
-                        "bind": Object {
-                          "constraint": ".>=0",
-                          "jr:constraintMsg": Object {
-                            "English": "Negative value not allowed",
-                          },
-                          "required": "Yes",
-                        },
-                        "label": Object {
-                          "English": "Transgender",
-                        },
-                        "name": "participant_trangender",
-                        "type": "integer",
-                      }
-                    }
-                    fieldValue=""
-                  >
-                    <FormGroup
-                      tag="div"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            Transgender
-                             
-                            *
-                          </label>
-                        </Label>
-                        <Input
-                          name="participant_trangender"
-                          onChange={[Function]}
-                          type="number"
-                          value=""
-                        >
-                          <input
-                            className="form-control"
-                            name="participant_trangender"
-                            onChange={[Function]}
-                            type="number"
-                            value=""
-                          />
-                        </Input>
-                        <Label
-                          tag="label"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <label
-                            className=""
-                          >
-                            This field is required
-                          </label>
-                        </Label>
-                      </div>
-                    </FormGroup>
-                  </Integer>
-                </Connect(Integer)>
+                <div>
+                  Other 
+                  integer
+                   
+                  participant_trangender
+                </div>
               </BaseTypeEvaluator>
             </div>
             <div
