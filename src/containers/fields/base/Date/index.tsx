@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import { FieldElement } from '../../../../components/typeEvalutors/Base';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
 import {
   assignFieldValueAction,
   getFieldValue,
 } from '../../../../store/ducks/formState';
-import getFieldLabelText, {
-  getInputSuffixText,
-  getLabelSuffixText,
-} from '../../../../utils/helpers';
+import { getFieldLabelText, isInputRequired } from '../../../../utils/helpers';
 
 /** props interface for the date component */
 export interface DateProps {
@@ -22,21 +20,22 @@ export interface DateProps {
 class Date extends React.Component<DateProps> {
   public render() {
     const { fieldElement, fieldValue } = this.props;
-    const fieldLabel = getFieldLabelText(fieldElement);
-    const textSuffix = getLabelSuffixText(fieldElement);
-    const inputSuffix = getInputSuffixText(fieldElement);
+    const isRequired = isInputRequired(fieldElement);
+    const fieldLabel = getFieldLabelText(fieldElement, 'English');
     return (
       <FormGroup>
-        <Label>
-          {fieldLabel} {textSuffix}
-        </Label>
+        {isRequired && (
+          <Label>
+            {fieldLabel} {REQUIRED_SYMBOL}
+          </Label>
+        )}
         <Input
           type="date"
           name={fieldElement.name}
           onChange={this.onChangeHandler}
           value={fieldValue}
         />
-        <Label>{inputSuffix}</Label>
+        {isRequired && <Label>{REQUIRED_FIELD_MSG}</Label>}
       </FormGroup>
     );
   }
