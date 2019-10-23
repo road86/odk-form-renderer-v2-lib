@@ -10,7 +10,9 @@ export type INTEGER_FIELD_TYPE = typeof INTEGER_FIELD_TYPE;
 
 // Required Properties
 export const REQUIRED_FIELD_MSG = 'This field is required';
+export type REQUIRED_FIELD_MSG = typeof REQUIRED_FIELD_MSG;
 export const REQUIRED_SYMBOL = '*';
+export type REQUIRED_SYMBOL = typeof REQUIRED_SYMBOL;
 
 /* tslint:disable */
 export const DEMO_FORM_JSON = {
