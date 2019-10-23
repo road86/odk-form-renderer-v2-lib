@@ -5,6 +5,12 @@ export const TEXT_FIELD_TYPE = 'text';
 export type TEXT_FIELD_TYPE = typeof TEXT_FIELD_TYPE;
 export const DATE_FIELD_TYPE = 'date';
 export type DATE_FIELD_TYPE = typeof DATE_FIELD_TYPE;
+export const INTEGER_FIELD_TYPE = 'integer';
+export type INTEGER_FIELD_TYPE = typeof INTEGER_FIELD_TYPE;
+
+// Required Properties
+export const REQUIRED_INPUT_SUFFIX_TEXT = 'This field is required';
+export const REQUIRED_LABEL_SUFFIX_TEXT = '*';
 
 /* tslint:disable */
 export const DEMO_FORM_JSON = {
