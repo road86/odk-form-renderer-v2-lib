@@ -1,49 +1,50 @@
 import { FieldElement } from '../components/typeEvalutors/Base';
-import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../constants';
 
 /**
- * get the result of field label
- * @param fieldElement
- * @returns {string} - fieldElemet Label text
+ * get the text from multilang obj based on language identifier,
+ * @param {FieldElement} property - field multilang property or string
+ * @return {string} - text value of the property based on language identifier, empty if not present
  */
-export default function getFieldLabelText(fieldElement: FieldElement) {
-  let fieldLabel = '';
+export default function getTextFromProperty(
+  property: string | { [key: string]: string },
+  languageIdentifier: string
+): string {
+  if (typeof property === 'string') {
+    return property || '';
+  }
+  return property[languageIdentifier] || '';
+}
+
+/**
+ * get the label text of the fieldElement
+ * @param {FieldElement} fieldElement - the fieldElement Object
+ * @return {string} - field label text
+ */
+export function getFieldLabelText(
+  fieldElement: FieldElement,
+  languageIdentifier: string
+) {
   if (fieldElement.label) {
-    if (typeof fieldElement.label === 'string') {
-      fieldLabel = fieldElement.label;
-    } else {
-      if ('English' in fieldElement.label) {
-        fieldLabel = fieldElement.label.English;
-      }
-    }
+    return getTextFromProperty(fieldElement.label, languageIdentifier);
   }
-  return fieldLabel;
+  return '';
 }
 
 /**
- * get the visible result of label suffix string
- * @param fieldElement
- * @return {string} - returns property
+ * get the boolean result depending on the expression
+ * @param {string} - required string
+ * @returns {boolean} - true if required, otherwise false
  */
-export function getLabelSuffixText(fieldElement: FieldElement): string {
-  let textSuffix = '';
-  if (isInputRequired(fieldElement)) {
-    textSuffix = REQUIRED_SYMBOL;
+function requiredEvaluator(expression: string): boolean {
+  if (
+    expression.toLowerCase() === 'yes' ||
+    expression === '1' ||
+    expression.toLowerCase() === 'true'
+  ) {
+    return true;
+  } else {
+    return false;
   }
-  return textSuffix;
-}
-
-/**
- * get the visible result of input suffix string
- * @param fieldElement
- * @return {string} - required property
- */
-export function getInputSuffixText(fieldElement: FieldElement): string {
-  let inputSuffix = '';
-  if (isInputRequired(fieldElement)) {
-    inputSuffix = REQUIRED_FIELD_MSG;
-  }
-  return inputSuffix;
 }
 
 /**
@@ -51,34 +52,17 @@ export function getInputSuffixText(fieldElement: FieldElement): string {
  * @param fieldElement
  * @return {boolean} - boolean value by calculating fieldElement required properties
  */
-function isInputRequired(fieldElement: FieldElement): boolean {
+export function isInputRequired(fieldElement: FieldElement): boolean {
   let isRequired = false;
   if (fieldElement.bind) {
     if (fieldElement.bind.required) {
       if (
         typeof fieldElement.bind.required === 'string' &&
-        isRequiredFn(fieldElement.bind.required.toString())
+        requiredEvaluator(fieldElement.bind.required)
       ) {
         isRequired = true;
       }
     }
   }
   return isRequired;
-}
-
-/**
- * get the boolean result of required string
- * @param {string} - required string
- * @returns {boolean} - boolean by checking required text
- */
-function isRequiredFn(requiredString: string): boolean {
-  if (
-    requiredString.toLowerCase() === 'yes' ||
-    requiredString === '1' ||
-    requiredString.toLowerCase() === 'true'
-  ) {
-    return true;
-  } else {
-    return false;
-  }
 }
