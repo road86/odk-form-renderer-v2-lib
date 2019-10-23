@@ -9,8 +9,8 @@ export const INTEGER_FIELD_TYPE = 'integer';
 export type INTEGER_FIELD_TYPE = typeof INTEGER_FIELD_TYPE;
 
 // Required Properties
-export const REQUIRED_INPUT_SUFFIX_TEXT = 'This field is required';
-export const REQUIRED_LABEL_SUFFIX_TEXT = '*';
+export const REQUIRED_FIELD_MSG = 'This field is required';
+export const REQUIRED_SYMBOL = '*';
 
 /* tslint:disable */
 export const DEMO_FORM_JSON = {

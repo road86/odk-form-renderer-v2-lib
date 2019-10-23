@@ -1,12 +1,10 @@
 import { FieldElement } from '../components/typeEvalutors/Base';
-import {
-  REQUIRED_INPUT_SUFFIX_TEXT,
-  REQUIRED_LABEL_SUFFIX_TEXT,
-} from '../constants';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../constants';
 
 /**
- * @returns fieldElemet Label text
+ * get the result of field label
  * @param fieldElement
+ * @returns {string} - fieldElemet Label text
  */
 export default function getFieldLabelText(fieldElement: FieldElement) {
   let fieldLabel = '';
@@ -23,32 +21,35 @@ export default function getFieldLabelText(fieldElement: FieldElement) {
 }
 
 /**
- * @returns required property
+ * get the visible result of label suffix string
  * @param fieldElement
+ * @return {string} - returns property
  */
 export function getLabelSuffixText(fieldElement: FieldElement): string {
   let textSuffix = '';
   if (isInputRequired(fieldElement)) {
-    textSuffix = REQUIRED_LABEL_SUFFIX_TEXT;
+    textSuffix = REQUIRED_SYMBOL;
   }
   return textSuffix;
 }
 
 /**
- * @returns required property
+ * get the visible result of input suffix string
  * @param fieldElement
+ * @return {string} - required property
  */
 export function getInputSuffixText(fieldElement: FieldElement): string {
   let inputSuffix = '';
   if (isInputRequired(fieldElement)) {
-    inputSuffix = REQUIRED_INPUT_SUFFIX_TEXT;
+    inputSuffix = REQUIRED_FIELD_MSG;
   }
   return inputSuffix;
 }
 
 /**
- * @returns boolean value by calculating fieldElement required properties
+ * get the boolean result of fieldElement string
  * @param fieldElement
+ * @return {boolean} - boolean value by calculating fieldElement required properties
  */
 function isInputRequired(fieldElement: FieldElement): boolean {
   let isRequired = false;
@@ -66,8 +67,9 @@ function isInputRequired(fieldElement: FieldElement): boolean {
 }
 
 /**
- * @returns boolean by checking required text
- * @param requiredString
+ * get the boolean result of required string
+ * @param {string} - required string
+ * @returns {boolean} - boolean by checking required text
  */
 function isRequiredFn(requiredString: string): boolean {
   if (
