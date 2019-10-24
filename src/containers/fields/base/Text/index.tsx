@@ -19,6 +19,7 @@ export interface TextProps {
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  isComponentRender: boolean;
 }
 
 class Text extends React.Component<TextProps> {
