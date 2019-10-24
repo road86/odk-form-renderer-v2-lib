@@ -66,3 +66,37 @@ export function isInputRequired(fieldElement: FieldElement): boolean {
   }
   return isRequired;
 }
+
+/** interface for EvaluateExpression
+ * @param {string} expression - the expression that needs to be evaluated
+ * @param {fieldTreeName} - the field Tree name
+ * @returns {any} - evaluated value
+ */
+export type EvaluateExpression = (
+  expression: string,
+  fieldTreeName: string
+) => any;
+
+/** evaluates whether a component be relevant or not
+ * @param {FieldElement} fieldElement - the expression that needs to be evaluated
+ * @param {string} fieldParentTreeName- the field Parent Tree name
+ * @param {EvaluateExpression} evaluateExpression- an handler to evaluate the relevant expression
+ * @returns {boolean} - true if relevant; otherwise, false;
+ */
+export function shouldComponentBeRelevant(
+  fieldElement: FieldElement,
+  fieldParentTreeName: string,
+  evaluateExpression: EvaluateExpression
+): boolean {
+  if (fieldElement && fieldElement.bind && fieldElement.bind.relevant) {
+    const isRelevant = evaluateExpression(
+      fieldElement.bind.relevant,
+      fieldParentTreeName + fieldElement.name
+    );
+    if (isRelevant) {
+      return true;
+    }
+    return false;
+  }
+  return true;
+}
