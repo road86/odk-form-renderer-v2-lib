@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { DATE_FIELD_TYPE, TEXT_FIELD_TYPE } from '../../../constants';
+import {
+  DATE_FIELD_TYPE,
+  INTEGER_FIELD_TYPE,
+  TEXT_FIELD_TYPE,
+} from '../../../constants';
 import Date from '../../../containers/fields/base/Date';
+import Integer from '../../../containers/fields/base/Integer';
 import Text from '../../../containers/fields/base/Text';
 
 /** type of fieldParentTreeName */
@@ -55,6 +60,8 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
         );
       case DATE_FIELD_TYPE:
         return <Date fieldElement={fieldElement} />;
+      case INTEGER_FIELD_TYPE:
+        return <Integer fieldElement={fieldElement} />;
       default:
         return (
           <div>
