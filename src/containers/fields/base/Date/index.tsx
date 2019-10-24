@@ -24,11 +24,8 @@ class Date extends React.Component<DateProps> {
     const fieldLabel = getFieldLabelText(fieldElement, 'English');
     return (
       <FormGroup>
-        {isRequired && (
-          <Label>
-            {fieldLabel} {REQUIRED_SYMBOL}
-          </Label>
-        )}
+        <Label>{fieldLabel}</Label>
+        {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
         <Input
           type="date"
           name={fieldElement.name}

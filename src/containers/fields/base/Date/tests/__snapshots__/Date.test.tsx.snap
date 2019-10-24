@@ -66,7 +66,23 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
               className=""
             >
               End Date
-               
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
               *
             </label>
           </Label>
