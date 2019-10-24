@@ -11,6 +11,7 @@ import {
   getEvaluatedExpression,
   getFieldValue,
 } from '../../../../store/ducks/formState';
+import { shouldComponentBeRelevant } from '../../../../utils/helpers';
 
 /** props interface for the text component */
 export interface TextProps {
@@ -24,19 +25,7 @@ export interface TextProps {
 
 class Text extends React.Component<TextProps> {
   public render() {
-    const {
-      fieldElement,
-      fieldParentTreeName,
-      fieldValue,
-      getEvaluatedExpressionSelector,
-    } = this.props;
-    let isComponentRender = true;
-    if (fieldElement && fieldElement.bind && fieldElement.bind.relevant) {
-      isComponentRender = getEvaluatedExpressionSelector(
-        fieldElement.bind.relevant,
-        fieldParentTreeName + fieldElement.name
-      );
-    }
+    const { fieldElement, fieldValue, isComponentRender } = this.props;
     if (isComponentRender) {
       return (
         <FormGroup>
@@ -70,11 +59,13 @@ class Text extends React.Component<TextProps> {
 interface DispatchedStateProps {
   fieldValue: string;
   getEvaluatedExpressionSelector: any;
+  isComponentRender: boolean;
 }
 
 /** Interface to describe props from parent */
 interface ParentProps {
   fieldElement: FieldElement;
+  fieldParentTreeName: FieldParentTreeName;
 }
 
 /** Map props to state  */
@@ -82,13 +73,19 @@ const mapStateToProps = (
   state: Partial<Store>,
   parentProps: ParentProps
 ): DispatchedStateProps => {
-  const { fieldElement } = parentProps;
+  const { fieldElement, fieldParentTreeName } = parentProps;
+  const getEvaluatedExpressionSelector = (
+    expression: string,
+    fieldTreeName: string
+  ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const result = {
     fieldValue: getFieldValue(state, fieldElement.name) || '',
-    getEvaluatedExpressionSelector: (
-      expression: string,
-      fieldTreeName: string
-    ) => getEvaluatedExpression(state, expression, fieldTreeName),
+    getEvaluatedExpressionSelector,
+    isComponentRender: shouldComponentBeRelevant(
+      fieldElement,
+      fieldParentTreeName,
+      getEvaluatedExpressionSelector
+    ),
   };
   return result;
 };
