@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GROUP_FIELD_TYPE } from '../../../constants';
+import GROUP from '../../../containers/fields/group/Group';
 import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
 /** props Interface for the GroupTypeEvaluator component */
@@ -35,7 +36,10 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       case GROUP_FIELD_TYPE:
         return (
           <div>
-            GROUP {fieldElement.type} {fieldElement.name}
+            <GROUP
+              fieldElement={fieldElement}
+              fieldParentTreeName={fieldParentTreeName}
+            />
           </div>
         );
       default:

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/group/Group renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(Integer)
+    assignFieldValueActionCreator={[MockFunction]}
+    fieldElement={
+      Object {
+        "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
+        "label": "Ex integer widget",
+        "name": "ex_integer_widget",
+        "type": "integer",
+      }
+    }
+    fieldValue="120"
+  >
+    <Integer
+      assignFieldValueActionCreator={[Function]}
+      fieldElement={
+        Object {
+          "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
+          "label": "Ex integer widget",
+          "name": "ex_integer_widget",
+          "type": "integer",
+        }
+      }
+      fieldValue="120"
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Ex integer widget
+            </label>
+          </Label>
+          <Input
+            name="ex_integer_widget"
+            onChange={[Function]}
+            type="number"
+            value="120"
+          >
+            <input
+              className="form-control"
+              name="ex_integer_widget"
+              onChange={[Function]}
+              type="number"
+              value="120"
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </Integer>
+  </Connect(Integer)>
+</Provider>
+`;
