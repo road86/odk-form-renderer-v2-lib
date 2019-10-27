@@ -89,6 +89,7 @@ export type FormActionTypes =
   | AssignFieldValueAction
   | ResetStoreAction
   | AddErrorInputId
+  | RemoveErrorInputId
   | AnyAction;
 
 /** Create an immutable form state */
@@ -118,6 +119,13 @@ export default function reducer(
       if (!state.errors.includes(action.fieldTreeName)) {
         return state.updateIn(['errors'], arr =>
           arr.concat([action.fieldTreeName])
+        );
+      }
+      return state;
+    case REMOVE_ERROR_INPUT_ID:
+      if (state.errors.includes(action.fieldTreeName)) {
+        return state.updateIn(['errors'], arr =>
+          arr.filter(elm => elm !== action.fieldTreeName)
         );
       }
       return state;
