@@ -105,7 +105,7 @@ export function shouldComponentBeRelevant(
  * @param {FieldElement} fieldElement - the expression that needs to be evaluated
  * @param {string} fieldParentTreeName- the field Parent Tree name
  * @param {EvaluateExpression} evaluateExpression- an handler to evaluate the readonly expression
- * @returns {boolean} - true if relevant; otherwise, false;
+ * @returns {boolean} - true if readonly; otherwise, false;
  */
 export function shouldComponentBeReadOnly(
   fieldElement: FieldElement,
@@ -117,10 +117,34 @@ export function shouldComponentBeReadOnly(
       fieldElement.bind.readonly,
       fieldParentTreeName + fieldElement.name
     );
-    if (isReadOnly || isReadOnly === 0) {
+    if (isReadOnly) {
       return true;
     }
     return false;
   }
-  return true;
+  return false;
+}
+
+/** evaluates whether the input violates constraint or not
+ * @param {FieldElement} fieldElement - the constraint expression
+ * @param {string} fieldParentTreeName- the field Parent Tree name
+ * @param {EvaluateExpression} evaluateExpression- an handler to evaluate the expression
+ * @returns {boolean} - true if violates; otherwise, false;
+ */
+export function shouldInputViolatesConstraint(
+  fieldElement: FieldElement,
+  fieldParentTreeName: string,
+  evaluateExpression: EvaluateExpression
+): boolean {
+  if (fieldElement && fieldElement.bind && fieldElement.bind.constraint) {
+    const isConstraintViolated = evaluateExpression(
+      fieldElement.bind.constraint,
+      fieldParentTreeName + fieldElement.name
+    );
+    if (isConstraintViolated) {
+      return true;
+    }
+    return false;
+  }
+  return false;
 }
