@@ -1,16 +1,25 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
 import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
 } from '../../../../store/ducks/formState';
+import {
+  getConstraintLabelText,
+  getFieldLabelText,
+  isInputRequired,
+  shouldComponentBeReadOnly,
+  shouldComponentBeRelevant,
+  shouldInputViolatesConstraint,
+} from '../../../../utils/helpers';
 
 /** props interface for the text component */
 export interface TextProps {
@@ -19,6 +28,7 @@ export interface TextProps {
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  isComponentRender: boolean;
 }
 
 class Text extends React.Component<TextProps> {
@@ -27,27 +37,52 @@ class Text extends React.Component<TextProps> {
       fieldElement,
       fieldParentTreeName,
       fieldValue,
+      isComponentRender,
       getEvaluatedExpressionSelector,
     } = this.props;
-    let isComponentRender = true;
-    if (fieldElement && fieldElement.bind && fieldElement.bind.relevant) {
-      isComponentRender = getEvaluatedExpressionSelector(
-        fieldElement.bind.relevant,
-        fieldParentTreeName + fieldElement.name
+    const isRequired = isInputRequired(fieldElement);
+    const isRequiredViolated = isRequired && (!fieldValue || fieldValue !== '');
+    const isConstraintViolated =
+      fieldValue &&
+      fieldValue !== '' &&
+      shouldInputViolatesConstraint(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
       );
-    }
+    const fieldLabel = getFieldLabelText(fieldElement, 'English');
+    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
     if (isComponentRender) {
+      if (fieldValue == null && 'default' in fieldElement) {
+        this.props.assignFieldValueActionCreator(
+          fieldElement.name,
+          fieldElement.default
+        );
+      }
+      const isReadonly = shouldComponentBeReadOnly(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
+      );
       return (
         <FormGroup>
+          <Label>{fieldLabel}</Label>
+          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
           <Input
             type="text"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue}
+            value={fieldValue || ''}
+            readOnly={isReadonly}
           />
+          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+          {isConstraintViolated && <Label>{constraintLabel}</Label>}
         </FormGroup>
       );
     } else {
+      if (fieldValue != null) {
+        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+      }
       return null;
     }
   }
@@ -58,7 +93,7 @@ class Text extends React.Component<TextProps> {
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
       event.currentTarget.name,
-      event.currentTarget.value
+      event.currentTarget.value || ''
     );
   };
 }
@@ -69,11 +104,13 @@ class Text extends React.Component<TextProps> {
 interface DispatchedStateProps {
   fieldValue: string;
   getEvaluatedExpressionSelector: any;
+  isComponentRender: boolean;
 }
 
 /** Interface to describe props from parent */
 interface ParentProps {
   fieldElement: FieldElement;
+  fieldParentTreeName: FieldParentTreeName;
 }
 
 /** Map props to state  */
@@ -81,13 +118,19 @@ const mapStateToProps = (
   state: Partial<Store>,
   parentProps: ParentProps
 ): DispatchedStateProps => {
-  const { fieldElement } = parentProps;
+  const { fieldElement, fieldParentTreeName } = parentProps;
+  const getEvaluatedExpressionSelector = (
+    expression: string,
+    fieldTreeName: string
+  ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name) || '',
-    getEvaluatedExpressionSelector: (
-      expression: string,
-      fieldTreeName: string
-    ) => getEvaluatedExpression(state, expression, fieldTreeName),
+    fieldValue: getFieldValue(state, fieldElement.name),
+    getEvaluatedExpressionSelector,
+    isComponentRender: shouldComponentBeRelevant(
+      fieldElement,
+      fieldParentTreeName,
+      getEvaluatedExpressionSelector
+    ),
   };
   return result;
 };

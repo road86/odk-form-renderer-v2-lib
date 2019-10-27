@@ -22,6 +22,8 @@ interface BindProperty {
   readonly?: string;
   appearance?: string;
   required?: string;
+  constraint?: string;
+  'jr:constraintMsg'?: { [key: string]: string } | string;
 }
 
 /** interface for kobo field element */
@@ -31,6 +33,7 @@ export interface FieldElement {
   children?: any[];
   bind?: BindProperty;
   label?: { [key: string]: string } | string;
+  default?: any;
 }
 
 /** props interface for BaseTypeEvaluator component */
