@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/base/Photo renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(Photo)
+    assignFieldValueActionCreator={[MockFunction]}
+    fieldElement={
+      Object {
+        "hint": "image type with no appearance",
+        "label": "Image widget",
+        "name": "image_widget",
+        "type": "photo",
+      }
+    }
+    fieldValue=""
+  >
+    <Photo
+      assignFieldValueActionCreator={[Function]}
+      fieldElement={
+        Object {
+          "hint": "image type with no appearance",
+          "label": "Image widget",
+          "name": "image_widget",
+          "type": "photo",
+        }
+      }
+      fieldValue=""
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Image widget
+            </label>
+          </Label>
+          <Input
+            accept="image/*"
+            name="image_widget"
+            onChange={[Function]}
+            type="file"
+            value=""
+          >
+            <input
+              accept="image/*"
+              className="form-control-file"
+              name="image_widget"
+              onChange={[Function]}
+              type="file"
+              value=""
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </Photo>
+  </Connect(Photo)>
+</Provider>
+`;
