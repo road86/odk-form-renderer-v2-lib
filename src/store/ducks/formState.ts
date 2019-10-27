@@ -56,10 +56,20 @@ export const resetStoreAction = (): ResetStoreAction => ({
   type: RESET_STORE,
 });
 
+/** the field tree name as error id to store in redux store that violates constraints
+ * @param fieldTreeName - the field tree name
+ * @returns {AddErrorInputId} - an action to add input id for errors
+ */
+export const AddErrorInputId = (fieldTreeName: string): AddErrorInputId => ({
+  fieldTreeName,
+  type: ADD_ERROR_INPUT_ID,
+});
+
 /** Create type for forms reducer actions */
 export type FormActionTypes =
   | AssignFieldValueAction
   | ResetStoreAction
+  | AddErrorInputId
   | AnyAction;
 
 /** Create an immutable form state */
@@ -85,6 +95,13 @@ export default function reducer(
       });
     case RESET_STORE:
       return initialState;
+    case ADD_ERROR_INPUT_ID:
+      if (!state.errors.includes(action.fieldTreeName)) {
+        return state.updateIn(['errors'], arr =>
+          arr.concat([action.fieldTreeName])
+        );
+      }
+      return state;
     default:
       return state;
   }
