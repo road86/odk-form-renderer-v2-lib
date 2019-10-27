@@ -13,10 +13,12 @@ import {
   getFieldValue,
 } from '../../../../store/ducks/formState';
 import {
+  getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
+  shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
 
 /** props interface for the text component */
@@ -39,7 +41,15 @@ class Text extends React.Component<TextProps> {
       getEvaluatedExpressionSelector,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
+    const isConstraintViolated =
+      fieldValue &&
+      shouldInputViolatesConstraint(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
+      );
     const fieldLabel = getFieldLabelText(fieldElement, 'English');
+    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -64,6 +74,7 @@ class Text extends React.Component<TextProps> {
             readOnly={isReadonly}
           />
           {isRequired && <Label>{REQUIRED_FIELD_MSG}</Label>}
+          {isConstraintViolated && <Label>{constraintLabel}</Label>}
         </FormGroup>
       );
     } else {
