@@ -68,7 +68,7 @@ export const resetStoreAction = (): ResetStoreAction => ({
  * @param fieldTreeName - the field tree name
  * @returns {AddErrorInputId} - an action to add input id for errors
  */
-export const AddErrorInputId = (fieldTreeName: string): AddErrorInputId => ({
+export const addErrorInputId = (fieldTreeName: string): AddErrorInputId => ({
   fieldTreeName,
   type: ADD_ERROR_INPUT_ID,
 });
@@ -77,7 +77,7 @@ export const AddErrorInputId = (fieldTreeName: string): AddErrorInputId => ({
  * @param fieldTreeName - the field tree name
  * @returns {RemoveErrorInputId} - an action to remove input id for errors
  */
-export const RemoveErrorInputId = (
+export const removeErrorInputId = (
   fieldTreeName: string
 ): RemoveErrorInputId => ({
   fieldTreeName,
