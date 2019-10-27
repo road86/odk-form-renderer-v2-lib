@@ -155,7 +155,7 @@ export function shouldInputViolatesConstraint(
   evaluateExpression: EvaluateExpression
 ): boolean {
   if (fieldElement && fieldElement.bind && fieldElement.bind.constraint) {
-    const isConstraintViolated = evaluateExpression(
+    const isConstraintViolated = !evaluateExpression(
       fieldElement.bind.constraint,
       fieldParentTreeName + fieldElement.name
     );
