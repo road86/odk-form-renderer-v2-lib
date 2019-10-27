@@ -15,6 +15,7 @@ import {
 import {
   getFieldLabelText,
   isInputRequired,
+  shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
 } from '../../../../utils/helpers';
 
@@ -30,7 +31,13 @@ export interface TextProps {
 
 class Text extends React.Component<TextProps> {
   public render() {
-    const { fieldElement, fieldValue, isComponentRender } = this.props;
+    const {
+      fieldElement,
+      fieldParentTreeName,
+      fieldValue,
+      isComponentRender,
+      getEvaluatedExpressionSelector,
+    } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const fieldLabel = getFieldLabelText(fieldElement, 'English');
     if (isComponentRender) {
@@ -40,6 +47,11 @@ class Text extends React.Component<TextProps> {
           fieldElement.default
         );
       }
+      const isReadonly = shouldComponentBeReadOnly(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
+      );
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
@@ -49,6 +61,7 @@ class Text extends React.Component<TextProps> {
             name={fieldElement.name}
             onChange={this.onChangeHandler}
             value={fieldValue || ''}
+            readOnly={isReadonly}
           />
           {isRequired && <Label>{REQUIRED_FIELD_MSG}</Label>}
         </FormGroup>
