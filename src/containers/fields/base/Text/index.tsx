@@ -41,7 +41,7 @@ class Text extends React.Component<TextProps> {
       getEvaluatedExpressionSelector,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
-    const isRequiredViolated = isRequired && (!fieldValue || fieldValue !== '');
+    const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
       fieldValue &&
       fieldValue !== '' &&
