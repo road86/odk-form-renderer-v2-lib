@@ -161,3 +161,15 @@ export function getEvaluatedExpression(
 ): any {
   return evaluater(expression, (state as any).userInput, null, fieldTreeName);
 }
+
+/** should the field element needs to be added to the store
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the field
+ * @return {boolean} true if needed; otherwise, false
+ */
+export function shouldAddToError(
+  state: Partial<Store>,
+  fieldTreeName: string
+): any {
+  return (state as any).userInput.errors.includes(fieldTreeName);
+}
