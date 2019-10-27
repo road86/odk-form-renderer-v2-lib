@@ -18,6 +18,8 @@ interface BindProperty {
   readonly?: string;
   appearance?: string;
   required?: string;
+  constraint?: string;
+  'jr:constraintMsg'?: { [key: string]: string } | string;
 }
 
 /** interface for kobo field element */
