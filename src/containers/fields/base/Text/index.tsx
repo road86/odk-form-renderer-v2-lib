@@ -41,8 +41,10 @@ class Text extends React.Component<TextProps> {
       getEvaluatedExpressionSelector,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
+    const isRequiredViolated = isRequired && (!fieldValue || fieldValue !== '');
     const isConstraintViolated =
       fieldValue &&
+      fieldValue !== '' &&
       shouldInputViolatesConstraint(
         fieldElement,
         fieldParentTreeName,
@@ -73,7 +75,7 @@ class Text extends React.Component<TextProps> {
             value={fieldValue || ''}
             readOnly={isReadonly}
           />
-          {isRequired && <Label>{REQUIRED_FIELD_MSG}</Label>}
+          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{constraintLabel}</Label>}
         </FormGroup>
       );
