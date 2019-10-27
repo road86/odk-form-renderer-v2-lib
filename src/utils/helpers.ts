@@ -100,3 +100,27 @@ export function shouldComponentBeRelevant(
   }
   return true;
 }
+
+/** evaluates whether a component be readonly or not
+ * @param {FieldElement} fieldElement - the expression that needs to be evaluated
+ * @param {string} fieldParentTreeName- the field Parent Tree name
+ * @param {EvaluateExpression} evaluateExpression- an handler to evaluate the readonly expression
+ * @returns {boolean} - true if relevant; otherwise, false;
+ */
+export function shouldComponentBeReadOnly(
+  fieldElement: FieldElement,
+  fieldParentTreeName: string,
+  evaluateExpression: EvaluateExpression
+): boolean {
+  if (fieldElement && fieldElement.bind && fieldElement.bind.readonly) {
+    const isReadOnly = evaluateExpression(
+      fieldElement.bind.readonly,
+      fieldParentTreeName + fieldElement.name
+    );
+    if (isReadOnly || isReadOnly === 0) {
+      return true;
+    }
+    return false;
+  }
+  return true;
+}
