@@ -16,6 +16,8 @@ export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 export const RESET_STORE = 'odk/reducer/form/RESET_STORE';
 /** ADD_ERROR_INPUT_ID action type */
 export const ADD_ERROR_INPUT_ID = 'odk/reducer/form/ADD_ERROR_INPUT_ID';
+/** REMOVE_ERROR_INPUT_ID action type */
+export const REMOVE_ERROR_INPUT_ID = 'odk/reducer/form/REMOVE_ERROR_INPUT_ID';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -33,6 +35,12 @@ export interface ResetStoreAction extends AnyAction {
 export interface AddErrorInputId extends AnyAction {
   fieldTreeName: string;
   type: typeof ADD_ERROR_INPUT_ID;
+}
+
+/** interface for REMOVE_ERROR_INPUT_ID action */
+export interface RemoveErrorInputId extends AnyAction {
+  fieldTreeName: string;
+  type: typeof REMOVE_ERROR_INPUT_ID;
 }
 
 /** Assigns the value to the proper field name
