@@ -27,6 +27,7 @@ export interface FieldElement {
   children?: any[];
   bind?: BindProperty;
   label?: { [key: string]: string } | string;
+  default?: any;
 }
 
 /** props interface for BaseTypeEvaluator component */

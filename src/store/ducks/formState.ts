@@ -93,7 +93,7 @@ export function getFieldValue(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return (state as any).userInput[fieldTreeName] || null;
+  return (state as any).userInput[fieldTreeName];
 }
 
 /** get the value of the evaluated expression

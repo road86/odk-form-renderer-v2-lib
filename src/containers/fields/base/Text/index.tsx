@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
 import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
 } from '../../../../store/ducks/formState';
-import { shouldComponentBeRelevant } from '../../../../utils/helpers';
+import {
+  getFieldLabelText,
+  isInputRequired,
+  shouldComponentBeRelevant,
+} from '../../../../utils/helpers';
 
 /** props interface for the text component */
 export interface TextProps {
@@ -26,18 +31,32 @@ export interface TextProps {
 class Text extends React.Component<TextProps> {
   public render() {
     const { fieldElement, fieldValue, isComponentRender } = this.props;
+    const isRequired = isInputRequired(fieldElement);
+    const fieldLabel = getFieldLabelText(fieldElement, 'English');
     if (isComponentRender) {
+      if (fieldValue == null && 'default' in fieldElement) {
+        this.props.assignFieldValueActionCreator(
+          fieldElement.name,
+          fieldElement.default
+        );
+      }
       return (
         <FormGroup>
+          <Label>{fieldLabel}</Label>
+          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
           <Input
             type="text"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue}
+            value={fieldValue || ''}
           />
+          {isRequired && <Label>{REQUIRED_FIELD_MSG}</Label>}
         </FormGroup>
       );
     } else {
+      if (fieldValue != null) {
+        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+      }
       return null;
     }
   }
@@ -48,7 +67,7 @@ class Text extends React.Component<TextProps> {
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
       event.currentTarget.name,
-      event.currentTarget.value
+      event.currentTarget.value || ''
     );
   };
 }
@@ -79,7 +98,7 @@ const mapStateToProps = (
     fieldTreeName: string
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
