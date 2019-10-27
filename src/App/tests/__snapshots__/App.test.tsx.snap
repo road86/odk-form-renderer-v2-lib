@@ -1785,12 +1785,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            decimal
-                             
-                            decimal_widget
-                          </div>
+                          <Connect(Decimal)
+                            fieldElement={
+                              Object {
+                                "hint": "decimal type with no appearance",
+                                "label": "Decimal widget",
+                                "name": "decimal_widget",
+                                "type": "decimal",
+                              }
+                            }
+                          >
+                            <Decimal
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "decimal type with no appearance",
+                                  "label": "Decimal widget",
+                                  "name": "decimal_widget",
+                                  "type": "decimal",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Decimal widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    name="decimal_widget"
+                                    onChange={[Function]}
+                                    step="any"
+                                    type="number"
+                                    value=""
+                                  >
+                                    <input
+                                      className="form-control"
+                                      name="decimal_widget"
+                                      onChange={[Function]}
+                                      step="any"
+                                      type="number"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Decimal>
+                          </Connect(Decimal)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -1807,12 +1867,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            decimal
-                             
-                            ex_decimal_widget
-                          </div>
+                          <Connect(Decimal)
+                            fieldElement={
+                              Object {
+                                "hint": "decimal type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
+                                "label": "Ex decimal widget",
+                                "name": "ex_decimal_widget",
+                                "type": "decimal",
+                              }
+                            }
+                          >
+                            <Decimal
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "decimal type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
+                                  "label": "Ex decimal widget",
+                                  "name": "ex_decimal_widget",
+                                  "type": "decimal",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Ex decimal widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    name="ex_decimal_widget"
+                                    onChange={[Function]}
+                                    step="any"
+                                    type="number"
+                                    value=""
+                                  >
+                                    <input
+                                      className="form-control"
+                                      name="ex_decimal_widget"
+                                      onChange={[Function]}
+                                      step="any"
+                                      type="number"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Decimal>
+                          </Connect(Decimal)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -1829,12 +1949,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            decimal
-                             
-                            bearing_widget
-                          </div>
+                          <Connect(Decimal)
+                            fieldElement={
+                              Object {
+                                "hint": "decimal type with bearing appearance",
+                                "label": "Bearing widget",
+                                "name": "bearing_widget",
+                                "type": "decimal",
+                              }
+                            }
+                          >
+                            <Decimal
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "decimal type with bearing appearance",
+                                  "label": "Bearing widget",
+                                  "name": "bearing_widget",
+                                  "type": "decimal",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Bearing widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    name="bearing_widget"
+                                    onChange={[Function]}
+                                    step="any"
+                                    type="number"
+                                    value=""
+                                  >
+                                    <input
+                                      className="form-control"
+                                      name="bearing_widget"
+                                      onChange={[Function]}
+                                      step="any"
+                                      type="number"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Decimal>
+                          </Connect(Decimal)>
                         </BaseTypeEvaluator>
                       </div>
                     </div>
@@ -1944,12 +2124,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            image_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with no appearance",
+                                "label": "Image widget",
+                                "name": "image_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with no appearance",
+                                  "label": "Image widget",
+                                  "name": "image_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Image widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="image_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="image_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -1966,12 +2206,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            image_widget_no_choose
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with new appearance (can also be added with annotate appearance and on audio and video types)",
+                                "label": "Image widget without Choose button",
+                                "name": "image_widget_no_choose",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with new appearance (can also be added with annotate appearance and on audio and video types)",
+                                  "label": "Image widget without Choose button",
+                                  "name": "image_widget_no_choose",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Image widget without Choose button
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="image_widget_no_choose"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="image_widget_no_choose"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -1988,12 +2288,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            selfie_image_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with selfie appearance",
+                                "label": "Selfie widget",
+                                "name": "selfie_image_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with selfie appearance",
+                                  "label": "Selfie widget",
+                                  "name": "selfie_image_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Selfie widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="selfie_image_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="selfie_image_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -2010,12 +2370,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            draw_image_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with draw appearance",
+                                "label": "Draw widget",
+                                "name": "draw_image_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with draw appearance",
+                                  "label": "Draw widget",
+                                  "name": "draw_image_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Draw widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="draw_image_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="draw_image_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -2032,12 +2452,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            annotate_image_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with annotate appearance",
+                                "label": "Annotate widget",
+                                "name": "annotate_image_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with annotate appearance",
+                                  "label": "Annotate widget",
+                                  "name": "annotate_image_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Annotate widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="annotate_image_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="annotate_image_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -2054,12 +2534,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            signature_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with signature appearance",
+                                "label": "Signature widget",
+                                "name": "signature_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with signature appearance",
+                                  "label": "Signature widget",
+                                  "name": "signature_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Signature widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="signature_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="signature_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -2076,12 +2616,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            webview_image_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with web appearance",
+                                "label": "Web view image widget",
+                                "name": "webview_image_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with web appearance",
+                                  "label": "Web view image widget",
+                                  "name": "webview_image_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Web view image widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="webview_image_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="webview_image_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                       <div
@@ -2098,12 +2698,72 @@ Version 2017121301 added:
                           }
                           fieldParentTreeName=""
                         >
-                          <div>
-                            Other 
-                            photo
-                             
-                            aligned_image_widget
-                          </div>
+                          <Connect(Photo)
+                            fieldElement={
+                              Object {
+                                "hint": "image type with align:1 1 1 appearance, requires external aligned image app",
+                                "label": "Align image widget",
+                                "name": "aligned_image_widget",
+                                "type": "photo",
+                              }
+                            }
+                          >
+                            <Photo
+                              assignFieldValueActionCreator={[Function]}
+                              fieldElement={
+                                Object {
+                                  "hint": "image type with align:1 1 1 appearance, requires external aligned image app",
+                                  "label": "Align image widget",
+                                  "name": "aligned_image_widget",
+                                  "type": "photo",
+                                }
+                              }
+                              fieldValue=""
+                            >
+                              <FormGroup
+                                tag="div"
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Align image widget
+                                    </label>
+                                  </Label>
+                                  <Input
+                                    accept="image/*"
+                                    name="aligned_image_widget"
+                                    onChange={[Function]}
+                                    type="file"
+                                    value=""
+                                  >
+                                    <input
+                                      accept="image/*"
+                                      className="form-control-file"
+                                      name="aligned_image_widget"
+                                      onChange={[Function]}
+                                      type="file"
+                                      value=""
+                                    />
+                                  </Input>
+                                </div>
+                              </FormGroup>
+                            </Photo>
+                          </Connect(Photo)>
                         </BaseTypeEvaluator>
                       </div>
                     </div>

@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/base/Decimal renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(Decimal)
+    assignFieldValueActionCreator={[MockFunction]}
+    fieldElement={
+      Object {
+        "hint": "decimal type with no appearance",
+        "label": "Decimal widget",
+        "name": "decimal_widget",
+        "type": "decimal",
+      }
+    }
+    fieldValue="12.23"
+  >
+    <Decimal
+      assignFieldValueActionCreator={[Function]}
+      fieldElement={
+        Object {
+          "hint": "decimal type with no appearance",
+          "label": "Decimal widget",
+          "name": "decimal_widget",
+          "type": "decimal",
+        }
+      }
+      fieldValue="12.23"
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Decimal widget
+            </label>
+          </Label>
+          <Input
+            name="decimal_widget"
+            onChange={[Function]}
+            step="any"
+            type="number"
+            value="12.23"
+          >
+            <input
+              className="form-control"
+              name="decimal_widget"
+              onChange={[Function]}
+              step="any"
+              type="number"
+              value="12.23"
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </Decimal>
+  </Connect(Decimal)>
+</Provider>
+`;
