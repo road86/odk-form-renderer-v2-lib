@@ -7,6 +7,10 @@ export const DATE_FIELD_TYPE = 'date';
 export type DATE_FIELD_TYPE = typeof DATE_FIELD_TYPE;
 export const INTEGER_FIELD_TYPE = 'integer';
 export type INTEGER_FIELD_TYPE = typeof INTEGER_FIELD_TYPE;
+export const DECIMAL_FIELD_TYPE = 'decimal';
+export type DECIMAL_FIELD_TYPE = typeof DECIMAL_FIELD_TYPE;
+export const PHOTO_FIELD_TYPE = 'photo';
+export type PHOTO_FIELD_TYPE = typeof PHOTO_FIELD_TYPE;
 
 // Required Properties
 export const REQUIRED_FIELD_MSG = 'This field is required';
