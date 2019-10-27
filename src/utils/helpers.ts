@@ -31,6 +31,24 @@ export function getFieldLabelText(
 }
 
 /**
+ * get the label text of the fieldElement constraint msg
+ * @param {FieldElement} fieldElement - the fieldElement Object
+ * @return {string} - constraint label text
+ */
+export function getConstraintLabelText(
+  fieldElement: FieldElement,
+  languageIdentifier: string
+) {
+  if (fieldElement.bind && fieldElement.bind['jr:constraintMsg']) {
+    return getTextFromProperty(
+      fieldElement.bind['jr:constraintMsg'],
+      languageIdentifier
+    );
+  }
+  return '';
+}
+
+/**
  * get the boolean result depending on the expression
  * @param {string} - required string
  * @returns {boolean} - true if required, otherwise false
