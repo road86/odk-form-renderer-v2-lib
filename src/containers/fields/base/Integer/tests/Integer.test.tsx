@@ -17,6 +17,7 @@ describe('containers/fields/group/Group', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: integerFieldElement1,
+      fieldParentTreeName: '',
       fieldValue: '100',
     };
     shallow(
@@ -31,6 +32,7 @@ describe('containers/fields/group/Group', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: integerFieldElement1,
+      fieldParentTreeName: '',
       fieldValue: '120',
     };
     store.dispatch(

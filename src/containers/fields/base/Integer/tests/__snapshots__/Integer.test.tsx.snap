@@ -16,25 +16,48 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
     assignFieldValueActionCreator={[MockFunction]}
     fieldElement={
       Object {
-        "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
-        "label": "Ex integer widget",
-        "name": "ex_integer_widget",
+        "bind": Object {
+          "constraint": ".>=0",
+          "jr:constraintMsg": Object {
+            "English": "Negative value not allowed",
+          },
+          "readonly": "true",
+          "required": "Yes",
+        },
+        "hint": "integer type with no appearance",
+        "label": "Integer widget",
+        "name": "integer_widget",
         "type": "integer",
       }
     }
+    fieldParentTreeName=""
     fieldValue="120"
   >
     <Integer
+      addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       fieldElement={
         Object {
-          "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
-          "label": "Ex integer widget",
-          "name": "ex_integer_widget",
+          "bind": Object {
+            "constraint": ".>=0",
+            "jr:constraintMsg": Object {
+              "English": "Negative value not allowed",
+            },
+            "readonly": "true",
+            "required": "Yes",
+          },
+          "hint": "integer type with no appearance",
+          "label": "Integer widget",
+          "name": "integer_widget",
           "type": "integer",
         }
       }
+      fieldParentTreeName=""
       fieldValue="120"
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      removeErrorInputIdActionCreator={[Function]}
+      shouldAddToErrorSelector={[Function]}
     >
       <FormGroup
         tag="div"
@@ -57,19 +80,39 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
             <label
               className=""
             >
-              Ex integer widget
+              Integer widget
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              *
             </label>
           </Label>
           <Input
-            name="ex_integer_widget"
+            name="integer_widget"
             onChange={[Function]}
+            readOnly={true}
             type="number"
             value="120"
           >
             <input
               className="form-control"
-              name="ex_integer_widget"
+              name="integer_widget"
               onChange={[Function]}
+              readOnly={true}
               type="number"
               value="120"
             />
