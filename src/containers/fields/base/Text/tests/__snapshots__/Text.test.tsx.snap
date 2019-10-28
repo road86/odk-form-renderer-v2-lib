@@ -30,6 +30,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
     fieldValue="hello"
   >
     <Text
+      addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       fieldElement={
         Object {
@@ -46,6 +47,9 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
       fieldParentTreeName=""
       fieldValue="hello"
       getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      removeErrorInputIdActionCreator={[Function]}
+      shouldAddToErrorSelector={[Function]}
     >
       <FormGroup
         tag="div"
@@ -53,9 +57,46 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
         <div
           className="form-group"
         >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Name of the event
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              *
+            </label>
+          </Label>
           <Input
             name="event_name"
             onChange={[Function]}
+            readOnly={false}
             type="text"
             value="hello"
           >
@@ -63,6 +104,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
               className="form-control"
               name="event_name"
               onChange={[Function]}
+              readOnly={false}
               type="text"
               value="hello"
             />
