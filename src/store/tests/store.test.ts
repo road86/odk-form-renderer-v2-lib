@@ -23,7 +23,9 @@ describe('store', () => {
       fieldValue: 'testing',
     };
     // initially the field value will be empty
-    expect(getFieldValue(store.getState(), example.fieldTreeName)).toBeNull();
+    expect(
+      getFieldValue(store.getState(), example.fieldTreeName)
+    ).toBeUndefined();
     // call action to assign field value
     store.dispatch(
       assignFieldValueAction(example.fieldTreeName, example.fieldValue)

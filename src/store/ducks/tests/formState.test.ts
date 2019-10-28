@@ -21,10 +21,10 @@ describe('store/ducks/formState', () => {
   it('should work with initial empty state', () => {
     expect(
       getFieldValue(store.getState(), fieldExample1.fieldTreeName)
-    ).toBeNull();
+    ).toBeUndefined();
     expect(
       getFieldValue(store.getState(), fieldExample2.fieldTreeName)
-    ).toBeNull();
+    ).toBeUndefined();
   });
 
   /** checks whether actions assign and selectors get correct value */
@@ -32,7 +32,7 @@ describe('store/ducks/formState', () => {
     // initially the field value will be empty
     expect(
       getFieldValue(store.getState(), fieldExample1.fieldTreeName)
-    ).toBeNull();
+    ).toBeUndefined();
     // call action to assign field value to a new field
     store.dispatch(
       assignFieldValueAction(
