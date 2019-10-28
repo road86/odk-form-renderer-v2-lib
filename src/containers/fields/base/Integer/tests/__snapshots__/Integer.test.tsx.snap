@@ -56,8 +56,8 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
       fieldValue="120"
       getEvaluatedExpressionSelector={[Function]}
       isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
-      shouldAddToErrorSelector={[Function]}
     >
       <FormGroup
         tag="div"

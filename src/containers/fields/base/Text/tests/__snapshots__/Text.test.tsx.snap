@@ -48,8 +48,8 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
       fieldValue="hello"
       getEvaluatedExpressionSelector={[Function]}
       isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
-      shouldAddToErrorSelector={[Function]}
     >
       <FormGroup
         tag="div"

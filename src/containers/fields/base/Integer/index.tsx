@@ -12,8 +12,8 @@ import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  isPresentInError,
   removeErrorInputId,
-  shouldAddToError,
 } from '../../../../store/ducks/formState';
 import {
   getConstraintLabelText,
@@ -32,7 +32,7 @@ export interface IntegerProps {
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
-  shouldAddToErrorSelector: any;
+  isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
 }
@@ -45,7 +45,7 @@ class Integer extends React.Component<IntegerProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
-      shouldAddToErrorSelector,
+      isPresentInErrorSelector,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -73,7 +73,7 @@ class Integer extends React.Component<IntegerProps> {
       );
       if (
         (isRequiredViolated || isConstraintViolated) &&
-        !shouldAddToErrorSelector(fieldParentTreeName + fieldElement.name)
+        !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
       ) {
         this.props.addErrorInputIdActionCreator(
           fieldParentTreeName + fieldElement.name
@@ -81,7 +81,7 @@ class Integer extends React.Component<IntegerProps> {
       } else if (
         !isRequiredViolated &&
         !isConstraintViolated &&
-        shouldAddToErrorSelector(fieldParentTreeName + fieldElement.name)
+        isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
       ) {
         this.props.removeErrorInputIdActionCreator(
           fieldParentTreeName + fieldElement.name
@@ -106,6 +106,11 @@ class Integer extends React.Component<IntegerProps> {
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+          this.props.removeErrorInputIdActionCreator(
+            fieldParentTreeName + fieldElement.name
+          );
+        }
       }
       return null;
     }
@@ -128,7 +133,7 @@ interface DispatchedStateProps {
   fieldValue: string;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
-  shouldAddToErrorSelector: any;
+  isPresentInErrorSelector: any;
 }
 
 /** Interface to describe props from parent */
@@ -147,8 +152,8 @@ const mapStateToProps = (
     expression: string,
     fieldTreeName: string
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
-  const shouldAddToErrorSelector = (fieldTreeName: string) =>
-    shouldAddToError(state, fieldTreeName);
+  const isPresentInErrorSelector = (fieldTreeName: string) =>
+    isPresentInError(state, fieldTreeName);
   const result = {
     fieldValue: getFieldValue(state, fieldElement.name) || '',
     getEvaluatedExpressionSelector,
@@ -157,7 +162,7 @@ const mapStateToProps = (
       fieldParentTreeName,
       getEvaluatedExpressionSelector
     ),
-    shouldAddToErrorSelector,
+    isPresentInErrorSelector,
   };
   return result;
 };

@@ -12,8 +12,8 @@ import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  isPresentInError,
   removeErrorInputId,
-  shouldAddToError,
 } from '../../../../store/ducks/formState';
 import {
   getConstraintLabelText,
@@ -31,7 +31,7 @@ export interface TextProps {
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
-  shouldAddToErrorSelector: any;
+  isPresentInErrorSelector: any;
   isComponentRender: boolean;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
@@ -45,7 +45,7 @@ class Text extends React.Component<TextProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
-      shouldAddToErrorSelector,
+      isPresentInErrorSelector,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -73,7 +73,7 @@ class Text extends React.Component<TextProps> {
       );
       if (
         (isRequiredViolated || isConstraintViolated) &&
-        !shouldAddToErrorSelector(fieldParentTreeName + fieldElement.name)
+        !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
       ) {
         this.props.addErrorInputIdActionCreator(
           fieldParentTreeName + fieldElement.name
@@ -81,7 +81,7 @@ class Text extends React.Component<TextProps> {
       } else if (
         !isRequiredViolated &&
         !isConstraintViolated &&
-        shouldAddToErrorSelector(fieldParentTreeName + fieldElement.name)
+        isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
       ) {
         this.props.removeErrorInputIdActionCreator(
           fieldParentTreeName + fieldElement.name
@@ -105,7 +105,7 @@ class Text extends React.Component<TextProps> {
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldElement.name, null);
-        if (shouldAddToErrorSelector(fieldParentTreeName + fieldElement.name)) {
+        if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
           );
@@ -133,7 +133,7 @@ interface DispatchedStateProps {
   fieldValue: string;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
-  shouldAddToErrorSelector: any;
+  isPresentInErrorSelector: any;
 }
 
 /** Interface to describe props from parent */
@@ -152,8 +152,8 @@ const mapStateToProps = (
     expression: string,
     fieldTreeName: string
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
-  const shouldAddToErrorSelector = (fieldTreeName: string) =>
-    shouldAddToError(state, fieldTreeName);
+  const isPresentInErrorSelector = (fieldTreeName: string) =>
+    isPresentInError(state, fieldTreeName);
   const result = {
     fieldValue: getFieldValue(state, fieldElement.name),
     getEvaluatedExpressionSelector,
@@ -162,7 +162,7 @@ const mapStateToProps = (
       fieldParentTreeName,
       getEvaluatedExpressionSelector
     ),
-    shouldAddToErrorSelector,
+    isPresentInErrorSelector,
   };
   return result;
 };
