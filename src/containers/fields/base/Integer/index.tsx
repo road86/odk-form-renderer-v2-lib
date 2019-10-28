@@ -119,10 +119,8 @@ class Integer extends React.Component<IntegerProps> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    this.props.assignFieldValueActionCreator(
-      event.currentTarget.name,
-      event.currentTarget.value
-    );
+    const value = parseInt(event.currentTarget.value, 10);
+    this.props.assignFieldValueActionCreator(event.currentTarget.name, value);
   };
 }
 
