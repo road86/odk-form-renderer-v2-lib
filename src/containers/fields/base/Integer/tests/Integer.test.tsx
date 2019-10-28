@@ -18,7 +18,7 @@ describe('containers/fields/group/Group', () => {
       assignFieldValueActionCreator: mock,
       fieldElement: integerFieldElement1,
       fieldParentTreeName: '',
-      fieldValue: '100',
+      fieldValue: 100,
     };
     shallow(
       <Provider store={store}>
@@ -33,7 +33,7 @@ describe('containers/fields/group/Group', () => {
       assignFieldValueActionCreator: mock,
       fieldElement: integerFieldElement1,
       fieldParentTreeName: '',
-      fieldValue: '120',
+      fieldValue: 120,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)
