@@ -68,7 +68,12 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case DATE_FIELD_TYPE:
         return <Date fieldElement={fieldElement} />;
       case INTEGER_FIELD_TYPE:
-        return <Integer fieldElement={fieldElement} />;
+        return (
+          <Integer
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+          />
+        );
       case DECIMAL_FIELD_TYPE:
         return <Decimal fieldElement={fieldElement} />;
       case PHOTO_FIELD_TYPE:
