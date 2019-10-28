@@ -1235,8 +1235,8 @@ Version 2017121301 added:
                               fieldParentTreeName=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1378,8 +1378,8 @@ Version 2017121301 added:
                               fieldValue="this is test"
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1502,8 +1502,8 @@ Version 2017121301 added:
                               fieldParentTreeName=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1590,8 +1590,8 @@ Version 2017121301 added:
                               fieldParentTreeName=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1678,8 +1678,8 @@ Version 2017121301 added:
                               fieldParentTreeName=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1901,8 +1901,8 @@ Version 2017121301 added:
                               fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -2047,8 +2047,8 @@ Version 2017121301 added:
                               fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -2193,8 +2193,8 @@ Version 2017121301 added:
                               fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
                               isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
                               removeErrorInputIdActionCreator={[Function]}
-                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
