@@ -171,5 +171,5 @@ export function shouldAddToError(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return (state as any).userInput.errors.includes(fieldTreeName);
+  return (state as any).errors.includes(fieldTreeName);
 }
