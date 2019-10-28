@@ -37,12 +37,24 @@ export const DEMO_FORM_JSON = {
           name: 'string_widget',
           label: 'String widget',
           type: 'text',
+          bind: {
+            constraint: '.="hello"',
+            'jr:constraintMsg': 'Violated',
+            required: 'true',
+            readonly: 'true',
+          },
         },
         {
           name: 'string_number_widget',
           hint: 'text type with numbers appearance',
           label: 'String number widget',
           type: 'text',
+          default: 'this is test',
+          bind: {
+            constraint: '.="hello"',
+            'jr:constraintMsg': 'Violated',
+            required: 'true',
+          },
         },
         {
           name: 'url_widget',
@@ -76,6 +88,12 @@ export const DEMO_FORM_JSON = {
           hint: 'integer type with no appearance',
           label: 'Integer widget',
           type: 'integer',
+          bind: {
+            'jr:constraintMsg': { English: 'Negative value not allowed' },
+            required: 'Yes',
+            constraint: '.>=0',
+            readonly: 'true',
+          },
         },
         {
           name: 'integer_thousands_sep_widget',
@@ -83,6 +101,11 @@ export const DEMO_FORM_JSON = {
             'integer type with thousands-sep appearance. This appearance can also be applied to decimal and string numbers widgets',
           label: 'Integer widget with thousands separators',
           type: 'integer',
+          bind: {
+            'jr:constraintMsg': { English: 'Negative value not allowed' },
+            required: 'Yes',
+            constraint: '.>=0',
+          },
         },
         {
           name: 'ex_integer_widget',
@@ -90,12 +113,22 @@ export const DEMO_FORM_JSON = {
             'integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)',
           label: 'Ex integer widget',
           type: 'integer',
+          bind: {
+            'jr:constraintMsg': { English: 'Negative value not allowed' },
+            required: 'Yes',
+            constraint: '.>=0',
+          },
         },
         {
           name: 'decimal_widget',
           hint: 'decimal type with no appearance',
           label: 'Decimal widget',
           type: 'decimal',
+          bind: {
+            'jr:constraintMsg': { English: 'Negative value not allowed' },
+            required: 'Yes',
+            constraint: '.>=0',
+          },
         },
         {
           name: 'ex_decimal_widget',
