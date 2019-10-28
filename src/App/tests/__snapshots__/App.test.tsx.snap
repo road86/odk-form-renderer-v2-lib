@@ -73,11 +73,23 @@ Version 2017121301 added:
               Object {
                 "children": Array [
                   Object {
+                    "bind": Object {
+                      "constraint": ".=\\"hello\\"",
+                      "jr:constraintMsg": "Violated",
+                      "readonly": "true",
+                      "required": "true",
+                    },
                     "label": "String widget",
                     "name": "string_widget",
                     "type": "text",
                   },
                   Object {
+                    "bind": Object {
+                      "constraint": ".=\\"hello\\"",
+                      "jr:constraintMsg": "Violated",
+                      "required": "true",
+                    },
+                    "default": "this is test",
                     "hint": "text type with numbers appearance",
                     "label": "String number widget",
                     "name": "string_number_widget",
@@ -109,24 +121,53 @@ Version 2017121301 added:
               Object {
                 "children": Array [
                   Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "readonly": "true",
+                      "required": "Yes",
+                    },
                     "hint": "integer type with no appearance",
                     "label": "Integer widget",
                     "name": "integer_widget",
                     "type": "integer",
                   },
                   Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
                     "hint": "integer type with thousands-sep appearance. This appearance can also be applied to decimal and string numbers widgets",
                     "label": "Integer widget with thousands separators",
                     "name": "integer_thousands_sep_widget",
                     "type": "integer",
                   },
                   Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
                     "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
                     "label": "Ex integer widget",
                     "name": "ex_integer_widget",
                     "type": "integer",
                   },
                   Object {
+                    "bind": Object {
+                      "constraint": ".>=0",
+                      "jr:constraintMsg": Object {
+                        "English": "Negative value not allowed",
+                      },
+                      "required": "Yes",
+                    },
                     "hint": "decimal type with no appearance",
                     "label": "Decimal widget",
                     "name": "decimal_widget",
@@ -1068,11 +1109,23 @@ Version 2017121301 added:
                     Object {
                       "children": Array [
                         Object {
+                          "bind": Object {
+                            "constraint": ".=\\"hello\\"",
+                            "jr:constraintMsg": "Violated",
+                            "readonly": "true",
+                            "required": "true",
+                          },
                           "label": "String widget",
                           "name": "string_widget",
                           "type": "text",
                         },
                         Object {
+                          "bind": Object {
+                            "constraint": ".=\\"hello\\"",
+                            "jr:constraintMsg": "Violated",
+                            "required": "true",
+                          },
+                          "default": "this is test",
                           "hint": "text type with numbers appearance",
                           "label": "String number widget",
                           "name": "string_number_widget",
@@ -1134,6 +1187,12 @@ Version 2017121301 added:
                         <BaseTypeEvaluator
                           fieldElement={
                             Object {
+                              "bind": Object {
+                                "constraint": ".=\\"hello\\"",
+                                "jr:constraintMsg": "Violated",
+                                "readonly": "true",
+                                "required": "true",
+                              },
                               "label": "String widget",
                               "name": "string_widget",
                               "type": "text",
@@ -1144,6 +1203,12 @@ Version 2017121301 added:
                           <Connect(Text)
                             fieldElement={
                               Object {
+                                "bind": Object {
+                                  "constraint": ".=\\"hello\\"",
+                                  "jr:constraintMsg": "Violated",
+                                  "readonly": "true",
+                                  "required": "true",
+                                },
                                 "label": "String widget",
                                 "name": "string_widget",
                                 "type": "text",
@@ -1152,17 +1217,26 @@ Version 2017121301 added:
                             fieldParentTreeName=""
                           >
                             <Text
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
+                                  "bind": Object {
+                                    "constraint": ".=\\"hello\\"",
+                                    "jr:constraintMsg": "Violated",
+                                    "readonly": "true",
+                                    "required": "true",
+                                  },
                                   "label": "String widget",
                                   "name": "string_widget",
                                   "type": "text",
                                 }
                               }
                               fieldParentTreeName=""
-                              fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1170,9 +1244,46 @@ Version 2017121301 added:
                                 <div
                                   className="form-group"
                                 >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      String widget
+                                    </label>
+                                  </Label>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      *
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="string_widget"
                                     onChange={[Function]}
+                                    readOnly={true}
                                     type="text"
                                     value=""
                                   >
@@ -1180,10 +1291,29 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="string_widget"
                                       onChange={[Function]}
+                                      readOnly={true}
                                       type="text"
                                       value=""
                                     />
                                   </Input>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      This field is required
+                                    </label>
+                                  </Label>
                                 </div>
                               </FormGroup>
                             </Text>
@@ -1196,6 +1326,12 @@ Version 2017121301 added:
                         <BaseTypeEvaluator
                           fieldElement={
                             Object {
+                              "bind": Object {
+                                "constraint": ".=\\"hello\\"",
+                                "jr:constraintMsg": "Violated",
+                                "required": "true",
+                              },
+                              "default": "this is test",
                               "hint": "text type with numbers appearance",
                               "label": "String number widget",
                               "name": "string_number_widget",
@@ -1207,6 +1343,12 @@ Version 2017121301 added:
                           <Connect(Text)
                             fieldElement={
                               Object {
+                                "bind": Object {
+                                  "constraint": ".=\\"hello\\"",
+                                  "jr:constraintMsg": "Violated",
+                                  "required": "true",
+                                },
+                                "default": "this is test",
                                 "hint": "text type with numbers appearance",
                                 "label": "String number widget",
                                 "name": "string_number_widget",
@@ -1216,9 +1358,16 @@ Version 2017121301 added:
                             fieldParentTreeName=""
                           >
                             <Text
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
+                                  "bind": Object {
+                                    "constraint": ".=\\"hello\\"",
+                                    "jr:constraintMsg": "Violated",
+                                    "required": "true",
+                                  },
+                                  "default": "this is test",
                                   "hint": "text type with numbers appearance",
                                   "label": "String number widget",
                                   "name": "string_number_widget",
@@ -1226,8 +1375,11 @@ Version 2017121301 added:
                                 }
                               }
                               fieldParentTreeName=""
-                              fieldValue=""
+                              fieldValue="this is test"
                               getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1235,20 +1387,76 @@ Version 2017121301 added:
                                 <div
                                   className="form-group"
                                 >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      String number widget
+                                    </label>
+                                  </Label>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      *
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="string_number_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     type="text"
-                                    value=""
+                                    value="this is test"
                                   >
                                     <input
                                       className="form-control"
                                       name="string_number_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       type="text"
-                                      value=""
+                                      value="this is test"
                                     />
                                   </Input>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Violated
+                                    </label>
+                                  </Label>
                                 </div>
                               </FormGroup>
                             </Text>
@@ -1281,6 +1489,7 @@ Version 2017121301 added:
                             fieldParentTreeName=""
                           >
                             <Text
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -1291,8 +1500,10 @@ Version 2017121301 added:
                                 }
                               }
                               fieldParentTreeName=""
-                              fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1300,9 +1511,28 @@ Version 2017121301 added:
                                 <div
                                   className="form-group"
                                 >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      URL widget
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="url_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     type="text"
                                     value=""
                                   >
@@ -1310,6 +1540,7 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="url_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       type="text"
                                       value=""
                                     />
@@ -1346,6 +1577,7 @@ Version 2017121301 added:
                             fieldParentTreeName=""
                           >
                             <Text
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -1356,8 +1588,10 @@ Version 2017121301 added:
                                 }
                               }
                               fieldParentTreeName=""
-                              fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1365,9 +1599,28 @@ Version 2017121301 added:
                                 <div
                                   className="form-group"
                                 >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Ex string widget
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="ex_string_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     type="text"
                                     value=""
                                   >
@@ -1375,6 +1628,7 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="ex_string_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       type="text"
                                       value=""
                                     />
@@ -1411,6 +1665,7 @@ Version 2017121301 added:
                             fieldParentTreeName=""
                           >
                             <Text
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -1421,8 +1676,10 @@ Version 2017121301 added:
                                 }
                               }
                               fieldParentTreeName=""
-                              fieldValue=""
                               getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1430,9 +1687,28 @@ Version 2017121301 added:
                                 <div
                                   className="form-group"
                                 >
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      Ex printer widget
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="ex_printer_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     type="text"
                                     value=""
                                   >
@@ -1440,6 +1716,7 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="ex_printer_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       type="text"
                                       value=""
                                     />
@@ -1464,24 +1741,53 @@ Version 2017121301 added:
                     Object {
                       "children": Array [
                         Object {
+                          "bind": Object {
+                            "constraint": ".>=0",
+                            "jr:constraintMsg": Object {
+                              "English": "Negative value not allowed",
+                            },
+                            "readonly": "true",
+                            "required": "Yes",
+                          },
                           "hint": "integer type with no appearance",
                           "label": "Integer widget",
                           "name": "integer_widget",
                           "type": "integer",
                         },
                         Object {
+                          "bind": Object {
+                            "constraint": ".>=0",
+                            "jr:constraintMsg": Object {
+                              "English": "Negative value not allowed",
+                            },
+                            "required": "Yes",
+                          },
                           "hint": "integer type with thousands-sep appearance. This appearance can also be applied to decimal and string numbers widgets",
                           "label": "Integer widget with thousands separators",
                           "name": "integer_thousands_sep_widget",
                           "type": "integer",
                         },
                         Object {
+                          "bind": Object {
+                            "constraint": ".>=0",
+                            "jr:constraintMsg": Object {
+                              "English": "Negative value not allowed",
+                            },
+                            "required": "Yes",
+                          },
                           "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
                           "label": "Ex integer widget",
                           "name": "ex_integer_widget",
                           "type": "integer",
                         },
                         Object {
+                          "bind": Object {
+                            "constraint": ".>=0",
+                            "jr:constraintMsg": Object {
+                              "English": "Negative value not allowed",
+                            },
+                            "required": "Yes",
+                          },
                           "hint": "decimal type with no appearance",
                           "label": "Decimal widget",
                           "name": "decimal_widget",
@@ -1537,6 +1843,14 @@ Version 2017121301 added:
                         <BaseTypeEvaluator
                           fieldElement={
                             Object {
+                              "bind": Object {
+                                "constraint": ".>=0",
+                                "jr:constraintMsg": Object {
+                                  "English": "Negative value not allowed",
+                                },
+                                "readonly": "true",
+                                "required": "Yes",
+                              },
                               "hint": "integer type with no appearance",
                               "label": "Integer widget",
                               "name": "integer_widget",
@@ -1548,24 +1862,47 @@ Version 2017121301 added:
                           <Connect(Integer)
                             fieldElement={
                               Object {
+                                "bind": Object {
+                                  "constraint": ".>=0",
+                                  "jr:constraintMsg": Object {
+                                    "English": "Negative value not allowed",
+                                  },
+                                  "readonly": "true",
+                                  "required": "Yes",
+                                },
                                 "hint": "integer type with no appearance",
                                 "label": "Integer widget",
                                 "name": "integer_widget",
                                 "type": "integer",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Integer
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
+                                  "bind": Object {
+                                    "constraint": ".>=0",
+                                    "jr:constraintMsg": Object {
+                                      "English": "Negative value not allowed",
+                                    },
+                                    "readonly": "true",
+                                    "required": "Yes",
+                                  },
                                   "hint": "integer type with no appearance",
                                   "label": "Integer widget",
                                   "name": "integer_widget",
                                   "type": "integer",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1591,9 +1928,28 @@ Version 2017121301 added:
                                       Integer widget
                                     </label>
                                   </Label>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      *
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="integer_widget"
                                     onChange={[Function]}
+                                    readOnly={true}
                                     type="number"
                                     value=""
                                   >
@@ -1601,10 +1957,29 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="integer_widget"
                                       onChange={[Function]}
+                                      readOnly={true}
                                       type="number"
                                       value=""
                                     />
                                   </Input>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      This field is required
+                                    </label>
+                                  </Label>
                                 </div>
                               </FormGroup>
                             </Integer>
@@ -1617,6 +1992,13 @@ Version 2017121301 added:
                         <BaseTypeEvaluator
                           fieldElement={
                             Object {
+                              "bind": Object {
+                                "constraint": ".>=0",
+                                "jr:constraintMsg": Object {
+                                  "English": "Negative value not allowed",
+                                },
+                                "required": "Yes",
+                              },
                               "hint": "integer type with thousands-sep appearance. This appearance can also be applied to decimal and string numbers widgets",
                               "label": "Integer widget with thousands separators",
                               "name": "integer_thousands_sep_widget",
@@ -1628,24 +2010,45 @@ Version 2017121301 added:
                           <Connect(Integer)
                             fieldElement={
                               Object {
+                                "bind": Object {
+                                  "constraint": ".>=0",
+                                  "jr:constraintMsg": Object {
+                                    "English": "Negative value not allowed",
+                                  },
+                                  "required": "Yes",
+                                },
                                 "hint": "integer type with thousands-sep appearance. This appearance can also be applied to decimal and string numbers widgets",
                                 "label": "Integer widget with thousands separators",
                                 "name": "integer_thousands_sep_widget",
                                 "type": "integer",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Integer
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
+                                  "bind": Object {
+                                    "constraint": ".>=0",
+                                    "jr:constraintMsg": Object {
+                                      "English": "Negative value not allowed",
+                                    },
+                                    "required": "Yes",
+                                  },
                                   "hint": "integer type with thousands-sep appearance. This appearance can also be applied to decimal and string numbers widgets",
                                   "label": "Integer widget with thousands separators",
                                   "name": "integer_thousands_sep_widget",
                                   "type": "integer",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1671,9 +2074,28 @@ Version 2017121301 added:
                                       Integer widget with thousands separators
                                     </label>
                                   </Label>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      *
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="integer_thousands_sep_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     type="number"
                                     value=""
                                   >
@@ -1681,10 +2103,29 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="integer_thousands_sep_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       type="number"
                                       value=""
                                     />
                                   </Input>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      This field is required
+                                    </label>
+                                  </Label>
                                 </div>
                               </FormGroup>
                             </Integer>
@@ -1697,6 +2138,13 @@ Version 2017121301 added:
                         <BaseTypeEvaluator
                           fieldElement={
                             Object {
+                              "bind": Object {
+                                "constraint": ".>=0",
+                                "jr:constraintMsg": Object {
+                                  "English": "Negative value not allowed",
+                                },
+                                "required": "Yes",
+                              },
                               "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
                               "label": "Ex integer widget",
                               "name": "ex_integer_widget",
@@ -1708,24 +2156,45 @@ Version 2017121301 added:
                           <Connect(Integer)
                             fieldElement={
                               Object {
+                                "bind": Object {
+                                  "constraint": ".>=0",
+                                  "jr:constraintMsg": Object {
+                                    "English": "Negative value not allowed",
+                                  },
+                                  "required": "Yes",
+                                },
                                 "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
                                 "label": "Ex integer widget",
                                 "name": "ex_integer_widget",
                                 "type": "integer",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Integer
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
+                                  "bind": Object {
+                                    "constraint": ".>=0",
+                                    "jr:constraintMsg": Object {
+                                      "English": "Negative value not allowed",
+                                    },
+                                    "required": "Yes",
+                                  },
                                   "hint": "integer type with ex:change.uw.android.BREATHCOUNT appearance (can use other external apps)",
                                   "label": "Ex integer widget",
                                   "name": "ex_integer_widget",
                                   "type": "integer",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              removeErrorInputIdActionCreator={[Function]}
+                              shouldAddToErrorSelector={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -1751,9 +2220,28 @@ Version 2017121301 added:
                                       Ex integer widget
                                     </label>
                                   </Label>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      *
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="ex_integer_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     type="number"
                                     value=""
                                   >
@@ -1761,10 +2249,29 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="ex_integer_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       type="number"
                                       value=""
                                     />
                                   </Input>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      This field is required
+                                    </label>
+                                  </Label>
                                 </div>
                               </FormGroup>
                             </Integer>
@@ -1777,6 +2284,13 @@ Version 2017121301 added:
                         <BaseTypeEvaluator
                           fieldElement={
                             Object {
+                              "bind": Object {
+                                "constraint": ".>=0",
+                                "jr:constraintMsg": Object {
+                                  "English": "Negative value not allowed",
+                                },
+                                "required": "Yes",
+                              },
                               "hint": "decimal type with no appearance",
                               "label": "Decimal widget",
                               "name": "decimal_widget",
@@ -1788,6 +2302,13 @@ Version 2017121301 added:
                           <Connect(Decimal)
                             fieldElement={
                               Object {
+                                "bind": Object {
+                                  "constraint": ".>=0",
+                                  "jr:constraintMsg": Object {
+                                    "English": "Negative value not allowed",
+                                  },
+                                  "required": "Yes",
+                                },
                                 "hint": "decimal type with no appearance",
                                 "label": "Decimal widget",
                                 "name": "decimal_widget",
@@ -1799,6 +2320,13 @@ Version 2017121301 added:
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
+                                  "bind": Object {
+                                    "constraint": ".>=0",
+                                    "jr:constraintMsg": Object {
+                                      "English": "Negative value not allowed",
+                                    },
+                                    "required": "Yes",
+                                  },
                                   "hint": "decimal type with no appearance",
                                   "label": "Decimal widget",
                                   "name": "decimal_widget",
@@ -1831,6 +2359,24 @@ Version 2017121301 added:
                                       Decimal widget
                                     </label>
                                   </Label>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      *
+                                    </label>
+                                  </Label>
                                   <Input
                                     name="decimal_widget"
                                     onChange={[Function]}
@@ -1847,6 +2393,24 @@ Version 2017121301 added:
                                       value=""
                                     />
                                   </Input>
+                                  <Label
+                                    tag="label"
+                                    widths={
+                                      Array [
+                                        "xs",
+                                        "sm",
+                                        "md",
+                                        "lg",
+                                        "xl",
+                                      ]
+                                    }
+                                  >
+                                    <label
+                                      className=""
+                                    >
+                                      This field is required
+                                    </label>
+                                  </Label>
                                 </div>
                               </FormGroup>
                             </Decimal>
