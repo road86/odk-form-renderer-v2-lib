@@ -26,9 +26,11 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
         "type": "date",
       }
     }
+    fieldParentTreeName=""
     fieldValue="2019-10-11"
   >
     <Date
+      addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       fieldElement={
         Object {
@@ -42,7 +44,12 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
           "type": "date",
         }
       }
+      fieldParentTreeName=""
       fieldValue="2019-10-11"
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
     >
       <FormGroup
         tag="div"
@@ -89,35 +96,21 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
           <Input
             name="event_end_date"
             onChange={[Function]}
-            type="date"
+            readOnly={false}
+            step="any"
+            type="number"
             value="2019-10-11"
           >
             <input
               className="form-control"
               name="event_end_date"
               onChange={[Function]}
-              type="date"
+              readOnly={false}
+              step="any"
+              type="number"
               value="2019-10-11"
             />
           </Input>
-          <Label
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <label
-              className=""
-            >
-              This field is required
-            </label>
-          </Label>
         </div>
       </FormGroup>
     </Date>

@@ -3642,8 +3642,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -3653,7 +3655,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -3682,14 +3689,18 @@ Version 2017121301 added:
                                   <Input
                                     name="date_widget"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="date_widget"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>
@@ -3722,8 +3733,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -3733,7 +3746,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -3762,14 +3780,18 @@ Version 2017121301 added:
                                   <Input
                                     name="date_widget_nocalendar"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="date_widget_nocalendar"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>
@@ -3802,8 +3824,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -3813,7 +3837,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -3842,14 +3871,18 @@ Version 2017121301 added:
                                   <Input
                                     name="date_widget_month_year"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="date_widget_month_year"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>
@@ -3882,8 +3915,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -3893,7 +3928,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -3922,14 +3962,18 @@ Version 2017121301 added:
                                   <Input
                                     name="date_widget_year"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="date_widget_year"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>
@@ -4028,8 +4072,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -4039,7 +4085,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -4068,14 +4119,18 @@ Version 2017121301 added:
                                   <Input
                                     name="ethiopian_date_widget"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="ethiopian_date_widget"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>
@@ -4108,8 +4163,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -4119,7 +4176,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -4148,14 +4210,18 @@ Version 2017121301 added:
                                   <Input
                                     name="coptic_date_widget"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="coptic_date_widget"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>
@@ -4188,8 +4254,10 @@ Version 2017121301 added:
                                 "type": "date",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Date
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -4199,7 +4267,12 @@ Version 2017121301 added:
                                   "type": "date",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -4228,14 +4301,18 @@ Version 2017121301 added:
                                   <Input
                                     name="islamic_date_widget"
                                     onChange={[Function]}
-                                    type="date"
+                                    readOnly={false}
+                                    step="any"
+                                    type="number"
                                     value=""
                                   >
                                     <input
                                       className="form-control"
                                       name="islamic_date_widget"
                                       onChange={[Function]}
-                                      type="date"
+                                      readOnly={false}
+                                      step="any"
+                                      type="number"
                                       value=""
                                     />
                                   </Input>

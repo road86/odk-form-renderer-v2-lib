@@ -17,6 +17,7 @@ describe('containers/fields/base/Date', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: textFieldElement1,
+      fieldParentTreeName: '',
       fieldValue: '2019-10-11',
     };
     shallow(
@@ -31,6 +32,7 @@ describe('containers/fields/base/Date', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: textFieldElement1,
+      fieldParentTreeName: '',
       fieldValue: '2019-10-11',
     };
     store.dispatch(
