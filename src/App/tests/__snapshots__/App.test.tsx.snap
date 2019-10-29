@@ -2315,8 +2315,10 @@ Version 2017121301 added:
                                 "type": "decimal",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Decimal
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -2333,7 +2335,12 @@ Version 2017121301 added:
                                   "type": "decimal",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -2380,6 +2387,7 @@ Version 2017121301 added:
                                   <Input
                                     name="decimal_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     step="any"
                                     type="number"
                                     value=""
@@ -2388,6 +2396,7 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="decimal_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       step="any"
                                       type="number"
                                       value=""
@@ -2440,8 +2449,10 @@ Version 2017121301 added:
                                 "type": "decimal",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Decimal
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -2451,7 +2462,12 @@ Version 2017121301 added:
                                   "type": "decimal",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -2480,6 +2496,7 @@ Version 2017121301 added:
                                   <Input
                                     name="ex_decimal_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     step="any"
                                     type="number"
                                     value=""
@@ -2488,6 +2505,7 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="ex_decimal_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       step="any"
                                       type="number"
                                       value=""
@@ -2522,8 +2540,10 @@ Version 2017121301 added:
                                 "type": "decimal",
                               }
                             }
+                            fieldParentTreeName=""
                           >
                             <Decimal
+                              addErrorInputIdActionCreator={[Function]}
                               assignFieldValueActionCreator={[Function]}
                               fieldElement={
                                 Object {
@@ -2533,7 +2553,12 @@ Version 2017121301 added:
                                   "type": "decimal",
                                 }
                               }
+                              fieldParentTreeName=""
                               fieldValue=""
+                              getEvaluatedExpressionSelector={[Function]}
+                              isComponentRender={true}
+                              isPresentInErrorSelector={[Function]}
+                              removeErrorInputIdActionCreator={[Function]}
                             >
                               <FormGroup
                                 tag="div"
@@ -2562,6 +2587,7 @@ Version 2017121301 added:
                                   <Input
                                     name="bearing_widget"
                                     onChange={[Function]}
+                                    readOnly={false}
                                     step="any"
                                     type="number"
                                     value=""
@@ -2570,6 +2596,7 @@ Version 2017121301 added:
                                       className="form-control"
                                       name="bearing_widget"
                                       onChange={[Function]}
+                                      readOnly={false}
                                       step="any"
                                       type="number"
                                       value=""

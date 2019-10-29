@@ -22,9 +22,11 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
         "type": "decimal",
       }
     }
-    fieldValue="12.23"
+    fieldParentTreeName=""
+    fieldValue={12.23}
   >
     <Decimal
+      addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       fieldElement={
         Object {
@@ -34,7 +36,12 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
           "type": "decimal",
         }
       }
-      fieldValue="12.23"
+      fieldParentTreeName=""
+      fieldValue={12.23}
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
     >
       <FormGroup
         tag="div"
@@ -63,17 +70,19 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
           <Input
             name="decimal_widget"
             onChange={[Function]}
+            readOnly={false}
             step="any"
             type="number"
-            value="12.23"
+            value={12.23}
           >
             <input
               className="form-control"
               name="decimal_widget"
               onChange={[Function]}
+              readOnly={false}
               step="any"
               type="number"
-              value="12.23"
+              value={12.23}
             />
           </Input>
         </div>

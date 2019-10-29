@@ -75,7 +75,12 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           />
         );
       case DECIMAL_FIELD_TYPE:
-        return <Decimal fieldElement={fieldElement} />;
+        return (
+          <Decimal
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+          />
+        );
       case PHOTO_FIELD_TYPE:
         return <Photo fieldElement={fieldElement} />;
       default:

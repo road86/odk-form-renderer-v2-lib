@@ -17,7 +17,8 @@ describe('containers/fields/base/Decimal', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: decimalFieldElement,
-      fieldValue: '12.23',
+      fieldParentTreeName: '',
+      fieldValue: 12.23,
     };
     shallow(
       <Provider store={store}>
@@ -31,7 +32,8 @@ describe('containers/fields/base/Decimal', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       fieldElement: decimalFieldElement,
-      fieldValue: '12.23',
+      fieldParentTreeName: '',
+      fieldValue: 12.23,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)
