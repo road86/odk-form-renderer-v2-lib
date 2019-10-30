@@ -4,12 +4,14 @@ import {
   DECIMAL_FIELD_TYPE,
   INTEGER_FIELD_TYPE,
   PHOTO_FIELD_TYPE,
+  SELECT_ONE_FIELD_TYPE,
   TEXT_FIELD_TYPE,
 } from '../../../constants';
 import Date from '../../../containers/fields/base/Date';
 import Decimal from '../../../containers/fields/base/Decimal';
 import Integer from '../../../containers/fields/base/Integer';
 import Photo from '../../../containers/fields/base/Photo';
+import SelectOne from '../../../containers/fields/base/Select One';
 import Text from '../../../containers/fields/base/Text';
 
 /** type of fieldParentTreeName */
@@ -34,6 +36,7 @@ export interface FieldElement {
   bind?: BindProperty;
   label?: { [key: string]: string } | string;
   default?: any;
+  control?: any;
 }
 
 /** props interface for BaseTypeEvaluator component */
@@ -82,6 +85,13 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case DECIMAL_FIELD_TYPE:
         return (
           <Decimal
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+          />
+        );
+      case SELECT_ONE_FIELD_TYPE:
+        return (
+          <SelectOne
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
           />

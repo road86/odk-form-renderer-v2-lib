@@ -11,6 +11,8 @@ export const DECIMAL_FIELD_TYPE = 'decimal';
 export type DECIMAL_FIELD_TYPE = typeof DECIMAL_FIELD_TYPE;
 export const PHOTO_FIELD_TYPE = 'photo';
 export type PHOTO_FIELD_TYPE = typeof PHOTO_FIELD_TYPE;
+export const SELECT_ONE_FIELD_TYPE = 'select one';
+export type SELECT_ONE_FIELD_TYPE = typeof SELECT_ONE_FIELD_TYPE;
 
 // Required Properties
 export const REQUIRED_FIELD_MSG = 'This field is required';
@@ -306,28 +308,147 @@ export const DEMO_FORM_JSON = {
     {
       children: [
         {
+          control: {
+            appearance: 'minimal',
+          },
+          name: 'return_from',
+          bind: {
+            required: 'Yes',
+          },
+          label: {
+            Bangla:
+              '\u09af\u09c7\u0987 \u09a6\u09c7\u09b6 \u09a5\u09c7\u0995\u09c7 \u09ab\u09c7\u09b0\u09a4 \u098f\u09b8\u09c7\u099b\u09c7 \u09a4\u09be\u09b0 \u09a8\u09be\u09ae',
+            English: 'Return From',
+          },
+          type: 'select one',
           children: [
             {
-              name: 'a',
-              label: 'A',
+              name: 'AL',
+              label: {
+                Bangla: 'Albania',
+                English: 'Albania',
+              },
             },
             {
-              name: 'b',
-              label: 'B',
+              name: 'AD',
+              label: {
+                Bangla: 'Andorra',
+                English: 'Andorra',
+              },
             },
             {
-              name: 'c',
-              label: 'C',
+              name: 'AM',
+              label: {
+                Bangla: 'Armenia',
+                English: 'Armenia',
+              },
             },
             {
-              name: 'd',
-              label: 'D',
+              name: 'AT',
+              label: {
+                Bangla: 'Austria',
+                English: 'Austria',
+              },
+            },
+            {
+              name: 'AZ',
+              label: {
+                Bangla: 'Azerbaijan',
+                English: 'Azerbaijan',
+              },
+            },
+            {
+              name: 'BY',
+              label: {
+                Bangla: 'Belarus',
+                English: 'Belarus',
+              },
+            },
+            {
+              name: 'BE',
+              label: {
+                Bangla: 'Belgium',
+                English: 'Belgium',
+              },
+            },
+            {
+              name: 'BA',
+              label: {
+                Bangla: 'Bosnia and Herzegovina',
+                English: 'Bosnia and Herzegovina',
+              },
+            },
+            {
+              name: 'BG',
+              label: {
+                Bangla: 'Bulgaria',
+                English: 'Bulgaria',
+              },
+            },
+            {
+              name: 'ES',
+              label: {
+                Bangla: 'Spain',
+                English: 'Spain',
+              },
+            },
+            {
+              name: 'SE',
+              label: {
+                Bangla: 'Sweden',
+                English: 'Sweden',
+              },
+            },
+            {
+              name: 'CH',
+              label: {
+                Bangla: 'Switzerland',
+                English: 'Switzerland',
+              },
+            },
+            {
+              name: 'TN',
+              label: {
+                Bangla: 'Tunisia',
+                English: 'Tunisia',
+              },
+            },
+            {
+              name: 'TR',
+              label: {
+                Bangla: 'Turkey',
+                English: 'Turkey',
+              },
+            },
+            {
+              name: 'UA',
+              label: {
+                Bangla: 'Ukraine',
+                English: 'Ukraine',
+              },
+            },
+            {
+              name: 'GB',
+              label: {
+                Bangla: 'United Kingdom (UK)',
+                English: 'United Kingdom (UK)',
+              },
+            },
+            {
+              name: 'VA',
+              label: {
+                Bangla: 'Vatican City',
+                English: 'Vatican City',
+              },
+            },
+            {
+              name: '99',
+              label: {
+                Bangla: '\u0985\u09a8\u09cd\u09af\u09be\u09a8\u09cd\u09af',
+                English: 'Others',
+              },
             },
           ],
-          name: 'select_one_widget',
-          hint: 'select_one type with no appearance, 4 text choices',
-          label: 'Select one widget',
-          type: 'select one',
         },
         {
           children: [
