@@ -3,6 +3,7 @@ import {
   DATE_FIELD_TYPE,
   DECIMAL_FIELD_TYPE,
   INTEGER_FIELD_TYPE,
+  NOTE_FIELD_TYPE,
   PHOTO_FIELD_TYPE,
   SELECT_ONE_FIELD_TYPE,
   TEXT_FIELD_TYPE,
@@ -10,6 +11,7 @@ import {
 import Date from '../../../containers/fields/base/Date';
 import Decimal from '../../../containers/fields/base/Decimal';
 import Integer from '../../../containers/fields/base/Integer';
+import Note from '../../../containers/fields/base/Note';
 import Photo from '../../../containers/fields/base/Photo';
 import SelectOne from '../../../containers/fields/base/Select One';
 import Text from '../../../containers/fields/base/Text';
@@ -37,6 +39,7 @@ export interface FieldElement {
   label?: { [key: string]: string } | string;
   default?: any;
   control?: any;
+  hint?: any;
 }
 
 /** props interface for BaseTypeEvaluator component */
@@ -85,6 +88,13 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case DECIMAL_FIELD_TYPE:
         return (
           <Decimal
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+          />
+        );
+      case NOTE_FIELD_TYPE:
+        return (
+          <Note
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
           />

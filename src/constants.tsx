@@ -11,6 +11,8 @@ export const DECIMAL_FIELD_TYPE = 'decimal';
 export type DECIMAL_FIELD_TYPE = typeof DECIMAL_FIELD_TYPE;
 export const PHOTO_FIELD_TYPE = 'photo';
 export type PHOTO_FIELD_TYPE = typeof PHOTO_FIELD_TYPE;
+export const NOTE_FIELD_TYPE = 'note';
+export type NOTE_FIELD_TYPE = typeof NOTE_FIELD_TYPE;
 export const SELECT_ONE_FIELD_TYPE = 'select one';
 export type SELECT_ONE_FIELD_TYPE = typeof SELECT_ONE_FIELD_TYPE;
 
@@ -28,7 +30,7 @@ export const DEMO_FORM_JSON = {
     {
       name: 'intro',
       hint:
-        '"This is a sample for introductory and debugging purposes. It is updated periodically so check ""Get Blank Form"" to get the latest! \n\nVersion 2018032801 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new-front (selfie) for video type\n\nVersion 2018022001 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance image-map for select_one and select_multiple types\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new for image, audio, video types\n\nVersion 2017121301 added:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance thousands-sep for numeric types\n&nbsp;&nbsp;&nbsp;&nbsp;- Range questions\n&nbsp;&nbsp;&nbsp;&nbsp;- Ethiopian, coptic and islamic calendars"',
+        'This is a sample for introductory and debugging purposes. It is updated periodically so check ""Get Blank Form"" to get the latest! \n\nVersion 2018032801 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new-front (selfie) for video type\n\nVersion 2018022001 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance image-map for select_one and select_multiple types\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new for image, audio, video types\n\nVersion 2017121301 added:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance thousands-sep for numeric types\n&nbsp;&nbsp;&nbsp;&nbsp;- Range questions\n&nbsp;&nbsp;&nbsp;&nbsp;- Ethiopian, coptic and islamic calendars',
       label:
         'Welcome to ODK Collect! This form showcases the different available question types (_widgets_).',
       type: 'note',
