@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { FormGroup, Label } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -123,11 +123,25 @@ class SelectOne extends React.Component<SelectOneProps> {
           </FormGroup>
         );
       } else {
-        return (
-          <FormGroup>
-            <Label>{fieldLabel}</Label>
-          </FormGroup>
-        );
+        if (fieldElement.children) {
+          return (
+            <FormGroup>
+              <Label>{fieldLabel}</Label>
+              {fieldElement.children.map(elem => (
+                <div key={fieldElement.name} className="col-md-12">
+                  <Input
+                    key={fieldElement.name}
+                    type="radio"
+                    name={fieldElement.name}
+                  />{' '}
+                  {elem.name}
+                </div>
+              ))}
+            </FormGroup>
+          );
+        } else {
+          return null;
+        }
       }
     } else {
       if (fieldValue != null) {
