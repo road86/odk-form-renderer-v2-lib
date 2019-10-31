@@ -130,6 +130,7 @@ class SelectOne extends React.Component<SelectOneProps> {
               {fieldElement.children.map((elem, index) => (
                 <div key={index} className="col-md-12">
                   <Input
+                    key={fieldElement.name + '-' + index}
                     type="radio"
                     name={fieldElement.name}
                     value={elem.name}
