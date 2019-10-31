@@ -31,6 +31,21 @@ export function getFieldLabelText(
 }
 
 /**
+ * get the hint text of the fieldElement
+ * @param {FieldElement} fieldElement - the fieldElement Object
+ * @return {string} - field hint text
+ */
+export function getFieldHintText(
+  fieldElement: FieldElement,
+  languageIdentifier: string
+) {
+  if (fieldElement.hint) {
+    return getTextFromProperty(fieldElement.hint, languageIdentifier);
+  }
+  return '';
+}
+
+/**
  * get the label text of the fieldElement constraint msg
  * @param {FieldElement} fieldElement - the fieldElement Object
  * @return {string} - constraint label text
