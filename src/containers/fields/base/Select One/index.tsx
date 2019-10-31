@@ -127,12 +127,13 @@ class SelectOne extends React.Component<SelectOneProps> {
           return (
             <FormGroup>
               <Label>{fieldLabel}</Label>
-              {fieldElement.children.map(elem => (
-                <div key={fieldElement.name} className="col-md-12">
+              {fieldElement.children.map((elem, index) => (
+                <div key={index} className="col-md-12">
                   <Input
-                    key={fieldElement.name}
                     type="radio"
                     name={fieldElement.name}
+                    value={elem.name}
+                    onChange={this.onChangeHandlerRadio(fieldElement.name)}
                   />{' '}
                   {elem.name}
                 </div>
@@ -161,6 +162,17 @@ class SelectOne extends React.Component<SelectOneProps> {
    */
   private onChangeHandler = (fieldParentTreeName: any) => (event: any) => {
     this.props.assignFieldValueActionCreator(fieldParentTreeName, event.value);
+  };
+
+  /** sets the value of Radio Button field element in store
+   * @param {any} event - the onchange input event
+   * @param {any} fieldParentTreeName - the input name
+   */
+  private onChangeHandlerRadio = (fieldParentTreeName: any) => (event: any) => {
+    this.props.assignFieldValueActionCreator(
+      fieldParentTreeName,
+      event.target.value
+    );
   };
 }
 
