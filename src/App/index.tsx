@@ -6,6 +6,7 @@ import { DEMO_FORM_JSON } from '../constants';
 class App extends React.Component {
   public render() {
     const props = {
+      defaultLanguage: 'English',
       fieldElements: DEMO_FORM_JSON.children,
       fieldParentTreeName: '',
     };
