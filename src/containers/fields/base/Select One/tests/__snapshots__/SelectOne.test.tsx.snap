@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/fields/group/Select One renders correctly 1`] = `
+exports[`containers/fields/group/Select One/Dropdown renders correctly for DropDown 1`] = `
 <Provider
   store={
     Object {
@@ -12,8 +12,9 @@ exports[`containers/fields/group/Select One renders correctly 1`] = `
     }
   }
 >
-  <Connect(SelectOne)
+  <Connect(SelectOneDropDown)
     assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
     fieldElement={
       Object {
         "bind": Object {
@@ -49,9 +50,10 @@ exports[`containers/fields/group/Select One renders correctly 1`] = `
     fieldParentTreeName=""
     fieldValue="BD"
   >
-    <SelectOne
+    <SelectOneDropDown
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
       fieldElement={
         Object {
           "bind": Object {
@@ -137,7 +139,6 @@ exports[`containers/fields/group/Select One renders correctly 1`] = `
             defaultInputValue=""
             defaultMenuIsOpen={false}
             defaultValue={null}
-            isDisabled={false}
             multi={false}
             name="return_from"
             onChange={[Function]}
@@ -1439,7 +1440,151 @@ exports[`containers/fields/group/Select One renders correctly 1`] = `
           </StateManager>
         </div>
       </FormGroup>
-    </SelectOne>
-  </Connect(SelectOne)>
+    </SelectOneDropDown>
+  </Connect(SelectOneDropDown)>
+</Provider>
+`;
+
+exports[`containers/fields/group/Select One/Radio renders correctly for Radio Button 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(SelectOneRadio)
+    assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
+    fieldElement={
+      Object {
+        "children": Array [
+          Object {
+            "label": "A",
+            "name": "a",
+          },
+          Object {
+            "label": "B",
+            "name": "b",
+          },
+        ],
+        "hint": "select_one type with autocomplete appearance, 4 text choices",
+        "label": "Select one search widget",
+        "name": "select_one_autocomplete_widget",
+        "type": "select one",
+      }
+    }
+    fieldParentTreeName=""
+    fieldValue="BD"
+  >
+    <SelectOneRadio
+      addErrorInputIdActionCreator={[Function]}
+      assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
+      fieldElement={
+        Object {
+          "children": Array [
+            Object {
+              "label": "A",
+              "name": "a",
+            },
+            Object {
+              "label": "B",
+              "name": "b",
+            },
+          ],
+          "hint": "select_one type with autocomplete appearance, 4 text choices",
+          "label": "Select one search widget",
+          "name": "select_one_autocomplete_widget",
+          "type": "select one",
+        }
+      }
+      fieldParentTreeName=""
+      fieldValue="BD"
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Select one search widget
+            </label>
+          </Label>
+          <div
+            className="col-md-12"
+            key="0"
+          >
+            <Input
+              key="select_one_autocomplete_widget-0"
+              name="select_one_autocomplete_widget"
+              onChange={[Function]}
+              readOnly={false}
+              type="radio"
+              value="a"
+            >
+              <input
+                className="form-check-input"
+                name="select_one_autocomplete_widget"
+                onChange={[Function]}
+                readOnly={false}
+                type="radio"
+                value="a"
+              />
+            </Input>
+             
+            a
+          </div>
+          <div
+            className="col-md-12"
+            key="1"
+          >
+            <Input
+              key="select_one_autocomplete_widget-1"
+              name="select_one_autocomplete_widget"
+              onChange={[Function]}
+              readOnly={false}
+              type="radio"
+              value="b"
+            >
+              <input
+                className="form-check-input"
+                name="select_one_autocomplete_widget"
+                onChange={[Function]}
+                readOnly={false}
+                type="radio"
+                value="b"
+              />
+            </Input>
+             
+            b
+          </div>
+        </div>
+      </FormGroup>
+    </SelectOneRadio>
+  </Connect(SelectOneRadio)>
 </Provider>
 `;

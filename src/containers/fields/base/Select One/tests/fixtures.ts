@@ -29,3 +29,20 @@ export const selectOneDropDownFieldElement = {
   name: 'return_from',
   type: 'select one',
 };
+
+export const selectOneRadioFieldElement = {
+  children: [
+    {
+      label: 'A',
+      name: 'a',
+    },
+    {
+      label: 'B',
+      name: 'b',
+    },
+  ],
+  hint: 'select_one type with autocomplete appearance, 4 text choices',
+  label: 'Select one search widget',
+  name: 'select_one_autocomplete_widget',
+  type: 'select one',
+};

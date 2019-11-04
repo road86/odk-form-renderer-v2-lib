@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { FormGroup, Input, Label } from 'reactstrap';
+import { FormGroup, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -20,13 +20,12 @@ import {
   getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
-  shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../../utils/helpers';
 
 /** props interface for the SelectOne component */
-export interface SelectOneProps {
+export interface SelectOneDropDownProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
@@ -36,6 +35,7 @@ export interface SelectOneProps {
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
+  defaultLanguage: string;
 }
 
 export interface Options {
@@ -43,7 +43,7 @@ export interface Options {
   value: string;
 }
 
-class SelectOne extends React.Component<SelectOneProps> {
+class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
   public render() {
     const {
       fieldElement,
@@ -52,6 +52,7 @@ class SelectOne extends React.Component<SelectOneProps> {
       isComponentRender,
       getEvaluatedExpressionSelector,
       isPresentInErrorSelector,
+      defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -63,8 +64,11 @@ class SelectOne extends React.Component<SelectOneProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
-    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const constraintLabel = getConstraintLabelText(
+      fieldElement,
+      defaultLanguage
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -72,11 +76,7 @@ class SelectOne extends React.Component<SelectOneProps> {
           fieldElement.default
         );
       }
-      const isReadonly = shouldComponentBeReadOnly(
-        fieldElement,
-        fieldParentTreeName,
-        getEvaluatedExpressionSelector
-      );
+
       if (
         (isRequiredViolated || isConstraintViolated) &&
         !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
@@ -93,58 +93,28 @@ class SelectOne extends React.Component<SelectOneProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      let isMinimal = false;
-      if (fieldElement.control && fieldElement.control.appearance) {
-        fieldElement.control.appearance === 'minimal'
-          ? (isMinimal = true)
-          : (isMinimal = false);
+
+      const options: Options[] = [];
+      if (fieldElement.children) {
+        fieldElement.children.map(elem =>
+          options.push({ label: elem.name, value: elem.name })
+        );
       }
 
-      if (isMinimal) {
-        const options: Options[] = [];
-        if (fieldElement.children) {
-          fieldElement.children.map(elem =>
-            options.push({ label: elem.name, value: elem.name })
-          );
-        }
-        return (
-          <FormGroup>
-            <Label>{fieldLabel}</Label>
-            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-            <Select
-              multi={false}
-              name={fieldElement.name}
-              options={options}
-              onChange={this.onChangeHandler(fieldElement.name)}
-              isDisabled={isReadonly}
-            />
-            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{constraintLabel}</Label>}
-          </FormGroup>
-        );
-      } else {
-        if (fieldElement.children) {
-          return (
-            <FormGroup>
-              <Label>{fieldLabel}</Label>
-              {fieldElement.children.map((elem, index) => (
-                <div key={index} className="col-md-12">
-                  <Input
-                    key={fieldElement.name + '-' + index}
-                    type="radio"
-                    name={fieldElement.name}
-                    value={elem.name}
-                    onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                  />{' '}
-                  {elem.name}
-                </div>
-              ))}
-            </FormGroup>
-          );
-        } else {
-          return null;
-        }
-      }
+      return (
+        <FormGroup>
+          <Label>{fieldLabel}</Label>
+          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+          <Select
+            multi={false}
+            name={fieldElement.name}
+            options={options}
+            onChange={this.onChangeHandler(fieldElement.name)}
+          />
+          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+          {isConstraintViolated && <Label>{constraintLabel}</Label>}
+        </FormGroup>
+      );
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldElement.name, null);
@@ -157,23 +127,13 @@ class SelectOne extends React.Component<SelectOneProps> {
       return null;
     }
   }
+
   /** sets the value of field element in store
    * @param {any} event - the onchange input event
    * @param {any} fieldParentTreeName - the input name
    */
   private onChangeHandler = (fieldParentTreeName: any) => (event: any) => {
     this.props.assignFieldValueActionCreator(fieldParentTreeName, event.value);
-  };
-
-  /** sets the value of Radio Button field element in store
-   * @param {any} event - the onchange input event
-   * @param {any} fieldParentTreeName - the input name
-   */
-  private onChangeHandlerRadio = (fieldParentTreeName: any) => (event: any) => {
-    this.props.assignFieldValueActionCreator(
-      fieldParentTreeName,
-      event.target.value
-    );
   };
 }
 
@@ -226,9 +186,9 @@ const mapDispatchToProps = {
 };
 
 /** connect SelectOne component to the redux store */
-const ConnectedSelectOne = connect(
+const ConnectedSelectOneDropDown = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SelectOne);
+)(SelectOneDropDown);
 
-export default ConnectedSelectOne;
+export default ConnectedSelectOneDropDown;

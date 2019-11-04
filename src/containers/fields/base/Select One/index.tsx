@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { shouldComponentBeMinimal } from '../../../../../src/utils/helpers';
 import {
   FieldElement,
   FieldParentTreeName,
@@ -16,14 +17,7 @@ export interface SelectOneProps {
 class SelectOne extends React.Component<SelectOneProps> {
   public render() {
     const { fieldElement } = this.props;
-    let isMinimal = false;
-    // make a shouldMinimal Function
-    if (fieldElement.control && fieldElement.control.appearance) {
-      fieldElement.control.appearance === 'minimal'
-        ? (isMinimal = true)
-        : (isMinimal = false);
-    }
-    if (isMinimal) {
+    if (shouldComponentBeMinimal(fieldElement)) {
       return <Dropdown {...this.props} />;
     }
     return <Radio {...this.props} />;

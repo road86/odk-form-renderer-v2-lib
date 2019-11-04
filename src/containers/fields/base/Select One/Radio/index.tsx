@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Select from 'react-select';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
@@ -26,7 +25,7 @@ import {
 } from '../../../../../utils/helpers';
 
 /** props interface for the SelectOne component */
-export interface SelectOneProps {
+export interface SelectOneRadioProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
@@ -36,6 +35,7 @@ export interface SelectOneProps {
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
+  defaultLanguage: string;
 }
 
 export interface Options {
@@ -43,7 +43,7 @@ export interface Options {
   value: string;
 }
 
-class SelectOne extends React.Component<SelectOneProps> {
+class SelectOneRadio extends React.Component<SelectOneRadioProps> {
   public render() {
     const {
       fieldElement,
@@ -52,6 +52,7 @@ class SelectOne extends React.Component<SelectOneProps> {
       isComponentRender,
       getEvaluatedExpressionSelector,
       isPresentInErrorSelector,
+      defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -63,8 +64,11 @@ class SelectOne extends React.Component<SelectOneProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
-    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const constraintLabel = getConstraintLabelText(
+      fieldElement,
+      defaultLanguage
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -93,57 +97,31 @@ class SelectOne extends React.Component<SelectOneProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      let isMinimal = false;
-      if (fieldElement.control && fieldElement.control.appearance) {
-        fieldElement.control.appearance === 'minimal'
-          ? (isMinimal = true)
-          : (isMinimal = false);
-      }
 
-      if (isMinimal) {
-        const options: Options[] = [];
-        if (fieldElement.children) {
-          fieldElement.children.map(elem =>
-            options.push({ label: elem.name, value: elem.name })
-          );
-        }
+      if (fieldElement.children) {
         return (
           <FormGroup>
             <Label>{fieldLabel}</Label>
             {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-            <Select
-              multi={false}
-              name={fieldElement.name}
-              options={options}
-              onChange={this.onChangeHandler(fieldElement.name)}
-              isDisabled={isReadonly}
-            />
+            {fieldElement.children.map((elem, index) => (
+              <div key={index} className="col-md-12">
+                <Input
+                  key={fieldElement.name + '-' + index}
+                  type="radio"
+                  name={fieldElement.name}
+                  value={elem.name}
+                  onChange={this.onChangeHandlerRadio(fieldElement.name)}
+                  readOnly={isReadonly}
+                />{' '}
+                {elem.name}
+              </div>
+            ))}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
             {isConstraintViolated && <Label>{constraintLabel}</Label>}
           </FormGroup>
         );
       } else {
-        if (fieldElement.children) {
-          return (
-            <FormGroup>
-              <Label>{fieldLabel}</Label>
-              {fieldElement.children.map((elem, index) => (
-                <div key={index} className="col-md-12">
-                  <Input
-                    key={fieldElement.name + '-' + index}
-                    type="radio"
-                    name={fieldElement.name}
-                    value={elem.name}
-                    onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                  />{' '}
-                  {elem.name}
-                </div>
-              ))}
-            </FormGroup>
-          );
-        } else {
-          return null;
-        }
+        return null;
       }
     } else {
       if (fieldValue != null) {
@@ -157,14 +135,6 @@ class SelectOne extends React.Component<SelectOneProps> {
       return null;
     }
   }
-  /** sets the value of field element in store
-   * @param {any} event - the onchange input event
-   * @param {any} fieldParentTreeName - the input name
-   */
-  private onChangeHandler = (fieldParentTreeName: any) => (event: any) => {
-    this.props.assignFieldValueActionCreator(fieldParentTreeName, event.value);
-  };
-
   /** sets the value of Radio Button field element in store
    * @param {any} event - the onchange input event
    * @param {any} fieldParentTreeName - the input name
@@ -225,10 +195,10 @@ const mapDispatchToProps = {
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
-/** connect SelectOne component to the redux store */
-const ConnectedSelectOne = connect(
+/** connect SelectOne Radio component to the redux store */
+const ConnectedSelectOneRadio = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SelectOne);
+)(SelectOneRadio);
 
-export default ConnectedSelectOne;
+export default ConnectedSelectOneRadio;
