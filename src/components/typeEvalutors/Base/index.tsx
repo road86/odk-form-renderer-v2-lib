@@ -5,6 +5,7 @@ import {
   INTEGER_FIELD_TYPE,
   NOTE_FIELD_TYPE,
   PHOTO_FIELD_TYPE,
+  SELECT_ALL_FIELD_TYPE,
   SELECT_ONE_FIELD_TYPE,
   TEXT_FIELD_TYPE,
 } from '../../../constants';
@@ -13,6 +14,7 @@ import Decimal from '../../../containers/fields/base/Decimal';
 import Integer from '../../../containers/fields/base/Integer';
 import Note from '../../../containers/fields/base/Note';
 import Photo from '../../../containers/fields/base/Photo';
+import SelectAll from '../../../containers/fields/base/Select All';
 import SelectOne from '../../../containers/fields/base/Select One';
 import Text from '../../../containers/fields/base/Text';
 
@@ -102,6 +104,13 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case SELECT_ONE_FIELD_TYPE:
         return (
           <SelectOne
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+          />
+        );
+      case SELECT_ALL_FIELD_TYPE:
+        return (
+          <SelectAll
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
           />
