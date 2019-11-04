@@ -46,14 +46,19 @@ export interface FieldElement {
 
 /** props interface for BaseTypeEvaluator component */
 export interface BaseTypeEvaluatorProps {
+  defaultLanguage: string;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
 }
 
 class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
   public render() {
-    const { fieldElement, fieldParentTreeName } = this.props;
-    return this.typeEvaluator(fieldElement, fieldParentTreeName);
+    const { fieldElement, fieldParentTreeName, defaultLanguage } = this.props;
+    return this.typeEvaluator(
+      fieldElement,
+      fieldParentTreeName,
+      defaultLanguage
+    );
   }
 
   /** returns jsx components based on field types
@@ -63,7 +68,8 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
    */
   private typeEvaluator(
     fieldElement: FieldElement,
-    fieldParentTreeName: FieldParentTreeName
+    fieldParentTreeName: FieldParentTreeName,
+    defaultLanguage: string
   ): React.ReactElement {
     switch (fieldElement.type) {
       case TEXT_FIELD_TYPE:
@@ -71,6 +77,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <Text
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case DATE_FIELD_TYPE:
@@ -78,6 +85,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <Date
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case INTEGER_FIELD_TYPE:
@@ -85,6 +93,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <Integer
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case DECIMAL_FIELD_TYPE:
@@ -92,6 +101,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <Decimal
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case NOTE_FIELD_TYPE:
@@ -99,6 +109,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <Note
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case SELECT_ONE_FIELD_TYPE:
@@ -106,6 +117,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <SelectOne
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case SELECT_ALL_FIELD_TYPE:
@@ -113,10 +125,16 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           <SelectAll
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
       case PHOTO_FIELD_TYPE:
-        return <Photo fieldElement={fieldElement} />;
+        return (
+          <Photo
+            fieldElement={fieldElement}
+            defaultLanguage={defaultLanguage}
+          />
+        );
       default:
         return (
           <div>

@@ -35,6 +35,7 @@ export interface DecimalProps {
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
+  defaultLanguage: string;
 }
 
 class Decimal extends React.Component<DecimalProps> {
@@ -46,6 +47,7 @@ class Decimal extends React.Component<DecimalProps> {
       isComponentRender,
       getEvaluatedExpressionSelector,
       isPresentInErrorSelector,
+      defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -57,8 +59,11 @@ class Decimal extends React.Component<DecimalProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
-    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const constraintLabel = getConstraintLabelText(
+      fieldElement,
+      defaultLanguage
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(

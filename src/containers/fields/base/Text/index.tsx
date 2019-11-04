@@ -35,6 +35,7 @@ export interface TextProps {
   isComponentRender: boolean;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
+  defaultLanguage: string;
 }
 
 class Text extends React.Component<TextProps> {
@@ -46,6 +47,7 @@ class Text extends React.Component<TextProps> {
       isComponentRender,
       getEvaluatedExpressionSelector,
       isPresentInErrorSelector,
+      defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -57,8 +59,11 @@ class Text extends React.Component<TextProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
-    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const constraintLabel = getConstraintLabelText(
+      fieldElement,
+      defaultLanguage
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
