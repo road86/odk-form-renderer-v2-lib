@@ -15,6 +15,8 @@ export const NOTE_FIELD_TYPE = 'note';
 export type NOTE_FIELD_TYPE = typeof NOTE_FIELD_TYPE;
 export const SELECT_ONE_FIELD_TYPE = 'select one';
 export type SELECT_ONE_FIELD_TYPE = typeof SELECT_ONE_FIELD_TYPE;
+export const SELECT_ALL_FIELD_TYPE = 'select all that apply';
+export type SELECT_ALL_FIELD_TYPE = typeof SELECT_ALL_FIELD_TYPE;
 
 // Required Properties
 export const REQUIRED_FIELD_MSG = 'This field is required';
@@ -890,6 +892,12 @@ export const DEMO_FORM_JSON = {
           type: 'select all that apply',
         },
         {
+          control: {
+            appearance: 'minimal',
+          },
+          bind: {
+            required: 'Yes',
+          },
           children: [
             {
               name: 'a',
