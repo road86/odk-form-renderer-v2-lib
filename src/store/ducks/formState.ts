@@ -2,6 +2,7 @@ import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 import evaluater from '../../utils/compiler';
 import {
+  checkGroupedValuesForEmpty,
   getModifiedUserInputObject,
   getValueFromUserInputObj,
 } from '../../utils/helpers';
@@ -178,4 +179,16 @@ export function isPresentInError(
   fieldTreeName: string
 ): any {
   return (state as any).errors.includes(fieldTreeName);
+}
+
+/** check if the field elements under group are empty or not
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the group field
+ * @return {boolean} true if empty; otherwise, false
+ */
+export function isGroupFieldsEmpty(
+  state: Partial<Store>,
+  fieldTreeName: string
+): any {
+  return checkGroupedValuesForEmpty((state as any).errors, fieldTreeName);
 }
