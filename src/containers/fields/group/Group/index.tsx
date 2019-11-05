@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import { FieldElement } from '../../../../components/typeEvalutors/Base';
-import BaseTypeEvaluator from '../../../../components/typeEvalutors/Base/';
+import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
 import { getFieldLabelText } from '../../../../utils/helpers';
 
 export interface GroupProps {
@@ -16,15 +16,14 @@ class Group extends React.Component<GroupProps> {
     return (
       <FormGroup>
         <Label>{fieldLabel}</Label>
-        {fieldElement.children &&
-          fieldElement.children.map((elem, index) => (
-            <div key={index}>
-              <BaseTypeEvaluator
-                fieldElement={elem}
-                fieldParentTreeName={fieldParentTreeName}
-              />
-            </div>
-          ))}
+        {fieldElement.children && (
+          <GroupTypeEvaluator
+            fieldElements={fieldElement.children}
+            fieldParentTreeName={
+              fieldParentTreeName + 'group/' + fieldElement.name + '/'
+            }
+          />
+        )}
       </FormGroup>
     );
   }
