@@ -62,7 +62,7 @@ class Text extends React.Component<TextProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
@@ -120,7 +120,7 @@ class Text extends React.Component<TextProps> {
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
-      event.currentTarget.name,
+      this.props.fieldParentTreeName + event.currentTarget.name,
       event.currentTarget.value || ''
     );
   };
@@ -155,7 +155,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name),
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
