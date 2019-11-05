@@ -259,6 +259,8 @@ export function getValueFromUserInputObj(
     }
   }
   return modifiedObj[parent + treeNodes[treeNodes.length - 1]];
+}
+
 /** evaluates whether the component is minimal or not
  * @param {FieldElement} fieldElement - the constraint expression
  * @returns {boolean} - true if minimal; otherwise, false;
