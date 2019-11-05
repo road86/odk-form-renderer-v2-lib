@@ -3,6 +3,7 @@ import SeamlessImmutable from 'seamless-immutable';
 import evaluater from '../../utils/compiler';
 import {
   checkGroupedValuesForEmpty,
+  emptyGroupedValues,
   getModifiedUserInputObject,
   getValueFromUserInputObj,
 } from '../../utils/helpers';
@@ -154,6 +155,13 @@ export default function reducer(
         );
       }
       return state;
+    case EMPTY_GROUP_FIELDS:
+      const mUserInputObj = emptyGroupedValues(
+        state.getIn(['userInput']).asMutable({ deep: true }),
+        action.fieldTreeName
+      );
+      const mState = state.asMutable({ deep: true });
+      return SeamlessImmutable({ ...mState, userInput: mUserInputObj });
     default:
       return state;
   }
