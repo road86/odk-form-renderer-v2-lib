@@ -181,3 +181,82 @@ export function shouldInputViolatesConstraint(
   }
   return false;
 }
+
+/** returns the new user input object after assigning value of passed fieldTreeName
+ * @param {any} userInputObj - the current user input object
+ * @param {string} fieldTreeName - the field Tree name
+ * @param {any} fieldValue - the value that needs to be assigned
+ * @returns {any} - the new user input object after assignment
+ */
+export function getModifiedUserInputObject(
+  userInputObj: any,
+  fieldTreeName: string,
+  fieldValue: any
+): any {
+  const treeNodes = fieldTreeName.split('/');
+  let i;
+  let parent = '';
+  let modifiedObj = userInputObj;
+  for (i = 0; i < treeNodes.length - 1; ) {
+    if (treeNodes[i] === 'repeat') {
+      i += 1;
+      if (parent + treeNodes[i] in modifiedObj) {
+        modifiedObj = modifiedObj[parent + treeNodes[i]];
+      } else {
+        modifiedObj[parent + treeNodes[i]] = [];
+      }
+      const index = parseInt(treeNodes[i + 1], 10);
+      if (modifiedObj[index]) {
+        modifiedObj = modifiedObj[index];
+      } else {
+        modifiedObj[index] = {};
+        modifiedObj = modifiedObj[index];
+      }
+      parent = parent + treeNodes[i] + '/';
+      i += 2;
+    } else {
+      parent = parent + treeNodes[i + 1] + '/';
+      i += 2;
+    }
+  }
+  modifiedObj[parent + treeNodes[treeNodes.length - 1]] = fieldValue;
+  return modifiedObj;
+}
+
+/** returns the value from the user input object
+ * @param {any} userInputObj - the user input object
+ * @param {string} fieldTreeName - the field Tree name
+ * @returns {any} - the value, present in user input object, of the fieldTreeName
+ */
+export function getValueFromUserInputObj(
+  userInputObj: any,
+  fieldTreeName: string
+): any {
+  const treeNodes = fieldTreeName.split('/');
+  let i;
+  let parent = '';
+  let modifiedObj = userInputObj;
+  for (i = 0; i < treeNodes.length - 1; ) {
+    if (treeNodes[i] === 'repeat') {
+      i += 1;
+      if (parent + treeNodes[i] in modifiedObj) {
+        modifiedObj = modifiedObj[parent + treeNodes[i]];
+      } else {
+        modifiedObj[parent + treeNodes[i]] = [];
+      }
+      const index = parseInt(treeNodes[i + 1], 10);
+      if (modifiedObj[index]) {
+        modifiedObj = modifiedObj[index];
+      } else {
+        modifiedObj[index] = {};
+        modifiedObj = modifiedObj[index];
+      }
+      parent = parent + treeNodes[i] + '/';
+      i += 2;
+    } else {
+      parent = parent + treeNodes[i + 1] + '/';
+      i += 2;
+    }
+  }
+  return modifiedObj[parent + treeNodes[treeNodes.length - 1]];
+}
