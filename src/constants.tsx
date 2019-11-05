@@ -479,6 +479,54 @@ export const DEMO_FORM_JSON = {
           type: 'select one',
         },
         {
+          control: {
+            appearance: 'minimal',
+          },
+          children: [
+            {
+              name: '1',
+              label: 'Coca-cola',
+            },
+            {
+              name: '2',
+              label: 'Pepsi',
+            },
+            {
+              name: '3',
+              label: 'Fanta',
+            },
+          ],
+          name: 'brand_name',
+          label: 'Brand Known',
+          type: 'select one',
+        },
+        {
+          control: {
+            appearance: 'minimal',
+          },
+          children: [
+            {
+              name: '1',
+              label: 'Coca-cola',
+            },
+            {
+              name: '2',
+              label: 'Pepsi',
+            },
+            {
+              name: '3',
+              label: 'Fanta',
+            },
+          ],
+          name: 'brand_preferance',
+          bind: {
+            relevant:
+              "selected(${brand_name},'1') or selected(${brand_name},'2') or selected(${brand_name},'3')",
+          },
+          label: 'Brand Preference',
+          type: 'select one',
+        },
+        {
           children: [
             {
               name: 'a',
