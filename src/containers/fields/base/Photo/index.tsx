@@ -68,7 +68,7 @@ const mapStateToProps = (
 ): DispatchedStateProps => {
   const { fieldElement } = parentProps;
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldElement.name),
   };
   return result;
 };
