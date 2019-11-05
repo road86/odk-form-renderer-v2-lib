@@ -35,6 +35,7 @@ export interface DateProps {
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
+  defaultLanguage: string;
 }
 
 class Date extends React.Component<DateProps> {
@@ -46,6 +47,7 @@ class Date extends React.Component<DateProps> {
       isComponentRender,
       getEvaluatedExpressionSelector,
       isPresentInErrorSelector,
+      defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
@@ -57,8 +59,11 @@ class Date extends React.Component<DateProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
-    const constraintLabel = getConstraintLabelText(fieldElement, 'English');
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const constraintLabel = getConstraintLabelText(
+      fieldElement,
+      defaultLanguage
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -154,7 +159,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,

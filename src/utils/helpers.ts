@@ -259,4 +259,16 @@ export function getValueFromUserInputObj(
     }
   }
   return modifiedObj[parent + treeNodes[treeNodes.length - 1]];
+/** evaluates whether the component is minimal or not
+ * @param {FieldElement} fieldElement - the constraint expression
+ * @returns {boolean} - true if minimal; otherwise, false;
+ */
+export function shouldComponentBeMinimal(fieldElement: FieldElement): boolean {
+  let isMinimal = false;
+  if (fieldElement.control && fieldElement.control.appearance) {
+    fieldElement.control.appearance === 'minimal'
+      ? (isMinimal = true)
+      : (isMinimal = false);
+  }
+  return isMinimal;
 }

@@ -15,13 +15,14 @@ export interface PhotoProps {
   fieldElement: FieldElement;
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  defaultLanguage: string;
 }
 
 class Photo extends React.Component<PhotoProps> {
   public render() {
-    const { fieldElement, fieldValue } = this.props;
+    const { fieldElement, fieldValue, defaultLanguage } = this.props;
     const isRequired = isInputRequired(fieldElement);
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     return (
       <FormGroup>
         <Label>{fieldLabel}</Label>
@@ -67,7 +68,7 @@ const mapStateToProps = (
 ): DispatchedStateProps => {
   const { fieldElement } = parentProps;
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldElement.name),
   };
   return result;
 };

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Input, Label } from 'reactstrap';
+import Select from 'react-select';
+import { FormGroup, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
   FieldParentTreeName,
-} from '../../../../components/typeEvalutors/Base';
-import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
+} from '../../../../../components/typeEvalutors/Base';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
@@ -14,31 +15,35 @@ import {
   getFieldValue,
   isPresentInError,
   removeErrorInputId,
-} from '../../../../store/ducks/formState';
+} from '../../../../../store/ducks/formState';
 import {
   getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
-  shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
-} from '../../../../utils/helpers';
+} from '../../../../../utils/helpers';
 
-/** props interface for the text component */
-export interface TextProps {
+/** props interface for the SelectAll Dropdown component */
+export interface SelectAllDropDownProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
-  isPresentInErrorSelector: any;
   isComponentRender: boolean;
+  isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
   defaultLanguage: string;
 }
 
-class Text extends React.Component<TextProps> {
+export interface Options {
+  label: number;
+  value: string;
+}
+
+class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   public render() {
     const {
       fieldElement,
@@ -67,15 +72,11 @@ class Text extends React.Component<TextProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldParentTreeName + fieldElement.name,
+          fieldElement.name,
           fieldElement.default
         );
       }
-      const isReadonly = shouldComponentBeReadOnly(
-        fieldElement,
-        fieldParentTreeName,
-        getEvaluatedExpressionSelector
-      );
+
       if (
         (isRequiredViolated || isConstraintViolated) &&
         !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
@@ -92,16 +93,23 @@ class Text extends React.Component<TextProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
+
+      const options: Options[] = [];
+      if (fieldElement.children) {
+        fieldElement.children.map(elem =>
+          options.push({ label: elem.name, value: elem.name })
+        );
+      }
+
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <Input
-            type="text"
+          <Select
+            isMulti={true}
             name={fieldElement.name}
-            onChange={this.onChangeHandler}
-            value={fieldValue || ''}
-            readOnly={isReadonly}
+            options={options}
+            onChange={this.onChangeHandler(fieldElement.name)}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{constraintLabel}</Label>}
@@ -119,14 +127,24 @@ class Text extends React.Component<TextProps> {
       return null;
     }
   }
-
   /** sets the value of field element in store
-   * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
+   * @param {any} values - the onchange input values
+   * @param {any} fieldParentTreeName - the input name
    */
-  private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+  private onChangeHandler = (fieldParentTreeName: any) => (values: any) => {
+    const selectedValues: any = [];
+    let i = 0;
+    if (values) {
+      values.map(() => {
+        if (!selectedValues.includes(values[i].value)) {
+          selectedValues.push(values[i].value);
+        }
+        i++;
+      });
+    }
     this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + event.currentTarget.name,
-      event.currentTarget.value || ''
+      fieldParentTreeName,
+      selectedValues
     );
   };
 }
@@ -160,7 +178,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
+    fieldValue: getFieldValue(state, fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -179,10 +197,10 @@ const mapDispatchToProps = {
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
-/** connect Text component to the redux store */
-const ConnectedText = connect(
+/** connect SelectOne Dropdown component to the redux store */
+const ConnectedSelectAllDropDown = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Text);
+)(SelectAllDropDown);
 
-export default ConnectedText;
+export default ConnectedSelectAllDropDown;

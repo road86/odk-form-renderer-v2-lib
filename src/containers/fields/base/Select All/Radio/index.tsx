@@ -5,8 +5,8 @@ import { Store } from 'redux';
 import {
   FieldElement,
   FieldParentTreeName,
-} from '../../../../components/typeEvalutors/Base';
-import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
+} from '../../../../../components/typeEvalutors/Base';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
@@ -14,7 +14,7 @@ import {
   getFieldValue,
   isPresentInError,
   removeErrorInputId,
-} from '../../../../store/ducks/formState';
+} from '../../../../../store/ducks/formState';
 import {
   getConstraintLabelText,
   getFieldLabelText,
@@ -22,23 +22,28 @@ import {
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
-} from '../../../../utils/helpers';
+} from '../../../../../utils/helpers';
 
-/** props interface for the text component */
-export interface TextProps {
+/** props interface for the SelectAll Radio component */
+export interface SelectAllRadioProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
-  isPresentInErrorSelector: any;
   isComponentRender: boolean;
+  isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
   defaultLanguage: string;
 }
 
-class Text extends React.Component<TextProps> {
+export interface Options {
+  label: number;
+  value: string;
+}
+
+class SelectAllRadio extends React.Component<SelectAllRadioProps> {
   public render() {
     const {
       fieldElement,
@@ -67,7 +72,7 @@ class Text extends React.Component<TextProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldParentTreeName + fieldElement.name,
+          fieldElement.name,
           fieldElement.default
         );
       }
@@ -92,21 +97,35 @@ class Text extends React.Component<TextProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      return (
-        <FormGroup>
-          <Label>{fieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <Input
-            type="text"
-            name={fieldElement.name}
-            onChange={this.onChangeHandler}
-            value={fieldValue || ''}
-            readOnly={isReadonly}
-          />
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
-        </FormGroup>
-      );
+
+      if (fieldElement.children) {
+        return (
+          <FormGroup>
+            <Label>{fieldLabel}</Label>
+            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+            {fieldElement.children.map((elem, index) => (
+              <div key={index} className="col-md-12">
+                <Input
+                  key={fieldElement.name + '-' + index}
+                  type="checkbox"
+                  name={fieldElement.name}
+                  value={elem.name}
+                  onChange={this.onChangeHandlerCheckBox(
+                    fieldElement.name,
+                    fieldValue
+                  )}
+                  readOnly={isReadonly}
+                />{' '}
+                {elem.name}
+              </div>
+            ))}
+            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          </FormGroup>
+        );
+      } else {
+        return null;
+      }
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldElement.name, null);
@@ -120,14 +139,55 @@ class Text extends React.Component<TextProps> {
     }
   }
 
-  /** sets the value of field element in store
-   * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
+  /** sets the value of Check Button field element in store
+   * @param {any} event - the onchange input event
+   * @param {any} fieldParentTreeName - the input name
    */
-  private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + event.currentTarget.name,
-      event.currentTarget.value || ''
-    );
+  private onChangeHandlerCheckBox = (
+    fieldParentTreeName: any,
+    fieldValue: any
+  ) => (event: any) => {
+    const selectedValues: any = [];
+    if (event.target.checked) {
+      if (fieldValue === '') {
+        selectedValues.push(event.target.value);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName,
+          selectedValues
+        );
+      } else {
+        if (fieldValue.length > 0) {
+          let i = 0;
+          fieldValue.map(() => {
+            if (!selectedValues.includes(fieldValue[i])) {
+              selectedValues.push(fieldValue[i]);
+            }
+            i++;
+          });
+
+          selectedValues.push(event.target.value);
+          this.props.assignFieldValueActionCreator(
+            fieldParentTreeName,
+            selectedValues
+          );
+        }
+      }
+    } else {
+      const filteredValues: any = [];
+      if (fieldValue.length > 0) {
+        let i = 0;
+        fieldValue.map(() => {
+          filteredValues.push(fieldValue[i]);
+          i++;
+        });
+        const idx = filteredValues.indexOf(event.target.value);
+        filteredValues.splice(idx, 1);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName,
+          filteredValues
+        );
+      }
+    }
   };
 }
 
@@ -160,7 +220,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
+    fieldValue: getFieldValue(state, fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -179,10 +239,10 @@ const mapDispatchToProps = {
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
-/** connect Text component to the redux store */
-const ConnectedText = connect(
+/** connect SelectOne Radio component to the redux store */
+const ConnectedSelectAllRadio = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Text);
+)(SelectAllRadio);
 
-export default ConnectedText;
+export default ConnectedSelectAllRadio;
