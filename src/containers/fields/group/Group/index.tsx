@@ -5,14 +5,15 @@ import BaseTypeEvaluator from '../../../../components/typeEvalutors/Base/';
 import { getFieldLabelText } from '../../../../utils/helpers';
 
 export interface GroupProps {
+  defaultLanguage: string;
   fieldElement: FieldElement;
   fieldParentTreeName: string;
 }
 
 class Group extends React.Component<GroupProps> {
   public render() {
-    const { fieldElement, fieldParentTreeName } = this.props;
-    const fieldLabel = getFieldLabelText(fieldElement, 'English');
+    const { fieldElement, fieldParentTreeName, defaultLanguage } = this.props;
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     return (
       <FormGroup>
         <Label>{fieldLabel}</Label>
@@ -22,6 +23,7 @@ class Group extends React.Component<GroupProps> {
               <BaseTypeEvaluator
                 fieldElement={elem}
                 fieldParentTreeName={fieldParentTreeName}
+                defaultLanguage={defaultLanguage}
               />
             </div>
           ))}

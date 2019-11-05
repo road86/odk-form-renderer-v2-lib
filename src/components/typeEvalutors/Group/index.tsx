@@ -5,18 +5,23 @@ import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
 /** props Interface for the GroupTypeEvaluator component */
 export interface GroupTypeEvaluatorProps {
+  defaultLanguage: string;
   fieldElements: FieldElement[];
   fieldParentTreeName: string;
 }
 
 class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   public render() {
-    const { fieldElements, fieldParentTreeName } = this.props;
+    const { fieldElements, fieldParentTreeName, defaultLanguage } = this.props;
     return (
       <div>
         {fieldElements.map(fieldElement => (
           <div key={'group_' + fieldElement.name}>
-            {this.typeEvaluator(fieldElement, fieldParentTreeName)}
+            {this.typeEvaluator(
+              fieldElement,
+              fieldParentTreeName,
+              defaultLanguage
+            )}
           </div>
         ))}
       </div>
@@ -30,7 +35,8 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
    */
   private typeEvaluator(
     fieldElement: FieldElement,
-    fieldParentTreeName: FieldParentTreeName
+    fieldParentTreeName: FieldParentTreeName,
+    defaultLanguage: string
   ): React.ReactElement {
     switch (fieldElement.type) {
       case GROUP_FIELD_TYPE:
@@ -39,6 +45,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
             <GROUP
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
+              defaultLanguage={defaultLanguage}
             />
           </div>
         );
@@ -47,6 +54,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
           <BaseTypeEvaluator
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
           />
         );
     }
