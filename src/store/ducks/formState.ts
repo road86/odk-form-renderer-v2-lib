@@ -23,6 +23,8 @@ export const RESET_STORE = 'odk/reducer/form/RESET_STORE';
 export const ADD_ERROR_INPUT_ID = 'odk/reducer/form/ADD_ERROR_INPUT_ID';
 /** REMOVE_ERROR_INPUT_ID action type */
 export const REMOVE_ERROR_INPUT_ID = 'odk/reducer/form/REMOVE_ERROR_INPUT_ID';
+/** EMPTY_GROUP_FIELDS */
+export const EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -46,6 +48,12 @@ export interface AddErrorInputId extends AnyAction {
 export interface RemoveErrorInputId extends AnyAction {
   fieldTreeName: string;
   type: typeof REMOVE_ERROR_INPUT_ID;
+}
+
+/** interface for EMPTY_GROUP_FIELDS action */
+export interface EmptyGroupFields extends AnyAction {
+  fieldTreeName: string;
+  type: typeof EMPTY_GROUP_FIELDS;
 }
 
 /** Assigns the value to the proper field name
@@ -89,12 +97,22 @@ export const removeErrorInputId = (
   type: REMOVE_ERROR_INPUT_ID,
 });
 
+/** empties the values of the fields of the group
+ * @param fieldTreeName - the group field tree name
+ * @returns {RemoveErrorInputId} - an action to empty the group field values
+ */
+export const emptyGroupFields = (fieldTreeName: string): EmptyGroupFields => ({
+  fieldTreeName,
+  type: EMPTY_GROUP_FIELDS,
+});
+
 /** Create type for forms reducer actions */
 export type FormActionTypes =
   | AssignFieldValueAction
   | ResetStoreAction
   | AddErrorInputId
   | RemoveErrorInputId
+  | EmptyGroupFields
   | AnyAction;
 
 /** Create an immutable form state */
