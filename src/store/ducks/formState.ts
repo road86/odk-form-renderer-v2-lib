@@ -1,6 +1,10 @@
 import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 import evaluater from '../../utils/compiler';
+import {
+  getModifiedUserInputObject,
+  getValueFromUserInputObj,
+} from '../../utils/helpers';
 
 /** interface for the store state */
 export interface FormState {
@@ -108,11 +112,13 @@ export default function reducer(
 ): ImmutableFormState {
   switch (action.type) {
     case FIELD_VALUE_ASSIGNED:
-      const tmpUserInput = { [action.fieldTreeName]: action.fieldValue };
-      return SeamlessImmutable({
-        ...state,
-        userInput: { ...state.userInput, ...tmpUserInput },
-      });
+      const modifiedUserInputObj = getModifiedUserInputObject(
+        state.getIn(['userInput']).asMutable({ deep: true }),
+        action.fieldTreeName,
+        action.fieldValue
+      );
+      const stateM = state.asMutable({ deep: true });
+      return SeamlessImmutable({ ...stateM, userInput: modifiedUserInputObj });
     case RESET_STORE:
       return initialState;
     case ADD_ERROR_INPUT_ID:
@@ -145,7 +151,7 @@ export function getFieldValue(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return (state as any).userInput[fieldTreeName];
+  return getValueFromUserInputObj((state as any).userInput, fieldTreeName);
 }
 
 /** get the value of the evaluated expression
