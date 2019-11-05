@@ -67,7 +67,7 @@ class Date extends React.Component<DateProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
@@ -100,7 +100,7 @@ class Date extends React.Component<DateProps> {
             type="date"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue || ''}
+            value={fieldValue}
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -109,7 +109,10 @@ class Date extends React.Component<DateProps> {
       );
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
+        );
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
@@ -124,7 +127,7 @@ class Date extends React.Component<DateProps> {
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
-      event.currentTarget.name,
+      this.props.fieldParentTreeName + event.currentTarget.name,
       event.currentTarget.value
     );
   };

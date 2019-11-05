@@ -72,7 +72,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
@@ -125,7 +125,10 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
       }
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
+        );
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
@@ -137,12 +140,12 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
   }
   /** sets the value of Radio Button field element in store
    * @param {any} event - the onchange input event
-   * @param {any} fieldParentTreeName - the input name
+   * @param {any} fieldName - the input name
    */
-  private onChangeHandlerRadio = (fieldParentTreeName: any) => (event: any) => {
+  private onChangeHandlerRadio = (fieldName: any) => (event: any) => {
     this.props.assignFieldValueActionCreator(
-      fieldParentTreeName,
-      event.target.value
+      this.props.fieldParentTreeName + fieldName,
+      event.target.value || ''
     );
   };
 }
