@@ -317,3 +317,52 @@ export function emptyGroupedValues(
   });
   return userInputObj;
 }
+
+/** returns whether the grouped values are empty or not
+ * @param {any} userInputObj - the current user input object
+ * @param {string} groupTreeName - the group Tree name
+ * @returns {any} - true if empty; otherwise, false
+ */
+export function isGroupedValuesEmpty(
+  userInputObj: any,
+  groupTreeName: string
+): any {
+  const treeNodes = groupTreeName.split('/');
+  let i;
+  let parent = '';
+  let modifiedObj = userInputObj;
+  for (i = 0; i < treeNodes.length - 1; ) {
+    if (treeNodes[i] === 'repeat') {
+      i += 1;
+      if (parent + treeNodes[i] in modifiedObj) {
+        modifiedObj = modifiedObj[parent + treeNodes[i]];
+      } else {
+        modifiedObj[parent + treeNodes[i]] = [];
+      }
+      const index = parseInt(treeNodes[i + 1], 10);
+      if (modifiedObj[index]) {
+        modifiedObj = modifiedObj[index];
+      } else {
+        modifiedObj[index] = {};
+        modifiedObj = modifiedObj[index];
+      }
+      parent = parent + treeNodes[i] + '/';
+      i += 2;
+    } else {
+      parent = parent + treeNodes[i + 1] + '/';
+      i += 2;
+    }
+  }
+  let isEmpty: boolean = true;
+  Object.keys(modifiedObj).forEach(objKey => {
+    if (objKey.startsWith(parent + treeNodes[treeNodes.length - 1])) {
+      if (
+        (modifiedObj[objKey] !== null || modifiedObj[objKey] !== undefined) &&
+        isEmpty
+      ) {
+        isEmpty = false;
+      }
+    }
+  });
+  return isEmpty;
+}
