@@ -323,7 +323,7 @@ export function emptyGroupedValues(
  * @param {string} groupTreeName - the group Tree name
  * @returns {any} - true if empty; otherwise, false
  */
-export function isGroupedValuesEmpty(
+export function checkGroupedValuesForEmpty(
   userInputObj: any,
   groupTreeName: string
 ): any {
