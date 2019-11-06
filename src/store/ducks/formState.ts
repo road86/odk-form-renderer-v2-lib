@@ -218,3 +218,15 @@ export function isGroupFieldsEmpty(
 ): any {
   return checkGroupedValuesForEmpty((state as any).errors, fieldTreeName);
 }
+
+/** check if the field elements under group are present in errors or not
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the group field
+ * @return {boolean} true if present; otherwise, false
+ */
+export function isErrorsIncludeGroupFields(
+  state: Partial<Store>,
+  fieldTreeName: string
+): any {
+  return checkGroupedValuesForEmpty((state as any).errors, fieldTreeName);
+}
