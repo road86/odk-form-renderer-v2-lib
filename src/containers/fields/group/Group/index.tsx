@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { FormGroup, Label } from 'reactstrap';
+import { Store } from 'redux';
 import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
 import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
-import { isErrorsIncludeGroupFields } from '../../../../store/ducks/formState';
+import {
+  getEvaluatedExpression,
+  isErrorsIncludeGroupFields,
+} from '../../../../store/ducks/formState';
 import {
   checkGroupedValuesForEmpty,
   getFieldLabelText,
+  shouldComponentBeRelevant,
 } from '../../../../utils/helpers';
 
 export interface GroupProps {
@@ -44,8 +49,8 @@ class Group extends React.Component<GroupProps> {
 interface DispatchedStateProps {
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
-  checkGroupedValuesForEmptySelector: typeof checkGroupedValuesForEmpty;
-  isErrorsIncludeGroupFieldsSelector: typeof isErrorsIncludeGroupFields;
+  checkGroupedValuesForEmptySelector: any;
+  isErrorsIncludeGroupFieldsSelector: any;
 }
 
 /** Interface to describe props from parent */
@@ -54,5 +59,32 @@ interface ParentProps {
   fieldParentTreeName: FieldParentTreeName;
   defaultLanguage: string;
 }
+
+/** Map props to state  */
+const mapStateToProps = (
+  state: Partial<Store>,
+  parentProps: ParentProps
+): DispatchedStateProps => {
+  const { fieldElement, fieldParentTreeName } = parentProps;
+  const getEvaluatedExpressionSelector = (
+    expression: string,
+    fieldTreeName: string
+  ) => getEvaluatedExpression(state, expression, fieldTreeName);
+  const checkGroupedValuesForEmptySelector = (fieldTreeName: string) =>
+    checkGroupedValuesForEmpty(state, fieldTreeName);
+  const isErrorsIncludeGroupFieldsSelector = (fieldTreeName: string) =>
+    isErrorsIncludeGroupFields(state, fieldTreeName);
+  const result = {
+    checkGroupedValuesForEmptySelector,
+    getEvaluatedExpressionSelector,
+    isComponentRender: shouldComponentBeRelevant(
+      fieldElement,
+      fieldParentTreeName,
+      getEvaluatedExpressionSelector
+    ),
+    isErrorsIncludeGroupFieldsSelector,
+  };
+  return result;
+};
 
 export default Group;
