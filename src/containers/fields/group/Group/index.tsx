@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
@@ -95,4 +96,10 @@ const mapDispatchToProps = {
   removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
 };
 
-export default Group;
+/** connect Group component to the redux store */
+const ConnectedGroup = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Group);
+
+export default ConnectedGroup;
