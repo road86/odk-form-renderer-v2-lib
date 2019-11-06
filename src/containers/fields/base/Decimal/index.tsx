@@ -67,7 +67,7 @@ class Decimal extends React.Component<DecimalProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
@@ -101,7 +101,7 @@ class Decimal extends React.Component<DecimalProps> {
             step="any"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue || ''}
+            value={fieldValue}
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -110,7 +110,10 @@ class Decimal extends React.Component<DecimalProps> {
       );
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
+        );
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
@@ -125,7 +128,10 @@ class Decimal extends React.Component<DecimalProps> {
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     const value = parseFloat(event.currentTarget.value);
-    this.props.assignFieldValueActionCreator(event.currentTarget.name, value);
+    this.props.assignFieldValueActionCreator(
+      this.props.fieldParentTreeName + event.currentTarget.name,
+      value
+    );
   };
 }
 

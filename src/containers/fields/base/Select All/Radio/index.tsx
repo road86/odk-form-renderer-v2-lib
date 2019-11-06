@@ -72,7 +72,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
@@ -128,7 +128,10 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
       }
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
+        );
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
@@ -141,19 +144,18 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
 
   /** sets the value of Check Button field element in store
    * @param {any} event - the onchange input event
-   * @param {any} fieldParentTreeName - the input name
+   * @param {any} fieldName - the input name
    */
-  private onChangeHandlerCheckBox = (
-    fieldParentTreeName: any,
-    fieldValue: any
-  ) => (event: any) => {
+  private onChangeHandlerCheckBox = (fieldName: any, fieldValue: any) => (
+    event: any
+  ) => {
     const selectedValues: any = [];
     if (event.target.checked) {
       if (fieldValue === '') {
         selectedValues.push(event.target.value);
         this.props.assignFieldValueActionCreator(
-          fieldParentTreeName,
-          selectedValues
+          this.props.fieldParentTreeName + fieldName,
+          selectedValues || []
         );
       } else {
         if (fieldValue.length > 0) {
@@ -167,8 +169,8 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
 
           selectedValues.push(event.target.value);
           this.props.assignFieldValueActionCreator(
-            fieldParentTreeName,
-            selectedValues
+            this.props.fieldParentTreeName + fieldName,
+            selectedValues || []
           );
         }
       }
@@ -183,8 +185,8 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         const idx = filteredValues.indexOf(event.target.value);
         filteredValues.splice(idx, 1);
         this.props.assignFieldValueActionCreator(
-          fieldParentTreeName,
-          filteredValues
+          this.props.fieldParentTreeName + fieldName,
+          filteredValues || []
         );
       }
     }

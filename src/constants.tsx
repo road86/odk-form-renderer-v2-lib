@@ -1189,6 +1189,31 @@ export const DEMO_FORM_JSON = {
     {
       children: [
         {
+          name: 'yes',
+          label: 'Yes',
+        },
+        {
+          name: 'no',
+          label: 'No',
+        },
+        {
+          name: 'dk',
+          label: "Don't Know",
+        },
+        {
+          name: 'na',
+          label: 'Not Applicable',
+        },
+      ],
+      name: 'list_multi_widget',
+      hint:
+        'This is a normal list widget with (type = select_multiple, appearance = list)',
+      label: 'Check',
+      type: 'select all that apply',
+    },
+    {
+      children: [
+        {
           name: 'repeat_q',
           label: 'Name',
           type: 'text',

@@ -72,7 +72,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
@@ -117,7 +117,10 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       );
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
+        );
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
@@ -129,9 +132,9 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   }
   /** sets the value of field element in store
    * @param {any} values - the onchange input values
-   * @param {any} fieldParentTreeName - the input name
+   * @param {any} fieldName - the input name
    */
-  private onChangeHandler = (fieldParentTreeName: any) => (values: any) => {
+  private onChangeHandler = (fieldName: any) => (values: any) => {
     const selectedValues: any = [];
     let i = 0;
     if (values) {
@@ -143,8 +146,8 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       });
     }
     this.props.assignFieldValueActionCreator(
-      fieldParentTreeName,
-      selectedValues
+      this.props.fieldParentTreeName + fieldName,
+      selectedValues || []
     );
   };
 }
