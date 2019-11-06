@@ -23,6 +23,12 @@ export interface GroupProps {
   defaultLanguage: string;
   fieldElement: FieldElement;
   fieldParentTreeName: string;
+  getEvaluatedExpressionSelector: any;
+  isComponentRender: boolean;
+  checkGroupedValuesForEmptySelector: any;
+  isErrorsIncludeGroupFieldsSelector: any;
+  emptyGroupFieldsActionCreator: typeof emptyGroupFields;
+  removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
 }
 
 class Group extends React.Component<GroupProps> {
