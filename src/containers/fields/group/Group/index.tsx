@@ -7,8 +7,10 @@ import {
 } from '../../../../components/typeEvalutors/Base';
 import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
 import {
+  emptyGroupFields,
   getEvaluatedExpression,
   isErrorsIncludeGroupFields,
+  removeGroupFieldsFromErrors,
 } from '../../../../store/ducks/formState';
 import {
   checkGroupedValuesForEmpty,
@@ -85,6 +87,12 @@ const mapStateToProps = (
     isErrorsIncludeGroupFieldsSelector,
   };
   return result;
+};
+
+/** map props to actions */
+const mapDispatchToProps = {
+  emptyGroupFieldsActionCreator: emptyGroupFields,
+  removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
 };
 
 export default Group;
