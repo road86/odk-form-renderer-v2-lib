@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { FormGroup, Label } from 'reactstrap';
-import { FieldElement } from '../../../../components/typeEvalutors/Base';
+import {
+  FieldElement,
+  FieldParentTreeName,
+} from '../../../../components/typeEvalutors/Base';
 import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
 import { isErrorsIncludeGroupFields } from '../../../../store/ducks/formState';
 import {
@@ -43,6 +46,13 @@ interface DispatchedStateProps {
   isComponentRender: boolean;
   checkGroupedValuesForEmptySelector: typeof checkGroupedValuesForEmpty;
   isErrorsIncludeGroupFieldsSelector: typeof isErrorsIncludeGroupFields;
+}
+
+/** Interface to describe props from parent */
+interface ParentProps {
+  fieldElement: FieldElement;
+  fieldParentTreeName: FieldParentTreeName;
+  defaultLanguage: string;
 }
 
 export default Group;
