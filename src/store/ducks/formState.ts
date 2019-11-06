@@ -116,6 +116,17 @@ export const emptyGroupFields = (fieldTreeName: string): EmptyGroupFields => ({
   type: EMPTY_GROUP_FIELDS,
 });
 
+/** removes the group field names from store errors obj
+ * @param fieldTreeName - the group field tree name
+ * @returns {RemoveGroupFieldsFromErrors} - an action to remove group field names from errors
+ */
+export const removeGroupFieldsFromErrors = (
+  fieldTreeName: string
+): RemoveGroupFieldsFromErrors => ({
+  fieldTreeName,
+  type: REMOVE_GROUP_FIELDS_FROM_ERRORS,
+});
+
 /** Create type for forms reducer actions */
 export type FormActionTypes =
   | AssignFieldValueAction
@@ -123,6 +134,7 @@ export type FormActionTypes =
   | AddErrorInputId
   | RemoveErrorInputId
   | EmptyGroupFields
+  | RemoveGroupFieldsFromErrors
   | AnyAction;
 
 /** Create an immutable form state */
