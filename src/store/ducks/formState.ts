@@ -26,6 +26,9 @@ export const ADD_ERROR_INPUT_ID = 'odk/reducer/form/ADD_ERROR_INPUT_ID';
 export const REMOVE_ERROR_INPUT_ID = 'odk/reducer/form/REMOVE_ERROR_INPUT_ID';
 /** EMPTY_GROUP_FIELDS */
 export const EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
+/** REMOVE_GROUP_FIELDS_FROM_ERRORS */
+export const REMOVE_GROUP_FIELDS_FROM_ERRORS =
+  'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -55,6 +58,12 @@ export interface RemoveErrorInputId extends AnyAction {
 export interface EmptyGroupFields extends AnyAction {
   fieldTreeName: string;
   type: typeof EMPTY_GROUP_FIELDS;
+}
+
+/** interface for REMOVE_GROUP_FIELDS_FROM_ERRORS action */
+export interface RemoveGroupFieldsFromErrors extends AnyAction {
+  fieldTreeName: string;
+  type: typeof REMOVE_GROUP_FIELDS_FROM_ERRORS;
 }
 
 /** Assigns the value to the proper field name
@@ -228,5 +237,11 @@ export function isErrorsIncludeGroupFields(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return checkGroupedValuesForEmpty((state as any).errors, fieldTreeName);
+  let isPresent = false;
+  (state as any).errors.forEach((fTName: string) => {
+    if (fTName.startsWith(fieldTreeName) && !isPresent) {
+      isPresent = true;
+    }
+  });
+  return isPresent;
 }
