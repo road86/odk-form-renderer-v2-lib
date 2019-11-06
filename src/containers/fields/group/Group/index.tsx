@@ -2,7 +2,11 @@ import * as React from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import { FieldElement } from '../../../../components/typeEvalutors/Base';
 import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
-import { getFieldLabelText } from '../../../../utils/helpers';
+import { isErrorsIncludeGroupFields } from '../../../../store/ducks/formState';
+import {
+  checkGroupedValuesForEmpty,
+  getFieldLabelText,
+} from '../../../../utils/helpers';
 
 export interface GroupProps {
   defaultLanguage: string;
@@ -29,6 +33,16 @@ class Group extends React.Component<GroupProps> {
       </FormGroup>
     );
   }
+}
+
+/** connect the component to the store */
+
+/** Interface to describe props from mapStateToProps */
+interface DispatchedStateProps {
+  getEvaluatedExpressionSelector: any;
+  isComponentRender: boolean;
+  checkGroupedValuesForEmptySelector: typeof checkGroupedValuesForEmpty;
+  isErrorsIncludeGroupFieldsSelector: typeof isErrorsIncludeGroupFields;
 }
 
 export default Group;
