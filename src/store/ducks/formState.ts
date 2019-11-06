@@ -183,6 +183,10 @@ export default function reducer(
       );
       const mState = state.asMutable({ deep: true });
       return SeamlessImmutable({ ...mState, userInput: mUserInputObj });
+    case REMOVE_GROUP_FIELDS_FROM_ERRORS:
+      return state.updateIn(['errors'], arr =>
+        arr.filter(elm => !elm.startsWith(action.fieldTreeName))
+      );
     default:
       return state;
   }
