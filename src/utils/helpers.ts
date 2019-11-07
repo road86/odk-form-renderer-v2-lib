@@ -357,7 +357,8 @@ export function checkGroupedValuesForEmpty(
   Object.keys(modifiedObj).forEach(objKey => {
     if (objKey.startsWith(parent + treeNodes[treeNodes.length - 1])) {
       if (
-        (modifiedObj[objKey] !== null || modifiedObj[objKey] !== undefined) &&
+        modifiedObj[objKey] !== null &&
+        modifiedObj[objKey] !== undefined &&
         isEmpty
       ) {
         isEmpty = false;
