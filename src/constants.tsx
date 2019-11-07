@@ -1,6 +1,8 @@
 // Field Types
 export const GROUP_FIELD_TYPE = 'group';
 export type GROUP_FIELD_TYPE = typeof GROUP_FIELD_TYPE;
+export const REPEAT_FIELD_TYPE = 'repeat';
+export type REPEAT_FIELD_TYPE = typeof REPEAT_FIELD_TYPE;
 export const TEXT_FIELD_TYPE = 'text';
 export type TEXT_FIELD_TYPE = typeof TEXT_FIELD_TYPE;
 export const DATE_FIELD_TYPE = 'date';
