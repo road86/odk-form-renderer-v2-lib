@@ -50,7 +50,7 @@ class Repeat extends React.Component<RepeatProps> {
             <GroupTypeEvaluator
               fieldElements={fieldElement.children}
               fieldParentTreeName={
-                fieldParentTreeName + 'group/' + fieldElement.name + '/'
+                fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
               }
               defaultLanguage={defaultLanguage}
             />
@@ -60,11 +60,11 @@ class Repeat extends React.Component<RepeatProps> {
     } else {
       if (
         this.props.isErrorsIncludeGroupFieldsSelector(
-          fieldParentTreeName + 'group/' + fieldElement.name + '/'
+          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
         )
       ) {
         this.props.removeGroupFieldsFromErrorsActionCreator(
-          fieldParentTreeName + 'group/' + fieldElement.name + '/'
+          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
         );
       }
       if (
