@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GROUP_FIELD_TYPE, REPEAT_FIELD_TYPE } from '../../../constants';
-import GROUP from '../../../containers/fields/group/Group';
+import Group from '../../../containers/fields/group/Group';
 import Repeat from '../../../containers/fields/group/Repeat';
 import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
@@ -43,7 +43,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       case GROUP_FIELD_TYPE:
         return (
           <div>
-            <GROUP
+            <Group
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
