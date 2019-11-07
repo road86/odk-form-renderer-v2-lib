@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
@@ -6,7 +7,6 @@ import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
-import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
 import {
   assignFieldValueAction,
   emptyGroupFields,
@@ -20,6 +20,7 @@ import {
   getFieldLabelText,
   shouldComponentBeRelevant,
 } from '../../../../utils/helpers';
+import SingleRepeat from './Single Repeat';
 
 export interface RepeatProps {
   defaultLanguage: string;
@@ -43,6 +44,8 @@ class Repeat extends React.Component<RepeatProps> {
       fieldParentTreeName,
       defaultLanguage,
       isComponentRender,
+      assignFieldValueActionCreator,
+      removeGroupFieldsFromErrorsActionCreator,
     } = this.props;
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
@@ -55,16 +58,25 @@ class Repeat extends React.Component<RepeatProps> {
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
-          <div className="repeat-fields-body">
-            {fieldElement.children && (
-              <GroupTypeEvaluator
-                fieldElements={fieldElement.children}
-                fieldParentTreeName={
-                  fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
-                }
-                defaultLanguage={defaultLanguage}
-              />
-            )}
+          {fieldValue &&
+            // tslint:disable-next-line: variable-name
+            fieldValue.map((_elm: any, index: any) => (
+              <div className="repeat-fields-body" key={'repeat' + index}>
+                <SingleRepeat
+                  defaultLanguage={defaultLanguage}
+                  fieldElement={fieldElement}
+                  fieldParentTreeName={fieldParentTreeName}
+                  fieldValue={fieldValue}
+                  repeatIndex={index}
+                  assignmentHandler={assignFieldValueActionCreator}
+                  removeHandler={removeGroupFieldsFromErrorsActionCreator}
+                />
+              </div>
+            ))}
+          <div>
+            <span onClick={this.addAnotherRepeat}>
+              <FontAwesomeIcon icon="plus-circle" />
+            </span>
           </div>
         </FormGroup>
       );
@@ -87,6 +99,17 @@ class Repeat extends React.Component<RepeatProps> {
       return null;
     }
   }
+
+  // tslint:disable-next-line: variable-name
+  private addAnotherRepeat = (_event: React.MouseEvent<HTMLDivElement>) => {
+    const { fieldValue, fieldParentTreeName, fieldElement } = this.props;
+    const newFieldValue = [...fieldValue];
+    newFieldValue.push({});
+    this.props.assignFieldValueActionCreator(
+      fieldParentTreeName + fieldElement.name,
+      newFieldValue
+    );
+  };
 }
 
 /** connect the component to the store */
