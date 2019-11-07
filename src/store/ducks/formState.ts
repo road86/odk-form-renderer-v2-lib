@@ -241,7 +241,7 @@ export function isGroupFieldsEmpty(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return checkGroupedValuesForEmpty((state as any).errors, fieldTreeName);
+  return checkGroupedValuesForEmpty((state as any).userInput, fieldTreeName);
 }
 
 /** check if the field elements under group are present in errors or not
