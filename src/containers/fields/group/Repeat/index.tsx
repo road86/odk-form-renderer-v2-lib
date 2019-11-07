@@ -8,6 +8,7 @@ import {
 } from '../../../../components/typeEvalutors/Base';
 import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
 import {
+  assignFieldValueAction,
   emptyGroupFields,
   getEvaluatedExpression,
   isErrorsIncludeGroupFields,
@@ -29,6 +30,7 @@ export interface RepeatProps {
   isErrorsIncludeGroupFieldsSelector: any;
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
+  assignFieldValueActionCreator: typeof assignFieldValueAction;
 }
 
 class Repeat extends React.Component<RepeatProps> {
@@ -125,6 +127,7 @@ const mapStateToProps = (
 
 /** map props to actions */
 const mapDispatchToProps = {
+  assignFieldValueActionCreator: assignFieldValueAction,
   emptyGroupFieldsActionCreator: emptyGroupFields,
   removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
 };
