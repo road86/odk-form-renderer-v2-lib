@@ -11,6 +11,7 @@ import {
   assignFieldValueAction,
   emptyGroupFields,
   getEvaluatedExpression,
+  getFieldValue,
   isErrorsIncludeGroupFields,
   isGroupFieldsEmpty,
   removeGroupFieldsFromErrors,
@@ -23,6 +24,7 @@ import {
 export interface RepeatProps {
   defaultLanguage: string;
   fieldElement: FieldElement;
+  fieldValue: any;
   fieldParentTreeName: string;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
@@ -36,6 +38,7 @@ export interface RepeatProps {
 class Repeat extends React.Component<RepeatProps> {
   public render() {
     const {
+      fieldValue,
       fieldElement,
       fieldParentTreeName,
       defaultLanguage,
@@ -43,18 +46,26 @@ class Repeat extends React.Component<RepeatProps> {
     } = this.props;
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
+      if (!fieldValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          [{}]
+        );
+      }
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
-          {fieldElement.children && (
-            <GroupTypeEvaluator
-              fieldElements={fieldElement.children}
-              fieldParentTreeName={
-                fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
-              }
-              defaultLanguage={defaultLanguage}
-            />
-          )}
+          <div className="repeat-fields-body">
+            {fieldElement.children && (
+              <GroupTypeEvaluator
+                fieldElements={fieldElement.children}
+                fieldParentTreeName={
+                  fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
+                }
+                defaultLanguage={defaultLanguage}
+              />
+            )}
+          </div>
         </FormGroup>
       );
     } else {
@@ -67,13 +78,10 @@ class Repeat extends React.Component<RepeatProps> {
           fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
         );
       }
-      if (
-        !this.props.isGroupFieldsEmptySelector(
-          fieldParentTreeName + fieldElement.name
-        )
-      ) {
-        this.props.emptyGroupFieldsActionCreator(
-          fieldParentTreeName + fieldElement.name
+      if (fieldValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
         );
       }
       return null;
@@ -85,6 +93,7 @@ class Repeat extends React.Component<RepeatProps> {
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
+  fieldValue: any;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isGroupFieldsEmptySelector: any;
@@ -113,6 +122,7 @@ const mapStateToProps = (
   const isErrorsIncludeGroupFieldsSelector = (fieldTreeName: string) =>
     isErrorsIncludeGroupFields(state, fieldTreeName);
   const result = {
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
