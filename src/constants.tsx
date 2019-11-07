@@ -150,6 +150,9 @@ export const DEMO_FORM_JSON = {
           type: 'decimal',
         },
       ],
+      bind: {
+        relevant: "${string_number_widget}",
+      },
       name: 'number_widgets',
       label: 'Numerical widgets',
       type: 'group',
