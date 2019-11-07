@@ -1219,6 +1219,9 @@ export const DEMO_FORM_JSON = {
     {
       children: [
         {
+          bind: {
+            required: 'Yes',
+          },
           name: 'repeat_q',
           label: 'Name',
           type: 'text',
