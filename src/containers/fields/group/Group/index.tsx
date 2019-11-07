@@ -11,10 +11,10 @@ import {
   emptyGroupFields,
   getEvaluatedExpression,
   isErrorsIncludeGroupFields,
+  isGroupFieldsEmpty,
   removeGroupFieldsFromErrors,
 } from '../../../../store/ducks/formState';
 import {
-  checkGroupedValuesForEmpty,
   getFieldLabelText,
   shouldComponentBeRelevant,
 } from '../../../../utils/helpers';
@@ -25,7 +25,7 @@ export interface GroupProps {
   fieldParentTreeName: string;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
-  checkGroupedValuesForEmptySelector: any;
+  isGroupFieldsEmptySelector: any;
   isErrorsIncludeGroupFieldsSelector: any;
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
@@ -33,22 +33,49 @@ export interface GroupProps {
 
 class Group extends React.Component<GroupProps> {
   public render() {
-    const { fieldElement, fieldParentTreeName, defaultLanguage } = this.props;
+    const {
+      fieldElement,
+      fieldParentTreeName,
+      defaultLanguage,
+      isComponentRender,
+    } = this.props;
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
-    return (
-      <FormGroup>
-        <Label>{fieldLabel}</Label>
-        {fieldElement.children && (
-          <GroupTypeEvaluator
-            fieldElements={fieldElement.children}
-            fieldParentTreeName={
-              fieldParentTreeName + 'group/' + fieldElement.name + '/'
-            }
-            defaultLanguage={defaultLanguage}
-          />
-        )}
-      </FormGroup>
-    );
+    if (isComponentRender) {
+      return (
+        <FormGroup>
+          <Label>{fieldLabel}</Label>
+          {fieldElement.children && (
+            <GroupTypeEvaluator
+              fieldElements={fieldElement.children}
+              fieldParentTreeName={
+                fieldParentTreeName + 'group/' + fieldElement.name + '/'
+              }
+              defaultLanguage={defaultLanguage}
+            />
+          )}
+        </FormGroup>
+      );
+    } else {
+      if (
+        this.props.isErrorsIncludeGroupFieldsSelector(
+          fieldParentTreeName + 'group/' + fieldElement.name + '/'
+        )
+      ) {
+        this.props.removeGroupFieldsFromErrorsActionCreator(
+          fieldParentTreeName + 'group/' + fieldElement.name + '/'
+        );
+      }
+      if (
+        !this.props.isGroupFieldsEmptySelector(
+          fieldParentTreeName + fieldElement.name
+        )
+      ) {
+        this.props.emptyGroupFieldsActionCreator(
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+      return null;
+    }
   }
 }
 
@@ -58,7 +85,7 @@ class Group extends React.Component<GroupProps> {
 interface DispatchedStateProps {
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
-  checkGroupedValuesForEmptySelector: any;
+  isGroupFieldsEmptySelector: any;
   isErrorsIncludeGroupFieldsSelector: any;
 }
 
@@ -79,12 +106,11 @@ const mapStateToProps = (
     expression: string,
     fieldTreeName: string
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
-  const checkGroupedValuesForEmptySelector = (fieldTreeName: string) =>
-    checkGroupedValuesForEmpty(state, fieldTreeName);
+  const isGroupFieldsEmptySelector = (fieldTreeName: string) =>
+    isGroupFieldsEmpty(state, fieldTreeName);
   const isErrorsIncludeGroupFieldsSelector = (fieldTreeName: string) =>
     isErrorsIncludeGroupFields(state, fieldTreeName);
   const result = {
-    checkGroupedValuesForEmptySelector,
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -92,6 +118,7 @@ const mapStateToProps = (
       getEvaluatedExpressionSelector
     ),
     isErrorsIncludeGroupFieldsSelector,
+    isGroupFieldsEmptySelector,
   };
   return result;
 };
