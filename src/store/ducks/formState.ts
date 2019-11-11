@@ -168,6 +168,27 @@ export function getEvaluatedExpression(
   return evaluater(expression, (state as any).userInput, null, fieldTreeName);
 }
 
+/** get the value of the evaluated expression for Select One and Select All
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} expression - the expression that needs to be evaluated
+ * @param {any} options - the options that needs to be evaluated
+ * @param {string} fieldTreeName - the hierchical tree name of the field
+ * @return {any | null} - the evaluated value or null if syntax error
+ */
+export function getEvaluatedExpressionForSelect(
+  state: Partial<Store>,
+  expression: string,
+  options: any,
+  fieldTreeName: string
+): any {
+  return evaluater(
+    expression,
+    (state as any).userInput,
+    options,
+    fieldTreeName
+  );
+}
+
 /** check if the field element is present in the store
  * @param {Partial<Store>} state - the redux store
  * @param {string} fieldTreeName - the hierchical tree name of the field
