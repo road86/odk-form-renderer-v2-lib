@@ -40,6 +40,102 @@ export const DEMO_FORM_JSON = {
     {
       children: [
         {
+          control: {
+            appearance: "search('geo')",
+          },
+          name: 'division',
+          bind: {
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u09ac\u09bf\u09ad\u09be\u0997',
+            English: 'Division',
+          },
+          type: 'select one',
+          children: [
+            {
+              name: 'division_code',
+              label: {
+                Bangla: 'division_name',
+                English: 'division_name',
+              },
+            },
+          ],
+        },
+        {
+          control: {
+            appearance:
+              "search('geo', 'matches', 'division_code', ${division})",
+          },
+          name: 'district',
+          bind: {
+            relevant: '${division}',
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u099c\u09c7\u09b2\u09be',
+            English: 'District',
+          },
+          type: 'select one',
+          children: [
+            {
+              name: 'district_code',
+              label: {
+                Bangla: 'district_name',
+                English: 'district_name',
+              },
+            },
+          ],
+        },
+        {
+          control: {
+            appearance: "search('geo') minimal",
+          },
+          name: 'division_d',
+          bind: {
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u09ac\u09bf\u09ad\u09be\u0997',
+            English: 'Division',
+          },
+          type: 'select one',
+          children: [
+            {
+              name: 'division_code',
+              label: {
+                Bangla: 'division_name',
+                English: 'division_name',
+              },
+            },
+          ],
+        },
+        {
+          control: {
+            appearance:
+              "minimal search('geo', 'matches', 'division_code', ${division_d})",
+          },
+          name: 'district(NEW)',
+          bind: {
+            relevant: '${division_d}',
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u099c\u09c7\u09b2\u09be',
+            English: 'District',
+          },
+          type: 'select one',
+          children: [
+            {
+              name: 'district_code',
+              label: {
+                Bangla: 'district_name',
+                English: 'district_name',
+              },
+            },
+          ],
+        },
+        {
           name: 'string_widget',
           label: 'String widget',
           type: 'text',
@@ -1246,6 +1342,49 @@ export const DEMO_FORM_JSON = {
   sms_keyword: 'all-widgets',
   title: 'All widgets',
 };
+
+export const geo = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '1005',
+    district_name: 'BargunaL',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040915',
+    union_name: 'Arpangashia',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
 
 /* tslint:enable */
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
