@@ -87,8 +87,9 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
         }
       }
       fieldParentTreeName=""
-      fieldValue="BD"
+      fieldValue=""
       getEvaluatedExpressionSelector={[Function]}
+      getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
@@ -145,15 +146,16 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
             options={
               Array [
                 Object {
-                  "label": "AL",
+                  "label": "Albania",
                   "value": "AL",
                 },
                 Object {
-                  "label": "AD",
+                  "label": "Andorra",
                   "value": "AD",
                 },
               ]
             }
+            value=""
           >
             <Select
               backspaceRemovesValue={true}
@@ -195,11 +197,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
               options={
                 Array [
                   Object {
-                    "label": "AL",
+                    "label": "Albania",
                     "value": "AL",
                   },
                   Object {
-                    "label": "AD",
+                    "label": "Andorra",
                     "value": "AD",
                   },
                 ]
@@ -210,7 +212,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
               styles={Object {}}
               tabIndex="0"
               tabSelectsValue={true}
-              value={null}
+              value=""
             >
               <SelectContainer
                 clearValue={[Function]}
@@ -231,11 +233,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                 options={
                   Array [
                     Object {
-                      "label": "AL",
+                      "label": "Albania",
                       "value": "AL",
                     },
                     Object {
-                      "label": "AD",
+                      "label": "Andorra",
                       "value": "AD",
                     },
                   ]
@@ -281,11 +283,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                     "openMenuOnFocus": false,
                     "options": Array [
                       Object {
-                        "label": "AL",
+                        "label": "Albania",
                         "value": "AL",
                       },
                       Object {
-                        "label": "AD",
+                        "label": "Andorra",
                         "value": "AD",
                       },
                     ],
@@ -295,7 +297,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                     "styles": Object {},
                     "tabIndex": "0",
                     "tabSelectsValue": true,
-                    "value": null,
+                    "value": "",
                   }
                 }
                 setValue={[Function]}
@@ -369,11 +371,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                       options={
                         Array [
                           Object {
-                            "label": "AL",
+                            "label": "Albania",
                             "value": "AL",
                           },
                           Object {
-                            "label": "AD",
+                            "label": "Andorra",
                             "value": "AD",
                           },
                         ]
@@ -419,11 +421,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                           "openMenuOnFocus": false,
                           "options": Array [
                             Object {
-                              "label": "AL",
+                              "label": "Albania",
                               "value": "AL",
                             },
                             Object {
-                              "label": "AD",
+                              "label": "Andorra",
                               "value": "AD",
                             },
                           ],
@@ -433,7 +435,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                           "styles": Object {},
                           "tabIndex": "0",
                           "tabSelectsValue": true,
-                          "value": null,
+                          "value": "",
                         }
                       }
                       setValue={[Function]}
@@ -515,11 +517,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                             options={
                               Array [
                                 Object {
-                                  "label": "AL",
+                                  "label": "Albania",
                                   "value": "AL",
                                 },
                                 Object {
-                                  "label": "AD",
+                                  "label": "Andorra",
                                   "value": "AD",
                                 },
                               ]
@@ -565,11 +567,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                 "openMenuOnFocus": false,
                                 "options": Array [
                                   Object {
-                                    "label": "AL",
+                                    "label": "Albania",
                                     "value": "AL",
                                   },
                                   Object {
-                                    "label": "AD",
+                                    "label": "Andorra",
                                     "value": "AD",
                                   },
                                 ],
@@ -579,7 +581,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                 "styles": Object {},
                                 "tabIndex": "0",
                                 "tabSelectsValue": true,
-                                "value": null,
+                                "value": "",
                               }
                             }
                             setValue={[Function]}
@@ -647,11 +649,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                   options={
                                     Array [
                                       Object {
-                                        "label": "AL",
+                                        "label": "Albania",
                                         "value": "AL",
                                       },
                                       Object {
-                                        "label": "AD",
+                                        "label": "Andorra",
                                         "value": "AD",
                                       },
                                     ]
@@ -697,11 +699,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "openMenuOnFocus": false,
                                       "options": Array [
                                         Object {
-                                          "label": "AL",
+                                          "label": "Albania",
                                           "value": "AL",
                                         },
                                         Object {
-                                          "label": "AD",
+                                          "label": "Andorra",
                                           "value": "AD",
                                         },
                                       ],
@@ -711,7 +713,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "styles": Object {},
                                       "tabIndex": "0",
                                       "tabSelectsValue": true,
-                                      "value": null,
+                                      "value": "",
                                     }
                                   }
                                   setValue={[Function]}
@@ -823,11 +825,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "openMenuOnFocus": false,
                                       "options": Array [
                                         Object {
-                                          "label": "AL",
+                                          "label": "Albania",
                                           "value": "AL",
                                         },
                                         Object {
-                                          "label": "AD",
+                                          "label": "Andorra",
                                           "value": "AD",
                                         },
                                       ],
@@ -837,7 +839,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "styles": Object {},
                                       "tabIndex": "0",
                                       "tabSelectsValue": true,
-                                      "value": null,
+                                      "value": "",
                                     }
                                   }
                                   spellCheck="false"
@@ -992,11 +994,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                             options={
                               Array [
                                 Object {
-                                  "label": "AL",
+                                  "label": "Albania",
                                   "value": "AL",
                                 },
                                 Object {
-                                  "label": "AD",
+                                  "label": "Andorra",
                                   "value": "AD",
                                 },
                               ]
@@ -1042,11 +1044,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                 "openMenuOnFocus": false,
                                 "options": Array [
                                   Object {
-                                    "label": "AL",
+                                    "label": "Albania",
                                     "value": "AL",
                                   },
                                   Object {
-                                    "label": "AD",
+                                    "label": "Andorra",
                                     "value": "AD",
                                   },
                                 ],
@@ -1056,7 +1058,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                 "styles": Object {},
                                 "tabIndex": "0",
                                 "tabSelectsValue": true,
-                                "value": null,
+                                "value": "",
                               }
                             }
                             setValue={[Function]}
@@ -1120,11 +1122,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                   options={
                                     Array [
                                       Object {
-                                        "label": "AL",
+                                        "label": "Albania",
                                         "value": "AL",
                                       },
                                       Object {
-                                        "label": "AD",
+                                        "label": "Andorra",
                                         "value": "AD",
                                       },
                                     ]
@@ -1170,11 +1172,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "openMenuOnFocus": false,
                                       "options": Array [
                                         Object {
-                                          "label": "AL",
+                                          "label": "Albania",
                                           "value": "AL",
                                         },
                                         Object {
-                                          "label": "AD",
+                                          "label": "Andorra",
                                           "value": "AD",
                                         },
                                       ],
@@ -1184,7 +1186,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "styles": Object {},
                                       "tabIndex": "0",
                                       "tabSelectsValue": true,
-                                      "value": null,
+                                      "value": "",
                                     }
                                   }
                                   setValue={[Function]}
@@ -1259,11 +1261,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                   options={
                                     Array [
                                       Object {
-                                        "label": "AL",
+                                        "label": "Albania",
                                         "value": "AL",
                                       },
                                       Object {
-                                        "label": "AD",
+                                        "label": "Andorra",
                                         "value": "AD",
                                       },
                                     ]
@@ -1309,11 +1311,11 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "openMenuOnFocus": false,
                                       "options": Array [
                                         Object {
-                                          "label": "AL",
+                                          "label": "Albania",
                                           "value": "AL",
                                         },
                                         Object {
-                                          "label": "AD",
+                                          "label": "Andorra",
                                           "value": "AD",
                                         },
                                       ],
@@ -1323,7 +1325,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
                                       "styles": Object {},
                                       "tabIndex": "0",
                                       "tabSelectsValue": true,
-                                      "value": null,
+                                      "value": "",
                                     }
                                   }
                                   setValue={[Function]}
@@ -1438,6 +1440,24 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
               </SelectContainer>
             </Select>
           </StateManager>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              This field is required
+            </label>
+          </Label>
         </div>
       </FormGroup>
     </SelectOneDropDown>
@@ -1504,8 +1524,9 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
         }
       }
       fieldParentTreeName=""
-      fieldValue="BD"
+      fieldValue=""
       getEvaluatedExpressionSelector={[Function]}
+      getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
