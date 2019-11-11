@@ -2,6 +2,8 @@ import { AnyAction, Store } from 'redux';
 import SeamlessImmutable from 'seamless-immutable';
 import evaluater from '../../utils/compiler';
 import {
+  checkGroupedValuesForEmpty,
+  emptyGroupedValues,
   getModifiedUserInputObject,
   getValueFromUserInputObj,
 } from '../../utils/helpers';
@@ -22,6 +24,11 @@ export const RESET_STORE = 'odk/reducer/form/RESET_STORE';
 export const ADD_ERROR_INPUT_ID = 'odk/reducer/form/ADD_ERROR_INPUT_ID';
 /** REMOVE_ERROR_INPUT_ID action type */
 export const REMOVE_ERROR_INPUT_ID = 'odk/reducer/form/REMOVE_ERROR_INPUT_ID';
+/** EMPTY_GROUP_FIELDS */
+export const EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
+/** REMOVE_GROUP_FIELDS_FROM_ERRORS */
+export const REMOVE_GROUP_FIELDS_FROM_ERRORS =
+  'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -45,6 +52,18 @@ export interface AddErrorInputId extends AnyAction {
 export interface RemoveErrorInputId extends AnyAction {
   fieldTreeName: string;
   type: typeof REMOVE_ERROR_INPUT_ID;
+}
+
+/** interface for EMPTY_GROUP_FIELDS action */
+export interface EmptyGroupFields extends AnyAction {
+  fieldTreeName: string;
+  type: typeof EMPTY_GROUP_FIELDS;
+}
+
+/** interface for REMOVE_GROUP_FIELDS_FROM_ERRORS action */
+export interface RemoveGroupFieldsFromErrors extends AnyAction {
+  fieldTreeName: string;
+  type: typeof REMOVE_GROUP_FIELDS_FROM_ERRORS;
 }
 
 /** Assigns the value to the proper field name
@@ -88,12 +107,34 @@ export const removeErrorInputId = (
   type: REMOVE_ERROR_INPUT_ID,
 });
 
+/** empties the values of the fields of the group
+ * @param fieldTreeName - the group field tree name
+ * @returns {RemoveErrorInputId} - an action to empty the group field values
+ */
+export const emptyGroupFields = (fieldTreeName: string): EmptyGroupFields => ({
+  fieldTreeName,
+  type: EMPTY_GROUP_FIELDS,
+});
+
+/** removes the group field names from store errors obj
+ * @param fieldTreeName - the group field tree name
+ * @returns {RemoveGroupFieldsFromErrors} - an action to remove group field names from errors
+ */
+export const removeGroupFieldsFromErrors = (
+  fieldTreeName: string
+): RemoveGroupFieldsFromErrors => ({
+  fieldTreeName,
+  type: REMOVE_GROUP_FIELDS_FROM_ERRORS,
+});
+
 /** Create type for forms reducer actions */
 export type FormActionTypes =
   | AssignFieldValueAction
   | ResetStoreAction
   | AddErrorInputId
   | RemoveErrorInputId
+  | EmptyGroupFields
+  | RemoveGroupFieldsFromErrors
   | AnyAction;
 
 /** Create an immutable form state */
@@ -135,6 +176,17 @@ export default function reducer(
         );
       }
       return state;
+    case EMPTY_GROUP_FIELDS:
+      const mUserInputObj = emptyGroupedValues(
+        state.getIn(['userInput']).asMutable({ deep: true }),
+        action.fieldTreeName
+      );
+      const mState = state.asMutable({ deep: true });
+      return SeamlessImmutable({ ...mState, userInput: mUserInputObj });
+    case REMOVE_GROUP_FIELDS_FROM_ERRORS:
+      return state.updateIn(['errors'], arr =>
+        arr.filter(elm => !elm.startsWith(action.fieldTreeName))
+      );
     default:
       return state;
   }
@@ -199,4 +251,34 @@ export function isPresentInError(
   fieldTreeName: string
 ): any {
   return (state as any).errors.includes(fieldTreeName);
+}
+
+/** check if the field elements under group are empty or not
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the group field
+ * @return {boolean} true if empty; otherwise, false
+ */
+export function isGroupFieldsEmpty(
+  state: Partial<Store>,
+  fieldTreeName: string
+): any {
+  return checkGroupedValuesForEmpty((state as any).userInput, fieldTreeName);
+}
+
+/** check if the field elements under group are present in errors or not
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the group field
+ * @return {boolean} true if present; otherwise, false
+ */
+export function isErrorsIncludeGroupFields(
+  state: Partial<Store>,
+  fieldTreeName: string
+): any {
+  let isPresent = false;
+  (state as any).errors.forEach((fTName: string) => {
+    if (fTName.startsWith(fieldTreeName) && !isPresent) {
+      isPresent = true;
+    }
+  });
+  return isPresent;
 }

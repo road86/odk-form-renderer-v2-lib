@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
@@ -6,10 +7,11 @@ import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
-import GroupTypeEvaluator from '../../../../components/typeEvalutors/Group';
 import {
+  assignFieldValueAction,
   emptyGroupFields,
   getEvaluatedExpression,
+  getFieldValue,
   isErrorsIncludeGroupFields,
   isGroupFieldsEmpty,
   removeGroupFieldsFromErrors,
@@ -18,10 +20,12 @@ import {
   getFieldLabelText,
   shouldComponentBeRelevant,
 } from '../../../../utils/helpers';
+import SingleRepeat from './Single Repeat';
 
-export interface GroupProps {
+export interface RepeatProps {
   defaultLanguage: string;
   fieldElement: FieldElement;
+  fieldValue: any;
   fieldParentTreeName: string;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
@@ -29,60 +33,90 @@ export interface GroupProps {
   isErrorsIncludeGroupFieldsSelector: any;
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
+  assignFieldValueActionCreator: typeof assignFieldValueAction;
 }
 
-class Group extends React.Component<GroupProps> {
+class Repeat extends React.Component<RepeatProps> {
   public render() {
     const {
+      fieldValue,
       fieldElement,
       fieldParentTreeName,
       defaultLanguage,
       isComponentRender,
+      assignFieldValueActionCreator,
+      removeGroupFieldsFromErrorsActionCreator,
     } = this.props;
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
+      if (!fieldValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          [{}]
+        );
+      }
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
-          {fieldElement.children && (
-            <GroupTypeEvaluator
-              fieldElements={fieldElement.children}
-              fieldParentTreeName={
-                fieldParentTreeName + 'group/' + fieldElement.name + '/'
-              }
-              defaultLanguage={defaultLanguage}
-            />
-          )}
+          {fieldValue &&
+            // tslint:disable-next-line: variable-name
+            fieldValue.map((_elm: any, index: any) => (
+              <div className="repeat-fields-body" key={'repeat' + index}>
+                <SingleRepeat
+                  defaultLanguage={defaultLanguage}
+                  fieldElement={fieldElement}
+                  fieldParentTreeName={fieldParentTreeName}
+                  fieldValue={fieldValue}
+                  repeatIndex={index}
+                  assignmentHandler={assignFieldValueActionCreator}
+                  removeHandler={removeGroupFieldsFromErrorsActionCreator}
+                />
+              </div>
+            ))}
+          <div>
+            <span onClick={this.addAnotherRepeat}>
+              <FontAwesomeIcon icon="plus-circle" />
+            </span>
+          </div>
         </FormGroup>
       );
     } else {
       if (
         this.props.isErrorsIncludeGroupFieldsSelector(
-          fieldParentTreeName + 'group/' + fieldElement.name + '/'
+          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
         )
       ) {
         this.props.removeGroupFieldsFromErrorsActionCreator(
-          fieldParentTreeName + 'group/' + fieldElement.name + '/'
+          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
         );
       }
-      if (
-        !this.props.isGroupFieldsEmptySelector(
-          fieldParentTreeName + fieldElement.name
-        )
-      ) {
-        this.props.emptyGroupFieldsActionCreator(
-          fieldParentTreeName + fieldElement.name
+      if (fieldValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
         );
       }
       return null;
     }
   }
+
+  // tslint:disable-next-line: variable-name
+  private addAnotherRepeat = (_event: React.MouseEvent<HTMLDivElement>) => {
+    const { fieldValue, fieldParentTreeName, fieldElement } = this.props;
+    const newFieldValue = [...fieldValue];
+    newFieldValue.push({});
+    this.props.assignFieldValueActionCreator(
+      fieldParentTreeName + fieldElement.name,
+      newFieldValue
+    );
+  };
 }
 
 /** connect the component to the store */
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
+  fieldValue: any;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isGroupFieldsEmptySelector: any;
@@ -111,6 +145,7 @@ const mapStateToProps = (
   const isErrorsIncludeGroupFieldsSelector = (fieldTreeName: string) =>
     isErrorsIncludeGroupFields(state, fieldTreeName);
   const result = {
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -125,14 +160,15 @@ const mapStateToProps = (
 
 /** map props to actions */
 const mapDispatchToProps = {
+  assignFieldValueActionCreator: assignFieldValueAction,
   emptyGroupFieldsActionCreator: emptyGroupFields,
   removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
 };
 
 /** connect Group component to the redux store */
-const ConnectedGroup = connect(
+const ConnectedRepeat = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Group);
+)(Repeat);
 
-export default ConnectedGroup;
+export default ConnectedRepeat;

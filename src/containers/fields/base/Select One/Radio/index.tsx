@@ -117,23 +117,22 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         }
       }
 
-      if (fieldValue) {
-        const optionsValueArray: any = [];
-        resultOptions.map(elem => {
-          if (elem.name) {
-            optionsValueArray.push(elem.name);
-          }
-        });
-
-        if (!optionsValueArray.includes(fieldValue)) {
-          this.props.assignFieldValueActionCreator(
-            this.props.fieldParentTreeName + fieldElement.name,
-            ''
-          );
-        }
-      }
-
       if (resultOptions.length > 0) {
+        if (fieldValue) {
+          const optionsValueArray: any = [];
+          resultOptions.map(elem => {
+            if (elem.name) {
+              optionsValueArray.push(elem.name);
+            }
+          });
+
+          if (!optionsValueArray.includes(fieldValue)) {
+            this.props.assignFieldValueActionCreator(
+              this.props.fieldParentTreeName + fieldElement.name,
+              ''
+            );
+          }
+        }
         return (
           <FormGroup>
             <Label>{fieldLabel}</Label>

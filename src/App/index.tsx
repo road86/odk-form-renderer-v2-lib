@@ -1,7 +1,11 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import { DEMO_FORM_JSON } from '../constants';
+
+library.add(faPlusCircle, faMinusCircle);
 
 class App extends React.Component {
   public render() {

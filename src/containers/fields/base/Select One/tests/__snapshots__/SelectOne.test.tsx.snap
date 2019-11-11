@@ -1524,7 +1524,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
         }
       }
       fieldParentTreeName=""
-      fieldValue=""
+      fieldValue="BD"
       getEvaluatedExpressionSelector={[Function]}
       getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}

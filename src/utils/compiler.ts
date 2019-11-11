@@ -506,18 +506,25 @@ function kbSubstr(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
-function outerScopedVariables(variableName: any, tmpUserInput: any): any {
-  let variableValue = null;
+function outerScopedVariables(
+  variableName: any,
+  variableValue: any,
+  tmpUserInput: any
+): any {
   // tslint:disable-next-line: forin
   for (const key in tmpUserInput) {
     const nodeNames = key.split('/');
-    const variableNameFromKey = key[nodeNames.length - 1];
+    const variableNameFromKey = nodeNames[nodeNames.length - 1];
     if (variableNameFromKey === variableName) {
       return tmpUserInput[key];
     }
     if (typeof tmpUserInput[key] === 'object') {
       if (variableValue == null) {
-        variableValue = outerScopedVariables(variableName, tmpUserInput[key]);
+        variableValue = outerScopedVariables(
+          variableName,
+          variableValue,
+          tmpUserInput[key]
+        );
       }
     }
   }
@@ -528,31 +535,30 @@ function parseMostClosestScopedVariable(variableName: any) {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
   const tmpUserInput = userInput;
-  let variableValue = outerScopedVariables(variableName, tmpUserInput);
+  let variableValue = null;
+  variableValue = outerScopedVariables(
+    variableName,
+    variableValue,
+    tmpUserInput
+  );
   let parent = '';
-  const path = [];
-  path.push(parent + variableName);
-  variableValue = userInput.getIn(path);
-  path.pop();
   for (i = 0; i < tmpHierchicalName.length - 1; ) {
     // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;
-      path.push(parent + tmpHierchicalName[i]);
-      path.push(parseInt(tmpHierchicalName[i + 1], 10));
-      parent = parent + tmpHierchicalName[i] + '/';
+      const index = parseInt(tmpHierchicalName[i + 1], 10);
+      variableValue = outerScopedVariables(
+        variableName,
+        variableValue,
+        tmpUserInput[parent + tmpHierchicalName[i]][index]
+      );
       i += 2;
     } else {
       // path.push(parent + tmpHierchicalName[i + 1]);
       parent = parent + tmpHierchicalName[i + 1] + '/';
-      path.push(parent + variableName);
-      variableValue = userInput.getIn(path);
-      path.pop();
       i += 2;
     }
   }
-  path.push(parent + variableName);
-  variableValue = userInput.getIn(path);
   return variableValue;
 }
 
