@@ -142,6 +142,17 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     }
   }
 
+  /** sets the value of fieldElemet to redux store
+   * @param {any} selectedValues - selected valu array
+   * @param {any} fieldName - the input name
+   */
+  private addSelectedValuesToStore(fieldName: any, selectedValues: any) {
+    this.props.assignFieldValueActionCreator(
+      this.props.fieldParentTreeName + fieldName,
+      selectedValues || []
+    );
+  }
+
   /** sets the value of Check Button field element in store
    * @param {any} event - the onchange input event
    * @param {any} fieldName - the input name
@@ -151,7 +162,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
   ) => {
     const selectedValues: any = [];
     if (event.target.checked) {
-      if (fieldValue === '') {
+      if (!fieldValue) {
         selectedValues.push(event.target.value);
         this.props.assignFieldValueActionCreator(
           this.props.fieldParentTreeName + fieldName,
@@ -168,10 +179,10 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           });
 
           selectedValues.push(event.target.value);
-          this.props.assignFieldValueActionCreator(
-            this.props.fieldParentTreeName + fieldName,
-            selectedValues || []
-          );
+          this.addSelectedValuesToStore(fieldName, selectedValues);
+        } else {
+          selectedValues.push(event.target.value);
+          this.addSelectedValuesToStore(fieldName, selectedValues);
         }
       }
     } else {
@@ -184,10 +195,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         });
         const idx = filteredValues.indexOf(event.target.value);
         filteredValues.splice(idx, 1);
-        this.props.assignFieldValueActionCreator(
-          this.props.fieldParentTreeName + fieldName,
-          filteredValues || []
-        );
+        this.addSelectedValuesToStore(fieldName, filteredValues);
       }
     }
   };
@@ -222,7 +230,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name),
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -231,6 +239,7 @@ const mapStateToProps = (
     ),
     isPresentInErrorSelector,
   };
+
   return result;
 };
 
