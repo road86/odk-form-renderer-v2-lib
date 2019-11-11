@@ -268,7 +268,7 @@ export function getValueFromUserInputObj(
 export function shouldComponentBeMinimal(fieldElement: FieldElement): boolean {
   let isMinimal = false;
   if (fieldElement.control && fieldElement.control.appearance) {
-    fieldElement.control.appearance === 'minimal'
+    fieldElement.control.appearance.toString().includes('minimal')
       ? (isMinimal = true)
       : (isMinimal = false);
   }
