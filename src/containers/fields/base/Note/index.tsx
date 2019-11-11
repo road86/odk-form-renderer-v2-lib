@@ -49,7 +49,6 @@ class Note extends React.Component<NoteProps> {
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
-    console.log(fieldParentTreeName);
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =

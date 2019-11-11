@@ -14,6 +14,7 @@ exports[`containers/fields/base/Photo renders correctly 1`] = `
 >
   <Connect(Photo)
     assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
     fieldElement={
       Object {
         "hint": "image type with no appearance",
@@ -26,6 +27,7 @@ exports[`containers/fields/base/Photo renders correctly 1`] = `
   >
     <Photo
       assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
       fieldElement={
         Object {
           "hint": "image type with no appearance",

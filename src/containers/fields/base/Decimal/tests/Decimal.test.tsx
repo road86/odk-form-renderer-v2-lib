@@ -16,6 +16,7 @@ describe('containers/fields/base/Decimal', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: decimalFieldElement,
       fieldParentTreeName: '',
       fieldValue: 12.23,
@@ -31,6 +32,7 @@ describe('containers/fields/base/Decimal', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: decimalFieldElement,
       fieldParentTreeName: '',
       fieldValue: 12.23,

@@ -14,6 +14,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
 >
   <Connect(Text)
     assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
     fieldElement={
       Object {
         "bind": Object {
@@ -32,6 +33,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
     <Text
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
       fieldElement={
         Object {
           "bind": Object {

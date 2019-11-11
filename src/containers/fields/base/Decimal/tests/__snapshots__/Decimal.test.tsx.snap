@@ -14,6 +14,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
 >
   <Connect(Decimal)
     assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
     fieldElement={
       Object {
         "hint": "decimal type with no appearance",
@@ -28,6 +29,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
     <Decimal
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
       fieldElement={
         Object {
           "hint": "decimal type with no appearance",

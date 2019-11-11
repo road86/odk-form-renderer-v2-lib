@@ -16,6 +16,7 @@ describe('containers/fields/base/Photo', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: photoFieldElement,
       fieldValue: '',
     };
@@ -30,6 +31,7 @@ describe('containers/fields/base/Photo', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: photoFieldElement,
       fieldValue: '',
     };

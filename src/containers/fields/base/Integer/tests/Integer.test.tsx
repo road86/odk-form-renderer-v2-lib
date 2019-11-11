@@ -16,6 +16,7 @@ describe('containers/fields/group/Group', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: integerFieldElement1,
       fieldParentTreeName: '',
       fieldValue: 100,
@@ -31,6 +32,7 @@ describe('containers/fields/group/Group', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: integerFieldElement1,
       fieldParentTreeName: '',
       fieldValue: 120,

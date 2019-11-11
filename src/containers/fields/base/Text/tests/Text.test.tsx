@@ -16,6 +16,7 @@ describe('containers/fields/base/Text', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: textFieldElement1,
       fieldParentTreeName: '',
       fieldValue: 'hello',
@@ -31,6 +32,7 @@ describe('containers/fields/base/Text', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      defaultLanguage: 'English',
       fieldElement: textFieldElement1,
       fieldParentTreeName: '',
       fieldValue: 'hello',
