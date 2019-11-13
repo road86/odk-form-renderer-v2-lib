@@ -10,7 +10,7 @@ import {
   SELECT_ONE_FIELD_TYPE,
   TEXT_FIELD_TYPE,
 } from '../../../constants';
-import Date from '../../../containers/fields/base/Date';
+import KbDate from '../../../containers/fields/base/Date';
 import DateTime from '../../../containers/fields/base/Date Time';
 import Decimal from '../../../containers/fields/base/Decimal';
 import Integer from '../../../containers/fields/base/Integer';
@@ -84,7 +84,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
         );
       case DATE_FIELD_TYPE:
         return (
-          <Date
+          <KbDate
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}

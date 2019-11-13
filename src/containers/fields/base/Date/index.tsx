@@ -24,11 +24,11 @@ import {
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
 
-/** props interface for the date component */
+/** props interface for the KbDate component */
 export interface DateProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string;
+  fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
@@ -38,7 +38,7 @@ export interface DateProps {
   defaultLanguage: string;
 }
 
-class Date extends React.Component<DateProps> {
+class KbDate extends React.Component<DateProps> {
   public render() {
     const {
       fieldElement,
@@ -92,6 +92,10 @@ class Date extends React.Component<DateProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
+      let defaultValue: string = '';
+      if (fieldValue) {
+        defaultValue = fieldValue.toISOString().slice(0, 10);
+      }
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
@@ -100,7 +104,7 @@ class Date extends React.Component<DateProps> {
             type="date"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue}
+            value={defaultValue}
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -128,7 +132,7 @@ class Date extends React.Component<DateProps> {
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
-      event.currentTarget.value
+      new Date(event.currentTarget.value)
     );
   };
 }
@@ -137,7 +141,7 @@ class Date extends React.Component<DateProps> {
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
-  fieldValue: string;
+  fieldValue: any;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
@@ -162,7 +166,8 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name),
+    fieldValue:
+      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -181,10 +186,10 @@ const mapDispatchToProps = {
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
-/** connect Date component to the redux store */
+/** connect KbDate component to the redux store */
 const ConnectedDate = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Date);
+)(KbDate);
 
 export default ConnectedDate;
