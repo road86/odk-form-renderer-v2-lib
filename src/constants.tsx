@@ -466,6 +466,9 @@ export const DEMO_FORM_JSON = {
           hint: 'date type with year appearance',
           label: 'Date widget',
           type: 'date',
+          bind: {
+            required: 'Yes',
+          },
         },
         {
           name: 'time_widget',
@@ -478,12 +481,18 @@ export const DEMO_FORM_JSON = {
           hint: 'dateTime type with no appearance',
           label: 'Date time widget',
           type: 'dateTime',
+          bind: {
+            required: 'Yes',
+          },
         },
         {
           name: 'date_time_widget_nocalendar',
           hint: 'dateTime type with no-calendar appearance',
           label: 'Date time widget',
           type: 'dateTime',
+          bind: {
+            required: 'Yes',
+          },
         },
         {
           name: 'ethiopian_date_widget',
