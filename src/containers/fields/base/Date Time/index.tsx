@@ -92,6 +92,11 @@ class DateTime extends React.Component<DateTimeProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
+      let defaultValue: string = '';
+      if (fieldValue) {
+        defaultValue = fieldValue.toISOString().slice(0, 23);
+      }
+
       return (
         <FormGroup>
           <Label>{fieldLabel}</Label>
@@ -100,7 +105,7 @@ class DateTime extends React.Component<DateTimeProps> {
             type="datetime-local"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue}
+            value={defaultValue}
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -144,7 +149,7 @@ class DateTime extends React.Component<DateTimeProps> {
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
-  fieldValue: any;
+  fieldValue: string;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
@@ -169,7 +174,8 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name),
+    fieldValue:
+      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
