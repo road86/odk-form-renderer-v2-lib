@@ -7,6 +7,8 @@ export const TEXT_FIELD_TYPE = 'text';
 export type TEXT_FIELD_TYPE = typeof TEXT_FIELD_TYPE;
 export const DATE_FIELD_TYPE = 'date';
 export type DATE_FIELD_TYPE = typeof DATE_FIELD_TYPE;
+export const DATE_TIME_FIELD_TYPE = 'dateTime';
+export type DATE_TIME_FIELD_TYPE = typeof DATE_TIME_FIELD_TYPE;
 export const INTEGER_FIELD_TYPE = 'integer';
 export type INTEGER_FIELD_TYPE = typeof INTEGER_FIELD_TYPE;
 export const DECIMAL_FIELD_TYPE = 'decimal';
@@ -346,7 +348,6 @@ export const DEMO_FORM_JSON = {
       ],
       bind: {
         relevant: '${string_number_widget}',
-
       },
       name: 'number_widgets',
       label: 'Numerical widgets',
