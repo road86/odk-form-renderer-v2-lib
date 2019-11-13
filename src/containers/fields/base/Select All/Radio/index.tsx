@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Input, Label } from 'reactstrap';
@@ -6,11 +7,16 @@ import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../../components/typeEvalutors/Base';
-import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
+import {
+  geo,
+  REQUIRED_FIELD_MSG,
+  REQUIRED_SYMBOL,
+} from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
   getEvaluatedExpression,
+  getEvaluatedExpressionForSelect,
   getFieldValue,
   isPresentInError,
   removeErrorInputId,
@@ -28,9 +34,10 @@ import {
 export interface SelectAllRadioProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string;
+  fieldValue: string[];
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -39,7 +46,7 @@ export interface SelectAllRadioProps {
 }
 
 export interface Options {
-  label: number;
+  label: any;
   value: string;
 }
 
@@ -55,10 +62,10 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
       defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
-    const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
+    const isRequiredViolated = isRequired && (!fieldValue || fieldValue === []);
     const isConstraintViolated =
       fieldValue &&
-      fieldValue !== '' &&
+      fieldValue !== [] &&
       shouldInputViolatesConstraint(
         fieldElement,
         fieldParentTreeName,
@@ -98,25 +105,79 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         );
       }
 
-      if (fieldElement.children) {
+      let resultOptions: any[] = [];
+      const options: Options[] = [];
+
+      if (fieldElement.control && fieldElement.control.appearance) {
+        const updatedFieldElement: any = fieldElement.control.appearance
+          .toString()
+          .replace('minimal', '');
+        if (/search\([^\)|(]+\)/i.test(updatedFieldElement)) {
+          const processedStringArray = updatedFieldElement.match(
+            /search\([^\)|(]+\)/i
+          ) || [''];
+          resultOptions = this.getProcessedString(processedStringArray[0]);
+        }
+      }
+
+      if (resultOptions.length > 0) {
+        resultOptions.map(elem =>
+          options.push({ label: elem.label, value: elem.name })
+        );
+
+        const tmpValueArray: any = [];
+        let isNotIncluded: boolean = false;
+        if (fieldValue && fieldValue.length > 0) {
+          const optionsValueArray: any = [];
+          options.map(elem => {
+            if (elem.value) {
+              optionsValueArray.push(elem.value);
+            }
+          });
+
+          for (const row of fieldValue) {
+            if (!optionsValueArray.includes(row)) {
+              isNotIncluded = true;
+            } else {
+              tmpValueArray.push(row);
+            }
+          }
+        }
+
+        if (fieldValue && fieldValue.length > 0 && isNotIncluded) {
+          this.props.assignFieldValueActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            tmpValueArray || []
+          );
+        }
+
+        const selectedValues: any[] = [];
+        if (fieldValue && fieldValue.length > 0) {
+          options.map(elem => {
+            for (const row of fieldValue) {
+              if (elem.value === row) {
+                selectedValues.push(elem.value);
+              }
+            }
+          });
+        }
+
         return (
           <FormGroup>
             <Label>{fieldLabel}</Label>
             {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-            {fieldElement.children.map((elem, index) => (
+            {resultOptions.map((elem, index) => (
               <div key={index} className="col-md-12">
                 <Input
                   key={fieldElement.name + '-' + index}
                   type="checkbox"
                   name={fieldElement.name}
-                  value={elem.name}
-                  onChange={this.onChangeHandlerCheckBox(
-                    fieldElement.name,
-                    fieldValue
-                  )}
+                  value={elem.name || []}
+                  onChange={this.onChangeHandlerCheckBox}
                   readOnly={isReadonly}
+                  checked={selectedValues.includes(elem.name)}
                 />{' '}
-                {elem.name}
+                {elem.label}
               </div>
             ))}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -124,7 +185,31 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           </FormGroup>
         );
       } else {
-        return null;
+        if (fieldElement.children) {
+          return (
+            <FormGroup>
+              <Label>{fieldLabel}</Label>
+              {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+              {fieldElement.children.map((elem, index) => (
+                <div key={index} className="col-md-12">
+                  <Input
+                    key={fieldElement.name + '-' + index}
+                    type="checkbox"
+                    name={fieldElement.name}
+                    value={elem.name || []}
+                    onChange={this.onChangeHandlerCheckBox}
+                    readOnly={isReadonly}
+                  />{' '}
+                  {elem.name}
+                </div>
+              ))}
+              {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+              {isConstraintViolated && <Label>{constraintLabel}</Label>}
+            </FormGroup>
+          );
+        } else {
+          return null;
+        }
       }
     } else {
       if (fieldValue != null) {
@@ -142,62 +227,150 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     }
   }
 
-  /** sets the value of fieldElemet to redux store
-   * @param {any} selectedValues - selected valu array
-   * @param {any} fieldName - the input name
+  /** sets the value of field element in store
+   * @param {any} event - the onchange event
    */
-  private addSelectedValuesToStore(fieldName: any, selectedValues: any) {
-    this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + fieldName,
-      selectedValues || []
-    );
-  }
 
-  /** sets the value of Check Button field element in store
-   * @param {any} event - the onchange input event
-   * @param {any} fieldName - the input name
-   */
-  private onChangeHandlerCheckBox = (fieldName: any, fieldValue: any) => (
-    event: any
-  ) => {
-    const selectedValues: any = [];
+  private onChangeHandlerCheckBox = (event: any) => {
+    const { fieldValue, fieldElement, fieldParentTreeName } = this.props;
+    const fieldName = fieldParentTreeName + fieldElement.name;
     if (event.target.checked) {
-      if (!fieldValue) {
-        selectedValues.push(event.target.value);
-        this.props.assignFieldValueActionCreator(
-          this.props.fieldParentTreeName + fieldName,
-          selectedValues || []
-        );
+      if (
+        fieldValue &&
+        fieldValue.length > 0 &&
+        !fieldValue.includes(event.target.value)
+      ) {
+        this.props.assignFieldValueActionCreator(fieldName, [
+          ...fieldValue,
+          event.target.value,
+        ]);
       } else {
-        if (fieldValue.length > 0) {
-          let i = 0;
-          fieldValue.map(() => {
-            if (!selectedValues.includes(fieldValue[i])) {
-              selectedValues.push(fieldValue[i]);
-            }
-            i++;
-          });
-
-          selectedValues.push(event.target.value);
-          this.addSelectedValuesToStore(fieldName, selectedValues);
-        } else {
-          selectedValues.push(event.target.value);
-          this.addSelectedValuesToStore(fieldName, selectedValues);
-        }
+        this.props.assignFieldValueActionCreator(fieldName, [
+          event.target.value,
+        ]);
       }
     } else {
-      const filteredValues: any = [];
-      if (fieldValue.length > 0) {
-        let i = 0;
-        fieldValue.map(() => {
-          filteredValues.push(fieldValue[i]);
-          i++;
-        });
-        const idx = filteredValues.indexOf(event.target.value);
-        filteredValues.splice(idx, 1);
-        this.addSelectedValuesToStore(fieldName, filteredValues);
+      if (
+        fieldValue &&
+        fieldValue.length > 0 &&
+        fieldValue.includes(event.target.value)
+      ) {
+        const newValue = fieldValue.filter(elm => elm !== event.target.value);
+
+        this.props.assignFieldValueActionCreator(
+          fieldName,
+          newValue.length ? newValue : null
+        );
       }
     }
+  };
+
+  /** converts apeearance text into array and pass them to further process
+   * @param {string} stringWithSearchKeyWord - the fieldElement children appearance text (partial)
+   */
+  private getProcessedString = (stringWithSearchKeyWord: string) => {
+    const processedStringArray = stringWithSearchKeyWord.match(
+      /\([^\)]+\)/i
+    ) || [''];
+    let params = processedStringArray[0];
+
+    if (params.length > 2) {
+      params = params.substring(1, params.length - 1);
+      const resultArray = params.split(',');
+      let criteriaParams = [...resultArray];
+      criteriaParams = criteriaParams.splice(2, criteriaParams.length);
+      return this.extractAndFilterOptions(
+        resultArray[0],
+        resultArray[1] || null,
+        criteriaParams || []
+      );
+    }
+    return [];
+  };
+
+  /** generates unique dropdown options using CSV
+   * @param {string} csvName - the CSV file name
+   * @param {string | null} criteriaType - criteria to match with previous user input
+   * @param {any} filterCriterias - previous user input collections
+   */
+  private extractAndFilterOptions = (
+    csvName: string,
+    criteriaType: string | null,
+    filterCriterias: any
+  ) => {
+    if (criteriaType) {
+      criteriaType = criteriaType.trim();
+      criteriaType = criteriaType.substring(1, criteriaType.length - 1).trim();
+    }
+
+    let options: any[] = [];
+    const distinctOptions: any[] = [];
+    const finalRes: any[] = [];
+
+    if (csvName) {
+      options = [...geo];
+    }
+
+    if (criteriaType && criteriaType.trim() === 'matches') {
+      let i = 0;
+      while (i < filterCriterias.length) {
+        let nameOfKey = filterCriterias[i].trim();
+        nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
+        const interConnectedValue = filterCriterias[i + 1];
+        const tempOptions = [...options];
+
+        tempOptions.forEach(elm => {
+          const filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
+            interConnectedValue,
+            this.props.fieldParentTreeName + this.props.fieldElement.name,
+            elm
+          );
+
+          let j = 0;
+          filterResult.map(() => {
+            options.map(option => {
+              if (option[nameOfKey] === filterResult[j]) {
+                finalRes.push(option);
+              }
+            });
+            j = j + 1;
+          });
+        });
+
+        i = i + 2;
+      }
+
+      options = [...Array.from(new Set(finalRes))];
+    }
+
+    if (options.length !== 0) {
+      let labelColumnName: string = '';
+      let valueColumnName: string = '';
+      if (
+        this.props.fieldElement.children &&
+        this.props.fieldElement.children[0] &&
+        this.props.fieldElement.children[0].name &&
+        this.props.fieldElement.children[0].label
+      ) {
+        labelColumnName = getFieldLabelText(
+          this.props.fieldElement.children[0],
+          this.props.defaultLanguage
+        );
+        valueColumnName = this.props.fieldElement.children[0].name;
+      }
+
+      options.forEach(elem => {
+        const tmpOpt: any = {};
+        const label: string = 'label';
+        const name: string = 'name';
+        tmpOpt[label] = elem[labelColumnName].trim();
+        tmpOpt[name] = elem[valueColumnName].trim();
+        distinctOptions.push(tmpOpt);
+      });
+
+      return _.uniqBy(distinctOptions, 'name');
+    }
+    return [];
   };
 }
 
@@ -205,8 +378,9 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
-  fieldValue: string;
+  fieldValue: string[];
   getEvaluatedExpressionSelector: any;
+  getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
@@ -227,11 +401,18 @@ const mapStateToProps = (
     expression: string,
     fieldTreeName: string
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
+  const getEvaluatedExpressionSelectorForSelect = (
+    expression: string,
+    fieldTreeName: string,
+    options: any
+  ) =>
+    getEvaluatedExpressionForSelect(state, expression, options, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
+    getEvaluatedExpressionSelectorForSelect,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,

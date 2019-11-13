@@ -83,6 +83,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
         ]
       }
       getEvaluatedExpressionSelector={[Function]}
+      getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
