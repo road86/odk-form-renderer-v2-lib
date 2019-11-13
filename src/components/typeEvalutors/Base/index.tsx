@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   DATE_FIELD_TYPE,
+  DATE_TIME_FIELD_TYPE,
   DECIMAL_FIELD_TYPE,
   INTEGER_FIELD_TYPE,
   NOTE_FIELD_TYPE,
@@ -10,6 +11,7 @@ import {
   TEXT_FIELD_TYPE,
 } from '../../../constants';
 import Date from '../../../containers/fields/base/Date';
+import DateTime from '../../../containers/fields/base/Date Time';
 import Decimal from '../../../containers/fields/base/Decimal';
 import Integer from '../../../containers/fields/base/Integer';
 import Note from '../../../containers/fields/base/Note';
@@ -83,6 +85,14 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case DATE_FIELD_TYPE:
         return (
           <Date
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
+          />
+        );
+      case DATE_TIME_FIELD_TYPE:
+        return (
+          <DateTime
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}

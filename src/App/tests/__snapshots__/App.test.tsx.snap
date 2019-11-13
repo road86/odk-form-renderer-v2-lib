@@ -9736,12 +9736,78 @@ Version 2017121301 added:
                                 }
                                 fieldParentTreeName="group/date_time_widgets/"
                               >
-                                <div>
-                                  Other 
-                                  dateTime
-                                   
-                                  date_time_widget
-                                </div>
+                                <Connect(DateTime)
+                                  defaultLanguage="English"
+                                  fieldElement={
+                                    Object {
+                                      "hint": "dateTime type with no appearance",
+                                      "label": "Date time widget",
+                                      "name": "date_time_widget",
+                                      "type": "dateTime",
+                                    }
+                                  }
+                                  fieldParentTreeName="group/date_time_widgets/"
+                                >
+                                  <DateTime
+                                    addErrorInputIdActionCreator={[Function]}
+                                    assignFieldValueActionCreator={[Function]}
+                                    defaultLanguage="English"
+                                    fieldElement={
+                                      Object {
+                                        "hint": "dateTime type with no appearance",
+                                        "label": "Date time widget",
+                                        "name": "date_time_widget",
+                                        "type": "dateTime",
+                                      }
+                                    }
+                                    fieldParentTreeName="group/date_time_widgets/"
+                                    getEvaluatedExpressionSelector={[Function]}
+                                    isComponentRender={true}
+                                    isPresentInErrorSelector={[Function]}
+                                    removeErrorInputIdActionCreator={[Function]}
+                                  >
+                                    <FormGroup
+                                      tag="div"
+                                    >
+                                      <div
+                                        className="form-group"
+                                      >
+                                        <Label
+                                          tag="label"
+                                          widths={
+                                            Array [
+                                              "xs",
+                                              "sm",
+                                              "md",
+                                              "lg",
+                                              "xl",
+                                            ]
+                                          }
+                                        >
+                                          <label
+                                            className=""
+                                          >
+                                            Date time widget
+                                          </label>
+                                        </Label>
+                                        <Input
+                                          name="date_time_widget"
+                                          onChange={[Function]}
+                                          readOnly={false}
+                                          type="datetime-local"
+                                        >
+                                          <input
+                                            className="form-control"
+                                            name="date_time_widget"
+                                            onChange={[Function]}
+                                            readOnly={false}
+                                            type="datetime-local"
+                                          />
+                                        </Input>
+                                      </div>
+                                    </FormGroup>
+                                  </DateTime>
+                                </Connect(DateTime)>
                               </BaseTypeEvaluator>
                             </div>
                             <div
@@ -9759,12 +9825,78 @@ Version 2017121301 added:
                                 }
                                 fieldParentTreeName="group/date_time_widgets/"
                               >
-                                <div>
-                                  Other 
-                                  dateTime
-                                   
-                                  date_time_widget_nocalendar
-                                </div>
+                                <Connect(DateTime)
+                                  defaultLanguage="English"
+                                  fieldElement={
+                                    Object {
+                                      "hint": "dateTime type with no-calendar appearance",
+                                      "label": "Date time widget",
+                                      "name": "date_time_widget_nocalendar",
+                                      "type": "dateTime",
+                                    }
+                                  }
+                                  fieldParentTreeName="group/date_time_widgets/"
+                                >
+                                  <DateTime
+                                    addErrorInputIdActionCreator={[Function]}
+                                    assignFieldValueActionCreator={[Function]}
+                                    defaultLanguage="English"
+                                    fieldElement={
+                                      Object {
+                                        "hint": "dateTime type with no-calendar appearance",
+                                        "label": "Date time widget",
+                                        "name": "date_time_widget_nocalendar",
+                                        "type": "dateTime",
+                                      }
+                                    }
+                                    fieldParentTreeName="group/date_time_widgets/"
+                                    getEvaluatedExpressionSelector={[Function]}
+                                    isComponentRender={true}
+                                    isPresentInErrorSelector={[Function]}
+                                    removeErrorInputIdActionCreator={[Function]}
+                                  >
+                                    <FormGroup
+                                      tag="div"
+                                    >
+                                      <div
+                                        className="form-group"
+                                      >
+                                        <Label
+                                          tag="label"
+                                          widths={
+                                            Array [
+                                              "xs",
+                                              "sm",
+                                              "md",
+                                              "lg",
+                                              "xl",
+                                            ]
+                                          }
+                                        >
+                                          <label
+                                            className=""
+                                          >
+                                            Date time widget
+                                          </label>
+                                        </Label>
+                                        <Input
+                                          name="date_time_widget_nocalendar"
+                                          onChange={[Function]}
+                                          readOnly={false}
+                                          type="datetime-local"
+                                        >
+                                          <input
+                                            className="form-control"
+                                            name="date_time_widget_nocalendar"
+                                            onChange={[Function]}
+                                            readOnly={false}
+                                            type="datetime-local"
+                                          />
+                                        </Input>
+                                      </div>
+                                    </FormGroup>
+                                  </DateTime>
+                                </Connect(DateTime)>
                               </BaseTypeEvaluator>
                             </div>
                             <div
