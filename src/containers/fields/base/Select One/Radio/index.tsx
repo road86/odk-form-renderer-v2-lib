@@ -46,7 +46,7 @@ export interface SelectOneRadioProps {
 }
 
 export interface Options {
-  label: number;
+  label: any;
   value: string;
 }
 

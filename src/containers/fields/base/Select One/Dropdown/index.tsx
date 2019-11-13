@@ -221,7 +221,7 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
     return [];
   };
 
-  /** generates unique radio button options using CSV
+  /** generates unique dropdown options using CSV
    * @param {string} csvName - the CSV file name
    * @param {string | null} criteriaType - criteria to match with previous user input
    * @param {any} filterCriterias - previous user input collections
