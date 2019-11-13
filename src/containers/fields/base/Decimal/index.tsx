@@ -28,7 +28,7 @@ import {
 export interface DecimalProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string;
+  fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
@@ -49,6 +49,7 @@ class Decimal extends React.Component<DecimalProps> {
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
+
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
@@ -139,7 +140,7 @@ class Decimal extends React.Component<DecimalProps> {
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
-  fieldValue: string;
+  fieldValue: any;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
@@ -164,7 +165,8 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name),
+    fieldValue:
+      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
