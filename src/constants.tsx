@@ -138,6 +138,102 @@ export const DEMO_FORM_JSON = {
           ],
         },
         {
+          control: {
+            appearance: "search('geo') minimal",
+          },
+          name: 'division_d_all',
+          bind: {
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u09ac\u09bf\u09ad\u09be\u0997',
+            English: 'Division All',
+          },
+          type: 'select all that apply',
+          children: [
+            {
+              name: 'division_code',
+              label: {
+                Bangla: 'division_name',
+                English: 'division_name',
+              },
+            },
+          ],
+        },
+        {
+          control: {
+            appearance:
+              "minimal search('geo', 'matches', 'division_code', ${division_d_all})",
+          },
+          name: 'district_all',
+          bind: {
+            relevant: '${division_d_all}',
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u099c\u09c7\u09b2\u09be',
+            English: 'District All',
+          },
+          type: 'select all that apply',
+          children: [
+            {
+              name: 'district_code',
+              label: {
+                Bangla: 'district_name',
+                English: 'district_name',
+              },
+            },
+          ],
+        },
+        {
+          control: {
+            appearance: "search('geo')",
+          },
+          name: 'division_d_ck',
+          bind: {
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u09ac\u09bf\u09ad\u09be\u0997',
+            English: 'Division All CK',
+          },
+          type: 'select all that apply',
+          children: [
+            {
+              name: 'division_code',
+              label: {
+                Bangla: 'division_name',
+                English: 'division_name',
+              },
+            },
+          ],
+        },
+        {
+          control: {
+            appearance:
+              "search('geo', 'matches', 'division_code', ${division_d_ck})",
+          },
+          name: 'district_all_ck',
+          bind: {
+            relevant: '${division_d_ck}',
+            required: 'Yes',
+          },
+          label: {
+            Bangla: '\u099c\u09c7\u09b2\u09be',
+            English: 'District All CK',
+          },
+          type: 'select all that apply',
+          children: [
+            {
+              name: 'district_code',
+              label: {
+                Bangla: 'district_name',
+                English: 'district_name',
+              },
+            },
+          ],
+        },
+        {
           name: 'string_widget',
           label: 'String widget',
           type: 'text',
@@ -249,7 +345,7 @@ export const DEMO_FORM_JSON = {
         },
       ],
       bind: {
-        relevant: "${string_number_widget}",
+        relevant: '${string_number_widget}',
       },
       name: 'number_widgets',
       label: 'Numerical widgets',
