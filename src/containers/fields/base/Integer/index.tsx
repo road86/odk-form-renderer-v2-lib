@@ -28,7 +28,7 @@ import {
 export interface IntegerProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string;
+  fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
@@ -139,7 +139,7 @@ class Integer extends React.Component<IntegerProps> {
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
-  fieldValue: string;
+  fieldValue: any;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
@@ -163,8 +163,10 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+
   const result = {
-    fieldValue: getFieldValue(state, fieldElement.name),
+    fieldValue:
+      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
