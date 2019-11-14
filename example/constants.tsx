@@ -213,7 +213,6 @@ export const DEMO_FORM_JSON = {
             constraint: '.="hello"',
             'jr:constraintMsg': 'Violated',
             required: 'true',
-            readonly: 'true',
           },
         },
         {
@@ -264,7 +263,6 @@ export const DEMO_FORM_JSON = {
             'jr:constraintMsg': { English: 'Negative value not allowed' },
             required: 'Yes',
             constraint: '.>=0',
-            readonly: 'true',
           },
         },
         {
