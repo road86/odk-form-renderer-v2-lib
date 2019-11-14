@@ -18,6 +18,7 @@
   },
   "peerDependencies": {
     "bootstrap": "^4.3.1",
+    "lodash-es": "^4.17.15",
     "react": ">=16",
     "reactstrap": "^8.0.1"
   },
