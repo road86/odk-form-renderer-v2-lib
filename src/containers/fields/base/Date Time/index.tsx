@@ -131,17 +131,12 @@ class DateTime extends React.Component<DateTimeProps> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    if (event.currentTarget.value) {
-      this.props.assignFieldValueActionCreator(
-        this.props.fieldParentTreeName + event.currentTarget.name,
-        new Date(event.currentTarget.value)
-      );
-    } else {
-      this.props.assignFieldValueActionCreator(
-        this.props.fieldParentTreeName + event.currentTarget.name,
-        ''
-      );
-    }
+    this.props.assignFieldValueActionCreator(
+      this.props.fieldParentTreeName + event.currentTarget.name,
+      event.currentTarget.value !== ''
+        ? new Date(event.currentTarget.value)
+        : null
+    );
   };
 }
 
@@ -174,8 +169,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue:
-      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
