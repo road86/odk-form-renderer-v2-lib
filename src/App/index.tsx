@@ -1,7 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import { Button, Col, Container, Row } from 'reactstrap';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 
 library.add(faPlusCircle, faMinusCircle);
@@ -9,6 +9,7 @@ library.add(faPlusCircle, faMinusCircle);
 export interface AppProps {
   defaultLanguage: string;
   fieldElements: any;
+  handleSubmit(userInput: any): any;
 }
 
 class App extends React.Component<AppProps> {
@@ -27,9 +28,22 @@ class App extends React.Component<AppProps> {
           </Col>
         </Row>
         <GroupTypeEvaluator {...props} />
+        <Row className="welcome-box">
+          <Col>
+            <Button className="btn btn-success" onClick={this.handleClick}>
+              Submit
+            </Button>
+          </Col>
+        </Row>
       </Container>
     );
   }
+
+  // tslint:disable-next-line: variable-name
+  private handleClick = (_event: React.MouseEvent<HTMLButtonElement>) => {
+    const { handleSubmit } = this.props;
+    handleSubmit('submitted');
+  };
 }
 
 export default App;

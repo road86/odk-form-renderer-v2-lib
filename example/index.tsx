@@ -5,9 +5,14 @@ import Thing from '../.';
 import { DEMO_FORM_JSON } from './constants';
 
 const App = () => {
+  const handleSubmit = (userInput: any) => {
+    // tslint:disable-next-line: no-console
+    console.log(userInput);
+  };
   const props = {
     defaultLanguage: 'English',
     formDefinitionJson: DEMO_FORM_JSON,
+    handleSubmit,
   };
   return (
     <div>
