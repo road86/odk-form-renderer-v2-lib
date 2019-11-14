@@ -65,6 +65,7 @@ class Decimal extends React.Component<DecimalProps> {
       fieldElement,
       defaultLanguage
     );
+
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -128,10 +129,11 @@ class Decimal extends React.Component<DecimalProps> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    const value = parseFloat(event.currentTarget.value);
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
-      value
+      event.currentTarget.value !== ''
+        ? parseFloat(event.currentTarget.value)
+        : null
     );
   };
 }
