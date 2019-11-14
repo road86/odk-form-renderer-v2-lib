@@ -16,6 +16,7 @@ class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
     const props = {
       defaultLanguage,
       fieldElements: formDefinitionJson.children,
+      formTitle: formDefinitionJson.title,
       handleSubmit,
     };
     return (

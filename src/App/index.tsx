@@ -16,13 +16,14 @@ export interface AppProps {
   isNoErrors: any;
   userInputObj: any;
   defaultLanguage: string;
+  formTitle: string;
   fieldElements: any;
   handleSubmit(userInput: any): any;
 }
 
 class App extends React.Component<AppProps> {
   public render() {
-    const { defaultLanguage, fieldElements } = this.props;
+    const { defaultLanguage, fieldElements, formTitle } = this.props;
     const props = {
       defaultLanguage,
       fieldElements,
@@ -32,7 +33,7 @@ class App extends React.Component<AppProps> {
       <Container className="form-container">
         <Row className="welcome-box">
           <Col>
-            <h3>Welcome to Odk Form Renderer</h3>
+            <h3>{formTitle}</h3>
           </Col>
         </Row>
         <GroupTypeEvaluator {...props} />
