@@ -4,11 +4,21 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
 
-class OdkFormRenderer extends React.Component {
+export interface OdkFormRendererProps {
+  defaultLanguage: string;
+  formDefinitionJson: any;
+}
+
+class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
   public render() {
+    const { defaultLanguage, formDefinitionJson } = this.props;
+    const props = {
+      defaultLanguage,
+      fieldElements: formDefinitionJson.children,
+    };
     return (
       <Provider store={store}>
-        <App />
+        <App {...props} />
       </Provider>
     );
   }

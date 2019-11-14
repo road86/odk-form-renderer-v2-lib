@@ -3,15 +3,20 @@ import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
-import { DEMO_FORM_JSON } from '../constants';
 
 library.add(faPlusCircle, faMinusCircle);
 
-class App extends React.Component {
+export interface AppProps {
+  defaultLanguage: string;
+  fieldElements: any;
+}
+
+class App extends React.Component<AppProps> {
   public render() {
+    const { defaultLanguage, fieldElements } = this.props;
     const props = {
-      defaultLanguage: 'English',
-      fieldElements: DEMO_FORM_JSON.children,
+      defaultLanguage,
+      fieldElements,
       fieldParentTreeName: '',
     };
     return (
