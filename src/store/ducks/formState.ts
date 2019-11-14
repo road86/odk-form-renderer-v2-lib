@@ -290,3 +290,11 @@ export function isErrorsIncludeGroupFields(
 export function isErrorsArrayEmpty(state: Partial<Store>): any {
   return (state as any).errors && (state as any).errors.length ? false : true;
 }
+
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current userInputObject
+ */
+export function getUserInputFromStore(state: Partial<Store>): any {
+  return (state as any).userInput;
+}
