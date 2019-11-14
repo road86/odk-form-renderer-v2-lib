@@ -296,5 +296,5 @@ export function isErrorsArrayEmpty(state: Partial<Store>): any {
  * @return {boolean} the current userInputObject
  */
 export function getUserInputFromStore(state: Partial<Store>): any {
-  return (state as any).userInput;
+  return (state as any).getIn(['userInput']).asMutable({ deep: true });
 }
