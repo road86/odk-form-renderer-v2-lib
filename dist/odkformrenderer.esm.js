@@ -8644,7 +8644,7 @@ function (_React$Component) {
      */
 
     _this.onChangeHandler = function (event) {
-      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, new Date(event.currentTarget.value));
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? new Date(event.currentTarget.value) : null);
     };
 
     return _this;
@@ -8724,7 +8724,7 @@ var mapStateToProps$2 = function mapStateToProps(state, parentProps) {
   };
 
   var result = {
-    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
@@ -8759,11 +8759,7 @@ function (_React$Component) {
      */
 
     _this.onChangeHandler = function (event) {
-      if (event.currentTarget.value) {
-        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, new Date(event.currentTarget.value));
-      } else {
-        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, '');
-      }
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? new Date(event.currentTarget.value) : null);
     };
 
     return _this;
@@ -8843,7 +8839,7 @@ var mapStateToProps$3 = function mapStateToProps(state, parentProps) {
   };
 
   var result = {
-    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
@@ -8878,9 +8874,7 @@ function (_React$Component) {
      */
 
     _this.onChangeHandler = function (event) {
-      var value = parseFloat(event.currentTarget.value);
-
-      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, value);
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? parseFloat(event.currentTarget.value) : null);
     };
 
     return _this;
@@ -8990,9 +8984,7 @@ function (_React$Component) {
      */
 
     _this.onChangeHandler = function (event) {
-      var value = parseInt(event.currentTarget.value, 10);
-
-      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, value);
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? parseInt(event.currentTarget.value, 10) : null);
     };
 
     return _this;
@@ -9032,7 +9024,7 @@ function (_React$Component) {
         type: "number",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
-        value: fieldValue,
+        value: fieldValue || fieldValue === 0 ? fieldValue : '',
         readOnly: isReadonly
       }), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, constraintLabel));
     } else {
@@ -9066,7 +9058,7 @@ var mapStateToProps$5 = function mapStateToProps(state, parentProps) {
   };
 
   var result = {
-    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
