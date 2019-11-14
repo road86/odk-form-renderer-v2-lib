@@ -101,7 +101,7 @@ class Integer extends React.Component<IntegerProps> {
             type="number"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue}
+            value={fieldValue || fieldValue === 0 ? fieldValue : ''}
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -127,10 +127,11 @@ class Integer extends React.Component<IntegerProps> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    const value = parseInt(event.currentTarget.value, 10);
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
-      value
+      event.currentTarget.value !== ''
+        ? parseInt(event.currentTarget.value, 10)
+        : null
     );
   };
 }
@@ -165,8 +166,7 @@ const mapStateToProps = (
     isPresentInError(state, fieldTreeName);
 
   const result = {
-    fieldValue:
-      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
