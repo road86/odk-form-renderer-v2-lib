@@ -102,7 +102,7 @@ class Decimal extends React.Component<DecimalProps> {
             step="any"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue}
+            value={fieldValue || fieldValue === 0 ? fieldValue : ''}
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -165,8 +165,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue:
-      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
