@@ -132,7 +132,9 @@ class KbDate extends React.Component<DateProps> {
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
-      new Date(event.currentTarget.value)
+      event.currentTarget.value !== ''
+        ? new Date(event.currentTarget.value)
+        : null
     );
   };
 }
@@ -166,8 +168,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue:
-      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
