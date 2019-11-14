@@ -282,3 +282,11 @@ export function isErrorsIncludeGroupFields(
   });
   return isPresent;
 }
+
+/** check if the errors array in store empty or not
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} true if empty; otherwise, false
+ */
+export function isErrorsArrayEmpty(state: Partial<Store>): any {
+  return (state as any).errors && (state as any).errors.length ? false : true;
+}
