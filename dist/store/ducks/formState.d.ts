@@ -17,6 +17,7 @@ export declare const REMOVE_ERROR_INPUT_ID = "odk/reducer/form/REMOVE_ERROR_INPU
 export declare const EMPTY_GROUP_FIELDS = "odk/reducer/form/EMPTY_GROUP_FIELDS";
 /** REMOVE_GROUP_FIELDS_FROM_ERRORS */
 export declare const REMOVE_GROUP_FIELDS_FROM_ERRORS = "odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS";
+export declare const SET_USER_INPUT_OBJ = "odk/reducer/form/SET_USER_INPUT_OBJ";
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
     fieldTreeName: string;
@@ -47,6 +48,11 @@ export interface RemoveGroupFieldsFromErrors extends AnyAction {
     fieldTreeName: string;
     type: typeof REMOVE_GROUP_FIELDS_FROM_ERRORS;
 }
+/** interface for SET_USER_INPUT_OBJ action */
+export interface SetUserInputObj extends AnyAction {
+    userInputObj: any;
+    type: typeof SET_USER_INPUT_OBJ;
+}
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the value that will be assigned
@@ -73,12 +79,17 @@ export declare const removeErrorInputId: (fieldTreeName: string) => RemoveErrorI
  */
 export declare const emptyGroupFields: (fieldTreeName: string) => EmptyGroupFields;
 /** removes the group field names from store errors obj
- * @param fieldTreeName - the group field tree name
+ * @param {string} fieldTreeName - the group field tree name
  * @returns {RemoveGroupFieldsFromErrors} - an action to remove group field names from errors
  */
 export declare const removeGroupFieldsFromErrors: (fieldTreeName: string) => RemoveGroupFieldsFromErrors;
+/** sets the user input object to redux store
+ * @param {any} userInputObj - the user input obj
+ * @returns {SetUserInputObj} - an action to set user input to redux store
+ */
+export declare const setUserInputObj: (userInputObj: any) => SetUserInputObj;
 /** Create type for forms reducer actions */
-export declare type FormActionTypes = AssignFieldValueAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | AnyAction;
+export declare type FormActionTypes = AssignFieldValueAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | AnyAction;
 /** Create an immutable form state */
 export declare type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
@@ -124,3 +135,13 @@ export declare function isGroupFieldsEmpty(state: Partial<Store>, fieldTreeName:
  * @return {boolean} true if present; otherwise, false
  */
 export declare function isErrorsIncludeGroupFields(state: Partial<Store>, fieldTreeName: string): any;
+/** check if the errors array in store empty or not
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} true if empty; otherwise, false
+ */
+export declare function isErrorsArrayEmpty(state: Partial<Store>): any;
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current userInputObject
+ */
+export declare function getUserInputFromStore(state: Partial<Store>): any;
