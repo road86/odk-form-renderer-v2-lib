@@ -1426,5 +1426,38 @@ export const DEMO_FORM_JSON = {
   title: 'All widgets',
 };
 
+export const sampleUserInput = {
+  "text_widgets/string_number_widget": "hello",
+  "repeat_1": [
+    {
+      "repeat_1/repeat_q": "gsh"
+    }
+  ],
+  "text_widgets/division": "10",
+  "text_widgets/district": "1004",
+  "text_widgets/division_d": "10",
+  "text_widgets/district(NEW)": "1004",
+  "text_widgets/division_d_all": [
+    "10"
+  ],
+  "text_widgets/district_all": [
+    "1004"
+  ],
+  "text_widgets/division_d_ck": [
+    "10"
+  ],
+  "text_widgets/district_all_ck": [
+    "1004"
+  ],
+  "text_widgets/string_widget": "hello",
+  "number_widgets/integer_widget": 1,
+  "number_widgets/integer_thousands_sep_widget": 121,
+  "number_widgets/ex_integer_widget": 12,
+  "number_widgets/decimal_widget": 12,
+  "select_one_widgets/return_from": "BY",
+  "select_multi_widgets/spinner_multi_widget": [
+    "c"
+  ]
+}
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
