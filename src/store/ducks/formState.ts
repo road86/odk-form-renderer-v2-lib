@@ -29,6 +29,7 @@ export const EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 /** REMOVE_GROUP_FIELDS_FROM_ERRORS */
 export const REMOVE_GROUP_FIELDS_FROM_ERRORS =
   'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
+export const SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -64,6 +65,12 @@ export interface EmptyGroupFields extends AnyAction {
 export interface RemoveGroupFieldsFromErrors extends AnyAction {
   fieldTreeName: string;
   type: typeof REMOVE_GROUP_FIELDS_FROM_ERRORS;
+}
+
+/** interface for SET_USER_INPUT_OBJ action */
+export interface SetUserInputObj extends AnyAction {
+  userInputObj: any;
+  type: typeof SET_USER_INPUT_OBJ;
 }
 
 /** Assigns the value to the proper field name
@@ -117,7 +124,7 @@ export const emptyGroupFields = (fieldTreeName: string): EmptyGroupFields => ({
 });
 
 /** removes the group field names from store errors obj
- * @param fieldTreeName - the group field tree name
+ * @param {string} fieldTreeName - the group field tree name
  * @returns {RemoveGroupFieldsFromErrors} - an action to remove group field names from errors
  */
 export const removeGroupFieldsFromErrors = (
@@ -125,6 +132,15 @@ export const removeGroupFieldsFromErrors = (
 ): RemoveGroupFieldsFromErrors => ({
   fieldTreeName,
   type: REMOVE_GROUP_FIELDS_FROM_ERRORS,
+});
+
+/** sets the user input object to redux store
+ * @param {any} userInputObj - the user input obj
+ * @returns {SetUserInputObj} - an action to set user input to redux store
+ */
+export const setUserInputObj = (userInputObj: any): SetUserInputObj => ({
+  type: SET_USER_INPUT_OBJ,
+  userInputObj,
 });
 
 /** Create type for forms reducer actions */
@@ -135,6 +151,7 @@ export type FormActionTypes =
   | RemoveErrorInputId
   | EmptyGroupFields
   | RemoveGroupFieldsFromErrors
+  | SetUserInputObj
   | AnyAction;
 
 /** Create an immutable form state */
@@ -187,6 +204,11 @@ export default function reducer(
       return state.updateIn(['errors'], arr =>
         arr.filter(elm => !elm.startsWith(action.fieldTreeName))
       );
+    case SET_USER_INPUT_OBJ:
+      return SeamlessImmutable({
+        ...state,
+        userInput: (action as any).userInputObj,
+      });
     default:
       return state;
   }
