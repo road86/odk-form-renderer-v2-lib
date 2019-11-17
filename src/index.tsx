@@ -7,17 +7,24 @@ import store from './store';
 export interface OdkFormRendererProps {
   defaultLanguage: string;
   formDefinitionJson: any;
+  userInputJson: any;
   handleSubmit(userInput: any): any;
 }
 
 class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
   public render() {
-    const { defaultLanguage, formDefinitionJson, handleSubmit } = this.props;
+    const {
+      defaultLanguage,
+      formDefinitionJson,
+      userInputJson,
+      handleSubmit,
+    } = this.props;
     const props = {
       defaultLanguage,
       fieldElements: formDefinitionJson.children,
       formTitle: formDefinitionJson.title,
       handleSubmit,
+      userInputJson,
     };
     return (
       <Provider store={store}>
