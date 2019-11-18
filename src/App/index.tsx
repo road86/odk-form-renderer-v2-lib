@@ -8,22 +8,33 @@ import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
   getUserInputFromStore,
   isErrorsArrayEmpty,
+  setUserInputObj,
 } from '../store/ducks/formState';
 
 library.add(faPlusCircle, faMinusCircle);
 
 export interface AppProps {
+  csvList: any;
   isNoErrors: any;
   userInputObj: any;
+  userInputJson: any;
   defaultLanguage: string;
+  formTitle: string;
   fieldElements: any;
-  csvList: any;
+  setUserInputAction: typeof setUserInputObj;
   handleSubmit(userInput: any): any;
 }
 
 class App extends React.Component<AppProps> {
+  public componentDidMount() {
+    const { userInputJson, userInputObj } = this.props;
+    if (userInputJson && userInputJson !== userInputObj) {
+      this.props.setUserInputAction(userInputJson);
+    }
+  }
   public render() {
-    const { csvList, defaultLanguage, fieldElements } = this.props;
+    const { csvList, defaultLanguage, fieldElements, formTitle } = this.props;
+
     const props = {
       csvList,
       defaultLanguage,
@@ -32,9 +43,9 @@ class App extends React.Component<AppProps> {
     };
     return (
       <Container className="form-container">
-        <Row className="welcome-box">
+        <Row className="form-title">
           <Col>
-            <h3>Welcome to Odk Form Renderer</h3>
+            <h3>{formTitle}</h3>
           </Col>
         </Row>
         <GroupTypeEvaluator {...props} />
@@ -55,8 +66,9 @@ class App extends React.Component<AppProps> {
     handleSubmit('submitted');
     if (isNoErrors) {
       handleSubmit(userInputObj);
+    } else {
+      handleSubmit('Field Violated');
     }
-    handleSubmit('Field Violated');
   };
 }
 
@@ -77,7 +89,15 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
   return result;
 };
 
+/** map props to actions */
+const mapDispatchToProps = {
+  setUserInputAction: setUserInputObj,
+};
+
 /** connect Decimal component to the redux store */
-const ConnectedApp = connect(mapStateToProps)(App);
+const ConnectedApp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
 
 export default ConnectedApp;
