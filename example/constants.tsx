@@ -6,13 +6,68 @@ export const DEMO_FORM_JSON = {
     {
       name: 'intro',
       hint:
-        'This is a sample for introductory and debugging purposes. It is updated periodically so check ""Get Blank Form"" to get the latest! \n\nVersion 2018032801 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new-front (selfie) for video type\n\nVersion 2018022001 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance image-map for select_one and select_multiple types\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new for image, audio, video types\n\nVersion 2017121301 added:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance thousands-sep for numeric types\n&nbsp;&nbsp;&nbsp;&nbsp;- Range questions\n&nbsp;&nbsp;&nbsp;&nbsp;- Ethiopian, coptic and islamic calendars',
+        'This---- is a sample for introductory and debugging purposes. It is updated periodically so check ""Get Blank Form"" to get the latest! \n\nVersion 2018032801 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new-front (selfie) for video type\n\nVersion 2018022001 adds:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance image-map for select_one and select_multiple types\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance new for image, audio, video types\n\nVersion 2017121301 added:\n&nbsp;&nbsp;&nbsp;&nbsp;- Appearance thousands-sep for numeric types\n&nbsp;&nbsp;&nbsp;&nbsp;- Range questions\n&nbsp;&nbsp;&nbsp;&nbsp;- Ethiopian, coptic and islamic calendars',
       label:
         'Welcome to ODK Collect! This form showcases the different available question types (_widgets_).',
       type: 'note',
     },
     {
       children: [
+        {
+          name: 'male',
+          bind: {
+            required: 'yes',
+          },
+          label: {
+            Bangla: 'Male',
+            English: 'Male',
+          },
+          type: 'integer',
+        },
+        {
+          name: 'female',
+          bind: {
+            required: 'yes',
+          },
+          label: {
+            Bangla: 'Female',
+            English: 'Female',
+          },
+          type: 'integer',
+        },
+        {
+          name: 'boy',
+          bind: {
+            required: 'yes',
+          },
+          label: {
+            Bangla: 'Boy',
+            English: 'Boy',
+          },
+          type: 'integer',
+        },
+        {
+          name: 'girl',
+          bind: {
+            required: 'yes',
+          },
+          label: {
+            Bangla: 'GIrls',
+            English: 'GIrls',
+          },
+          type: 'integer',
+        },
+        {
+          name: 'total_participant',
+          bind: {
+            required: 'yes',
+            calculate: '${male}+${female}+${boy}+${girl}',
+          },
+          label: {
+            English: 'Total Participants',
+          },
+          type: 'calculate',
+        },
         {
           control: {
             appearance: "search('geo')",
@@ -1427,37 +1482,27 @@ export const DEMO_FORM_JSON = {
 };
 
 export const sampleUserInput = {
-  "text_widgets/string_number_widget": "hello",
-  "repeat_1": [
+  'text_widgets/string_number_widget': 'hello',
+  repeat_1: [
     {
-      "repeat_1/repeat_q": "gsh"
-    }
+      'repeat_1/repeat_q': 'gsh',
+    },
   ],
-  "text_widgets/division": "10",
-  "text_widgets/district": "1004",
-  "text_widgets/division_d": "10",
-  "text_widgets/district(NEW)": "1004",
-  "text_widgets/division_d_all": [
-    "10"
-  ],
-  "text_widgets/district_all": [
-    "1004"
-  ],
-  "text_widgets/division_d_ck": [
-    "10"
-  ],
-  "text_widgets/district_all_ck": [
-    "1004"
-  ],
-  "text_widgets/string_widget": "hello",
-  "number_widgets/integer_widget": 1,
-  "number_widgets/integer_thousands_sep_widget": 121,
-  "number_widgets/ex_integer_widget": 12,
-  "number_widgets/decimal_widget": 12,
-  "select_one_widgets/return_from": "BY",
-  "select_multi_widgets/spinner_multi_widget": [
-    "c"
-  ]
-}
+  'text_widgets/division': '10',
+  'text_widgets/district': '1004',
+  'text_widgets/division_d': '10',
+  'text_widgets/district(NEW)': '1004',
+  'text_widgets/division_d_all': ['10'],
+  'text_widgets/district_all': ['1004'],
+  'text_widgets/division_d_ck': ['10'],
+  'text_widgets/district_all_ck': ['1004'],
+  'text_widgets/string_widget': 'hello',
+  'number_widgets/integer_widget': 1,
+  'number_widgets/integer_thousands_sep_widget': 121,
+  'number_widgets/ex_integer_widget': 12,
+  'number_widgets/decimal_widget': 12,
+  'select_one_widgets/return_from': 'BY',
+  'select_multi_widgets/spinner_multi_widget': ['c'],
+};
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
