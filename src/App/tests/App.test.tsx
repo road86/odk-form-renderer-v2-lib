@@ -12,10 +12,19 @@ describe('App', () => {
   });
 
   it('renders App without crashing', () => {
+    const mock: any = jest.fn();
     const div = document.createElement('div');
+    const props = {
+      csvList: {},
+      defaultLanguage: 'English',
+      fieldElements: [],
+      formTitle: 'ODK',
+      handleSubmit: mock,
+      userInputJson: {},
+    };
     ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <App {...props} />
       </Provider>,
       div
     );
@@ -23,9 +32,18 @@ describe('App', () => {
   });
 
   it('renders App correctly', () => {
+    const mock: any = jest.fn();
+    const props = {
+      csvList: {},
+      defaultLanguage: 'English',
+      fieldElements: [],
+      formTitle: 'ODK',
+      handleSubmit: mock,
+      userInputJson: {},
+    };
     const wrapper = mount(
       <Provider store={store}>
-        <App />
+        <App {...props} />
       </Provider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();

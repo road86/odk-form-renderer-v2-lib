@@ -14,6 +14,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
 >
   <Connect(SelectOneDropDown)
     assignFieldValueActionCreator={[MockFunction]}
+    csvList={Object {}}
     defaultLanguage="English"
     fieldElement={
       Object {
@@ -53,6 +54,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
     <SelectOneDropDown
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
         Object {
@@ -1479,6 +1481,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
 >
   <Connect(SelectOneRadio)
     assignFieldValueActionCreator={[MockFunction]}
+    csvList={Object {}}
     defaultLanguage="English"
     fieldElement={
       Object {
@@ -1504,6 +1507,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
     <SelectOneRadio
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
         Object {
