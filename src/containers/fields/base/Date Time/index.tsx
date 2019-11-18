@@ -94,7 +94,8 @@ class DateTime extends React.Component<DateTimeProps> {
       }
       let defaultValue: string = '';
       if (fieldValue) {
-        defaultValue = fieldValue.toISOString().slice(0, 23);
+        const modifiedDate = new Date(fieldValue);
+        defaultValue = modifiedDate.toISOString().slice(0, 23);
       }
 
       return (

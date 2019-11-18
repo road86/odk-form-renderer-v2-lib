@@ -100,7 +100,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
             onChange={[Function]}
             readOnly={false}
             type="datetime-local"
-            value="2019-11-12T07:02:00.000Z"
+            value="2019-11-12T07:02:00.000"
           >
             <input
               className="form-control"
@@ -108,7 +108,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
               onChange={[Function]}
               readOnly={false}
               type="datetime-local"
-              value="2019-11-12T07:02:00.000Z"
+              value="2019-11-12T07:02:00.000"
             />
           </Input>
         </div>
