@@ -12,7 +12,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
     }
   }
 >
-  <Connect(Date)
+  <Connect(KbDate)
     assignFieldValueActionCreator={[MockFunction]}
     defaultLanguage="English"
     fieldElement={
@@ -30,7 +30,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
     fieldParentTreeName=""
     fieldValue="2019-10-11"
   >
-    <Date
+    <KbDate
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       defaultLanguage="English"
@@ -113,7 +113,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
           </Input>
         </div>
       </FormGroup>
-    </Date>
-  </Connect(Date)>
+    </KbDate>
+  </Connect(KbDate)>
 </Provider>
 `;

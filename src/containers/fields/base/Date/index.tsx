@@ -93,8 +93,9 @@ class KbDate extends React.Component<DateProps> {
         );
       }
       let defaultValue: string = '';
-      if (fieldValue) {
-        defaultValue = fieldValue.toISOString().slice(0, 10);
+      if (fieldValue !== '') {
+        const modifiedDate = new Date(fieldValue);
+        defaultValue = modifiedDate.toISOString().slice(0, 10);
       }
       return (
         <FormGroup>
