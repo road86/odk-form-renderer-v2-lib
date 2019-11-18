@@ -23,6 +23,7 @@ import {
 import SingleRepeat from './Single Repeat';
 
 export interface RepeatProps {
+  csvList: any;
   defaultLanguage: string;
   fieldElement: FieldElement;
   fieldValue: any;
@@ -39,6 +40,7 @@ export interface RepeatProps {
 class Repeat extends React.Component<RepeatProps> {
   public render() {
     const {
+      csvList,
       fieldValue,
       fieldElement,
       fieldParentTreeName,
@@ -70,6 +72,7 @@ class Repeat extends React.Component<RepeatProps> {
                   repeatIndex={index}
                   assignmentHandler={assignFieldValueActionCreator}
                   removeHandler={removeGroupFieldsFromErrorsActionCreator}
+                  csvList={csvList}
                 />
               </div>
             ))}

@@ -48,6 +48,7 @@ export interface FieldElement {
 
 /** props interface for BaseTypeEvaluator component */
 export interface BaseTypeEvaluatorProps {
+  csvList: any;
   defaultLanguage: string;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -55,8 +56,14 @@ export interface BaseTypeEvaluatorProps {
 
 class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
   public render() {
-    const { fieldElement, fieldParentTreeName, defaultLanguage } = this.props;
+    const {
+      csvList,
+      fieldElement,
+      fieldParentTreeName,
+      defaultLanguage,
+    } = this.props;
     return this.typeEvaluator(
+      csvList,
       fieldElement,
       fieldParentTreeName,
       defaultLanguage
@@ -69,6 +76,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
    * @return {React.ReactElement} - jsx base components
    */
   private typeEvaluator(
+    csvList: any,
     fieldElement: FieldElement,
     fieldParentTreeName: FieldParentTreeName,
     defaultLanguage: string
@@ -128,6 +136,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
+            csvList={csvList}
           />
         );
       case SELECT_ALL_FIELD_TYPE:
@@ -136,6 +145,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
+            csvList={csvList}
           />
         );
       case PHOTO_FIELD_TYPE:

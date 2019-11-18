@@ -7,11 +7,7 @@ import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../../components/typeEvalutors/Base';
-import {
-  geo,
-  REQUIRED_FIELD_MSG,
-  REQUIRED_SYMBOL,
-} from '../../../../../constants';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
@@ -32,6 +28,7 @@ import {
 
 /** props interface for the SelectAll Radio component */
 export interface SelectAllRadioProps {
+  csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string[];
@@ -308,7 +305,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     const finalRes: any[] = [];
 
     if (csvName) {
-      options = [...geo];
+      options = [...this.props.csvList];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {

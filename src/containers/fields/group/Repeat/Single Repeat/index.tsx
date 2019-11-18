@@ -7,6 +7,7 @@ import {
 import GroupTypeEvaluator from '../../../../../components/typeEvalutors/Group';
 
 export interface SingleRepeatProps {
+  csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: any;
@@ -19,6 +20,7 @@ export interface SingleRepeatProps {
 class SingleRepeat extends React.Component<SingleRepeatProps> {
   public render() {
     const {
+      csvList,
       defaultLanguage,
       fieldElement,
       fieldParentTreeName,
@@ -43,6 +45,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
               '/'
             }
             defaultLanguage={defaultLanguage}
+            csvList={csvList}
           />
         )}
       </div>

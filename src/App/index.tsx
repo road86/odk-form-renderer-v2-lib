@@ -17,13 +17,15 @@ export interface AppProps {
   userInputObj: any;
   defaultLanguage: string;
   fieldElements: any;
+  csvList: any;
   handleSubmit(userInput: any): any;
 }
 
 class App extends React.Component<AppProps> {
   public render() {
-    const { defaultLanguage, fieldElements } = this.props;
+    const { csvList, defaultLanguage, fieldElements } = this.props;
     const props = {
+      csvList,
       defaultLanguage,
       fieldElements,
       fieldParentTreeName: '',

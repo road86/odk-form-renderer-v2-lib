@@ -7,11 +7,7 @@ import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../../components/typeEvalutors/Base';
-import {
-  geo,
-  REQUIRED_FIELD_MSG,
-  REQUIRED_SYMBOL,
-} from '../../../../../constants';
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
@@ -32,6 +28,7 @@ import {
 
 /** props interface for the SelectOne component */
 export interface SelectOneRadioProps {
+  csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
@@ -249,7 +246,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
     let options: any[] = [];
     const distinctOptions: any[] = [];
     if (csvName) {
-      options = [...geo];
+      options = [...this.props.csvList];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {

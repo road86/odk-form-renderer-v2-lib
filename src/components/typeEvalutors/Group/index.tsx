@@ -6,6 +6,7 @@ import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
 /** props Interface for the GroupTypeEvaluator component */
 export interface GroupTypeEvaluatorProps {
+  csvList: any;
   defaultLanguage: string;
   fieldElements: FieldElement[];
   fieldParentTreeName: string;
@@ -13,12 +14,18 @@ export interface GroupTypeEvaluatorProps {
 
 class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   public render() {
-    const { fieldElements, fieldParentTreeName, defaultLanguage } = this.props;
+    const {
+      csvList,
+      fieldElements,
+      fieldParentTreeName,
+      defaultLanguage,
+    } = this.props;
     return (
       <div>
         {fieldElements.map(fieldElement => (
           <div key={'group_' + fieldElement.name}>
             {this.typeEvaluator(
+              csvList,
               fieldElement,
               fieldParentTreeName,
               defaultLanguage
@@ -35,6 +42,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
    * @return {React.ReactElement} - jsx group components/ base evaluator component
    */
   private typeEvaluator(
+    csvList: any,
     fieldElement: FieldElement,
     fieldParentTreeName: FieldParentTreeName,
     defaultLanguage: string
@@ -47,6 +55,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
+              csvList={csvList}
             />
           </div>
         );
@@ -57,6 +66,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
+              csvList={csvList}
             />
           </div>
         );
@@ -66,6 +76,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
+            csvList={csvList}
           />
         );
     }

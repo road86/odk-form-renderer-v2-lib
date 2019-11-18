@@ -20,6 +20,7 @@ import {
 } from '../../../../utils/helpers';
 
 export interface GroupProps {
+  csvList: any;
   defaultLanguage: string;
   fieldElement: FieldElement;
   fieldParentTreeName: string;
@@ -34,6 +35,7 @@ export interface GroupProps {
 class Group extends React.Component<GroupProps> {
   public render() {
     const {
+      csvList,
       fieldElement,
       fieldParentTreeName,
       defaultLanguage,
@@ -51,6 +53,7 @@ class Group extends React.Component<GroupProps> {
                 fieldParentTreeName + 'group/' + fieldElement.name + '/'
               }
               defaultLanguage={defaultLanguage}
+              csvList={csvList}
             />
           )}
         </FormGroup>
