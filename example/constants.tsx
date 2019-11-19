@@ -14,6 +14,107 @@ export const DEMO_FORM_JSON = {
     {
       children: [
         {
+          name: '03-31',
+          label: {
+            Bangla: '1st  Quarter: (1st January - 31 March)',
+            English: '1st  Quarter: (1st January - 31 March)',
+          },
+        },
+        {
+          name: '06-30',
+          label: {
+            Bangla: '2nd  Quarter: (01 April - 30 June)',
+            English: '2nd  Quarter: (01 April - 30 June)',
+          },
+        },
+        {
+          name: '09-30',
+          label: {
+            Bangla: '3rd  Quarter: (1st July - 30 September)',
+            English: '3rd  Quarter: (1st July - 30 September)',
+          },
+        },
+        {
+          name: '12-30',
+          label: {
+            Bangla: '4th Quarter: (1st October - 31 December)',
+            English: '4th Quarter: (1st October - 31 December)',
+          },
+        },
+      ],
+      name: 'quarter',
+      bind: {
+        required: 'yes',
+      },
+      label: {
+        Bangla: 'Select Quarter',
+        English: 'Select Quarter',
+      },
+      type: 'select one',
+    },
+    {
+      children: [
+        {
+          name: '2019',
+          label: {
+            Bangla: '2019',
+            English: '2019',
+          },
+        },
+        {
+          name: '2020',
+          label: {
+            Bangla: '2020',
+            English: '2020',
+          },
+        },
+        {
+          name: '2021',
+          label: {
+            Bangla: '2021',
+            English: '2021',
+          },
+        },
+        {
+          name: '2022',
+          label: {
+            Bangla: '2022',
+            English: '2022',
+          },
+        },
+        {
+          name: '2023',
+          label: {
+            Bangla: '2023',
+            English: '2023',
+          },
+        },
+      ],
+      name: 'year',
+      bind: {
+        required: 'yes',
+      },
+      label: {
+        Bangla: 'Select Year',
+        English: 'Select Year',
+      },
+      type: 'select one',
+    },
+    {
+      name: 'report_month',
+      bind: {
+        readonly: 'TRUE',
+        calculate: 'concat(${year},"-",${quarter})',
+      },
+      label: {
+        Bangla: 'Report month',
+        English: 'Report month',
+      },
+      type: 'text',
+    },
+    {
+      children: [
+        {
           name: 'male',
           bind: {
             required: 'yes',
