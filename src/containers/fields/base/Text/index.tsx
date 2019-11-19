@@ -92,21 +92,53 @@ class Text extends React.Component<TextProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      return (
-        <FormGroup>
-          <Label>{fieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <Input
-            type="text"
-            name={fieldElement.name}
-            onChange={this.onChangeHandler}
-            value={fieldValue || ''}
-            readOnly={isReadonly}
-          />
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
-        </FormGroup>
-      );
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        let calculatedValue: any = '';
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+
+        if (calculatedValue !== fieldValue) {
+          this.props.assignFieldValueActionCreator(
+            fieldParentTreeName + fieldElement.name,
+            calculatedValue
+          );
+        }
+
+        return (
+          <FormGroup>
+            <Label>{fieldLabel}</Label>
+            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+            <Input
+              type="text"
+              name={fieldElement.name}
+              onChange={this.onChangeHandler}
+              value={calculatedValue || ''}
+              readOnly={isReadonly}
+            />
+            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          </FormGroup>
+        );
+      } else {
+        return (
+          <FormGroup>
+            <Label>{fieldLabel}</Label>
+            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+            <Input
+              type="text"
+              name={fieldElement.name}
+              onChange={this.onChangeHandler}
+              value={fieldValue || ''}
+              readOnly={isReadonly}
+            />
+            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          </FormGroup>
+        );
+      }
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(

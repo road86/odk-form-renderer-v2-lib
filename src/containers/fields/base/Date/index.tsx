@@ -127,6 +127,7 @@ class KbDate extends React.Component<DateProps> {
       return null;
     }
   }
+
   /** sets the value of field element in store
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
