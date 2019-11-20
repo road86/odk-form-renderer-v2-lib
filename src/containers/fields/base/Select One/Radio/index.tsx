@@ -11,9 +11,11 @@ import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
+  assignOptionListAction,
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getOptionList,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
@@ -32,7 +34,9 @@ export interface SelectOneRadioProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
+  optionList: object;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
@@ -130,6 +134,14 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
             );
           }
         }
+
+        if (!_.isEqual(this.props.optionList, { ...resultOptions })) {
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            resultOptions
+          );
+        }
+
         return (
           <FormGroup>
             <Label>{fieldLabel}</Label>
@@ -154,6 +166,23 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         );
       } else {
         if (fieldElement.children) {
+          const tempObjArray: any = [];
+          fieldElement.children.map(elem => {
+            const elemObj: any = {};
+            const name: string = 'name';
+            const label: string = 'label';
+            elemObj[name] = elem.name;
+            elemObj[label] = elem.label;
+            tempObjArray.push(elemObj);
+          });
+
+          if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
+            this.props.assignOptionListActionCreator(
+              this.props.fieldParentTreeName + fieldElement.name,
+              tempObjArray
+            );
+          }
+
           return (
             <FormGroup>
               <Label>{fieldLabel}</Label>
@@ -310,6 +339,7 @@ interface DispatchedStateProps {
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
+  optionList: object;
 }
 
 /** Interface to describe props from parent */
@@ -347,6 +377,7 @@ const mapStateToProps = (
       getEvaluatedExpressionSelector
     ),
     isPresentInErrorSelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name),
   };
   return result;
 };
@@ -355,6 +386,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
