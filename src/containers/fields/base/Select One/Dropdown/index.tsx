@@ -12,9 +12,11 @@ import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
+  assignOptionListAction,
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getOptionList,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
@@ -32,7 +34,9 @@ export interface SelectOneDropDownProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string;
+  optionList: object;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
@@ -118,6 +122,8 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
+
+        this.setOptionList(resultOptions);
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(elem => {
@@ -127,6 +133,8 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
             );
             options.push({ label: childrenLabel, value: elem.name });
           });
+
+          this.setOptionList(fieldElement.children);
         }
       }
 
@@ -183,6 +191,28 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
       return null;
     }
   }
+
+  /** Sets the option list to the Redux Store
+   * @param {any} optionObject - the option object to be processed
+   */
+  private setOptionList = (optionObject: any) => {
+    const tempObjArray: any = [];
+    optionObject.map((elem: { name: any; label: any }) => {
+      const elemObj: any = {};
+      const name: string = 'name';
+      const label: string = 'label';
+      elemObj[name] = elem.name;
+      elemObj[label] = elem.label;
+      tempObjArray.push(elemObj);
+    });
+
+    if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
+      this.props.assignOptionListActionCreator(
+        this.props.fieldParentTreeName + this.props.fieldElement.name,
+        tempObjArray
+      );
+    }
+  };
 
   /** sets the value of field element in store
    * @param {any} event - the onchange input event
@@ -301,6 +331,7 @@ interface DispatchedStateProps {
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
+  optionList: object;
 }
 
 /** Interface to describe props from parent */
@@ -339,6 +370,7 @@ const mapStateToProps = (
       getEvaluatedExpressionSelector
     ),
     isPresentInErrorSelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name),
   };
   return result;
 };
@@ -347,6 +379,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
