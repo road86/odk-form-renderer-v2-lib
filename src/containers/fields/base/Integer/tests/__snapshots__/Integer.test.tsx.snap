@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/group/Group renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(Integer)
+    assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
+    fieldElement={
+      Object {
+        "bind": Object {
+          "constraint": ".>=0",
+          "jr:constraintMsg": Object {
+            "English": "Negative value not allowed",
+          },
+          "readonly": "true",
+          "required": "Yes",
+        },
+        "hint": "integer type with no appearance",
+        "label": "Integer widget",
+        "name": "integer_widget",
+        "type": "integer",
+      }
+    }
+    fieldParentTreeName=""
+    fieldValue={120}
+  >
+    <Integer
+      addErrorInputIdActionCreator={[Function]}
+      assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
+      fieldElement={
+        Object {
+          "bind": Object {
+            "constraint": ".>=0",
+            "jr:constraintMsg": Object {
+              "English": "Negative value not allowed",
+            },
+            "readonly": "true",
+            "required": "Yes",
+          },
+          "hint": "integer type with no appearance",
+          "label": "Integer widget",
+          "name": "integer_widget",
+          "type": "integer",
+        }
+      }
+      fieldParentTreeName=""
+      fieldValue={120}
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Integer widget
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              *
+            </label>
+          </Label>
+          <Input
+            name="integer_widget"
+            onChange={[Function]}
+            readOnly={true}
+            type="number"
+            value={120}
+          >
+            <input
+              className="form-control"
+              name="integer_widget"
+              onChange={[Function]}
+              readOnly={true}
+              type="number"
+              value={120}
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </Integer>
+  </Connect(Integer)>
+</Provider>
+`;

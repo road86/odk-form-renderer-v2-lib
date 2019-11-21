@@ -506,16 +506,25 @@ function kbSubstr(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
-function outerScopedVariables(variableName: any, tmpUserInput: any): any {
-  let variableValue = null;
+function outerScopedVariables(
+  variableName: any,
+  variableValue: any,
+  tmpUserInput: any
+): any {
   // tslint:disable-next-line: forin
   for (const key in tmpUserInput) {
-    if (key === variableName) {
+    const nodeNames = key.split('/');
+    const variableNameFromKey = nodeNames[nodeNames.length - 1];
+    if (variableNameFromKey === variableName) {
       return tmpUserInput[key];
     }
     if (typeof tmpUserInput[key] === 'object') {
       if (variableValue == null) {
-        variableValue = outerScopedVariables(variableName, tmpUserInput[key]);
+        variableValue = outerScopedVariables(
+          variableName,
+          variableValue,
+          tmpUserInput[key]
+        );
       }
     }
   }
@@ -525,35 +534,29 @@ function outerScopedVariables(variableName: any, tmpUserInput: any): any {
 function parseMostClosestScopedVariable(variableName: any) {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
-  let tmpUserInput = userInput;
-  let variableValue = outerScopedVariables(variableName, tmpUserInput);
-  if (variableName in tmpUserInput) {
-    variableValue = tmpUserInput[variableName];
-  }
+  const tmpUserInput = userInput;
+  let variableValue = null;
+  variableValue = outerScopedVariables(
+    variableName,
+    variableValue,
+    tmpUserInput
+  );
+  let parent = '';
   for (i = 0; i < tmpHierchicalName.length - 1; ) {
     // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;
-      if (tmpUserInput) {
-        tmpUserInput = tmpUserInput[tmpHierchicalName[i]];
-      }
-      if (tmpUserInput) {
-        tmpUserInput = tmpUserInput[tmpHierchicalName[i + 1]];
-      }
+      const index = parseInt(tmpHierchicalName[i + 1], 10);
+      variableValue = outerScopedVariables(
+        variableName,
+        variableValue,
+        tmpUserInput[parent + tmpHierchicalName[i]][index]
+      );
       i += 2;
     } else {
-      if (tmpUserInput) {
-        tmpUserInput = tmpUserInput[tmpHierchicalName[i + 1]];
-      }
+      // path.push(parent + tmpHierchicalName[i + 1]);
+      parent = parent + tmpHierchicalName[i + 1] + '/';
       i += 2;
-    }
-    if (
-      // tslint:disable-next-line: triple-equals
-      tmpUserInput != undefined &&
-      tmpUserInput != null &&
-      variableName in tmpUserInput
-    ) {
-      variableValue = tmpUserInput[variableName];
     }
   }
   return variableValue;
@@ -563,25 +566,24 @@ function parseDot() {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
   let tmpUserInput = userInput;
+  let parent = '';
+  const path = [];
   for (i = 0; i < tmpHierchicalName.length - 1; ) {
     // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;
-      if (tmpUserInput) {
-        tmpUserInput = tmpUserInput[tmpHierchicalName[i]];
-      }
-      if (tmpUserInput) {
-        tmpUserInput = tmpUserInput[tmpHierchicalName[i + 1]];
-      }
+      path.push(parent + tmpHierchicalName[i]);
+      path.push(parseInt(tmpHierchicalName[i + 1], 10));
+      parent = parent + tmpHierchicalName[i] + '/';
       i += 2;
     } else {
-      if (tmpUserInput) {
-        tmpUserInput = tmpUserInput[tmpHierchicalName[i + 1]];
-      }
+      // path.push(parent + tmpHierchicalName[i + 1]);
+      parent = parent + tmpHierchicalName[i + 1] + '/';
       i += 2;
     }
   }
-  tmpUserInput = tmpUserInput[tmpHierchicalName[tmpHierchicalName.length - 1]];
+  path.push(parent + tmpHierchicalName[tmpHierchicalName.length - 1]);
+  tmpUserInput = userInput.getIn(path);
   return tmpUserInput;
 }
 

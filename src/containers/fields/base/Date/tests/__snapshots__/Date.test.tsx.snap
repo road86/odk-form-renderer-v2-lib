@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/base/Date renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(KbDate)
+    assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
+    fieldElement={
+      Object {
+        "bind": Object {
+          "required": "Yes",
+        },
+        "label": Object {
+          "English": "End Date",
+        },
+        "name": "event_end_date",
+        "type": "date",
+      }
+    }
+    fieldParentTreeName=""
+    fieldValue="2019-10-11"
+  >
+    <KbDate
+      addErrorInputIdActionCreator={[Function]}
+      assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
+      fieldElement={
+        Object {
+          "bind": Object {
+            "required": "Yes",
+          },
+          "label": Object {
+            "English": "End Date",
+          },
+          "name": "event_end_date",
+          "type": "date",
+        }
+      }
+      fieldParentTreeName=""
+      fieldValue="2019-10-11"
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              End Date
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              *
+            </label>
+          </Label>
+          <Input
+            name="event_end_date"
+            onChange={[Function]}
+            readOnly={false}
+            type="date"
+            value="2019-10-11"
+          >
+            <input
+              className="form-control"
+              name="event_end_date"
+              onChange={[Function]}
+              readOnly={false}
+              type="date"
+              value="2019-10-11"
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </KbDate>
+  </Connect(KbDate)>
+</Provider>
+`;

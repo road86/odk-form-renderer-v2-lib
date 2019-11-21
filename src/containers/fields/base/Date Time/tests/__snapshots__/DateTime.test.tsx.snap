@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/base/Date Time renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(DateTime)
+    assignFieldValueActionCreator={[MockFunction]}
+    defaultLanguage="English"
+    fieldElement={
+      Object {
+        "bind": Object {
+          "required": "Yes",
+        },
+        "label": Object {
+          "English": "End Date Time",
+        },
+        "name": "event_end_date_time",
+        "type": "dateTime",
+      }
+    }
+    fieldParentTreeName=""
+    fieldValue="2019-11-12T07:02:00.000Z"
+  >
+    <DateTime
+      addErrorInputIdActionCreator={[Function]}
+      assignFieldValueActionCreator={[Function]}
+      defaultLanguage="English"
+      fieldElement={
+        Object {
+          "bind": Object {
+            "required": "Yes",
+          },
+          "label": Object {
+            "English": "End Date Time",
+          },
+          "name": "event_end_date_time",
+          "type": "dateTime",
+        }
+      }
+      fieldParentTreeName=""
+      fieldValue="2019-11-12T07:02:00.000Z"
+      getEvaluatedExpressionSelector={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              End Date Time
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              *
+            </label>
+          </Label>
+          <Input
+            name="event_end_date_time"
+            onChange={[Function]}
+            readOnly={false}
+            type="datetime-local"
+            value="2019-11-12T07:02:00.000"
+          >
+            <input
+              className="form-control"
+              name="event_end_date_time"
+              onChange={[Function]}
+              readOnly={false}
+              type="datetime-local"
+              value="2019-11-12T07:02:00.000"
+            />
+          </Input>
+        </div>
+      </FormGroup>
+    </DateTime>
+  </Connect(DateTime)>
+</Provider>
+`;

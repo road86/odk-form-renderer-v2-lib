@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop Down 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(SelectAllRadio)
+    assignFieldValueActionCreator={[MockFunction]}
+    csvList={Object {}}
+    defaultLanguage="English"
+    fieldElement={
+      Object {
+        "bind": Object {
+          "required": "Yes",
+        },
+        "children": Array [
+          Object {
+            "label": "A",
+            "name": "a",
+          },
+          Object {
+            "label": "B",
+            "name": "b",
+          },
+        ],
+        "control": Object {
+          "appearance": "minimal",
+        },
+        "hint": "select_multiple type with minimal appearance, 4 image choices",
+        "label": "Spinner widget: select multiple",
+        "name": "spinner_multi_widget",
+        "type": "select all that apply",
+      }
+    }
+    fieldParentTreeName=""
+    fieldValue={
+      Array [
+        "a",
+        "b",
+      ]
+    }
+  >
+    <SelectAllRadio
+      addErrorInputIdActionCreator={[Function]}
+      assignFieldValueActionCreator={[Function]}
+      csvList={Object {}}
+      defaultLanguage="English"
+      fieldElement={
+        Object {
+          "bind": Object {
+            "required": "Yes",
+          },
+          "children": Array [
+            Object {
+              "label": "A",
+              "name": "a",
+            },
+            Object {
+              "label": "B",
+              "name": "b",
+            },
+          ],
+          "control": Object {
+            "appearance": "minimal",
+          },
+          "hint": "select_multiple type with minimal appearance, 4 image choices",
+          "label": "Spinner widget: select multiple",
+          "name": "spinner_multi_widget",
+          "type": "select all that apply",
+        }
+      }
+      fieldParentTreeName=""
+      fieldValue={
+        Array [
+          "a",
+          "b",
+        ]
+      }
+      getEvaluatedExpressionSelector={[Function]}
+      getEvaluatedExpressionSelectorForSelect={[Function]}
+      isComponentRender={true}
+      isPresentInErrorSelector={[Function]}
+      removeErrorInputIdActionCreator={[Function]}
+    >
+      <FormGroup
+        tag="div"
+      >
+        <div
+          className="form-group"
+        >
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              Spinner widget: select multiple
+            </label>
+          </Label>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              *
+            </label>
+          </Label>
+          <div
+            className="col-md-12"
+            key="0"
+          >
+            <Input
+              key="spinner_multi_widget-0"
+              name="spinner_multi_widget"
+              onChange={[Function]}
+              readOnly={false}
+              type="checkbox"
+              value="a"
+            >
+              <input
+                className="form-check-input"
+                name="spinner_multi_widget"
+                onChange={[Function]}
+                readOnly={false}
+                type="checkbox"
+                value="a"
+              />
+            </Input>
+             
+            a
+          </div>
+          <div
+            className="col-md-12"
+            key="1"
+          >
+            <Input
+              key="spinner_multi_widget-1"
+              name="spinner_multi_widget"
+              onChange={[Function]}
+              readOnly={false}
+              type="checkbox"
+              value="b"
+            >
+              <input
+                className="form-check-input"
+                name="spinner_multi_widget"
+                onChange={[Function]}
+                readOnly={false}
+                type="checkbox"
+                value="b"
+              />
+            </Input>
+             
+            b
+          </div>
+        </div>
+      </FormGroup>
+    </SelectAllRadio>
+  </Connect(SelectAllRadio)>
+</Provider>
+`;
