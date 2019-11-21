@@ -12,9 +12,11 @@ import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
+  assignOptionListAction,
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getOptionList,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
@@ -32,7 +34,9 @@ export interface SelectAllDropDownProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string[];
+  optionList: object;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
@@ -117,6 +121,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
+        this.setOptionList(resultOptions);
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(elem => {
@@ -126,6 +131,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
             );
             options.push({ label: childrenLabel, value: elem.name });
           });
+          this.setOptionList(fieldElement.children);
         }
       }
 
@@ -193,9 +199,38 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
           );
         }
       }
+      if (this.props.optionList != null) {
+        this.props.assignOptionListActionCreator(
+          this.props.fieldParentTreeName + fieldElement.name,
+          null
+        );
+      }
       return null;
     }
   }
+
+  /** Sets the option list to the Redux Store
+   * @param {any} optionObject - the option object to be processed
+   */
+  private setOptionList = (optionObject: any) => {
+    const tempObjArray: any = [];
+    optionObject.map((elem: { name: any; label: any }) => {
+      const elemObj: any = {};
+      const name: string = 'name';
+      const label: string = 'label';
+      elemObj[name] = elem.name;
+      elemObj[label] = elem.label;
+      tempObjArray.push(elemObj);
+    });
+
+    if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
+      this.props.assignOptionListActionCreator(
+        this.props.fieldParentTreeName + this.props.fieldElement.name,
+        tempObjArray
+      );
+    }
+  };
+
   /** sets the value of field element in store
    * @param {any} values - the onchange input values
    * @param {any} fieldName - the input name
@@ -347,6 +382,7 @@ interface ParentProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   defaultLanguage: string;
+  optionList: object;
 }
 
 /** Map props to state  */
@@ -377,6 +413,7 @@ const mapStateToProps = (
       getEvaluatedExpressionSelector
     ),
     isPresentInErrorSelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name),
   };
   return result;
 };
@@ -385,6 +422,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
