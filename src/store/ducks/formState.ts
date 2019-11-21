@@ -44,7 +44,7 @@ export interface AssignFieldValueAction extends AnyAction {
 /** interface for OPTION_LIST_ASSIGNED action */
 export interface AssignOptionListAction extends AnyAction {
   fieldTreeName: string;
-  fieldValue: any;
+  optionList: any;
   type: typeof OPTION_LIST_ASSIGNED;
 }
 
@@ -104,10 +104,10 @@ export const assignFieldValueAction = (
  */
 export const assignOptionListAction = (
   fieldTreeName: string,
-  fieldValue: any
+  optionList: any
 ): AssignOptionListAction => ({
   fieldTreeName,
-  fieldValue,
+  optionList,
   type: OPTION_LIST_ASSIGNED,
 });
 
@@ -207,7 +207,7 @@ export default function reducer(
       const modifiedUserInputObjList = getModifiedUserInputObject(
         state.getIn(['optionList']).asMutable({ deep: true }),
         action.fieldTreeName,
-        { ...action.fieldValue }
+        action.optionList != null ? { ...action.optionList } : null
       );
       const newState = state.asMutable({ deep: true });
       return SeamlessImmutable({
