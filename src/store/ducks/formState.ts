@@ -262,7 +262,10 @@ export function getFieldValue(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return getValueFromUserInputObj((state as any).userInput, fieldTreeName);
+  return getValueFromUserInputObj(
+    (state as any).getIn(['userInput']).asMutable({ deep: true }),
+    fieldTreeName
+  );
 }
 
 /** get option list by their respective element tree name
@@ -274,7 +277,10 @@ export function getOptionList(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return getValueFromUserInputObj((state as any).optionList, fieldTreeName);
+  return getValueFromUserInputObj(
+    (state as any).getIn(['optionList']).asMutable({ deep: true }),
+    fieldTreeName
+  );
 }
 
 /** get the value of the evaluated expression
