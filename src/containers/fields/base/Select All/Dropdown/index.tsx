@@ -375,6 +375,7 @@ interface DispatchedStateProps {
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
+  optionList: object;
 }
 
 /** Interface to describe props from parent */
@@ -382,7 +383,6 @@ interface ParentProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   defaultLanguage: string;
-  optionList: object;
 }
 
 /** Map props to state  */

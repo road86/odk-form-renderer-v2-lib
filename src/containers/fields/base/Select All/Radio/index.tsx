@@ -185,7 +185,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                   readOnly={isReadonly}
                   checked={selectedValues.includes(elem.name)}
                 />{' '}
-                {elem.label}
+                {getFieldLabelText(elem, defaultLanguage)}
               </div>
             ))}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -224,7 +224,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                     onChange={this.onChangeHandlerCheckBox}
                     readOnly={isReadonly}
                   />{' '}
-                  {elem.name}
+                  {getFieldLabelText(elem, defaultLanguage)}
                 </div>
               ))}
               {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
