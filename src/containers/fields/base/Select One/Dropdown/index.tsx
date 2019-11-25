@@ -21,6 +21,7 @@ import {
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
@@ -73,6 +74,11 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
@@ -163,7 +169,7 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
 
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
           <Select
             multi={false}
