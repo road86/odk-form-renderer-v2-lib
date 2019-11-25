@@ -363,7 +363,7 @@ export const DEMO_FORM_JSON = {
         },
         {
           name: 'string_widget',
-          label: 'String widget',
+          label: 'String widget [${report_month}]',
           type: 'text',
           bind: {
             constraint: '.="hello"',
