@@ -204,6 +204,7 @@ export function getModifiedUserInputObject(
         modifiedObj = modifiedObj[parent + treeNodes[i]];
       } else {
         modifiedObj[parent + treeNodes[i]] = [];
+        modifiedObj = modifiedObj[parent + treeNodes[i]];
       }
       const index = parseInt(treeNodes[i + 1], 10);
       if (modifiedObj[index]) {
@@ -221,6 +222,37 @@ export function getModifiedUserInputObject(
   }
   modifiedObj[parent + treeNodes[treeNodes.length - 1]] = fieldValue;
   return userInputObj;
+}
+
+/** Returns the filtered option list Array For Repeat property
+ * @param {any} userInputObj - the current option list object
+ * @param {string} fieldTreeName - the field Tree name
+ * @param {any} repeatIndex - the repeat index to remove
+ * @returns {any} - the new user filredred repear array after assignment
+ */
+export function getModifiedOptionListForRepeat(
+  userInputObj: any,
+  fieldTreeName: string,
+  repeatIndex: number
+): any {
+  const filteredRepeatArray: any = [];
+  const optionListobj: any = userInputObj;
+
+  Object.entries(optionListobj).forEach(key => {
+    const keyNameOptionListobj: any = key[0];
+    const keyValueOptionListobj: any = key[1];
+    if (keyNameOptionListobj === fieldTreeName) {
+      const repeatIndexString: string = String(repeatIndex);
+      Object.entries(keyValueOptionListobj).map(keyRepeat => {
+        const keyNameRepeatObject: any = keyRepeat[0];
+        const keyValueRepeatValue: any = keyRepeat[1];
+        if (keyNameRepeatObject !== repeatIndexString) {
+          filteredRepeatArray.push(keyValueRepeatValue);
+        }
+      });
+    }
+  });
+  return filteredRepeatArray;
 }
 
 /** returns the value from the user input object
