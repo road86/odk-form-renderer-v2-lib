@@ -1553,8 +1553,64 @@ export const DEMO_FORM_JSON = {
           label: 'Name',
           type: 'text',
         },
+        {
+          children: [
+            {
+              name: 'yes',
+              label: 'GO',
+            },
+            {
+              name: 'no',
+              label: 'TO',
+            },
+            {
+              name: 'dk',
+              label: 'THE',
+            },
+            {
+              name: 'na',
+              label: 'MALL',
+            },
+          ],
+          name: 'table_list_RP',
+          hint:
+            'Show only the inputs of these options and not the labels (type=select_multiple yes_no, appearance=list-nolabel)',
+          label: 'GO To the mall',
+          type: 'select all that apply',
+        },
       ],
       name: 'repeat_1',
+      type: 'repeat',
+    },
+    {
+      children: [
+        {
+          children: [
+            {
+              name: 'as',
+              label: 'this',
+            },
+            {
+              name: 'df',
+              label: 'is',
+            },
+            {
+              name: 'sdfffff',
+              label: 'rp',
+            },
+            {
+              name: 'd',
+              label: '2',
+            },
+          ],
+          name: 'table_list_RP_2',
+          hint:
+            'Show only the inputs of these options and not the labels (type=select_multiple yes_no, appearance=list-nolabel)',
+          label: 'GO To the mall',
+          type: 'select all that apply',
+        },
+      ],
+      name: 'repeat_2',
       type: 'repeat',
     },
     {
