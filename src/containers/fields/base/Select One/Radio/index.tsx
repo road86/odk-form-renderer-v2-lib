@@ -157,7 +157,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
                   readOnly={isReadonly}
                   checked={elem.name === fieldValue}
                 />{' '}
-                {elem.label}
+                {getFieldLabelText(elem, defaultLanguage)}
               </div>
             ))}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
@@ -197,7 +197,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
                     onChange={this.onChangeHandlerRadio(fieldElement.name)}
                     readOnly={isReadonly}
                   />{' '}
-                  {elem.name}
+                  {getFieldLabelText(elem, defaultLanguage)}
                 </div>
               ))}
               {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
