@@ -20,6 +20,7 @@ import {
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
@@ -73,6 +74,11 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
@@ -172,7 +178,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
 
         return (
           <FormGroup>
-            <Label>{fieldLabel}</Label>
+            <Label>{modifiedFieldLabel}</Label>
             {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
             {resultOptions.map((elem, index) => (
               <div key={index} className="col-md-12">
@@ -212,7 +218,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           }
           return (
             <FormGroup>
-              <Label>{fieldLabel}</Label>
+              <Label>{modifiedFieldLabel}</Label>
               {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
               {fieldElement.children.map((elem, index) => (
                 <div key={index} className="col-md-12">
