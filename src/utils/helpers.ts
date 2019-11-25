@@ -31,6 +31,39 @@ export function getFieldLabelText(
 }
 
 /**
+ * get the customised label text with previous input of the fieldElement
+ * @param {any} evaluator - the getEvaluatedExpressionSelector Function
+ * @param {string} labelText - the current Label Text
+ * @param {string} fieldTreeName - the field tree name
+ * @return {string | null} - field label text or null
+ */
+export function customizeLabelsWithPreviousInputs(
+  evaluator: any,
+  labelText: string,
+  fieldTreeName: string
+): string | null {
+  if (labelText === null || labelText === undefined) {
+    return null;
+  }
+  const placesOfCustomizationsRequiredList = labelText.match(/\[(.*?)\]/g);
+
+  if (placesOfCustomizationsRequiredList) {
+    placesOfCustomizationsRequiredList.forEach(tmpPlace => {
+      tmpPlace = tmpPlace.substring(1, tmpPlace.length - 1);
+      const customizedName = evaluator(tmpPlace, fieldTreeName);
+      const tmp = '[' + tmpPlace + ']';
+      if (customizedName != null && customizedName !== undefined) {
+        labelText = labelText.replace(tmp, customizedName);
+      } else {
+        labelText = labelText.replace(tmp, '');
+      }
+    });
+  }
+
+  return labelText;
+}
+
+/**
  * get the hint text of the fieldElement
  * @param {FieldElement} fieldElement - the fieldElement Object
  * @return {string} - field hint text
