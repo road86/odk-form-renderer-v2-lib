@@ -16,6 +16,7 @@ import {
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
@@ -60,6 +61,11 @@ class Integer extends React.Component<IntegerProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
@@ -95,7 +101,7 @@ class Integer extends React.Component<IntegerProps> {
 
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
           <Input
             type="number"
