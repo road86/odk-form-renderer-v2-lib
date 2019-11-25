@@ -4,6 +4,7 @@ import evaluater from '../../utils/compiler';
 import {
   checkGroupedValuesForEmpty,
   emptyGroupedValues,
+  getModifiedOptionListForRepeat,
   getModifiedUserInputObject,
   getValueFromUserInputObj,
 } from '../../utils/helpers';
@@ -21,6 +22,9 @@ export interface FormState {
 export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 /** OPTION_LIST_ASSIGNED action type */
 export const OPTION_LIST_ASSIGNED = 'odk/reducer/form/OPTION_LIST_ASSIGNED';
+/** REMOVE_FROM_OPTION_LIST action type */
+export const REMOVE_FROM_OPTION_LIST_REPEAT =
+  'odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT';
 /** RESET_STORE action type */
 export const RESET_STORE = 'odk/reducer/form/RESET_STORE';
 /** ADD_ERROR_INPUT_ID action type */
@@ -46,6 +50,13 @@ export interface AssignOptionListAction extends AnyAction {
   fieldTreeName: string;
   optionList: any;
   type: typeof OPTION_LIST_ASSIGNED;
+}
+
+/** interface for REMOVE_FROM_OPTION_LIST action */
+export interface RemoveFromOptionList extends AnyAction {
+  fieldTreeName: string;
+  repeatIndex: number;
+  type: typeof REMOVE_FROM_OPTION_LIST_REPEAT;
 }
 
 /** interface for RESET_STORE action */
@@ -111,6 +122,19 @@ export const assignOptionListAction = (
   type: OPTION_LIST_ASSIGNED,
 });
 
+/** Remove option list from Redux Store
+ * @param fieldTreeName - the field tree name
+ * @returns {RemoveFromOptionList} - an action to remove input id for errors
+ */
+export const RemoveFromOptionList = (
+  fieldTreeName: string,
+  repeatIndex: number
+): RemoveFromOptionList => ({
+  fieldTreeName,
+  repeatIndex,
+  type: REMOVE_FROM_OPTION_LIST_REPEAT,
+});
+
 /** Resets the redux store state to initial state
  * @return {ResetStoreAction} - an action to reset the redux store state
  */
@@ -171,6 +195,7 @@ export const setUserInputObj = (userInputObj: any): SetUserInputObj => ({
 export type FormActionTypes =
   | AssignFieldValueAction
   | AssignOptionListAction
+  | RemoveFromOptionList
   | ResetStoreAction
   | AddErrorInputId
   | RemoveErrorInputId
@@ -214,6 +239,33 @@ export default function reducer(
         ...newState,
         optionList: modifiedUserInputObjList,
       });
+    case REMOVE_FROM_OPTION_LIST_REPEAT:
+      let filteredRepeatArray: any = [];
+      if (
+        state
+          .getIn(['optionList'])
+          .asMutable({ deep: true })
+          .hasOwnProperty(action.fieldTreeName)
+      ) {
+        filteredRepeatArray = [
+          ...getModifiedOptionListForRepeat(
+            state.getIn(['optionList']).asMutable({ deep: true }),
+            action.fieldTreeName,
+            action.repeatIndex
+          ),
+        ];
+        const modifiedOptionListRepeat = getModifiedUserInputObject(
+          state.getIn(['optionList']).asMutable({ deep: true }),
+          action.fieldTreeName,
+          { ...filteredRepeatArray }
+        );
+        const newStateForRepeat = state.asMutable({ deep: true });
+        return SeamlessImmutable({
+          ...newStateForRepeat,
+          optionList: modifiedOptionListRepeat,
+        });
+      }
+      return state;
     case RESET_STORE:
       return initialState;
     case ADD_ERROR_INPUT_ID:
