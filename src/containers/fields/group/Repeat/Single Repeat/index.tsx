@@ -15,6 +15,7 @@ export interface SingleRepeatProps {
   repeatIndex: number;
   assignmentHandler: any;
   removeHandler: any;
+  removeOptionHandler: any;
 }
 
 class SingleRepeat extends React.Component<SingleRepeatProps> {
@@ -61,6 +62,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
       fieldElement,
       fieldParentTreeName,
       removeHandler,
+      removeOptionHandler,
     } = this.props;
     let newFieldValue: any[] = [...fieldValue];
     newFieldValue = newFieldValue.filter(
@@ -69,6 +71,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
     );
     assignmentHandler(fieldParentTreeName + fieldElement.name, newFieldValue);
     removeHandler(fieldParentTreeName + 'repeat/' + fieldElement.name + '/');
+    removeOptionHandler(fieldParentTreeName + fieldElement.name, repeatIndex);
   };
 }
 
