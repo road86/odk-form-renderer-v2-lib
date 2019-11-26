@@ -3,6 +3,7 @@ import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
 import Thing from '../.';
 import { DEMO_FORM_JSON, sampleUserInput } from './constants';
+import './index.css';
 
 const App = () => {
   const handleSubmit = (userInput: any) => {
