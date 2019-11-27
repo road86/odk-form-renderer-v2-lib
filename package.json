@@ -29,6 +29,9 @@
   },
   "jest": {
     "preset": "ts-jest",
+    "moduleNameMapper": {
+      "\\.(css|jpg|png)$": "<rootDir>/empty-module.js"
+    },
     "setupFilesAfterEnv": [
       "./src/setupTests.ts"
     ]
