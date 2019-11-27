@@ -17,6 +17,7 @@ import {
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
   isInputRequired,
@@ -63,6 +64,12 @@ class DateTime extends React.Component<DateTimeProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
@@ -98,7 +105,7 @@ class DateTime extends React.Component<DateTimeProps> {
 
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
           <br />
           <DatePicker
