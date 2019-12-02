@@ -185,7 +185,7 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
             onChange={this.onChangeHandler(fieldElement.name)}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
     } else {
