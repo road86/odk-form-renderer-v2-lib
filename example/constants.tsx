@@ -367,7 +367,7 @@ export const DEMO_FORM_JSON = {
           type: 'text',
           bind: {
             constraint: '.="hello"',
-            'jr:constraintMsg': 'Violated',
+            'jr:constraintMsg': 'Violated [${report_month}]',
             required: 'true',
           },
         },
@@ -1660,6 +1660,7 @@ export const sampleUserInput = {
   'number_widgets/decimal_widget': 12,
   'select_one_widgets/return_from': 'BY',
   'select_multi_widgets/spinner_multi_widget': ['c'],
+  'date_time_widgets/date_time_widget': '2019-11-23T10:30:00.000Z',
 };
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
