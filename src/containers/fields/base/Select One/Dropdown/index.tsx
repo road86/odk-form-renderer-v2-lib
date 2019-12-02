@@ -84,6 +84,12 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
       defaultLanguage
     );
 
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(

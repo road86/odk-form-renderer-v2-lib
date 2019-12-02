@@ -70,6 +70,11 @@ class KbDate extends React.Component<DateProps> {
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -115,7 +120,7 @@ class KbDate extends React.Component<DateProps> {
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
     } else {

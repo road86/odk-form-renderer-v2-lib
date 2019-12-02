@@ -83,6 +83,11 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -195,7 +200,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
               </div>
             ))}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
         );
       } else {
@@ -234,7 +239,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                 </div>
               ))}
               {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-              {isConstraintViolated && <Label>{constraintLabel}</Label>}
+              {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
             </FormGroup>
           );
         } else {

@@ -71,6 +71,11 @@ class Decimal extends React.Component<DecimalProps> {
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
 
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
@@ -113,7 +118,7 @@ class Decimal extends React.Component<DecimalProps> {
             readOnly={isReadonly}
           />
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
     } else {
