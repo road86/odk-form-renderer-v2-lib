@@ -171,7 +171,7 @@ export const DEMO_FORM_JSON = {
         },
         {
           control: {
-            appearance: "search('geo')",
+            appearance: "search('geo_2')",
           },
           name: 'division',
           bind: {
@@ -195,7 +195,7 @@ export const DEMO_FORM_JSON = {
         {
           control: {
             appearance:
-              "search('geo', 'matches', 'division_code', ${division})",
+              "search('geo_2', 'matches', 'division_code', ${division})",
           },
           name: 'district',
           bind: {
@@ -1706,6 +1706,85 @@ export const geo = [
     upazila_name: 'Alikadam',
   },
 ];
+
+export const geo_1 = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '1005',
+    district_name: 'BargunaL',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040915',
+    union_name: 'Arpangashia',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
+
+export const geo_2 = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
+
+export const CSV_LIST = { geo, geo_1, geo_2 };
 
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
