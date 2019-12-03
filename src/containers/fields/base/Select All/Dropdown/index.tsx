@@ -24,6 +24,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
@@ -88,6 +89,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -194,6 +196,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
             onChange={this.onChangeHandler(fieldElement.name)}
             value={selectedValues || []}
           />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>

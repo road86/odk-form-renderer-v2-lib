@@ -23,6 +23,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -88,6 +89,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
 
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
@@ -172,6 +174,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
                 {getFieldLabelText(elem, defaultLanguage)}
               </div>
             ))}
+            {fieldElement.hint && <Label>{hintLabel}</Label>}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
             {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
@@ -212,6 +215,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
                   {getFieldLabelText(elem, defaultLanguage)}
                 </div>
               ))}
+              {fieldElement.hint && <Label>{hintLabel}</Label>}
               {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
               {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
             </FormGroup>
