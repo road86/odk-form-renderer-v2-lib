@@ -1662,5 +1662,50 @@ export const sampleUserInput = {
   'select_multi_widgets/spinner_multi_widget': ['c'],
   'date_time_widgets/date_time_widget': '2019-11-23T10:30:00.000Z',
 };
+
+// tslint:disable
+export const geo = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '1005',
+    district_name: 'BargunaL',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040915',
+    union_name: 'Arpangashia',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
+
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
