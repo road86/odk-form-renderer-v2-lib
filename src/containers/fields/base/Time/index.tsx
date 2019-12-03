@@ -117,8 +117,8 @@ class KbTime extends React.Component<TimeProps> {
             value={fieldValue || ''}
             readOnly={isReadonly}
           />
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {fieldElement.hint && <Label>{hintLabel}</Label>}
+          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );

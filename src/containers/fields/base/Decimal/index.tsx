@@ -19,6 +19,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -77,6 +78,8 @@ class Decimal extends React.Component<DecimalProps> {
       fieldParentTreeName + fieldElement.name
     );
 
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
+
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -117,6 +120,7 @@ class Decimal extends React.Component<DecimalProps> {
             value={fieldValue || fieldValue === 0 ? fieldValue : ''}
             readOnly={isReadonly}
           />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>

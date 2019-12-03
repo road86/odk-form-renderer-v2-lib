@@ -20,6 +20,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -79,6 +80,7 @@ class DateTime extends React.Component<DateTimeProps> {
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -127,6 +129,7 @@ class DateTime extends React.Component<DateTimeProps> {
             readOnly={isReadonly}
           />
           <br />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>

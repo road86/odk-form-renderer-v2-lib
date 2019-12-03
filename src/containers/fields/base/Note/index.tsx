@@ -18,8 +18,8 @@ import {
 import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
-  getFieldHintText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
@@ -77,7 +77,7 @@ class Note extends React.Component<NoteProps> {
           fieldElement.default
         );
       }
-      const fieldHint = getFieldHintText(fieldElement, defaultLanguage);
+      const fieldHint = getHintLabelText(fieldElement, defaultLanguage);
       if (
         (isRequiredViolated || isConstraintViolated) &&
         !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
@@ -98,7 +98,7 @@ class Note extends React.Component<NoteProps> {
         <FormGroup>
           <Label>{fieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <FormText>{fieldHint}</FormText>
+          {fieldElement.hint && <FormText>{fieldHint}</FormText>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>

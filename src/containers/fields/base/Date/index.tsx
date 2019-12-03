@@ -19,6 +19,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -75,6 +76,7 @@ class KbDate extends React.Component<DateProps> {
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -119,6 +121,7 @@ class KbDate extends React.Component<DateProps> {
             value={defaultValue}
             readOnly={isReadonly}
           />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>

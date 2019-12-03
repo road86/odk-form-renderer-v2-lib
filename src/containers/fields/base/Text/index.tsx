@@ -19,6 +19,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -71,12 +72,13 @@ class Text extends React.Component<TextProps> {
       fieldElement,
       defaultLanguage
     );
-
     const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
       getEvaluatedExpressionSelector,
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
 
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
@@ -133,6 +135,7 @@ class Text extends React.Component<TextProps> {
               readOnly={isReadonly}
             />
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+            <Label>{hintLabel}</Label>
             {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
         );
@@ -148,6 +151,7 @@ class Text extends React.Component<TextProps> {
               value={fieldValue || ''}
               readOnly={isReadonly}
             />
+            {fieldElement.hint && <Label>{hintLabel}</Label>}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
             {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
