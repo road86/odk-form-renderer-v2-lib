@@ -14,6 +14,20 @@ export default function getTextFromProperty(property: string | {
  */
 export declare function getFieldLabelText(fieldElement: FieldElement, languageIdentifier: string): string;
 /**
+ * get the label hint of the fieldElement
+ * @param {FieldElement} fieldElement - the fieldElement Object
+ * @return {string} - field label text
+ */
+export declare function getHintLabelText(fieldElement: FieldElement, languageIdentifier: string): string;
+/**
+ * get the customised label text with previous input of the fieldElement
+ * @param {any} evaluator - the getEvaluatedExpressionSelector Function
+ * @param {string} labelText - the current Label Text
+ * @param {string} fieldTreeName - the field tree name
+ * @return {string | null} - field label text or null
+ */
+export declare function customizeLabelsWithPreviousInputs(evaluator: any, labelText: string, fieldTreeName: string): string | null;
+/**
  * get the hint text of the fieldElement
  * @param {FieldElement} fieldElement - the fieldElement Object
  * @return {string} - field hint text
@@ -65,6 +79,13 @@ export declare function shouldInputViolatesConstraint(fieldElement: FieldElement
  * @returns {any} - the new user input object after assignment
  */
 export declare function getModifiedUserInputObject(userInputObj: any, fieldTreeName: string, fieldValue: any): any;
+/** Returns the filtered option list Array For Repeat property
+ * @param {any} userInputObj - the current option list object
+ * @param {string} fieldTreeName - the field Tree name
+ * @param {any} repeatIndex - the repeat index to remove
+ * @returns {any} - the new user filredred repear array after assignment
+ */
+export declare function getModifiedOptionListForRepeat(userInputObj: any, fieldTreeName: string, repeatIndex: number): any;
 /** returns the value from the user input object
  * @param {any} userInputObj - the user input object
  * @param {string} fieldTreeName - the field Tree name

@@ -28,6 +28,7 @@ export interface FieldElement {
 }
 /** props interface for BaseTypeEvaluator component */
 export interface BaseTypeEvaluatorProps {
+    csvList: any;
     defaultLanguage: string;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;

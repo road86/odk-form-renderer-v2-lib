@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FieldElement, FieldParentTreeName } from '../../../../components/typeEvalutors/Base';
 import { emptyGroupFields, removeGroupFieldsFromErrors } from '../../../../store/ducks/formState';
 export interface GroupProps {
+    csvList: any;
     defaultLanguage: string;
     fieldElement: FieldElement;
     fieldParentTreeName: string;
@@ -22,5 +23,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect Group component to the redux store */
-declare const ConnectedGroup: import("react-redux").ConnectedComponent<typeof Group, Pick<GroupProps, "fieldElement" | "defaultLanguage" | "fieldParentTreeName"> & ParentProps>;
+declare const ConnectedGroup: import("react-redux").ConnectedComponent<typeof Group, Pick<GroupProps, "csvList" | "defaultLanguage" | "fieldElement" | "fieldParentTreeName"> & ParentProps>;
 export default ConnectedGroup;

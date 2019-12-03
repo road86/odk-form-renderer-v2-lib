@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FieldElement, FieldParentTreeName } from '../../../../components/typeEvalutors/Base';
 /** props interface for the SelectOne component */
 export interface SelectOneProps {
+    csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
     defaultLanguage: string;

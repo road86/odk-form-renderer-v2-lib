@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FieldElement } from '../Base';
 /** props Interface for the GroupTypeEvaluator component */
 export interface GroupTypeEvaluatorProps {
+    csvList: any;
     defaultLanguage: string;
     fieldElements: FieldElement[];
     fieldParentTreeName: string;

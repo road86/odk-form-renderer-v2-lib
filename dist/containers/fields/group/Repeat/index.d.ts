@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { FieldElement, FieldParentTreeName } from '../../../../components/typeEvalutors/Base';
-import { assignFieldValueAction, emptyGroupFields, removeGroupFieldsFromErrors } from '../../../../store/ducks/formState';
+import { assignFieldValueAction, emptyGroupFields, RemoveFromOptionList, removeGroupFieldsFromErrors } from '../../../../store/ducks/formState';
 export interface RepeatProps {
+    csvList: any;
     defaultLanguage: string;
     fieldElement: FieldElement;
     fieldValue: any;
@@ -13,6 +14,7 @@ export interface RepeatProps {
     emptyGroupFieldsActionCreator: typeof emptyGroupFields;
     removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
     assignFieldValueActionCreator: typeof assignFieldValueAction;
+    removeOptionListFromActionCreator: typeof RemoveFromOptionList;
 }
 declare class Repeat extends React.Component<RepeatProps> {
     render(): JSX.Element | null;
@@ -25,5 +27,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect Group component to the redux store */
-declare const ConnectedRepeat: import("react-redux").ConnectedComponent<typeof Repeat, Pick<RepeatProps, "defaultLanguage" | "fieldElement" | "fieldParentTreeName"> & ParentProps>;
+declare const ConnectedRepeat: import("react-redux").ConnectedComponent<typeof Repeat, Pick<RepeatProps, "csvList" | "defaultLanguage" | "fieldElement" | "fieldParentTreeName"> & ParentProps>;
 export default ConnectedRepeat;

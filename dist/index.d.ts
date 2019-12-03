@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as React from 'react';
 export interface OdkFormRendererProps {
+    csvList: any;
     defaultLanguage: string;
     formDefinitionJson: any;
     userInputJson: any;

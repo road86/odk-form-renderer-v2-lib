@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { FieldElement, FieldParentTreeName } from '../../../../../components/typeEvalutors/Base';
-import { addErrorInputId, assignFieldValueAction, removeErrorInputId } from '../../../../../store/ducks/formState';
+import { addErrorInputId, assignFieldValueAction, assignOptionListAction, removeErrorInputId } from '../../../../../store/ducks/formState';
 /** props interface for the SelectAll Radio component */
 export interface SelectAllRadioProps {
+    csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
     fieldValue: string[];
     assignFieldValueActionCreator: typeof assignFieldValueAction;
+    assignOptionListActionCreator: typeof assignOptionListAction;
     getEvaluatedExpressionSelector: any;
     getEvaluatedExpressionSelectorForSelect: any;
     isComponentRender: boolean;
@@ -14,6 +16,7 @@ export interface SelectAllRadioProps {
     addErrorInputIdActionCreator: typeof addErrorInputId;
     removeErrorInputIdActionCreator: typeof removeErrorInputId;
     defaultLanguage: string;
+    optionList: object;
 }
 export interface Options {
     label: any;
@@ -42,5 +45,5 @@ interface ParentProps {
     fieldParentTreeName: FieldParentTreeName;
 }
 /** connect SelectOne Radio component to the redux store */
-declare const ConnectedSelectAllRadio: import("react-redux").ConnectedComponent<typeof SelectAllRadio, Pick<SelectAllRadioProps, "fieldElement" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
+declare const ConnectedSelectAllRadio: import("react-redux").ConnectedComponent<typeof SelectAllRadio, Pick<SelectAllRadioProps, "fieldElement" | "csvList" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
 export default ConnectedSelectAllRadio;

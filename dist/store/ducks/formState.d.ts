@@ -4,9 +4,14 @@ import SeamlessImmutable from 'seamless-immutable';
 export interface FormState {
     userInput: object;
     errors: string[];
+    optionList: object;
 }
 /** FIELD_VALUE_ASSIGNED action type */
 export declare const FIELD_VALUE_ASSIGNED = "odk/reducer/form/FIELD_VALUE_ASSIGNED";
+/** OPTION_LIST_ASSIGNED action type */
+export declare const OPTION_LIST_ASSIGNED = "odk/reducer/form/OPTION_LIST_ASSIGNED";
+/** REMOVE_FROM_OPTION_LIST action type */
+export declare const REMOVE_FROM_OPTION_LIST_REPEAT = "odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT";
 /** RESET_STORE action type */
 export declare const RESET_STORE = "odk/reducer/form/RESET_STORE";
 /** ADD_ERROR_INPUT_ID action type */
@@ -23,6 +28,18 @@ export interface AssignFieldValueAction extends AnyAction {
     fieldTreeName: string;
     fieldValue: any;
     type: typeof FIELD_VALUE_ASSIGNED;
+}
+/** interface for OPTION_LIST_ASSIGNED action */
+export interface AssignOptionListAction extends AnyAction {
+    fieldTreeName: string;
+    optionList: any;
+    type: typeof OPTION_LIST_ASSIGNED;
+}
+/** interface for REMOVE_FROM_OPTION_LIST action */
+export interface RemoveFromOptionList extends AnyAction {
+    fieldTreeName: string;
+    repeatIndex: number;
+    type: typeof REMOVE_FROM_OPTION_LIST_REPEAT;
 }
 /** interface for RESET_STORE action */
 export interface ResetStoreAction extends AnyAction {
@@ -59,6 +76,17 @@ export interface SetUserInputObj extends AnyAction {
  * @return {AssignFieldValueAction} - an action to assign value to a field in the redux store
  */
 export declare const assignFieldValueAction: (fieldTreeName: string, fieldValue: any) => AssignFieldValueAction;
+/** Assigns option list to the proper field name
+ * @param {string} fieldTreeName - the extended field name
+ * @param {any} fieldValue - the option list that will be assigned
+ * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
+ */
+export declare const assignOptionListAction: (fieldTreeName: string, optionList: any) => AssignOptionListAction;
+/** Remove option list from Redux Store
+ * @param fieldTreeName - the field tree name
+ * @returns {RemoveFromOptionList} - an action to remove input id for errors
+ */
+export declare const RemoveFromOptionList: (fieldTreeName: string, repeatIndex: number) => RemoveFromOptionList;
 /** Resets the redux store state to initial state
  * @return {ResetStoreAction} - an action to reset the redux store state
  */
@@ -89,7 +117,7 @@ export declare const removeGroupFieldsFromErrors: (fieldTreeName: string) => Rem
  */
 export declare const setUserInputObj: (userInputObj: any) => SetUserInputObj;
 /** Create type for forms reducer actions */
-export declare type FormActionTypes = AssignFieldValueAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | AnyAction;
+export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | AnyAction;
 /** Create an immutable form state */
 export declare type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
@@ -102,6 +130,12 @@ export default function reducer(state: SeamlessImmutable.ImmutableObject<FormSta
  * @return {any | null} value if the element name is found else null
  */
 export declare function getFieldValue(state: Partial<Store>, fieldTreeName: string): any;
+/** get option list by their respective element tree name
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the field
+ * @return {any | null} value if the element name is found else null
+ */
+export declare function getOptionList(state: Partial<Store>, fieldTreeName: string): any;
 /** get the value of the evaluated expression
  * @param {Partial<Store>} state - the redux store
  * @param {string} expression - the expression that needs to be evaluated

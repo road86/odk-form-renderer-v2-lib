@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { FieldElement, FieldParentTreeName } from '../../../../../components/typeEvalutors/Base';
-import { addErrorInputId, assignFieldValueAction, removeErrorInputId } from '../../../../../store/ducks/formState';
+import { addErrorInputId, assignFieldValueAction, assignOptionListAction, removeErrorInputId } from '../../../../../store/ducks/formState';
 /** props interface for the SelectAll Dropdown component */
 export interface SelectAllDropDownProps {
+    csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
     fieldValue: string[];
+    optionList: object;
     assignFieldValueActionCreator: typeof assignFieldValueAction;
+    assignOptionListActionCreator: typeof assignOptionListAction;
     getEvaluatedExpressionSelector: any;
     getEvaluatedExpressionSelectorForSelect: any;
     isComponentRender: boolean;
@@ -21,6 +24,10 @@ export interface Options {
 }
 declare class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
     render(): JSX.Element | null;
+    /** Sets the option list to the Redux Store
+     * @param {any} optionObject - the option object to be processed
+     */
+    private setOptionList;
     /** sets the value of field element in store
      * @param {any} values - the onchange input values
      * @param {any} fieldName - the input name
@@ -44,5 +51,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect SelectOne Dropdown component to the redux store */
-declare const ConnectedSelectAllDropDown: import("react-redux").ConnectedComponent<typeof SelectAllDropDown, Pick<SelectAllDropDownProps, "fieldElement" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
+declare const ConnectedSelectAllDropDown: import("react-redux").ConnectedComponent<typeof SelectAllDropDown, Pick<SelectAllDropDownProps, "fieldElement" | "csvList" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
 export default ConnectedSelectAllDropDown;
