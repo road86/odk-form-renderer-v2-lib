@@ -31,6 +31,21 @@ export function getFieldLabelText(
 }
 
 /**
+ * get the label hint of the fieldElement
+ * @param {FieldElement} fieldElement - the fieldElement Object
+ * @return {string} - field label text
+ */
+export function getHintLabelText(
+  fieldElement: FieldElement,
+  languageIdentifier: string
+) {
+  if (fieldElement.hint) {
+    return getTextFromProperty(fieldElement.hint, languageIdentifier);
+  }
+  return '';
+}
+
+/**
  * get the customised label text with previous input of the fieldElement
  * @param {any} evaluator - the getEvaluatedExpressionSelector Function
  * @param {string} labelText - the current Label Text
