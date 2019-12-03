@@ -54,6 +54,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
     <SelectOneDropDown
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      assignOptionListActionCreator={[Function]}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
@@ -94,6 +95,24 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
       getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
+      optionList={
+        Object {
+          "0": Object {
+            "label": Object {
+              "Bangla": "Albania",
+              "English": "Albania",
+            },
+            "name": "AL",
+          },
+          "1": Object {
+            "label": Object {
+              "Bangla": "Andorra",
+              "English": "Andorra",
+            },
+            "name": "AD",
+          },
+        }
+      }
       removeErrorInputIdActionCreator={[Function]}
     >
       <FormGroup
@@ -1507,6 +1526,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
     <SelectOneRadio
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      assignOptionListActionCreator={[Function]}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
@@ -1533,6 +1553,18 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
       getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
+      optionList={
+        Object {
+          "0": Object {
+            "label": "A",
+            "name": "a",
+          },
+          "1": Object {
+            "label": "B",
+            "name": "b",
+          },
+        }
+      }
       removeErrorInputIdActionCreator={[Function]}
     >
       <FormGroup
@@ -1581,7 +1613,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
               />
             </Input>
              
-            a
+            A
           </div>
           <div
             className="col-md-12"
@@ -1605,7 +1637,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
               />
             </Input>
              
-            b
+            B
           </div>
         </div>
       </FormGroup>

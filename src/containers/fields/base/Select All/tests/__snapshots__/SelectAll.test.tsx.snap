@@ -51,6 +51,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
     <SelectAllRadio
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
+      assignOptionListActionCreator={[Function]}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
@@ -88,6 +89,18 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
       getEvaluatedExpressionSelectorForSelect={[Function]}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
+      optionList={
+        Object {
+          "0": Object {
+            "label": "A",
+            "name": "a",
+          },
+          "1": Object {
+            "label": "B",
+            "name": "b",
+          },
+        }
+      }
       removeErrorInputIdActionCreator={[Function]}
     >
       <FormGroup
@@ -154,7 +167,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
               />
             </Input>
              
-            a
+            A
           </div>
           <div
             className="col-md-12"
@@ -178,7 +191,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
               />
             </Input>
              
-            b
+            B
           </div>
         </div>
       </FormGroup>

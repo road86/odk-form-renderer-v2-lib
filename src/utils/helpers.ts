@@ -31,6 +31,54 @@ export function getFieldLabelText(
 }
 
 /**
+ * get the label hint of the fieldElement
+ * @param {FieldElement} fieldElement - the fieldElement Object
+ * @return {string} - field label text
+ */
+export function getHintLabelText(
+  fieldElement: FieldElement,
+  languageIdentifier: string
+) {
+  if (fieldElement.hint) {
+    return getTextFromProperty(fieldElement.hint, languageIdentifier);
+  }
+  return '';
+}
+
+/**
+ * get the customised label text with previous input of the fieldElement
+ * @param {any} evaluator - the getEvaluatedExpressionSelector Function
+ * @param {string} labelText - the current Label Text
+ * @param {string} fieldTreeName - the field tree name
+ * @return {string | null} - field label text or null
+ */
+export function customizeLabelsWithPreviousInputs(
+  evaluator: any,
+  labelText: string,
+  fieldTreeName: string
+): string | null {
+  if (labelText === null || labelText === undefined) {
+    return null;
+  }
+  const placesOfCustomizationsRequiredList = labelText.match(/\[(.*?)\]/g);
+
+  if (placesOfCustomizationsRequiredList) {
+    placesOfCustomizationsRequiredList.forEach(tmpPlace => {
+      tmpPlace = tmpPlace.substring(1, tmpPlace.length - 1);
+      const customizedName = evaluator(tmpPlace, fieldTreeName);
+      const tmp = '[' + tmpPlace + ']';
+      if (customizedName != null && customizedName !== undefined) {
+        labelText = labelText.replace(tmp, customizedName);
+      } else {
+        labelText = labelText.replace(tmp, '');
+      }
+    });
+  }
+
+  return labelText;
+}
+
+/**
  * get the hint text of the fieldElement
  * @param {FieldElement} fieldElement - the fieldElement Object
  * @return {string} - field hint text
@@ -204,6 +252,7 @@ export function getModifiedUserInputObject(
         modifiedObj = modifiedObj[parent + treeNodes[i]];
       } else {
         modifiedObj[parent + treeNodes[i]] = [];
+        modifiedObj = modifiedObj[parent + treeNodes[i]];
       }
       const index = parseInt(treeNodes[i + 1], 10);
       if (modifiedObj[index]) {
@@ -221,6 +270,37 @@ export function getModifiedUserInputObject(
   }
   modifiedObj[parent + treeNodes[treeNodes.length - 1]] = fieldValue;
   return userInputObj;
+}
+
+/** Returns the filtered option list Array For Repeat property
+ * @param {any} userInputObj - the current option list object
+ * @param {string} fieldTreeName - the field Tree name
+ * @param {any} repeatIndex - the repeat index to remove
+ * @returns {any} - the new user filredred repear array after assignment
+ */
+export function getModifiedOptionListForRepeat(
+  userInputObj: any,
+  fieldTreeName: string,
+  repeatIndex: number
+): any {
+  const filteredRepeatArray: any = [];
+  const optionListobj: any = userInputObj;
+
+  Object.entries(optionListobj).forEach(key => {
+    const keyNameOptionListobj: any = key[0];
+    const keyValueOptionListobj: any = key[1];
+    if (keyNameOptionListobj === fieldTreeName) {
+      const repeatIndexString: string = String(repeatIndex);
+      Object.entries(keyValueOptionListobj).map(keyRepeat => {
+        const keyNameRepeatObject: any = keyRepeat[0];
+        const keyValueRepeatValue: any = keyRepeat[1];
+        if (keyNameRepeatObject !== repeatIndexString) {
+          filteredRepeatArray.push(keyValueRepeatValue);
+        }
+      });
+    }
+  });
+  return filteredRepeatArray;
 }
 
 /** returns the value from the user input object

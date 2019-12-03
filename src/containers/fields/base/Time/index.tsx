@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, FormText, Label } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -21,25 +21,26 @@ import {
   getFieldLabelText,
   getHintLabelText,
   isInputRequired,
+  shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
 
-/** props interface for the text component */
-export interface NoteProps {
+/** props interface for the KbTime component */
+export interface TimeProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string;
+  fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
-  isPresentInErrorSelector: any;
   isComponentRender: boolean;
+  isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
   defaultLanguage: string;
 }
 
-class Note extends React.Component<NoteProps> {
+class KbTime extends React.Component<TimeProps> {
   public render() {
     const {
       fieldElement,
@@ -61,6 +62,11 @@ class Note extends React.Component<NoteProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
@@ -70,14 +76,19 @@ class Note extends React.Component<NoteProps> {
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
-          fieldElement.name,
+          fieldParentTreeName + fieldElement.name,
           fieldElement.default
         );
       }
-      const fieldHint = getHintLabelText(fieldElement, defaultLanguage);
+      const isReadonly = shouldComponentBeReadOnly(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
+      );
       if (
         (isRequiredViolated || isConstraintViolated) &&
         !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)
@@ -94,18 +105,29 @@ class Note extends React.Component<NoteProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
+
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          {fieldElement.hint && <FormText>{fieldHint}</FormText>}
+          <Input
+            type="time"
+            name={fieldElement.name}
+            onChange={this.onChangeHandler}
+            value={fieldValue || ''}
+            readOnly={isReadonly}
+          />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          null
+        );
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
@@ -115,13 +137,20 @@ class Note extends React.Component<NoteProps> {
       return null;
     }
   }
+
+  private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.props.assignFieldValueActionCreator(
+      this.props.fieldParentTreeName + event.currentTarget.name,
+      event.currentTarget.value !== '' ? event.currentTarget.value : null
+    );
+  };
 }
 
 /** connect the component to the store */
 
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
-  fieldValue: string;
+  fieldValue: any;
   getEvaluatedExpressionSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
@@ -146,8 +175,7 @@ const mapStateToProps = (
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
   const result = {
-    fieldValue:
-      getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
@@ -166,10 +194,10 @@ const mapDispatchToProps = {
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
-/** connect Note component to the redux store */
-const ConnectedNote = connect(
+/** connect KbTime component to the redux store */
+const ConnectedTime = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Note);
+)(KbTime);
 
-export default ConnectedNote;
+export default ConnectedTime;

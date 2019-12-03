@@ -14,6 +14,7 @@ import {
   getFieldValue,
   isErrorsIncludeGroupFields,
   isGroupFieldsEmpty,
+  RemoveFromOptionList,
   removeGroupFieldsFromErrors,
 } from '../../../../store/ducks/formState';
 import {
@@ -35,6 +36,7 @@ export interface RepeatProps {
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  removeOptionListFromActionCreator: typeof RemoveFromOptionList;
 }
 
 class Repeat extends React.Component<RepeatProps> {
@@ -48,6 +50,7 @@ class Repeat extends React.Component<RepeatProps> {
       isComponentRender,
       assignFieldValueActionCreator,
       removeGroupFieldsFromErrorsActionCreator,
+      removeOptionListFromActionCreator,
     } = this.props;
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
@@ -72,6 +75,7 @@ class Repeat extends React.Component<RepeatProps> {
                   repeatIndex={index}
                   assignmentHandler={assignFieldValueActionCreator}
                   removeHandler={removeGroupFieldsFromErrorsActionCreator}
+                  removeOptionHandler={removeOptionListFromActionCreator}
                   csvList={csvList}
                 />
               </div>
@@ -166,6 +170,7 @@ const mapDispatchToProps = {
   assignFieldValueActionCreator: assignFieldValueAction,
   emptyGroupFieldsActionCreator: emptyGroupFields,
   removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
+  removeOptionListFromActionCreator: RemoveFromOptionList,
 };
 
 /** connect Group component to the redux store */

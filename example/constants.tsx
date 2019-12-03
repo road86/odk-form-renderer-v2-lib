@@ -171,7 +171,7 @@ export const DEMO_FORM_JSON = {
         },
         {
           control: {
-            appearance: "search('geo')",
+            appearance: "search('geo_2')",
           },
           name: 'division',
           bind: {
@@ -195,7 +195,7 @@ export const DEMO_FORM_JSON = {
         {
           control: {
             appearance:
-              "search('geo', 'matches', 'division_code', ${division})",
+              "search('geo_2', 'matches', 'division_code', ${division})",
           },
           name: 'district',
           bind: {
@@ -363,11 +363,11 @@ export const DEMO_FORM_JSON = {
         },
         {
           name: 'string_widget',
-          label: 'String widget',
+          label: 'String widget [${report_month}]',
           type: 'text',
           bind: {
             constraint: '.="hello"',
-            'jr:constraintMsg': 'Violated',
+            'jr:constraintMsg': 'Violated [${report_month}]',
             required: 'true',
           },
         },
@@ -1553,8 +1553,64 @@ export const DEMO_FORM_JSON = {
           label: 'Name',
           type: 'text',
         },
+        {
+          children: [
+            {
+              name: 'yes',
+              label: 'GO',
+            },
+            {
+              name: 'no',
+              label: 'TO',
+            },
+            {
+              name: 'dk',
+              label: 'THE',
+            },
+            {
+              name: 'na',
+              label: 'MALL',
+            },
+          ],
+          name: 'table_list_RP',
+          hint:
+            'Show only the inputs of these options and not the labels (type=select_multiple yes_no, appearance=list-nolabel)',
+          label: 'GO To the mall',
+          type: 'select all that apply',
+        },
       ],
       name: 'repeat_1',
+      type: 'repeat',
+    },
+    {
+      children: [
+        {
+          children: [
+            {
+              name: 'as',
+              label: 'this',
+            },
+            {
+              name: 'df',
+              label: 'is',
+            },
+            {
+              name: 'sdfffff',
+              label: 'rp',
+            },
+            {
+              name: 'd',
+              label: '2',
+            },
+          ],
+          name: 'table_list_RP_2',
+          hint:
+            'Show only the inputs of these options and not the labels (type=select_multiple yes_no, appearance=list-nolabel)',
+          label: 'GO To the mall',
+          type: 'select all that apply',
+        },
+      ],
+      name: 'repeat_2',
       type: 'repeat',
     },
     {
@@ -1604,6 +1660,131 @@ export const sampleUserInput = {
   'number_widgets/decimal_widget': 12,
   'select_one_widgets/return_from': 'BY',
   'select_multi_widgets/spinner_multi_widget': ['c'],
+  'date_time_widgets/date_time_widget': '2019-11-23T10:30:00.000Z',
 };
+
+// tslint:disable
+export const geo = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '1005',
+    district_name: 'BargunaL',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040915',
+    union_name: 'Arpangashia',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
+
+export const geo_1 = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '1005',
+    district_name: 'BargunaL',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040915',
+    union_name: 'Arpangashia',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
+
+export const geo_2 = [
+  {
+    district_code: '1004',
+    district_name: 'BargunaH',
+    division_code: '10',
+    division_name: 'Barisal',
+    union_code: '10040913',
+    union_name: 'Amtali',
+    upazila_code: '100409',
+    upazila_name: 'Amtali',
+  },
+
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030431',
+    union_name: 'Alikadam',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+  {
+    district_code: '2003',
+    district_name: 'Bandarban',
+    division_code: '20',
+    division_name: 'Chittagong',
+    union_code: '20030480',
+    union_name: 'Nayapara',
+    upazila_code: '200304',
+    upazila_name: 'Alikadam',
+  },
+];
+
+export const CSV_LIST = { geo, geo_1, geo_2 };
+
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;

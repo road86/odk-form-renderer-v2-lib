@@ -8,6 +8,8 @@ export type TEXT_FIELD_TYPE = typeof TEXT_FIELD_TYPE;
 export const DATE_FIELD_TYPE = 'date';
 export type DATE_FIELD_TYPE = typeof DATE_FIELD_TYPE;
 export const DATE_TIME_FIELD_TYPE = 'dateTime';
+export type TIME_FIELD_TYPE = typeof TIME_FIELD_TYPE;
+export const TIME_FIELD_TYPE = 'time';
 export type DATE_TIME_FIELD_TYPE = typeof DATE_TIME_FIELD_TYPE;
 export const INTEGER_FIELD_TYPE = 'integer';
 export type INTEGER_FIELD_TYPE = typeof INTEGER_FIELD_TYPE;
@@ -29,49 +31,3 @@ export const REQUIRED_FIELD_MSG = 'This field is required';
 export type REQUIRED_FIELD_MSG = typeof REQUIRED_FIELD_MSG;
 export const REQUIRED_SYMBOL = '*';
 export type REQUIRED_SYMBOL = typeof REQUIRED_SYMBOL;
-
-// tslint:disable
-export const geo = [
-  {
-    district_code: '1004',
-    district_name: 'BargunaH',
-    division_code: '10',
-    division_name: 'Barisal',
-    union_code: '10040913',
-    union_name: 'Amtali',
-    upazila_code: '100409',
-    upazila_name: 'Amtali',
-  },
-  {
-    district_code: '1005',
-    district_name: 'BargunaL',
-    division_code: '10',
-    division_name: 'Barisal',
-    union_code: '10040915',
-    union_name: 'Arpangashia',
-    upazila_code: '100409',
-    upazila_name: 'Amtali',
-  },
-  {
-    district_code: '2003',
-    district_name: 'Bandarban',
-    division_code: '20',
-    division_name: 'Chittagong',
-    union_code: '20030431',
-    union_name: 'Alikadam',
-    upazila_code: '200304',
-    upazila_name: 'Alikadam',
-  },
-  {
-    district_code: '2003',
-    district_name: 'Bandarban',
-    division_code: '20',
-    division_name: 'Chittagong',
-    union_code: '20030480',
-    union_name: 'Nayapara',
-    upazila_code: '200304',
-    upazila_name: 'Alikadam',
-  },
-];
-
-/* tslint:enable */

@@ -12,15 +12,19 @@ import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
+  assignOptionListAction,
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getOptionList,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
@@ -32,7 +36,9 @@ export interface SelectAllDropDownProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string[];
+  optionList: object;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
@@ -69,10 +75,21 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -117,6 +134,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
+        this.setOptionList(resultOptions);
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(elem => {
@@ -126,6 +144,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
             );
             options.push({ label: childrenLabel, value: elem.name });
           });
+          this.setOptionList(fieldElement.children);
         }
       }
 
@@ -168,7 +187,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
 
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
           <Select
             isMulti={true}
@@ -177,8 +196,9 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
             onChange={this.onChangeHandler(fieldElement.name)}
             value={selectedValues || []}
           />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
     } else {
@@ -193,9 +213,38 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
           );
         }
       }
+      if (this.props.optionList != null) {
+        this.props.assignOptionListActionCreator(
+          this.props.fieldParentTreeName + fieldElement.name,
+          null
+        );
+      }
       return null;
     }
   }
+
+  /** Sets the option list to the Redux Store
+   * @param {any} optionObject - the option object to be processed
+   */
+  private setOptionList = (optionObject: any) => {
+    const tempObjArray: any = [];
+    optionObject.map((elem: { name: any; label: any }) => {
+      const elemObj: any = {};
+      const name: string = 'name';
+      const label: string = 'label';
+      elemObj[name] = elem.name;
+      elemObj[label] = elem.label;
+      tempObjArray.push(elemObj);
+    });
+
+    if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
+      this.props.assignOptionListActionCreator(
+        this.props.fieldParentTreeName + this.props.fieldElement.name,
+        tempObjArray
+      );
+    }
+  };
+
   /** sets the value of field element in store
    * @param {any} values - the onchange input values
    * @param {any} fieldName - the input name
@@ -265,7 +314,8 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
     const finalRes: any[] = [];
 
     if (csvName) {
-      options = [...this.props.csvList];
+      const modifiedName = csvName.replace(/'/g, '');
+      options = [...this.props.csvList[modifiedName]];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {
@@ -340,6 +390,7 @@ interface DispatchedStateProps {
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
+  optionList: object;
 }
 
 /** Interface to describe props from parent */
@@ -377,6 +428,7 @@ const mapStateToProps = (
       getEvaluatedExpressionSelector
     ),
     isPresentInErrorSelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name),
   };
   return result;
 };
@@ -385,6 +437,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 

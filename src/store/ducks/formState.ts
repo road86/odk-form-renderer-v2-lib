@@ -4,6 +4,7 @@ import evaluater from '../../utils/compiler';
 import {
   checkGroupedValuesForEmpty,
   emptyGroupedValues,
+  getModifiedOptionListForRepeat,
   getModifiedUserInputObject,
   getValueFromUserInputObj,
 } from '../../utils/helpers';
@@ -12,12 +13,18 @@ import {
 export interface FormState {
   userInput: object;
   errors: string[];
+  optionList: object;
 }
 
 // actions
 
 /** FIELD_VALUE_ASSIGNED action type */
 export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
+/** OPTION_LIST_ASSIGNED action type */
+export const OPTION_LIST_ASSIGNED = 'odk/reducer/form/OPTION_LIST_ASSIGNED';
+/** REMOVE_FROM_OPTION_LIST action type */
+export const REMOVE_FROM_OPTION_LIST_REPEAT =
+  'odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT';
 /** RESET_STORE action type */
 export const RESET_STORE = 'odk/reducer/form/RESET_STORE';
 /** ADD_ERROR_INPUT_ID action type */
@@ -36,6 +43,20 @@ export interface AssignFieldValueAction extends AnyAction {
   fieldTreeName: string;
   fieldValue: any;
   type: typeof FIELD_VALUE_ASSIGNED;
+}
+
+/** interface for OPTION_LIST_ASSIGNED action */
+export interface AssignOptionListAction extends AnyAction {
+  fieldTreeName: string;
+  optionList: any;
+  type: typeof OPTION_LIST_ASSIGNED;
+}
+
+/** interface for REMOVE_FROM_OPTION_LIST action */
+export interface RemoveFromOptionList extends AnyAction {
+  fieldTreeName: string;
+  repeatIndex: number;
+  type: typeof REMOVE_FROM_OPTION_LIST_REPEAT;
 }
 
 /** interface for RESET_STORE action */
@@ -85,6 +106,33 @@ export const assignFieldValueAction = (
   fieldTreeName,
   fieldValue,
   type: FIELD_VALUE_ASSIGNED,
+});
+
+/** Assigns option list to the proper field name
+ * @param {string} fieldTreeName - the extended field name
+ * @param {any} fieldValue - the option list that will be assigned
+ * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
+ */
+export const assignOptionListAction = (
+  fieldTreeName: string,
+  optionList: any
+): AssignOptionListAction => ({
+  fieldTreeName,
+  optionList,
+  type: OPTION_LIST_ASSIGNED,
+});
+
+/** Remove option list from Redux Store
+ * @param fieldTreeName - the field tree name
+ * @returns {RemoveFromOptionList} - an action to remove input id for errors
+ */
+export const RemoveFromOptionList = (
+  fieldTreeName: string,
+  repeatIndex: number
+): RemoveFromOptionList => ({
+  fieldTreeName,
+  repeatIndex,
+  type: REMOVE_FROM_OPTION_LIST_REPEAT,
 });
 
 /** Resets the redux store state to initial state
@@ -146,6 +194,8 @@ export const setUserInputObj = (userInputObj: any): SetUserInputObj => ({
 /** Create type for forms reducer actions */
 export type FormActionTypes =
   | AssignFieldValueAction
+  | AssignOptionListAction
+  | RemoveFromOptionList
   | ResetStoreAction
   | AddErrorInputId
   | RemoveErrorInputId
@@ -160,6 +210,7 @@ export type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
 export const initialState: ImmutableFormState = SeamlessImmutable({
   errors: [],
+  optionList: {},
   userInput: {},
 });
 
@@ -177,6 +228,44 @@ export default function reducer(
       );
       const stateM = state.asMutable({ deep: true });
       return SeamlessImmutable({ ...stateM, userInput: modifiedUserInputObj });
+    case OPTION_LIST_ASSIGNED:
+      const modifiedUserInputObjList = getModifiedUserInputObject(
+        state.getIn(['optionList']).asMutable({ deep: true }),
+        action.fieldTreeName,
+        action.optionList != null ? { ...action.optionList } : null
+      );
+      const newState = state.asMutable({ deep: true });
+      return SeamlessImmutable({
+        ...newState,
+        optionList: modifiedUserInputObjList,
+      });
+    case REMOVE_FROM_OPTION_LIST_REPEAT:
+      let filteredRepeatArray: any = [];
+      if (
+        state
+          .getIn(['optionList'])
+          .asMutable({ deep: true })
+          .hasOwnProperty(action.fieldTreeName)
+      ) {
+        filteredRepeatArray = [
+          ...getModifiedOptionListForRepeat(
+            state.getIn(['optionList']).asMutable({ deep: true }),
+            action.fieldTreeName,
+            action.repeatIndex
+          ),
+        ];
+        const modifiedOptionListRepeat = getModifiedUserInputObject(
+          state.getIn(['optionList']).asMutable({ deep: true }),
+          action.fieldTreeName,
+          { ...filteredRepeatArray }
+        );
+        const newStateForRepeat = state.asMutable({ deep: true });
+        return SeamlessImmutable({
+          ...newStateForRepeat,
+          optionList: modifiedOptionListRepeat,
+        });
+      }
+      return state;
     case RESET_STORE:
       return initialState;
     case ADD_ERROR_INPUT_ID:
@@ -225,7 +314,25 @@ export function getFieldValue(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return getValueFromUserInputObj((state as any).userInput, fieldTreeName);
+  return getValueFromUserInputObj(
+    (state as any).getIn(['userInput']).asMutable({ deep: true }),
+    fieldTreeName
+  );
+}
+
+/** get option list by their respective element tree name
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fieldTreeName - the hierchical tree name of the field
+ * @return {any | null} value if the element name is found else null
+ */
+export function getOptionList(
+  state: Partial<Store>,
+  fieldTreeName: string
+): any {
+  return getValueFromUserInputObj(
+    (state as any).getIn(['optionList']).asMutable({ deep: true }),
+    fieldTreeName
+  );
 }
 
 /** get the value of the evaluated expression

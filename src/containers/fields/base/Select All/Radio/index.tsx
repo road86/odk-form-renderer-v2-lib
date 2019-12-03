@@ -11,15 +11,19 @@ import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../../constants';
 import {
   addErrorInputId,
   assignFieldValueAction,
+  assignOptionListAction,
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getOptionList,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -33,6 +37,7 @@ export interface SelectAllRadioProps {
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: string[];
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
@@ -40,6 +45,7 @@ export interface SelectAllRadioProps {
   addErrorInputIdActionCreator: typeof addErrorInputId;
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
   defaultLanguage: string;
+  optionList: object;
 }
 
 export interface Options {
@@ -69,10 +75,21 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -159,9 +176,16 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           });
         }
 
+        if (!_.isEqual(this.props.optionList, { ...resultOptions })) {
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            resultOptions
+          );
+        }
+
         return (
           <FormGroup>
-            <Label>{fieldLabel}</Label>
+            <Label>{modifiedFieldLabel}</Label>
             {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
             {resultOptions.map((elem, index) => (
               <div key={index} className="col-md-12">
@@ -174,18 +198,35 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                   readOnly={isReadonly}
                   checked={selectedValues.includes(elem.name)}
                 />{' '}
-                {elem.label}
+                {getFieldLabelText(elem, defaultLanguage)}
               </div>
             ))}
+            {fieldElement.hint && <Label>{hintLabel}</Label>}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
         );
       } else {
         if (fieldElement.children) {
+          const tempObjArray: any = [];
+          fieldElement.children.map(elem => {
+            const elemObj: any = {};
+            const name: string = 'name';
+            const label: string = 'label';
+            elemObj[name] = elem.name;
+            elemObj[label] = elem.label;
+            tempObjArray.push(elemObj);
+          });
+
+          if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
+            this.props.assignOptionListActionCreator(
+              this.props.fieldParentTreeName + fieldElement.name,
+              tempObjArray
+            );
+          }
           return (
             <FormGroup>
-              <Label>{fieldLabel}</Label>
+              <Label>{modifiedFieldLabel}</Label>
               {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
               {fieldElement.children.map((elem, index) => (
                 <div key={index} className="col-md-12">
@@ -197,11 +238,12 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                     onChange={this.onChangeHandlerCheckBox}
                     readOnly={isReadonly}
                   />{' '}
-                  {elem.name}
+                  {getFieldLabelText(elem, defaultLanguage)}
                 </div>
               ))}
+              {fieldElement.hint && <Label>{hintLabel}</Label>}
               {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-              {isConstraintViolated && <Label>{constraintLabel}</Label>}
+              {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
             </FormGroup>
           );
         } else {
@@ -214,12 +256,21 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           fieldParentTreeName + fieldElement.name,
           null
         );
+
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(
             fieldParentTreeName + fieldElement.name
           );
         }
       }
+
+      if (this.props.optionList != null) {
+        this.props.assignOptionListActionCreator(
+          this.props.fieldParentTreeName + fieldElement.name,
+          null
+        );
+      }
+
       return null;
     }
   }
@@ -305,7 +356,8 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     const finalRes: any[] = [];
 
     if (csvName) {
-      options = [...this.props.csvList];
+      const modifiedName = csvName.replace(/'/g, '');
+      options = [...this.props.csvList[modifiedName]];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {
@@ -380,6 +432,7 @@ interface DispatchedStateProps {
   getEvaluatedExpressionSelectorForSelect: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
+  optionList: object;
 }
 
 /** Interface to describe props from parent */
@@ -416,6 +469,7 @@ const mapStateToProps = (
       getEvaluatedExpressionSelector
     ),
     isPresentInErrorSelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name),
   };
 
   return result;
@@ -425,6 +479,7 @@ const mapStateToProps = (
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 

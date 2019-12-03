@@ -95,22 +95,123 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
               *
             </label>
           </Label>
-          <Input
+          <br />
+          <t
+            allowSameDay={false}
+            className="form-control"
+            dateFormat="MM/dd/yyyy h:mm aa"
+            dateFormatCalendar="LLLL yyyy"
+            disabled={false}
+            disabledKeyboardNavigation={false}
+            dropdownMode="scroll"
+            inlineFocusSelectedMonth={false}
+            monthsShown={1}
             name="event_end_date_time"
+            nextMonthButtonLabel="Next Month"
+            nextYearButtonLabel="Next Year"
+            onBlur={[Function]}
+            onCalendarClose={[Function]}
+            onCalendarOpen={[Function]}
             onChange={[Function]}
+            onClickOutside={[Function]}
+            onFocus={[Function]}
+            onInputClick={[Function]}
+            onInputError={[Function]}
+            onKeyDown={[Function]}
+            onMonthChange={[Function]}
+            onSelect={[Function]}
+            onYearChange={[Function]}
+            placeholderText="mm/dd/yyyy h:m aa"
+            preventOpenOnFocus={false}
+            previousMonthButtonLabel="Previous Month"
+            previousYearButtonLabel="Previous Year"
             readOnly={false}
-            type="datetime-local"
-            value="2019-11-12T07:02:00.000"
+            renderDayContents={[Function]}
+            selected={2019-11-12T07:02:00.000Z}
+            shouldCloseOnSelect={true}
+            showMonthYearPicker={false}
+            showPopperArrow={true}
+            showPreviousMonths={false}
+            showQuarterYearPicker={false}
+            showTimeInput={false}
+            showTimeSelect={true}
+            strictParsing={false}
+            timeCaption="time"
+            timeFormat="h:m aa"
+            timeInputLabel="Time"
+            timeIntervals={15}
+            withPortal={false}
           >
-            <input
-              className="form-control"
-              name="event_end_date_time"
-              onChange={[Function]}
-              readOnly={false}
-              type="datetime-local"
-              value="2019-11-12T07:02:00.000"
-            />
-          </Input>
+            <t
+              hidePopper={true}
+              popperComponent={null}
+              popperModifiers={
+                Object {
+                  "preventOverflow": Object {
+                    "boundariesElement": "viewport",
+                    "enabled": true,
+                    "escapeWithReference": true,
+                  },
+                }
+              }
+              popperPlacement="bottom-start"
+              popperProps={Object {}}
+              targetComponent={
+                <div
+                  className="react-datepicker__input-container"
+                >
+                  <input
+                    className="form-control"
+                    disabled={false}
+                    name="event_end_date_time"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder="mm/dd/yyyy h:m aa"
+                    readOnly={false}
+                    type="text"
+                    value="11/12/2019 1:02 PM"
+                  />
+                </div>
+              }
+            >
+              <Manager
+                className="react-datepicker-manager"
+              >
+                <Reference>
+                  <InnerReference
+                    setReferenceNode={[Function]}
+                  >
+                    <div
+                      className="react-datepicker-wrapper"
+                    >
+                      <div
+                        className="react-datepicker__input-container"
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          name="event_end_date_time"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          placeholder="mm/dd/yyyy h:m aa"
+                          readOnly={false}
+                          type="text"
+                          value="11/12/2019 1:02 PM"
+                        />
+                      </div>
+                    </div>
+                  </InnerReference>
+                </Reference>
+              </Manager>
+            </t>
+          </t>
+          <br />
         </div>
       </FormGroup>
     </DateTime>

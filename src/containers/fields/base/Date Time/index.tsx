@@ -1,6 +1,7 @@
 import * as React from 'react';
+import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
-import { FormGroup, Input, Label } from 'reactstrap';
+import { FormGroup, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -16,13 +17,17 @@ import {
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 /** props interface for the date Time component */
 export interface DateTimeProps {
@@ -60,10 +65,22 @@ class DateTime extends React.Component<DateTimeProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -92,25 +109,29 @@ class DateTime extends React.Component<DateTimeProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      let defaultValue: string = '';
-      if (fieldValue && fieldValue !== '') {
-        const modifiedDate = new Date(fieldValue);
-        defaultValue = modifiedDate.toISOString().slice(0, 23);
-      }
 
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <Input
-            type="datetime-local"
+          <br />
+          <DatePicker
             name={fieldElement.name}
-            onChange={this.onChangeHandler}
-            value={defaultValue}
+            selected={fieldValue ? new Date(fieldValue) : null}
+            onChange={this.handleChange(fieldElement.name)}
+            showTimeSelect={true}
+            timeFormat="h:m aa"
+            timeIntervals={15}
+            timeCaption="time"
+            dateFormat="MM/dd/yyyy h:mm aa"
+            placeholderText="mm/dd/yyyy h:m aa"
+            className="form-control"
             readOnly={isReadonly}
           />
+          <br />
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{constraintLabel}</Label>}
+          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
     } else {
@@ -128,15 +149,11 @@ class DateTime extends React.Component<DateTimeProps> {
       return null;
     }
   }
-  /** sets the value of field element in store
-   * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
-   */
-  private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+
+  private handleChange = (name: any) => (value: any) => {
     this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + event.currentTarget.name,
-      event.currentTarget.value !== ''
-        ? new Date(event.currentTarget.value)
-        : null
+      this.props.fieldParentTreeName + name,
+      value !== '' ? new Date(value) : null
     );
   };
 }

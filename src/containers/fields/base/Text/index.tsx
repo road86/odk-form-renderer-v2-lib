@@ -16,8 +16,10 @@ import {
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -60,10 +62,24 @@ class Text extends React.Component<TextProps> {
         getEvaluatedExpressionSelector
       );
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+
     const constraintLabel = getConstraintLabelText(
       fieldElement,
       defaultLanguage
     );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
+
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -109,7 +125,7 @@ class Text extends React.Component<TextProps> {
 
         return (
           <FormGroup>
-            <Label>{fieldLabel}</Label>
+            <Label>{modifiedFieldLabel}</Label>
             {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
             <Input
               type="text"
@@ -119,13 +135,14 @@ class Text extends React.Component<TextProps> {
               readOnly={isReadonly}
             />
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+            <Label>{hintLabel}</Label>
+            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
         );
       } else {
         return (
           <FormGroup>
-            <Label>{fieldLabel}</Label>
+            <Label>{modifiedFieldLabel}</Label>
             {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
             <Input
               type="text"
@@ -134,8 +151,9 @@ class Text extends React.Component<TextProps> {
               value={fieldValue || ''}
               readOnly={isReadonly}
             />
+            {fieldElement.hint && <Label>{hintLabel}</Label>}
             {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{constraintLabel}</Label>}
+            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
           </FormGroup>
         );
       }

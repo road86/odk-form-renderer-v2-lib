@@ -10,6 +10,7 @@ import {
   SELECT_ALL_FIELD_TYPE,
   SELECT_ONE_FIELD_TYPE,
   TEXT_FIELD_TYPE,
+  TIME_FIELD_TYPE,
 } from '../../../constants';
 import Calculate from '../../../containers/fields/base/Calculate';
 import KbDate from '../../../containers/fields/base/Date';
@@ -21,6 +22,7 @@ import Photo from '../../../containers/fields/base/Photo';
 import SelectAll from '../../../containers/fields/base/Select All';
 import SelectOne from '../../../containers/fields/base/Select One';
 import Text from '../../../containers/fields/base/Text';
+import KbTime from '../../../containers/fields/base/Time';
 
 /** type of fieldParentTreeName */
 export type FieldParentTreeName = string;
@@ -95,6 +97,14 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case DATE_FIELD_TYPE:
         return (
           <KbDate
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
+          />
+        );
+      case TIME_FIELD_TYPE:
+        return (
+          <KbTime
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
