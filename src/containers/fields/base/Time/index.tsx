@@ -1,8 +1,6 @@
 import * as React from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { connect } from 'react-redux';
-import { FormGroup, Label } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -21,6 +19,7 @@ import {
   customizeLabelsWithPreviousInputs,
   getConstraintLabelText,
   getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
@@ -77,6 +76,7 @@ class KbTime extends React.Component<TimeProps> {
       constraintLabel,
       fieldParentTreeName + fieldElement.name
     );
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
         this.props.assignFieldValueActionCreator(
@@ -110,22 +110,15 @@ class KbTime extends React.Component<TimeProps> {
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
           {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <DatePicker
+          <Input
+            type="time"
             name={fieldElement.name}
-            selected={fieldValue ? fieldValue : null}
-            onChange={this.handleChange(fieldElement.name)}
-            showTimeSelect={true}
-            showTimeSelectOnly={true}
-            timeFormat="h:m aa"
-            timeIntervals={15}
-            timeCaption="time"
-            dateFormat="h:mm aa"
-            placeholderText="h:m aa"
-            className="form-control"
+            onChange={this.onChangeHandler}
+            value={fieldValue || ''}
             readOnly={isReadonly}
           />
-
           {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
+          {fieldElement.hint && <Label>{hintLabel}</Label>}
           {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
         </FormGroup>
       );
@@ -145,10 +138,10 @@ class KbTime extends React.Component<TimeProps> {
     }
   }
 
-  private handleChange = (name: any) => (value: any) => {
+  private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + name,
-      value !== '' ? value : null
+      this.props.fieldParentTreeName + event.currentTarget.name,
+      event.currentTarget.value !== '' ? event.currentTarget.value : null
     );
   };
 }
