@@ -291,7 +291,8 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
     let options: any[] = [];
     const distinctOptions: any[] = [];
     if (csvName) {
-      options = [...this.props.csvList];
+      const modifiedName = csvName.replace(/'/g, '');
+      options = [...this.props.csvList[modifiedName]];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {

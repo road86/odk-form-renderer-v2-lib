@@ -356,7 +356,8 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     const finalRes: any[] = [];
 
     if (csvName) {
-      options = [...this.props.csvList];
+      const modifiedName = csvName.replace(/'/g, '');
+      options = [...this.props.csvList[modifiedName]];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {
