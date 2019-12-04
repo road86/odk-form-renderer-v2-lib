@@ -292,7 +292,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
     const distinctOptions: any[] = [];
     if (csvName) {
       const modifiedName = csvName.replace(/'/g, '');
-      options = [...this.props.csvList[modifiedName]];
+      options = this.props.csvList[modifiedName] || [];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {
@@ -316,7 +316,6 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         i = i + 2;
       }
     }
-
     if (options.length !== 0) {
       let labelColumnName: string = '';
       let valueColumnName: string = '';
@@ -332,7 +331,6 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         );
         valueColumnName = this.props.fieldElement.children[0].name;
       }
-
       options.forEach(elem => {
         const tmpOpt: any = {};
         const label: string = 'label';
