@@ -86,6 +86,7 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
             </label>
           </Label>
           <Label
+            className="requiredTextSteric"
             tag="label"
             widths={
               Array [
@@ -98,7 +99,7 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
             }
           >
             <label
-              className=""
+              className="requiredTextSteric"
             >
               *
             </label>
@@ -120,6 +121,7 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
             />
           </Input>
           <Label
+            className="hintText"
             tag="label"
             widths={
               Array [
@@ -132,7 +134,7 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
             }
           >
             <label
-              className=""
+              className="hintText"
             >
               integer type with no appearance
             </label>
