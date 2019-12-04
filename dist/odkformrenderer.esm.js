@@ -3303,7 +3303,7 @@ function (_React$Component) {
 
       if (csvName) {
         var modifiedName = csvName.replace(/'/g, '');
-        options = [].concat(_this.props.csvList[modifiedName]);
+        options = _this.props.csvList[modifiedName] || [];
       }
 
       if (criteriaType && criteriaType.trim() === 'matches') {
@@ -3406,7 +3406,7 @@ function (_React$Component) {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (fieldElement.control && fieldElement.control.appearance && /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)) {
         resultOptions.map(function (elem) {
           return options.push({
             label: elem.label,
@@ -3418,6 +3418,7 @@ function (_React$Component) {
         if (fieldElement.children) {
           fieldElement.children.map(function (elem) {
             var childrenLabel = getFieldLabelText(elem, defaultLanguage);
+            console.log('elem', elem);
             options.push({
               label: childrenLabel,
               value: elem.name
@@ -3633,7 +3634,7 @@ function (_React$Component) {
 
       if (csvName) {
         var modifiedName = csvName.replace(/'/g, '');
-        options = [].concat(_this.props.csvList[modifiedName]);
+        options = _this.props.csvList[modifiedName] || [];
       }
 
       if (criteriaType && criteriaType.trim() === 'matches') {
@@ -3740,7 +3741,7 @@ function (_React$Component) {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (fieldElement.control && fieldElement.control.appearance && /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)) {
         resultOptions.map(function (elem) {
           return options.push({
             label: elem.label,
@@ -4023,7 +4024,7 @@ function (_React$Component) {
 
       if (csvName) {
         var modifiedName = csvName.replace(/'/g, '');
-        options = [].concat(_this.props.csvList[modifiedName]);
+        options = _this.props.csvList[modifiedName] || [];
       }
 
       if (criteriaType && criteriaType.trim() === 'matches') {
@@ -4118,7 +4119,7 @@ function (_React$Component) {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (fieldElement.control && fieldElement.control.appearance && /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)) {
         resultOptions.map(function (elem) {
           return options.push({
             label: elem.label,
@@ -4280,7 +4281,7 @@ function (_React$Component) {
 
       if (csvName) {
         var modifiedName = csvName.replace(/'/g, '');
-        options = [].concat(_this.props.csvList[modifiedName]);
+        options = _this.props.csvList[modifiedName] || [];
       }
 
       if (criteriaType && criteriaType.trim() === 'matches') {
@@ -4376,7 +4377,7 @@ function (_React$Component) {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (fieldElement.control && fieldElement.control.appearance && /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)) {
         if (fieldValue) {
           var optionsValueArray = [];
           resultOptions.map(function (elem) {
