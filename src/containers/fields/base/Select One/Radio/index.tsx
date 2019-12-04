@@ -132,7 +132,11 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (
+        fieldElement.control &&
+        fieldElement.control.appearance &&
+        /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
+      ) {
         if (fieldValue) {
           const optionsValueArray: any = [];
           resultOptions.map(elem => {

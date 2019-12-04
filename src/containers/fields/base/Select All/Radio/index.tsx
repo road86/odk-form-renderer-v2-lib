@@ -134,7 +134,11 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (
+        fieldElement.control &&
+        fieldElement.control.appearance &&
+        /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
+      ) {
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
