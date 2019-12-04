@@ -181,17 +181,25 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <Select
-            multi={false}
-            name={fieldElement.name}
-            options={options}
-            value={selectedValue || ''}
-            onChange={this.onChangeHandler(fieldElement.name)}
-          />
-          {fieldElement.hint && <Label>{hintLabel}</Label>}
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
+          <div key={fieldElement.name} className="selectOneDropDown">
+            <Select
+              multi={false}
+              name={fieldElement.name}
+              options={options}
+              value={selectedValue || ''}
+              onChange={this.onChangeHandler(fieldElement.name)}
+            />
+          </div>
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
         </FormGroup>
       );
     } else {
