@@ -14,12 +14,14 @@
   font-size: 18px;
 }
 
-.selectOne {
+.selectOne,
+.selectAll {
   color: #0b5679;
   margin-left: 5px;
 }
 
-.selectOneDropDown {
+.selectOneDropDown,
+.selectAllDropDown {
   color: #0b5679;
 }
 
