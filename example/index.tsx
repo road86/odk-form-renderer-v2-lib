@@ -11,7 +11,7 @@ const App = () => {
     console.log(JSON.stringify(userInput));
   };
   const props = {
-    csvList: {},
+    csvList: CSV_LIST,
     defaultLanguage: 'English',
     formDefinitionJson: DEMO_FORM_JSON,
     handleSubmit,

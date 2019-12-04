@@ -87,6 +87,24 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
               value={12.23}
             />
           </Input>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              decimal type with no appearance
+            </label>
+          </Label>
         </div>
       </FormGroup>
     </Decimal>

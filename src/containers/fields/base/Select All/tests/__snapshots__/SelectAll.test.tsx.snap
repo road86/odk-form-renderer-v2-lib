@@ -193,6 +193,24 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
              
             B
           </div>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              select_multiple type with minimal appearance, 4 image choices
+            </label>
+          </Label>
         </div>
       </FormGroup>
     </SelectAllRadio>

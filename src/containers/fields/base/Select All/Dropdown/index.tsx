@@ -146,7 +146,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
               elem,
               defaultLanguage
             );
-            console.log('elem', elem);
+
             options.push({ label: childrenLabel, value: elem.name });
           });
           this.setOptionList(fieldElement.children);

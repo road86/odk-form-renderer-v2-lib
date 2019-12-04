@@ -39,11 +39,11 @@ exports[`App renders App correctly 1`] = `
           className="form-container container"
         >
           <Row
-            className="form-title"
+            className="form-title formTitle"
             tag="div"
           >
             <div
-              className="form-title row"
+              className="form-title formTitle row"
             >
               <Col
                 tag="div"
@@ -67,14 +67,23 @@ exports[`App renders App correctly 1`] = `
               </Col>
             </div>
           </Row>
-          <GroupTypeEvaluator
-            csvList={Object {}}
-            defaultLanguage="English"
-            fieldElements={Array []}
-            fieldParentTreeName=""
+          <Row
+            className="formFieldBody"
+            tag="div"
           >
-            <div />
-          </GroupTypeEvaluator>
+            <div
+              className="formFieldBody row"
+            >
+              <GroupTypeEvaluator
+                csvList={Object {}}
+                defaultLanguage="English"
+                fieldElements={Array []}
+                fieldParentTreeName=""
+              >
+                <div />
+              </GroupTypeEvaluator>
+            </div>
+          </Row>
           <Row
             className="welcome-box"
             tag="div"

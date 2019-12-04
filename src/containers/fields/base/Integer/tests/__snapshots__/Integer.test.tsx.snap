@@ -119,6 +119,24 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
               value={120}
             />
           </Input>
+          <Label
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <label
+              className=""
+            >
+              integer type with no appearance
+            </label>
+          </Label>
         </div>
       </FormGroup>
     </Integer>
