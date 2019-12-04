@@ -126,7 +126,9 @@ class Text extends React.Component<TextProps> {
         return (
           <FormGroup>
             <Label>{modifiedFieldLabel}</Label>
-            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+            {isRequired && (
+              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+            )}
             <Input
               type="text"
               name={fieldElement.name}
@@ -134,16 +136,26 @@ class Text extends React.Component<TextProps> {
               value={calculatedValue || ''}
               readOnly={isReadonly}
             />
-            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            <Label>{hintLabel}</Label>
-            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+            {fieldElement.hint && (
+              <Label className="hintText">{hintLabel}</Label>
+            )}
+            {isRequiredViolated && (
+              <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+            )}
+            {isConstraintViolated && (
+              <Label className="constraintText">
+                {modifiedConstraintLabel}
+              </Label>
+            )}
           </FormGroup>
         );
       } else {
         return (
           <FormGroup>
             <Label>{modifiedFieldLabel}</Label>
-            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+            {isRequired && (
+              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+            )}
             <Input
               type="text"
               name={fieldElement.name}
@@ -151,9 +163,17 @@ class Text extends React.Component<TextProps> {
               value={fieldValue || ''}
               readOnly={isReadonly}
             />
-            {fieldElement.hint && <Label>{hintLabel}</Label>}
-            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+            {fieldElement.hint && (
+              <Label className="hintText">{hintLabel}</Label>
+            )}
+            {isRequiredViolated && (
+              <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+            )}
+            {isConstraintViolated && (
+              <Label className="constraintText">
+                {modifiedConstraintLabel}
+              </Label>
+            )}
           </FormGroup>
         );
       }
