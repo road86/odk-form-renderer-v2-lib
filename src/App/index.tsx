@@ -43,12 +43,15 @@ class App extends React.Component<AppProps> {
     };
     return (
       <Container className="form-container">
-        <Row className="form-title">
+        <Row className={'form-title formTitle'}>
           <Col>
             <h3>{formTitle}</h3>
           </Col>
         </Row>
-        <GroupTypeEvaluator {...props} />
+        <Row className="formFieldBody">
+          <GroupTypeEvaluator {...props} />
+        </Row>
+
         <Row className="welcome-box">
           <Col>
             <Button className="btn btn-success" onClick={this.handleClick}>
