@@ -1,3 +1,41 @@
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+.hintText,
+.requiredText,
+.constraintText {
+  color: #fd6100;
+  font-size: 13px;
+}
+
+.requiredTextSteric {
+  color: #fd6100;
+  font-size: 18px;
+}
+
+.selectOne {
+  color: #0b5679;
+  margin-left: 5px;
+}
+
+.selectOneDropDown {
+  color: #0b5679;
+}
+
+.formTitle {
+  text-align: center;
+  margin: 10px 10px;
+  padding: 2px;
+  border-bottom: 1px solid #f2f3f5;
+  color: #f5b671;
+  margin-bottom: 20px;
+}
+
+.formFieldBody {
+  margin: 10px 20px;
+  background: #fbfbfb;
+  padding: 5px 5px;
+  border-radius: 5px;
+  padding: 30px;
+}
