@@ -88,6 +88,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
             />
           </Input>
           <Label
+            className="hintText"
             tag="label"
             widths={
               Array [
@@ -100,7 +101,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
             }
           >
             <label
-              className=""
+              className="hintText"
             >
               decimal type with no appearance
             </label>
