@@ -131,7 +131,11 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (
+        fieldElement.control &&
+        fieldElement.control.appearance &&
+        /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
+      ) {
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
@@ -281,7 +285,7 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
     const distinctOptions: any[] = [];
     if (csvName) {
       const modifiedName = csvName.replace(/'/g, '');
-      options = [...this.props.csvList[modifiedName]];
+      options = this.props.csvList[modifiedName] || [];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {

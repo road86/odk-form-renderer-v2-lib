@@ -130,7 +130,11 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         }
       }
 
-      if (resultOptions.length > 0) {
+      if (
+        fieldElement.control &&
+        fieldElement.control.appearance &&
+        /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
+      ) {
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
@@ -142,6 +146,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
               elem,
               defaultLanguage
             );
+            console.log('elem', elem);
             options.push({ label: childrenLabel, value: elem.name });
           });
           this.setOptionList(fieldElement.children);
@@ -315,7 +320,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
 
     if (csvName) {
       const modifiedName = csvName.replace(/'/g, '');
-      options = [...this.props.csvList[modifiedName]];
+      options = this.props.csvList[modifiedName] || [];
     }
 
     if (criteriaType && criteriaType.trim() === 'matches') {
