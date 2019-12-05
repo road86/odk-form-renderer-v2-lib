@@ -1786,5 +1786,17 @@ export const geo_2 = [
 
 export const CSV_LIST = { geo, geo_1, geo_2 };
 
+export const languageOptions = [
+  {
+    label: 'English',
+    value: 'English',
+  },
+
+  {
+    label: 'Bangla',
+    value: 'Bangla',
+  },
+];
+
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
