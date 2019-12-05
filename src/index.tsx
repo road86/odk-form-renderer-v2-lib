@@ -8,6 +8,7 @@ export interface OdkFormRendererProps {
   csvList: any;
   defaultLanguage: string;
   formDefinitionJson: any;
+  languageOptions: any;
   userInputJson: any;
   handleSubmit(userInput: any): any;
 }
@@ -19,6 +20,7 @@ class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
       defaultLanguage,
       formDefinitionJson,
       userInputJson,
+      languageOptions,
       handleSubmit,
     } = this.props;
     const props = {
@@ -27,6 +29,7 @@ class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
       fieldElements: formDefinitionJson.children,
       formTitle: formDefinitionJson.title,
       handleSubmit,
+      languageOptions,
       userInputJson,
     };
     return (
