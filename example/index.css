@@ -29,15 +29,37 @@
   text-align: center;
   margin: 10px 10px;
   padding: 2px;
-  border-bottom: 1px solid #f2f3f5;
-  color: #f5b671;
   margin-bottom: 20px;
+  color: #2b475e;
+  border-bottom: 1px solid #dfe3e8;
+  font-size: 24px;
 }
 
 .formFieldBody {
   margin: 10px 20px;
-  background: #fbfbfb;
+  background: white;
   padding: 5px 5px;
-  border-radius: 5px;
   padding: 30px;
+  border: 1px solid #dadce0;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #d7d7e0;
+}
+
+.dropDown {
+  font-size: 14px;
+  margin-right: -5px;
+  margin-top: 5px;
+}
+
+.dropDownLabel {
+  font-size: 8px;
+}
+
+.headerText {
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.body {
+  background: #f8f9fd;
 }
