@@ -4,6 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Button, Col, Container, Row } from 'reactstrap';
 import { Store } from 'redux';
+import DropDown from '../components/DropDown';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
   getUserInputFromStore,
@@ -22,42 +23,65 @@ export interface AppProps {
   formTitle: string;
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
+  languageOptions: any;
   handleSubmit(userInput: any): any;
 }
 
-class App extends React.Component<AppProps> {
+export interface AppState {
+  defaultLanguage: string;
+}
+
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+  }
+
   public componentDidMount() {
     const { userInputJson, userInputObj } = this.props;
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
+    this.setState({ defaultLanguage: this.props.defaultLanguage });
   }
+
+  public handleSelect = (languageName: string) => {
+    this.setState({ defaultLanguage: languageName });
+  };
+
   public render() {
-    const { csvList, defaultLanguage, fieldElements, formTitle } = this.props;
+    const { csvList, fieldElements, formTitle, languageOptions } = this.props;
+
+    const { defaultLanguage } = this.state || this.props;
 
     const props = {
       csvList,
       defaultLanguage,
       fieldElements,
       fieldParentTreeName: '',
+      languageOptions,
     };
+
     return (
       <Container className="form-container">
         <Row className={'form-title formTitle'}>
           <Col>
-            <h3>{formTitle}</h3>
+            <h3 className="headerText">{formTitle}</h3>
           </Col>
-        </Row>
-        <Row className="formFieldBody">
-          <GroupTypeEvaluator {...props} />
+          <DropDown
+            languages={...languageOptions}
+            onChangeSelect={this.handleSelect}
+          />
         </Row>
 
-        <Row className="welcome-box">
-          <Col>
-            <Button className="btn btn-success" onClick={this.handleClick}>
-              Submit
-            </Button>
-          </Col>
+        <Row className="formFieldBody">
+          <GroupTypeEvaluator {...props} />
+          <Row className="welcome-box">
+            <Col>
+              <Button className="btn btn-success" onClick={this.handleClick}>
+                Submit
+              </Button>
+            </Col>
+          </Row>
         </Row>
       </Container>
     );
