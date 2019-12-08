@@ -1654,13 +1654,14 @@ export const sampleUserInput = {
   'text_widgets/division_d_ck': ['10'],
   'text_widgets/district_all_ck': ['1004'],
   'text_widgets/string_widget': 'hello',
-  'number_widgets/integer_widget': 1,
-  'number_widgets/integer_thousands_sep_widget': 121,
-  'number_widgets/ex_integer_widget': 12,
-  'number_widgets/decimal_widget': 12,
+  'number_widgets/integer_widget': '1',
+  'number_widgets/integer_thousands_sep_widget': '121',
+  'number_widgets/ex_integer_widget': '12',
+  'number_widgets/decimal_widget': '12.06',
   'select_one_widgets/return_from': 'BY',
   'select_multi_widgets/spinner_multi_widget': ['c'],
   'date_time_widgets/date_time_widget': '2019-11-23T10:30:00.000Z',
+  'date_time_widgets/islamic_date_widget': '2019-07-11T00:00:00.000Z',
 };
 
 // tslint:disable
