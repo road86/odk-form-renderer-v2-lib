@@ -4,6 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Button, Col, Container, Row } from 'reactstrap';
 import { Store } from 'redux';
+import KbAlert from '../components/Alert';
 import DropDown from '../components/DropDown';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
@@ -29,6 +30,7 @@ export interface AppProps {
 
 export interface AppState {
   defaultLanguage: string;
+  isSubmissionError: boolean;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -41,7 +43,10 @@ class App extends React.Component<AppProps, AppState> {
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
-    this.setState({ defaultLanguage: this.props.defaultLanguage });
+    this.setState({
+      defaultLanguage: this.props.defaultLanguage,
+      isSubmissionError: false,
+    });
   }
 
   public handleSelect = (languageName: string) => {
@@ -50,7 +55,6 @@ class App extends React.Component<AppProps, AppState> {
 
   public render() {
     const { csvList, fieldElements, formTitle, languageOptions } = this.props;
-
     const { defaultLanguage } = this.state || this.props;
 
     const props = {
@@ -72,7 +76,17 @@ class App extends React.Component<AppProps, AppState> {
             onChangeSelect={this.handleSelect}
           />
         </Row>
-
+        {this.state && this.state.isSubmissionError && (
+          <KbAlert
+            color={'danger'}
+            isOpen={this.state.isSubmissionError}
+            handleToggle={this.toggleStateValue}
+            headerText={'Oh snap! You got an error!'}
+            bodyText={
+              'Please make sure the required fields are not missing and there are no errors'
+            }
+          />
+        )}
         <Row className="formFieldBody">
           <GroupTypeEvaluator {...props} />
           <Row className="welcome-box">
@@ -95,7 +109,13 @@ class App extends React.Component<AppProps, AppState> {
       handleSubmit(userInputObj);
     } else {
       handleSubmit('Field Violated');
+      this.setState({ isSubmissionError: true });
+      window.scrollTo(0, 0);
     }
+  };
+
+  private toggleStateValue = () => {
+    this.setState({ isSubmissionError: false });
   };
 }
 
