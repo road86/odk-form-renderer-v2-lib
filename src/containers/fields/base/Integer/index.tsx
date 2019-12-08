@@ -106,6 +106,13 @@ class Integer extends React.Component<IntegerProps> {
         );
       }
 
+      if (typeof this.props.fieldValue === 'string') {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          parseInt(this.props.fieldValue, 10)
+        );
+      }
+
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
