@@ -108,6 +108,14 @@ class Decimal extends React.Component<DecimalProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
+
+      if (typeof this.props.fieldValue === 'string') {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          parseFloat(this.props.fieldValue)
+        );
+      }
+
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
