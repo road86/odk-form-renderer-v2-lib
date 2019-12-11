@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Col, Row } from 'reactstrap';
 import { GROUP_FIELD_TYPE, REPEAT_FIELD_TYPE } from '../../../constants';
 import Group from '../../../containers/fields/group/Group';
 import Repeat from '../../../containers/fields/group/Repeat';
@@ -21,18 +22,20 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       defaultLanguage,
     } = this.props;
     return (
-      <div>
-        {fieldElements.map(fieldElement => (
-          <div key={'group_' + fieldElement.name}>
-            {this.typeEvaluator(
-              csvList,
-              fieldElement,
-              fieldParentTreeName,
-              defaultLanguage
-            )}
-          </div>
-        ))}
-      </div>
+      <Row>
+        <Col md={12}>
+          {fieldElements.map(fieldElement => (
+            <div key={'group_' + fieldElement.name}>
+              {this.typeEvaluator(
+                csvList,
+                fieldElement,
+                fieldParentTreeName,
+                defaultLanguage
+              )}
+            </div>
+          ))}
+        </Col>
+      </Row>
     );
   }
 
