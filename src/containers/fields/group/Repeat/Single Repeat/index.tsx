@@ -16,6 +16,7 @@ export interface SingleRepeatProps {
   assignmentHandler: any;
   removeHandler: any;
   removeOptionHandler: any;
+  unControlFlag: boolean;
 }
 
 class SingleRepeat extends React.Component<SingleRepeatProps> {
@@ -26,14 +27,17 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
       fieldElement,
       fieldParentTreeName,
       repeatIndex,
+      unControlFlag,
     } = this.props;
     return (
       <div>
-        <div>
-          <span onClick={this.handleChange}>
-            <FontAwesomeIcon icon="minus-circle" />
-          </span>
-        </div>
+        {unControlFlag === false ? (
+          <div>
+            <span onClick={this.handleChange}>
+              <FontAwesomeIcon icon="minus-circle" />
+            </span>
+          </div>
+        ) : null}
         {fieldElement.children && (
           <GroupTypeEvaluator
             fieldElements={fieldElement.children}
