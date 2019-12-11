@@ -1614,6 +1614,37 @@ export const DEMO_FORM_JSON = {
       type: 'repeat',
     },
     {
+      name: 'family_member',
+      label: {
+        English: 'Total Family Member',
+      },
+      type: 'integer',
+    },
+    {
+      name: 'mem_info_count',
+      bind: {
+        readonly: 'true()',
+        calculate: '${family_member}',
+      },
+      type: 'calculate',
+    },
+    {
+      control: {
+        'jr:count': '${mem_info_count}',
+      },
+      children: [
+        {
+          name: 'mem_name',
+          label: {
+            English: 'Member Name',
+          },
+          type: 'text',
+        },
+      ],
+      name: 'mem_info',
+      type: 'repeat',
+    },
+    {
       control: {
         bodyless: true,
       },
