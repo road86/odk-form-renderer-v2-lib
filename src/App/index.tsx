@@ -88,14 +88,16 @@ class App extends React.Component<AppProps, AppState> {
           />
         )}
         <Row className="formFieldBody">
-          <GroupTypeEvaluator {...props} />
-          <Row className="welcome-box">
-            <Col>
-              <Button className="btn btn-success" onClick={this.handleClick}>
-                Submit
-              </Button>
-            </Col>
-          </Row>
+          <Col>
+            <GroupTypeEvaluator {...props} />
+            <Row className="welcome-box">
+              <Col>
+                <Button className="btn btn-success" onClick={this.handleClick}>
+                  Submit
+                </Button>
+              </Col>
+            </Row>
+          </Col>
         </Row>
       </Container>
     );
