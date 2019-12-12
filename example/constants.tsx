@@ -1632,6 +1632,7 @@ export const DEMO_FORM_JSON = {
       control: {
         'jr:count': '${mem_info_count}',
       },
+
       children: [
         {
           name: 'mem_name',
@@ -1639,6 +1640,9 @@ export const DEMO_FORM_JSON = {
             English: 'Member Name',
           },
           type: 'text',
+          bind: {
+            required: 'yes',
+          },
         },
       ],
       name: 'mem_info',
