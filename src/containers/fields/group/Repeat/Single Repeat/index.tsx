@@ -30,14 +30,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
       unControlFlag,
     } = this.props;
     return (
-      <div>
-        {unControlFlag === false ? (
-          <div>
-            <span onClick={this.handleChange}>
-              <FontAwesomeIcon icon="minus-circle" />
-            </span>
-          </div>
-        ) : null}
+      <div className={'groupFormFieldBody'}>
         {fieldElement.children && (
           <GroupTypeEvaluator
             fieldElements={fieldElement.children}
@@ -53,6 +46,14 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
             csvList={csvList}
           />
         )}
+
+        {unControlFlag === false ? (
+          <div className={'minusIconWrapper'}>
+            <span onClick={this.handleChange}>
+              <FontAwesomeIcon icon="minus-circle" className={'minusIcon'} />
+            </span>
+          </div>
+        ) : null}
       </div>
     );
   }

@@ -62,7 +62,7 @@ class ControlledRepeat extends React.Component<ControlledRepeatProps> {
       }
 
       return (
-        <FormGroup>
+        <FormGroup className={'groupBody'}>
           <Label>{fieldLabel}</Label>
           {fieldValue &&
             // tslint:disable-next-line: variable-name
@@ -84,7 +84,7 @@ class ControlledRepeat extends React.Component<ControlledRepeatProps> {
             ))}
           <div>
             <span onClick={this.addAnotherRepeat}>
-              <FontAwesomeIcon icon="plus-circle" />
+              <FontAwesomeIcon icon="plus-circle" className={'plusIcon'} />
             </span>
           </div>
         </FormGroup>

@@ -101,7 +101,7 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
         }
 
         return (
-          <FormGroup>
+          <FormGroup className={'groupBodyUnControlled'}>
             <Label>{fieldLabel}</Label>
             {newFieldValue &&
               // tslint:disable-next-line: variable-name
