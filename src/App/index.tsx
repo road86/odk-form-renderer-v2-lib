@@ -74,6 +74,7 @@ class App extends React.Component<AppProps, AppState> {
           <DropDown
             languages={...languageOptions}
             onChangeSelect={this.handleSelect}
+            defaultLanguage={defaultLanguage}
           />
         </Row>
         {this.state && this.state.isSubmissionError && (
