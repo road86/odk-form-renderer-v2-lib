@@ -63,3 +63,47 @@
 .body {
   background: #f8f9fd;
 }
+
+.groupLabel {
+  font-size: 1.5rem;
+  color: #305472;
+}
+.groupTypeEvaluator {
+  margin-left: 15px;
+}
+
+.groupBody {
+  background: #f8f9fd;
+  box-shadow: inset 0 0 10px white;
+}
+
+.groupBodyUnControlled {
+  background: #f8f9fd;
+  box-shadow: inset 0 0 10px white;
+  height: 100%;
+}
+
+.groupFormFieldBody {
+  margin: 10px 20px;
+  background: white;
+  padding: 5px 5px;
+  padding: 30px;
+  border: 1px solid #fdfdff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #ccc8c8;
+}
+
+.minusIconWrapper {
+  float: right;
+}
+.minusIcon {
+  color: #0b5679;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.plusIcon {
+  color: #0b5679;
+  width: 20px !important;
+  height: 20px !important;
+}
