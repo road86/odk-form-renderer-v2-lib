@@ -25,7 +25,10 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       <Row>
         <Col md={12}>
           {fieldElements.map(fieldElement => (
-            <div key={'group_' + fieldElement.name}>
+            <div
+              key={'group_' + fieldElement.name}
+              className={'groupTypeEvaluator'}
+            >
               {this.typeEvaluator(
                 csvList,
                 fieldElement,

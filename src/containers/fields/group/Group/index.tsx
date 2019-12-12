@@ -45,7 +45,7 @@ class Group extends React.Component<GroupProps> {
     if (isComponentRender) {
       return (
         <FormGroup>
-          <Label>{fieldLabel}</Label>
+          <Label className={'groupLabel'}>{fieldLabel}</Label>
           {fieldElement.children && (
             <GroupTypeEvaluator
               fieldElements={fieldElement.children}
