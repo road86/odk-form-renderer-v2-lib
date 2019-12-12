@@ -79,6 +79,27 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
         }
       }
 
+      if (
+        fieldValue &&
+        fieldValue.length === 0 &&
+        noOfJrCount === 0 &&
+        this.props.isErrorsIncludeGroupFieldsSelector(
+          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
+        )
+      ) {
+        this.props.removeGroupFieldsFromErrorsActionCreator(
+          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
+        );
+      }
+
+      if (fieldValue && fieldValue.length > 0 && noOfJrCount === 0) {
+        this.removeFromError();
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          []
+        );
+      }
+
       if (noOfJrCount > 0) {
         const newFieldValue = [...fieldValue];
 
@@ -98,6 +119,7 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
             fieldParentTreeName + fieldElement.name,
             newFieldValue
           );
+          this.removeFromError();
         }
 
         return (
@@ -127,15 +149,7 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
         return null;
       }
     } else {
-      if (
-        this.props.isErrorsIncludeGroupFieldsSelector(
-          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
-        )
-      ) {
-        this.props.removeGroupFieldsFromErrorsActionCreator(
-          fieldParentTreeName + 'repeat/' + fieldElement.name + '/'
-        );
-      }
+      this.removeFromError();
       if (fieldValue) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
@@ -143,6 +157,24 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
         );
       }
       return null;
+    }
+  }
+
+  private removeFromError() {
+    if (
+      this.props.isErrorsIncludeGroupFieldsSelector(
+        this.props.fieldParentTreeName +
+          'repeat/' +
+          this.props.fieldElement.name +
+          '/'
+      )
+    ) {
+      this.props.removeGroupFieldsFromErrorsActionCreator(
+        this.props.fieldParentTreeName +
+          'repeat/' +
+          this.props.fieldElement.name +
+          '/'
+      );
     }
   }
 }
@@ -201,7 +233,7 @@ const mapDispatchToProps = {
   removeOptionListFromActionCreator: RemoveFromOptionList,
 };
 
-/** connect Group component to the redux store */
+/** connect Repeat component to the redux store */
 const ConnectedUncontrolledRepeat = connect(
   mapStateToProps,
   mapDispatchToProps
