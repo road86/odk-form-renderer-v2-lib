@@ -4,6 +4,7 @@ import Select from 'react-select';
 export interface DropDownProps {
   languages: any;
   onChangeSelect: any;
+  defaultLanguage: string;
 }
 
 export interface Options {
@@ -19,6 +20,13 @@ class DropDown extends React.Component<DropDownProps> {
       options.push({ label: elem.label, value: elem.value });
     });
 
+    let selectedValue: any;
+    options.map(elem => {
+      if (elem.value === this.props.defaultLanguage) {
+        selectedValue = elem;
+      }
+    });
+
     return (
       <Select
         multi={false}
@@ -26,6 +34,7 @@ class DropDown extends React.Component<DropDownProps> {
         className={'col-md-2 dropDown'}
         placeholder="Language"
         onChange={this.onChangeHandler}
+        value={selectedValue || ''}
       />
     );
   }
