@@ -1644,6 +1644,31 @@ export const DEMO_FORM_JSON = {
             required: 'yes',
           },
         },
+        {
+          children: [
+            {
+              name: 'as',
+              label: 'this',
+            },
+            {
+              name: 'df',
+              label: 'is',
+            },
+            {
+              name: 'sdfffff',
+              label: 'rp',
+            },
+            {
+              name: 'd',
+              label: '2',
+            },
+          ],
+          name: 'the_n_t',
+          hint:
+            'Show only the inputs of these options and not the labels (type=select_multiple yes_no, appearance=list-nolabel)',
+          label: 'The new Test',
+          type: 'select all that apply',
+        },
       ],
       name: 'mem_info',
       type: 'repeat',
