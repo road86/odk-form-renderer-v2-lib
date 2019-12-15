@@ -20,6 +20,17 @@ describe('App', () => {
       fieldElements: [],
       formTitle: 'ODK',
       handleSubmit: mock,
+      languageOptions: [
+        {
+          label: 'English',
+          value: 'English',
+        },
+
+        {
+          label: 'Bangla',
+          value: 'Bangla',
+        },
+      ],
       userInputJson: {},
     };
     ReactDOM.render(
@@ -39,6 +50,16 @@ describe('App', () => {
       fieldElements: [],
       formTitle: 'ODK',
       handleSubmit: mock,
+      languageOptions: [
+        {
+          label: 'English',
+          value: 'English',
+        },
+        {
+          label: 'Bangla',
+          value: 'Bangla',
+        },
+      ],
       userInputJson: {},
     };
     const wrapper = mount(
