@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
@@ -8,9 +9,11 @@ import {
 } from '../../../../../components/typeEvalutors/Base';
 import {
   assignFieldValueAction,
+  assignOptionListAction,
   emptyGroupFields,
   getEvaluatedExpression,
   getFieldValue,
+  getOptionList,
   isErrorsIncludeGroupFields,
   isGroupFieldsEmpty,
   RemoveFromOptionList,
@@ -32,9 +35,11 @@ export interface UncontrolledRepeatProps {
   isComponentRender: boolean;
   isGroupFieldsEmptySelector: any;
   isErrorsIncludeGroupFieldsSelector: any;
+  optionList: object;
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  assignOptionListActionCreator: typeof assignOptionListAction;
   removeOptionListFromActionCreator: typeof RemoveFromOptionList;
 }
 
@@ -47,6 +52,7 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
       fieldParentTreeName,
       defaultLanguage,
       isComponentRender,
+      optionList,
       assignFieldValueActionCreator,
       removeGroupFieldsFromErrorsActionCreator,
       removeOptionListFromActionCreator,
@@ -100,6 +106,13 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
         );
       }
 
+      if (optionList && _.size(optionList) > noOfJrCount && noOfJrCount === 0) {
+        this.props.assignOptionListActionCreator(
+          this.props.fieldParentTreeName + this.props.fieldElement.name,
+          []
+        );
+      }
+
       if (noOfJrCount > 0) {
         const newFieldValue = [...fieldValue];
 
@@ -120,6 +133,14 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
             newFieldValue
           );
           this.removeFromError();
+        }
+
+        if (optionList && _.size(optionList) > noOfJrCount) {
+          const iterate = _.size(optionList) - noOfJrCount;
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + this.props.fieldElement.name,
+            Array.prototype.slice.call(optionList, iterate)
+          );
         }
 
         return (
@@ -188,6 +209,7 @@ interface DispatchedStateProps {
   isComponentRender: boolean;
   isGroupFieldsEmptySelector: any;
   isErrorsIncludeGroupFieldsSelector: any;
+  optionList: object;
 }
 
 /** Interface to describe props from parent */
@@ -221,6 +243,7 @@ const mapStateToProps = (
     ),
     isErrorsIncludeGroupFieldsSelector,
     isGroupFieldsEmptySelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name),
   };
   return result;
 };
@@ -228,6 +251,7 @@ const mapStateToProps = (
 /** map props to actions */
 const mapDispatchToProps = {
   assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
   emptyGroupFieldsActionCreator: emptyGroupFields,
   removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
   removeOptionListFromActionCreator: RemoveFromOptionList,
