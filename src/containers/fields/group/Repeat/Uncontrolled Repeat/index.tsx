@@ -141,6 +141,7 @@ class UncontrolledRepeat extends React.Component<UncontrolledRepeatProps> {
             this.props.fieldParentTreeName + this.props.fieldElement.name,
             Array.prototype.slice.call(optionList, iterate)
           );
+          this.removeFromError();
         }
 
         return (
