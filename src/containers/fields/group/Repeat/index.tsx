@@ -17,7 +17,7 @@ export interface RepeatProps {
 class Repeat extends React.Component<RepeatProps> {
   public render() {
     const { fieldElement } = this.props;
-    if (fieldElement.control) {
+    if (fieldElement.control && fieldElement.control['jr:count']) {
       return <UncontrolledRepeat {...this.props} />;
     }
     return <ControlledRepeat {...this.props} />;
