@@ -49,6 +49,7 @@ export interface FieldElement {
   control?: any;
   hint?: any;
   itemset?: string;
+  choice_filter?: string;
 }
 
 /** props interface for BaseTypeEvaluator component */

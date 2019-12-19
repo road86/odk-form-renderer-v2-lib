@@ -57,6 +57,7 @@ export interface Options {
 class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
   public render() {
     const {
+      choices,
       fieldElement,
       fieldParentTreeName,
       fieldValue,
@@ -142,6 +143,26 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         );
 
         this.setOptionList(resultOptions);
+      } else if (fieldElement.itemset) {
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          choices[fieldElement.itemset.trim()].forEach((elem: any) => {
+            const childrenLabel: string = getFieldLabelText(
+              elem,
+              defaultLanguage
+            );
+            if (
+              fieldElement.choice_filter &&
+              this.props.getEvaluatedExpressionSelectorForSelect(
+                fieldElement.choice_filter,
+                fieldParentTreeName + fieldElement.name,
+                elem
+              )
+            ) {
+              options.push({ label: childrenLabel, value: elem.name });
+            }
+          });
+          this.setOptionList(choices[fieldElement.itemset.trim()]);
+        }
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(elem => {

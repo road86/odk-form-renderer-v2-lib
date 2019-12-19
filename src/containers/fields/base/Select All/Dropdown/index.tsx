@@ -32,6 +32,7 @@ import {
 
 /** props interface for the SelectAll Dropdown component */
 export interface SelectAllDropDownProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -56,6 +57,7 @@ export interface Options {
 class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   public render() {
     const {
+      choices,
       fieldElement,
       fieldParentTreeName,
       fieldValue,
@@ -139,6 +141,17 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
           options.push({ label: elem.label, value: elem.name })
         );
         this.setOptionList(resultOptions);
+      } else if (fieldElement.itemset) {
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          choices[fieldElement.itemset.trim()].forEach((elem: any) => {
+            const childrenLabel: string = getFieldLabelText(
+              elem,
+              defaultLanguage
+            );
+            options.push({ label: childrenLabel, value: elem.name });
+          });
+          this.setOptionList(choices[fieldElement.itemset.trim()]);
+        }
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(elem => {
