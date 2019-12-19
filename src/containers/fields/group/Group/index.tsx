@@ -20,6 +20,7 @@ import {
 } from '../../../../utils/helpers';
 
 export interface GroupProps {
+  choices: any;
   csvList: any;
   defaultLanguage: string;
   fieldElement: FieldElement;
@@ -35,6 +36,7 @@ export interface GroupProps {
 class Group extends React.Component<GroupProps> {
   public render() {
     const {
+      choices,
       csvList,
       fieldElement,
       fieldParentTreeName,
@@ -48,6 +50,7 @@ class Group extends React.Component<GroupProps> {
           <Label className={'groupLabel'}>{fieldLabel}</Label>
           {fieldElement.children && (
             <GroupTypeEvaluator
+              choices={choices}
               fieldElements={fieldElement.children}
               fieldParentTreeName={
                 fieldParentTreeName + 'group/' + fieldElement.name + '/'

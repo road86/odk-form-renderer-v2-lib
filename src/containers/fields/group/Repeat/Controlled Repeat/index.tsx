@@ -24,6 +24,7 @@ import {
 import SingleRepeat from '.././Single Repeat';
 
 export interface ControlledRepeatProps {
+  choices: any;
   csvList: any;
   defaultLanguage: string;
   fieldElement: FieldElement;
@@ -42,6 +43,7 @@ export interface ControlledRepeatProps {
 class ControlledRepeat extends React.Component<ControlledRepeatProps> {
   public render() {
     const {
+      choices,
       csvList,
       fieldValue,
       fieldElement,
@@ -69,6 +71,7 @@ class ControlledRepeat extends React.Component<ControlledRepeatProps> {
             fieldValue.map((_elm: any, index: any) => (
               <div className="repeat-fields-body" key={'repeat' + index}>
                 <SingleRepeat
+                  choices={choices}
                   defaultLanguage={defaultLanguage}
                   fieldElement={fieldElement}
                   fieldParentTreeName={fieldParentTreeName}

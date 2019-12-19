@@ -7,6 +7,7 @@ import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
 /** props Interface for the GroupTypeEvaluator component */
 export interface GroupTypeEvaluatorProps {
+  choices: any;
   csvList: any;
   defaultLanguage: string;
   fieldElements: FieldElement[];
@@ -16,6 +17,7 @@ export interface GroupTypeEvaluatorProps {
 class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   public render() {
     const {
+      choices,
       csvList,
       fieldElements,
       fieldParentTreeName,
@@ -30,6 +32,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
               className={'groupTypeEvaluator'}
             >
               {this.typeEvaluator(
+                choices,
                 csvList,
                 fieldElement,
                 fieldParentTreeName,
@@ -43,11 +46,13 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   }
 
   /** returns jsx components based on field types
+   * @param {any} choices - the form choices
    * @param {FieldElement} fieldElement - the field element object
    * @param {FieldParentTreeName} - the field parent hierarchical name
    * @return {React.ReactElement} - jsx group components/ base evaluator component
    */
   private typeEvaluator(
+    choices: any,
     csvList: any,
     fieldElement: FieldElement,
     fieldParentTreeName: FieldParentTreeName,
@@ -58,6 +63,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
         return (
           <div>
             <Group
+              choices={choices}
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
@@ -69,6 +75,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
         return (
           <div>
             <Repeat
+              choices={choices}
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
@@ -79,6 +86,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       default:
         return (
           <BaseTypeEvaluator
+            choices={choices}
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}

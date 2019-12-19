@@ -48,10 +48,12 @@ export interface FieldElement {
   default?: any;
   control?: any;
   hint?: any;
+  itemset?: string;
 }
 
 /** props interface for BaseTypeEvaluator component */
 export interface BaseTypeEvaluatorProps {
+  choices: any;
   csvList: any;
   defaultLanguage: string;
   fieldElement: FieldElement;
@@ -61,12 +63,14 @@ export interface BaseTypeEvaluatorProps {
 class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
   public render() {
     const {
+      choices,
       csvList,
       fieldElement,
       fieldParentTreeName,
       defaultLanguage,
     } = this.props;
     return this.typeEvaluator(
+      choices,
       csvList,
       fieldElement,
       fieldParentTreeName,
@@ -75,11 +79,13 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
   }
 
   /** returns jsx components based on field types
+   * @param {any} choices - the choices of form definition
    * @param {FieldElement} fieldElement - the field element object
    * @param {FieldParentTreeName} fieldParentTreeName - the field parent hierchical name
    * @return {React.ReactElement} - jsx base components
    */
   private typeEvaluator(
+    choices: any,
     csvList: any,
     fieldElement: FieldElement,
     fieldParentTreeName: FieldParentTreeName,
@@ -153,6 +159,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case SELECT_ONE_FIELD_TYPE:
         return (
           <SelectOne
+            choices={choices}
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
@@ -162,6 +169,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case SELECT_ALL_FIELD_TYPE:
         return (
           <SelectAll
+            choices={choices}
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}

@@ -16,6 +16,7 @@ import {
 library.add(faPlusCircle, faMinusCircle);
 
 export interface AppProps {
+  choices: any;
   csvList: any;
   isNoErrors: any;
   userInputObj: any;
@@ -54,10 +55,17 @@ class App extends React.Component<AppProps, AppState> {
   };
 
   public render() {
-    const { csvList, fieldElements, formTitle, languageOptions } = this.props;
+    const {
+      csvList,
+      fieldElements,
+      formTitle,
+      languageOptions,
+      choices,
+    } = this.props;
     const { defaultLanguage } = this.state || this.props;
 
     const props = {
+      choices,
       csvList,
       defaultLanguage,
       fieldElements,

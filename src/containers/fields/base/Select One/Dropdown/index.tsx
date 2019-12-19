@@ -32,6 +32,7 @@ import {
 
 /** props interface for the SelectOne component */
 export interface SelectOneDropDownProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;

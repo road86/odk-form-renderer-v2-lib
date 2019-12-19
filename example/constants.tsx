@@ -131,7 +131,7 @@ export const DEMO_FORM_JSON = {
           },
           "choice_filter": "myfilter = ${upazila}",
           "label": "*6. Union (block letters)",
-          "type": "select one"
+          "type": "select all that apply"
         },
         {
           "control": {

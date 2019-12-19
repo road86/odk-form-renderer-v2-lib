@@ -7,6 +7,7 @@ import {
 import GroupTypeEvaluator from '../../../../../components/typeEvalutors/Group';
 
 export interface SingleRepeatProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -22,6 +23,7 @@ export interface SingleRepeatProps {
 class SingleRepeat extends React.Component<SingleRepeatProps> {
   public render() {
     const {
+      choices,
       csvList,
       defaultLanguage,
       fieldElement,
@@ -33,6 +35,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
       <div className={'groupFormFieldBody'}>
         {fieldElement.children && (
           <GroupTypeEvaluator
+            choices={choices}
             fieldElements={fieldElement.children}
             fieldParentTreeName={
               fieldParentTreeName +

@@ -8,6 +8,7 @@ import UncontrolledRepeat from './Uncontrolled Repeat';
 
 /** props interface for the Repeat component */
 export interface RepeatProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;

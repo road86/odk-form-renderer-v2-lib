@@ -24,6 +24,7 @@ class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
       handleSubmit,
     } = this.props;
     const props = {
+      choices: formDefinitionJson.choices || {},
       csvList,
       defaultLanguage,
       fieldElements: formDefinitionJson.children,
