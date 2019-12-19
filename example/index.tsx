@@ -22,7 +22,7 @@ const App = () => {
     formDefinitionJson: DEMO_FORM_JSON,
     handleSubmit,
     languageOptions,
-    userInputJson: sampleUserInput,
+    userInputJson: {} || sampleUserInput,
   };
 
   return (
