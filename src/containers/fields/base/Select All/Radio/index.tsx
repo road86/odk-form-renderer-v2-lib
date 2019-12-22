@@ -190,9 +190,11 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         return (
           <FormGroup>
             <Label>{modifiedFieldLabel}</Label>
-            {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+            {isRequired && (
+              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+            )}
             {resultOptions.map((elem, index) => (
-              <div key={index} className="col-md-12">
+              <div key={index} className={'col-md-12 selectAll'}>
                 <Input
                   key={fieldElement.name + '-' + index}
                   type="checkbox"
@@ -205,9 +207,17 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                 {getFieldLabelText(elem, defaultLanguage)}
               </div>
             ))}
-            {fieldElement.hint && <Label>{hintLabel}</Label>}
-            {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-            {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+            {fieldElement.hint && (
+              <Label className="hintText">{hintLabel}</Label>
+            )}
+            {isRequiredViolated && (
+              <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+            )}
+            {isConstraintViolated && (
+              <Label className="constraintText">
+                {modifiedConstraintLabel}
+              </Label>
+            )}
           </FormGroup>
         );
       } else {
@@ -231,9 +241,11 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           return (
             <FormGroup>
               <Label>{modifiedFieldLabel}</Label>
-              {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+              {isRequired && (
+                <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+              )}
               {fieldElement.children.map((elem, index) => (
-                <div key={index} className="col-md-12">
+                <div key={index} className={'col-md-12 selectAll'}>
                   <Input
                     key={fieldElement.name + '-' + index}
                     type="checkbox"
@@ -245,9 +257,17 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                   {getFieldLabelText(elem, defaultLanguage)}
                 </div>
               ))}
-              {fieldElement.hint && <Label>{hintLabel}</Label>}
-              {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-              {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+              {fieldElement.hint && (
+                <Label className="hintText">{hintLabel}</Label>
+              )}
+              {isRequiredViolated && (
+                <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+              )}
+              {isConstraintViolated && (
+                <Label className="constraintText">
+                  {modifiedConstraintLabel}
+                </Label>
+              )}
             </FormGroup>
           );
         } else {

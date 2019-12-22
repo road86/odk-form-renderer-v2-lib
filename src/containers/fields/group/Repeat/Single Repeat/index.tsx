@@ -7,6 +7,7 @@ import {
 import GroupTypeEvaluator from '../../../../../components/typeEvalutors/Group';
 
 export interface SingleRepeatProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -16,26 +17,25 @@ export interface SingleRepeatProps {
   assignmentHandler: any;
   removeHandler: any;
   removeOptionHandler: any;
+  unControlFlag: boolean;
 }
 
 class SingleRepeat extends React.Component<SingleRepeatProps> {
   public render() {
     const {
+      choices,
       csvList,
       defaultLanguage,
       fieldElement,
       fieldParentTreeName,
       repeatIndex,
+      unControlFlag,
     } = this.props;
     return (
-      <div>
-        <div>
-          <span onClick={this.handleChange}>
-            <FontAwesomeIcon icon="minus-circle" />
-          </span>
-        </div>
+      <div className={'groupFormFieldBody'}>
         {fieldElement.children && (
           <GroupTypeEvaluator
+            choices={choices}
             fieldElements={fieldElement.children}
             fieldParentTreeName={
               fieldParentTreeName +
@@ -49,6 +49,14 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
             csvList={csvList}
           />
         )}
+
+        {unControlFlag === false ? (
+          <div className={'minusIconWrapper'}>
+            <span onClick={this.handleChange}>
+              <FontAwesomeIcon icon="minus-circle" className={'minusIcon'} />
+            </span>
+          </div>
+        ) : null}
       </div>
     );
   }

@@ -78,6 +78,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
             </label>
           </Label>
           <Label
+            className="requiredTextSteric"
             tag="label"
             widths={
               Array [
@@ -90,7 +91,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
             }
           >
             <label
-              className=""
+              className="requiredTextSteric"
             >
               *
             </label>

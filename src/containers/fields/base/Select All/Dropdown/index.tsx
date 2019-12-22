@@ -32,6 +32,7 @@ import {
 
 /** props interface for the SelectAll Dropdown component */
 export interface SelectAllDropDownProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -56,6 +57,7 @@ export interface Options {
 class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   public render() {
     const {
+      choices,
       fieldElement,
       fieldParentTreeName,
       fieldValue,
@@ -139,6 +141,17 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
           options.push({ label: elem.label, value: elem.name })
         );
         this.setOptionList(resultOptions);
+      } else if (fieldElement.itemset) {
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          choices[fieldElement.itemset.trim()].forEach((elem: any) => {
+            const childrenLabel: string = getFieldLabelText(
+              elem,
+              defaultLanguage
+            );
+            options.push({ label: childrenLabel, value: elem.name });
+          });
+          this.setOptionList(choices[fieldElement.itemset.trim()]);
+        }
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(elem => {
@@ -146,7 +159,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
               elem,
               defaultLanguage
             );
-            console.log('elem', elem);
+
             options.push({ label: childrenLabel, value: elem.name });
           });
           this.setOptionList(fieldElement.children);
@@ -193,17 +206,25 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
-          <Select
-            isMulti={true}
-            name={fieldElement.name}
-            options={options}
-            onChange={this.onChangeHandler(fieldElement.name)}
-            value={selectedValues || []}
-          />
-          {fieldElement.hint && <Label>{hintLabel}</Label>}
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
+          <div key={fieldElement.name} className="selectAllDropDown">
+            <Select
+              isMulti={true}
+              name={fieldElement.name}
+              options={options}
+              onChange={this.onChangeHandler(fieldElement.name)}
+              value={selectedValues || []}
+            />
+          </div>
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
         </FormGroup>
       );
     } else {

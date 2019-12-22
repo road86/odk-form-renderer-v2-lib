@@ -4,6 +4,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Button, Col, Container, Row } from 'reactstrap';
 import { Store } from 'redux';
+import KbAlert from '../components/Alert';
+import DropDown from '../components/DropDown';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
   getUserInputFromStore,
@@ -14,6 +16,7 @@ import {
 library.add(faPlusCircle, faMinusCircle);
 
 export interface AppProps {
+  choices: any;
   csvList: any;
   isNoErrors: any;
   userInputObj: any;
@@ -22,38 +25,87 @@ export interface AppProps {
   formTitle: string;
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
+  languageOptions: any;
   handleSubmit(userInput: any): any;
 }
 
-class App extends React.Component<AppProps> {
+export interface AppState {
+  defaultLanguage: string;
+  isSubmissionError: boolean;
+}
+
+class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+  }
+
   public componentDidMount() {
     const { userInputJson, userInputObj } = this.props;
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
+    this.setState({
+      defaultLanguage: this.props.defaultLanguage,
+      isSubmissionError: false,
+    });
   }
+
+  public handleSelect = (languageName: string) => {
+    this.setState({ defaultLanguage: languageName });
+  };
+
   public render() {
-    const { csvList, defaultLanguage, fieldElements, formTitle } = this.props;
+    const {
+      csvList,
+      fieldElements,
+      formTitle,
+      languageOptions,
+      choices,
+    } = this.props;
+    const { defaultLanguage } = this.state || this.props;
 
     const props = {
+      choices,
       csvList,
       defaultLanguage,
       fieldElements,
       fieldParentTreeName: '',
+      languageOptions,
     };
+
     return (
       <Container className="form-container">
-        <Row className="form-title">
+        <Row className={'form-title formTitle'}>
           <Col>
-            <h3>{formTitle}</h3>
+            <h3 className="headerText">{formTitle}</h3>
           </Col>
+          <DropDown
+            languages={...languageOptions}
+            onChangeSelect={this.handleSelect}
+            defaultLanguage={defaultLanguage}
+          />
         </Row>
-        <GroupTypeEvaluator {...props} />
-        <Row className="welcome-box">
+        {this.state && this.state.isSubmissionError && (
+          <KbAlert
+            color={'danger'}
+            isOpen={this.state.isSubmissionError}
+            handleToggle={this.toggleStateValue}
+            headerText={'Oh snap! You got an error!'}
+            bodyText={
+              'Please make sure the required fields are not missing and there are no errors'
+            }
+          />
+        )}
+        <Row className="formFieldBody">
           <Col>
-            <Button className="btn btn-success" onClick={this.handleClick}>
-              Submit
-            </Button>
+            <GroupTypeEvaluator {...props} />
+            <Row className="welcome-box">
+              <Col>
+                <Button className="btn btn-success" onClick={this.handleClick}>
+                  Submit
+                </Button>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>
@@ -68,7 +120,13 @@ class App extends React.Component<AppProps> {
       handleSubmit(userInputObj);
     } else {
       handleSubmit('Field Violated');
+      this.setState({ isSubmissionError: true });
+      window.scrollTo(0, 0);
     }
+  };
+
+  private toggleStateValue = () => {
+    this.setState({ isSubmissionError: false });
   };
 }
 

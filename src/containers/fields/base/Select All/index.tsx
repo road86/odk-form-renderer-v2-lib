@@ -9,6 +9,7 @@ import Radio from './Radio';
 
 /** props interface for the SelectOne component */
 export interface SelectAllProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -18,7 +19,6 @@ export interface SelectAllProps {
 class SelectAll extends React.Component<SelectAllProps> {
   public render() {
     const { fieldElement } = this.props;
-
     if (shouldComponentBeMinimal(fieldElement)) {
       return <Dropdown {...this.props} />;
     }

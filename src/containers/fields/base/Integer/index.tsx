@@ -106,10 +106,19 @@ class Integer extends React.Component<IntegerProps> {
         );
       }
 
+      if (typeof this.props.fieldValue === 'string') {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          parseInt(this.props.fieldValue, 10)
+        );
+      }
+
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
           <Input
             type="number"
             name={fieldElement.name}
@@ -117,9 +126,13 @@ class Integer extends React.Component<IntegerProps> {
             value={fieldValue || fieldValue === 0 ? fieldValue : ''}
             readOnly={isReadonly}
           />
-          {fieldElement.hint && <Label>{hintLabel}</Label>}
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
         </FormGroup>
       );
     } else {

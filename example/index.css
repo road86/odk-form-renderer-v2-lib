@@ -1,3 +1,109 @@
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+.hintText,
+.requiredText,
+.constraintText {
+  color: #fd6100;
+  font-size: 13px;
+}
+
+.requiredTextSteric {
+  color: #fd6100;
+  font-size: 18px;
+}
+
+.selectOne,
+.selectAll {
+  color: #0b5679;
+  margin-left: 5px;
+}
+
+.selectOneDropDown,
+.selectAllDropDown {
+  color: #0b5679;
+}
+
+.formTitle {
+  text-align: center;
+  margin: 10px 10px;
+  padding: 2px;
+  margin-bottom: 20px;
+  color: #2b475e;
+  border-bottom: 1px solid #dfe3e8;
+  font-size: 24px;
+}
+
+.formFieldBody {
+  margin: 10px 20px;
+  background: white;
+  padding: 5px 5px;
+  padding: 30px;
+  border: 1px solid #dadce0;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #d7d7e0;
+}
+
+.dropDown {
+  font-size: 14px;
+  margin-right: -5px;
+  margin-top: 5px;
+}
+
+.dropDownLabel {
+  font-size: 8px;
+}
+
+.headerText {
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.body {
+  background: #f8f9fd;
+}
+
+.groupLabel {
+  font-size: 1.5rem;
+  color: #305472;
+}
+.groupTypeEvaluator {
+  margin-left: 15px;
+}
+
+.groupBody {
+  background: #f8f9fd;
+  box-shadow: inset 0 0 10px white;
+}
+
+.groupBodyUnControlled {
+  background: #f8f9fd;
+  box-shadow: inset 0 0 10px white;
+  height: 100%;
+}
+
+.groupFormFieldBody {
+  margin: 10px 20px;
+  background: white;
+  padding: 5px 5px;
+  padding: 30px;
+  border: 1px solid #fdfdff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #ccc8c8;
+}
+
+.minusIconWrapper {
+  float: right;
+}
+.minusIcon {
+  color: #0b5679;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.plusIcon {
+  color: #0b5679;
+  width: 20px !important;
+  height: 20px !important;
+}

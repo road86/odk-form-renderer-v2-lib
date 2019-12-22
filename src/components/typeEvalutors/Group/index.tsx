@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Col, Row } from 'reactstrap';
 import { GROUP_FIELD_TYPE, REPEAT_FIELD_TYPE } from '../../../constants';
 import Group from '../../../containers/fields/group/Group';
 import Repeat from '../../../containers/fields/group/Repeat';
@@ -6,6 +7,7 @@ import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
 /** props Interface for the GroupTypeEvaluator component */
 export interface GroupTypeEvaluatorProps {
+  choices: any;
   csvList: any;
   defaultLanguage: string;
   fieldElements: FieldElement[];
@@ -15,33 +17,42 @@ export interface GroupTypeEvaluatorProps {
 class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   public render() {
     const {
+      choices,
       csvList,
       fieldElements,
       fieldParentTreeName,
       defaultLanguage,
     } = this.props;
     return (
-      <div>
-        {fieldElements.map(fieldElement => (
-          <div key={'group_' + fieldElement.name}>
-            {this.typeEvaluator(
-              csvList,
-              fieldElement,
-              fieldParentTreeName,
-              defaultLanguage
-            )}
-          </div>
-        ))}
-      </div>
+      <Row>
+        <Col md={12}>
+          {fieldElements.map(fieldElement => (
+            <div
+              key={'group_' + fieldElement.name}
+              className={'groupTypeEvaluator'}
+            >
+              {this.typeEvaluator(
+                choices,
+                csvList,
+                fieldElement,
+                fieldParentTreeName,
+                defaultLanguage
+              )}
+            </div>
+          ))}
+        </Col>
+      </Row>
     );
   }
 
   /** returns jsx components based on field types
+   * @param {any} choices - the form choices
    * @param {FieldElement} fieldElement - the field element object
    * @param {FieldParentTreeName} - the field parent hierarchical name
    * @return {React.ReactElement} - jsx group components/ base evaluator component
    */
   private typeEvaluator(
+    choices: any,
     csvList: any,
     fieldElement: FieldElement,
     fieldParentTreeName: FieldParentTreeName,
@@ -52,6 +63,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
         return (
           <div>
             <Group
+              choices={choices}
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
@@ -63,6 +75,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
         return (
           <div>
             <Repeat
+              choices={choices}
               fieldElement={fieldElement}
               fieldParentTreeName={fieldParentTreeName}
               defaultLanguage={defaultLanguage}
@@ -73,6 +86,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       default:
         return (
           <BaseTypeEvaluator
+            choices={choices}
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}

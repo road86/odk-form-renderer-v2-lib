@@ -113,7 +113,9 @@ class KbDate extends React.Component<DateProps> {
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
           <Input
             type="date"
             name={fieldElement.name}
@@ -121,9 +123,13 @@ class KbDate extends React.Component<DateProps> {
             value={defaultValue}
             readOnly={isReadonly}
           />
-          {fieldElement.hint && <Label>{hintLabel}</Label>}
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
         </FormGroup>
       );
     } else {

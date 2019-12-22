@@ -108,10 +108,20 @@ class Decimal extends React.Component<DecimalProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
+
+      if (typeof this.props.fieldValue === 'string') {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          parseFloat(this.props.fieldValue)
+        );
+      }
+
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
-          {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
           <Input
             type="number"
             step="any"
@@ -120,9 +130,13 @@ class Decimal extends React.Component<DecimalProps> {
             value={fieldValue || fieldValue === 0 ? fieldValue : ''}
             readOnly={isReadonly}
           />
-          {fieldElement.hint && <Label>{hintLabel}</Label>}
-          {isRequiredViolated && <Label>{REQUIRED_FIELD_MSG}</Label>}
-          {isConstraintViolated && <Label>{modifiedConstraintLabel}</Label>}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
         </FormGroup>
       );
     } else {

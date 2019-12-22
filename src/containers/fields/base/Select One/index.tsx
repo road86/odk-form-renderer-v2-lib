@@ -9,6 +9,7 @@ import Radio from './Radio';
 
 /** props interface for the SelectOne component */
 export interface SelectOneProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
