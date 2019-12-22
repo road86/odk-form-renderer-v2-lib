@@ -3,13 +3,13 @@ import React__default, { createElement, Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, Label, Input, FormText, Container, Row, Col, Button } from 'reactstrap';
+import { Alert, FormGroup, Label, Input, FormText, Row, Col, Container, Button } from 'reactstrap';
+import Select from 'react-select';
 import SeamlessImmutable from 'seamless-immutable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import _ from 'lodash-es';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import _ from 'lodash-es';
-import Select from 'react-select';
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -36,6 +36,88 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
 }
+
+var KbAlert =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(KbAlert, _React$Component);
+
+  function KbAlert() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = KbAlert.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        headerText = _this$props.headerText,
+        bodyText = _this$props.bodyText,
+        handleToggle = _this$props.handleToggle,
+        isOpen = _this$props.isOpen,
+        color = _this$props.color;
+    return createElement(Alert, {
+      color: color,
+      isOpen: isOpen,
+      toggle: handleToggle
+    }, createElement("h4", {
+      className: "alert-heading"
+    }, headerText), createElement("p", null, bodyText));
+  };
+
+  return KbAlert;
+}(Component);
+
+var DropDown =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(DropDown, _React$Component);
+
+  function DropDown() {
+    var _this;
+
+    _this = _React$Component.apply(this, arguments) || this;
+    /** pass the selected value to the parent class
+     * @param {any} event - the onchange input event
+     */
+
+    _this.onChangeHandler = function (event) {
+      _this.props.onChangeSelect(event.value);
+    };
+
+    return _this;
+  }
+
+  var _proto = DropDown.prototype;
+
+  _proto.render = function render() {
+    var _this2 = this;
+
+    var options = [];
+    var languageOptions = [].concat(this.props.languages);
+    languageOptions.map(function (elem) {
+      options.push({
+        label: elem.label,
+        value: elem.value
+      });
+    });
+    var selectedValue;
+    options.map(function (elem) {
+      if (elem.value === _this2.props.defaultLanguage) {
+        selectedValue = elem;
+      }
+    });
+    return createElement(Select, {
+      multi: false,
+      options: options,
+      className: 'col-md-2 dropDown',
+      placeholder: "Language",
+      onChange: this.onChangeHandler,
+      value: selectedValue || ''
+    });
+  };
+
+  return DropDown;
+}(Component);
 
 // Field Types
 var GROUP_FIELD_TYPE = 'group';
@@ -2243,6 +2325,7 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var _this$props = this.props,
+        choices = _this$props.choices,
         csvList = _this$props.csvList,
         fieldElement = _this$props.fieldElement,
         fieldParentTreeName = _this$props.fieldParentTreeName,
@@ -2251,7 +2334,10 @@ function (_React$Component) {
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
 
     if (isComponentRender) {
-      return createElement(FormGroup, null, createElement(Label, null, fieldLabel), fieldElement.children && createElement(GroupTypeEvaluator, {
+      return createElement(FormGroup, null, createElement(Label, {
+        className: 'groupLabel'
+      }, fieldLabel), fieldElement.children && createElement(GroupTypeEvaluator, {
+        choices: choices,
         fieldElements: fieldElement.children,
         fieldParentTreeName: fieldParentTreeName + 'group/' + fieldElement.name + '/',
         defaultLanguage: defaultLanguage,
@@ -2348,32 +2434,40 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var _this$props2 = this.props,
+        choices = _this$props2.choices,
         csvList = _this$props2.csvList,
         defaultLanguage = _this$props2.defaultLanguage,
         fieldElement = _this$props2.fieldElement,
         fieldParentTreeName = _this$props2.fieldParentTreeName,
-        repeatIndex = _this$props2.repeatIndex;
-    return React__default.createElement("div", null, React__default.createElement("div", null, React__default.createElement("span", {
-      onClick: this.handleChange
-    }, React__default.createElement(FontAwesomeIcon, {
-      icon: "minus-circle"
-    }))), fieldElement.children && React__default.createElement(GroupTypeEvaluator, {
+        repeatIndex = _this$props2.repeatIndex,
+        unControlFlag = _this$props2.unControlFlag;
+    return React__default.createElement("div", {
+      className: 'groupFormFieldBody'
+    }, fieldElement.children && React__default.createElement(GroupTypeEvaluator, {
+      choices: choices,
       fieldElements: fieldElement.children,
       fieldParentTreeName: fieldParentTreeName + 'repeat/' + fieldElement.name + '/' + repeatIndex + '/',
       defaultLanguage: defaultLanguage,
       csvList: csvList
-    }));
+    }), unControlFlag === false ? React__default.createElement("div", {
+      className: 'minusIconWrapper'
+    }, React__default.createElement("span", {
+      onClick: this.handleChange
+    }, React__default.createElement(FontAwesomeIcon, {
+      icon: "minus-circle",
+      className: 'minusIcon'
+    }))) : null);
   };
 
   return SingleRepeat;
 }(React__default.Component);
 
-var Repeat =
+var ControlledRepeat =
 /*#__PURE__*/
 function (_React$Component) {
-  _inheritsLoose(Repeat, _React$Component);
+  _inheritsLoose(ControlledRepeat, _React$Component);
 
-  function Repeat() {
+  function ControlledRepeat() {
     var _this;
 
     _this = _React$Component.apply(this, arguments) || this; // tslint:disable-next-line: variable-name
@@ -2392,10 +2486,11 @@ function (_React$Component) {
     return _this;
   }
 
-  var _proto = Repeat.prototype;
+  var _proto = ControlledRepeat.prototype;
 
   _proto.render = function render() {
     var _this$props2 = this.props,
+        choices = _this$props2.choices,
         csvList = _this$props2.csvList,
         fieldValue = _this$props2.fieldValue,
         fieldElement = _this$props2.fieldElement,
@@ -2412,12 +2507,15 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, [{}]);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, fieldLabel), fieldValue && // tslint:disable-next-line: variable-name
+      return createElement(FormGroup, {
+        className: 'groupBody'
+      }, createElement(Label, null, fieldLabel), fieldValue && // tslint:disable-next-line: variable-name
       fieldValue.map(function (_elm, index) {
         return createElement("div", {
           className: "repeat-fields-body",
           key: 'repeat' + index
         }, createElement(SingleRepeat, {
+          choices: choices,
           defaultLanguage: defaultLanguage,
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
@@ -2426,12 +2524,14 @@ function (_React$Component) {
           assignmentHandler: assignFieldValueActionCreator,
           removeHandler: removeGroupFieldsFromErrorsActionCreator,
           removeOptionHandler: removeOptionListFromActionCreator,
-          csvList: csvList
+          csvList: csvList,
+          unControlFlag: false
         }));
       }), createElement("div", null, createElement("span", {
         onClick: this.addAnotherRepeat
       }, createElement(FontAwesomeIcon, {
-        icon: "plus-circle"
+        icon: "plus-circle",
+        className: 'plusIcon'
       }))));
     } else {
       if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + 'repeat/' + fieldElement.name + '/')) {
@@ -2446,7 +2546,7 @@ function (_React$Component) {
     }
   };
 
-  return Repeat;
+  return ControlledRepeat;
 }(Component);
 /** Map props to state  */
 
@@ -2487,9 +2587,211 @@ var mapDispatchToProps$1 = {
 };
 /** connect Group component to the redux store */
 
-var ConnectedRepeat =
+var ConnectedControlledRepeat =
 /*#__PURE__*/
-connect(mapStateToProps$1, mapDispatchToProps$1)(Repeat);
+connect(mapStateToProps$1, mapDispatchToProps$1)(ControlledRepeat);
+
+var UncontrolledRepeat =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(UncontrolledRepeat, _React$Component);
+
+  function UncontrolledRepeat() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = UncontrolledRepeat.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        choices = _this$props.choices,
+        csvList = _this$props.csvList,
+        fieldValue = _this$props.fieldValue,
+        fieldElement = _this$props.fieldElement,
+        fieldParentTreeName = _this$props.fieldParentTreeName,
+        defaultLanguage = _this$props.defaultLanguage,
+        isComponentRender = _this$props.isComponentRender,
+        optionList = _this$props.optionList,
+        assignFieldValueActionCreator = _this$props.assignFieldValueActionCreator,
+        removeGroupFieldsFromErrorsActionCreator = _this$props.removeGroupFieldsFromErrorsActionCreator,
+        removeOptionListFromActionCreator = _this$props.removeOptionListFromActionCreator;
+    var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+
+    if (isComponentRender) {
+      if (!fieldValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, []);
+      }
+
+      var noOfJrCount = 0;
+
+      if (fieldElement.control) {
+        var jrCount = 'jr:count';
+        var res = fieldElement.control[jrCount];
+
+        if (/^[0-9]*$/i.test(res)) {
+          noOfJrCount = parseInt(res, 10);
+        } else {
+          var value = this.props.getEvaluatedExpressionSelector(res, fieldParentTreeName + fieldElement.name);
+
+          if (value) {
+            noOfJrCount = parseInt(value, 10);
+          }
+        }
+      }
+
+      if (fieldValue && fieldValue.length === 0 && noOfJrCount === 0 && this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + 'repeat/' + fieldElement.name + '/')) {
+        this.props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + 'repeat/' + fieldElement.name + '/');
+      }
+
+      if (fieldValue && fieldValue.length > 0 && noOfJrCount === 0) {
+        this.removeFromError();
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, []);
+      }
+
+      if (optionList && _.size(optionList) > noOfJrCount && noOfJrCount === 0) {
+        this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + this.props.fieldElement.name, []);
+      }
+
+      if (noOfJrCount > 0) {
+        var newFieldValue = [].concat(fieldValue);
+
+        if (fieldValue && fieldValue.length < noOfJrCount) {
+          var iterate = noOfJrCount - fieldValue.length;
+
+          for (var j = 0; j < iterate; j++) {
+            newFieldValue.push({});
+          }
+        }
+
+        if (fieldValue && fieldValue.length > noOfJrCount) {
+          var _iterate = fieldValue.length - noOfJrCount;
+
+          for (var i = 0; i < _iterate; i++) {
+            newFieldValue.pop();
+          }
+
+          this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, newFieldValue);
+          this.removeFromError();
+        }
+
+        if (optionList && _.size(optionList) > noOfJrCount) {
+          var _iterate2 = _.size(optionList) - noOfJrCount;
+
+          this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + this.props.fieldElement.name, Array.prototype.slice.call(optionList, _iterate2));
+          this.removeFromError();
+        }
+
+        return createElement(FormGroup, {
+          className: 'groupBodyUnControlled'
+        }, createElement(Label, null, fieldLabel), newFieldValue && // tslint:disable-next-line: variable-name
+        newFieldValue.map(function (_elm, index) {
+          return createElement("div", {
+            className: "repeat-fields-body",
+            key: 'repeat' + index
+          }, createElement(SingleRepeat, {
+            choices: choices,
+            defaultLanguage: defaultLanguage,
+            fieldElement: fieldElement,
+            fieldParentTreeName: fieldParentTreeName,
+            fieldValue: fieldValue,
+            repeatIndex: index,
+            assignmentHandler: assignFieldValueActionCreator,
+            removeHandler: removeGroupFieldsFromErrorsActionCreator,
+            removeOptionHandler: removeOptionListFromActionCreator,
+            csvList: csvList,
+            unControlFlag: true
+          }));
+        }));
+      } else {
+        return null;
+      }
+    } else {
+      this.removeFromError();
+
+      if (fieldValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
+      }
+
+      return null;
+    }
+  };
+
+  _proto.removeFromError = function removeFromError() {
+    if (this.props.isErrorsIncludeGroupFieldsSelector(this.props.fieldParentTreeName + 'repeat/' + this.props.fieldElement.name + '/')) {
+      this.props.removeGroupFieldsFromErrorsActionCreator(this.props.fieldParentTreeName + 'repeat/' + this.props.fieldElement.name + '/');
+    }
+  };
+
+  return UncontrolledRepeat;
+}(Component);
+/** Map props to state  */
+
+
+var mapStateToProps$2 = function mapStateToProps(state, parentProps) {
+  var fieldElement = parentProps.fieldElement,
+      fieldParentTreeName = parentProps.fieldParentTreeName;
+
+  var getEvaluatedExpressionSelector = function getEvaluatedExpressionSelector(expression, fieldTreeName) {
+    return getEvaluatedExpression(state, expression, fieldTreeName);
+  };
+
+  var isGroupFieldsEmptySelector = function isGroupFieldsEmptySelector(fieldTreeName) {
+    return isGroupFieldsEmpty(state, fieldTreeName);
+  };
+
+  var isErrorsIncludeGroupFieldsSelector = function isErrorsIncludeGroupFieldsSelector(fieldTreeName) {
+    return isErrorsIncludeGroupFields(state, fieldTreeName);
+  };
+
+  var result = {
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
+    getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
+    isErrorsIncludeGroupFieldsSelector: isErrorsIncludeGroupFieldsSelector,
+    isGroupFieldsEmptySelector: isGroupFieldsEmptySelector,
+    optionList: getOptionList(state, fieldParentTreeName + fieldElement.name)
+  };
+  return result;
+};
+/** map props to actions */
+
+
+var mapDispatchToProps$2 = {
+  assignFieldValueActionCreator: assignFieldValueAction,
+  assignOptionListActionCreator: assignOptionListAction,
+  emptyGroupFieldsActionCreator: emptyGroupFields,
+  removeGroupFieldsFromErrorsActionCreator: removeGroupFieldsFromErrors,
+  removeOptionListFromActionCreator: RemoveFromOptionList
+};
+/** connect Repeat component to the redux store */
+
+var ConnectedUncontrolledRepeat =
+/*#__PURE__*/
+connect(mapStateToProps$2, mapDispatchToProps$2)(UncontrolledRepeat);
+
+var Repeat =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Repeat, _React$Component);
+
+  function Repeat() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = Repeat.prototype;
+
+  _proto.render = function render() {
+    var fieldElement = this.props.fieldElement;
+
+    if (fieldElement.control && fieldElement.control['jr:count']) {
+      return createElement(ConnectedUncontrolledRepeat, Object.assign({}, this.props));
+    }
+
+    return createElement(ConnectedControlledRepeat, Object.assign({}, this.props));
+  };
+
+  return Repeat;
+}(Component);
 
 var Calculate =
 /*#__PURE__*/
@@ -2561,7 +2863,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$2 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$3 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -2584,7 +2886,7 @@ var mapStateToProps$2 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$2 = {
+var mapDispatchToProps$3 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -2593,7 +2895,7 @@ var mapDispatchToProps$2 = {
 
 var ConnectedCalculate =
 /*#__PURE__*/
-connect(mapStateToProps$2, mapDispatchToProps$2)(Calculate);
+connect(mapStateToProps$3, mapDispatchToProps$3)(Calculate);
 
 var KbDate =
 /*#__PURE__*/
@@ -2655,13 +2957,21 @@ function (_React$Component) {
         defaultValue = modifiedDate.toISOString().slice(0, 10);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement(Input, {
         type: "date",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         value: defaultValue,
         readOnly: isReadonly
-      }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -2680,7 +2990,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$3 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$4 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -2703,7 +3013,7 @@ var mapStateToProps$3 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$3 = {
+var mapDispatchToProps$4 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -2712,7 +3022,7 @@ var mapDispatchToProps$3 = {
 
 var ConnectedDate =
 /*#__PURE__*/
-connect(mapStateToProps$3, mapDispatchToProps$3)(KbDate);
+connect(mapStateToProps$4, mapDispatchToProps$4)(KbDate);
 
 var DateTime =
 /*#__PURE__*/
@@ -2766,7 +3076,9 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement("br", null), createElement(DatePicker, {
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement("br", null), createElement(DatePicker, {
         name: fieldElement.name,
         selected: fieldValue ? new Date(fieldValue) : null,
         onChange: this.handleChange(fieldElement.name),
@@ -2778,7 +3090,13 @@ function (_React$Component) {
         placeholderText: "mm/dd/yyyy h:m aa",
         className: "form-control",
         readOnly: isReadonly
-      }), createElement("br", null), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      }), createElement("br", null), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -2797,7 +3115,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$4 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$5 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -2820,7 +3138,7 @@ var mapStateToProps$4 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$4 = {
+var mapDispatchToProps$5 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -2829,7 +3147,7 @@ var mapDispatchToProps$4 = {
 
 var ConnectedDateTime =
 /*#__PURE__*/
-connect(mapStateToProps$4, mapDispatchToProps$4)(DateTime);
+connect(mapStateToProps$5, mapDispatchToProps$5)(DateTime);
 
 var Decimal =
 /*#__PURE__*/
@@ -2884,14 +3202,26 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
+      if (typeof this.props.fieldValue === 'string') {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, parseFloat(this.props.fieldValue));
+      }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement(Input, {
         type: "number",
         step: "any",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         value: fieldValue || fieldValue === 0 ? fieldValue : '',
         readOnly: isReadonly
-      }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -2910,7 +3240,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$5 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$6 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -2933,7 +3263,7 @@ var mapStateToProps$5 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$5 = {
+var mapDispatchToProps$6 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -2942,7 +3272,7 @@ var mapDispatchToProps$5 = {
 
 var ConnectedDecimal =
 /*#__PURE__*/
-connect(mapStateToProps$5, mapDispatchToProps$5)(Decimal);
+connect(mapStateToProps$6, mapDispatchToProps$6)(Decimal);
 
 var Integer =
 /*#__PURE__*/
@@ -2997,13 +3327,25 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
+      if (typeof this.props.fieldValue === 'string') {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, parseInt(this.props.fieldValue, 10));
+      }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement(Input, {
         type: "number",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         value: fieldValue || fieldValue === 0 ? fieldValue : '',
         readOnly: isReadonly
-      }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -3022,7 +3364,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$6 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -3045,7 +3387,7 @@ var mapStateToProps$6 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$6 = {
+var mapDispatchToProps$7 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -3054,7 +3396,7 @@ var mapDispatchToProps$6 = {
 
 var ConnectedInteger =
 /*#__PURE__*/
-connect(mapStateToProps$6, mapDispatchToProps$6)(Integer);
+connect(mapStateToProps$7, mapDispatchToProps$7)(Integer);
 
 var Note =
 /*#__PURE__*/
@@ -3096,10 +3438,18 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, fieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), fieldElement.hint && createElement(FormText, null, fieldHint), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      return createElement(FormGroup, null, createElement(Label, null, fieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), fieldElement.hint && createElement(FormText, {
+        className: "hintText"
+      }, fieldHint), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
-        this.props.assignFieldValueActionCreator(fieldElement.name, null);
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
 
         if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
           this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
@@ -3115,7 +3465,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$8 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -3128,7 +3478,7 @@ var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
   };
 
   var result = {
-    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name) || '',
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
@@ -3138,7 +3488,7 @@ var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$7 = {
+var mapDispatchToProps$8 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -3147,7 +3497,7 @@ var mapDispatchToProps$7 = {
 
 var ConnectedNote =
 /*#__PURE__*/
-connect(mapStateToProps$7, mapDispatchToProps$7)(Note);
+connect(mapStateToProps$8, mapDispatchToProps$8)(Note);
 
 var Photo =
 /*#__PURE__*/
@@ -3192,7 +3542,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$8 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement;
   var result = {
     fieldValue: getFieldValue(state, fieldElement.name)
@@ -3202,14 +3552,14 @@ var mapStateToProps$8 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$8 = {
+var mapDispatchToProps$9 = {
   assignFieldValueActionCreator: assignFieldValueAction
 };
 /** connect Photo component to the redux store */
 
 var ConnectedPhoto =
 /*#__PURE__*/
-connect(mapStateToProps$8, mapDispatchToProps$8)(Photo);
+connect(mapStateToProps$9, mapDispatchToProps$9)(Photo);
 
 var SelectAllDropDown =
 /*#__PURE__*/
@@ -3367,6 +3717,7 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var _this$props = this.props,
+        choices = _this$props.choices,
         fieldElement = _this$props.fieldElement,
         fieldParentTreeName = _this$props.fieldParentTreeName,
         fieldValue = _this$props.fieldValue,
@@ -3414,11 +3765,21 @@ function (_React$Component) {
           });
         });
         this.setOptionList(resultOptions);
+      } else if (fieldElement.itemset) {
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          choices[fieldElement.itemset.trim()].forEach(function (elem) {
+            var childrenLabel = getFieldLabelText(elem, defaultLanguage);
+            options.push({
+              label: childrenLabel,
+              value: elem.name
+            });
+          });
+          this.setOptionList(choices[fieldElement.itemset.trim()]);
+        }
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(function (elem) {
             var childrenLabel = getFieldLabelText(elem, defaultLanguage);
-            console.log('elem', elem);
             options.push({
               label: childrenLabel,
               value: elem.name
@@ -3490,13 +3851,24 @@ function (_React$Component) {
         });
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Select, {
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement("div", {
+        key: fieldElement.name,
+        className: "selectAllDropDown"
+      }, createElement(Select, {
         isMulti: true,
         name: fieldElement.name,
         options: options,
         onChange: this.onChangeHandler(fieldElement.name),
         value: selectedValues || []
-      }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      })), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -3519,7 +3891,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$a = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -3548,7 +3920,7 @@ var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$9 = {
+var mapDispatchToProps$a = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -3558,7 +3930,7 @@ var mapDispatchToProps$9 = {
 
 var ConnectedSelectAllDropDown =
 /*#__PURE__*/
-connect(mapStateToProps$9, mapDispatchToProps$9)(SelectAllDropDown);
+connect(mapStateToProps$a, mapDispatchToProps$a)(SelectAllDropDown);
 
 var SelectAllRadio =
 /*#__PURE__*/
@@ -3814,10 +4186,12 @@ function (_React$Component) {
           this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, resultOptions);
         }
 
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), resultOptions.map(function (elem, index) {
+        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+          className: "requiredTextSteric"
+        }, REQUIRED_SYMBOL), resultOptions.map(function (elem, index) {
           return createElement("div", {
             key: index,
-            className: "col-md-12"
+            className: 'col-md-12 selectAll'
           }, createElement(Input, {
             key: fieldElement.name + '-' + index,
             type: "checkbox",
@@ -3827,7 +4201,13 @@ function (_React$Component) {
             readOnly: isReadonly,
             checked: selectedValues.includes(elem.name)
           }), ' ', getFieldLabelText(elem, defaultLanguage));
-        }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+        }), fieldElement.hint && createElement(Label, {
+          className: "hintText"
+        }, hintLabel), isRequiredViolated && createElement(Label, {
+          className: "requiredText"
+        }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+          className: "constraintText"
+        }, modifiedConstraintLabel));
       } else {
         if (fieldElement.children) {
           var tempObjArray = [];
@@ -3844,10 +4224,12 @@ function (_React$Component) {
             this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, tempObjArray);
           }
 
-          return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), fieldElement.children.map(function (elem, index) {
+          return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+            className: "requiredTextSteric"
+          }, REQUIRED_SYMBOL), fieldElement.children.map(function (elem, index) {
             return createElement("div", {
               key: index,
-              className: "col-md-12"
+              className: 'col-md-12 selectAll'
             }, createElement(Input, {
               key: fieldElement.name + '-' + index,
               type: "checkbox",
@@ -3856,7 +4238,13 @@ function (_React$Component) {
               onChange: _this2.onChangeHandlerCheckBox,
               readOnly: isReadonly
             }), ' ', getFieldLabelText(elem, defaultLanguage));
-          }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+          }), fieldElement.hint && createElement(Label, {
+            className: "hintText"
+          }, hintLabel), isRequiredViolated && createElement(Label, {
+            className: "requiredText"
+          }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+            className: "constraintText"
+          }, modifiedConstraintLabel));
         } else {
           return null;
         }
@@ -3883,7 +4271,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$a = function mapStateToProps(state, parentProps) {
+var mapStateToProps$b = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -3912,7 +4300,7 @@ var mapStateToProps$a = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$a = {
+var mapDispatchToProps$b = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -3922,7 +4310,7 @@ var mapDispatchToProps$a = {
 
 var ConnectedSelectAllRadio =
 /*#__PURE__*/
-connect(mapStateToProps$a, mapDispatchToProps$a)(SelectAllRadio);
+connect(mapStateToProps$b, mapDispatchToProps$b)(SelectAllRadio);
 
 var SelectAll =
 /*#__PURE__*/
@@ -4079,7 +4467,10 @@ function (_React$Component) {
   var _proto = SelectOneDropDown.prototype;
 
   _proto.render = function render() {
+    var _this2 = this;
+
     var _this$props = this.props,
+        choices = _this$props.choices,
         fieldElement = _this$props.fieldElement,
         fieldParentTreeName = _this$props.fieldParentTreeName,
         fieldValue = _this$props.fieldValue,
@@ -4127,6 +4518,20 @@ function (_React$Component) {
           });
         });
         this.setOptionList(resultOptions);
+      } else if (fieldElement.itemset) {
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          choices[fieldElement.itemset.trim()].forEach(function (elem) {
+            var childrenLabel = getFieldLabelText(elem, defaultLanguage);
+
+            if (fieldElement.choice_filter && _this2.props.getEvaluatedExpressionSelectorForSelect(fieldElement.choice_filter, fieldParentTreeName + fieldElement.name, elem)) {
+              options.push({
+                label: childrenLabel,
+                value: elem.name
+              });
+            }
+          });
+          this.setOptionList(choices[fieldElement.itemset.trim()]);
+        }
       } else {
         if (fieldElement.children) {
           fieldElement.children.map(function (elem) {
@@ -4159,13 +4564,24 @@ function (_React$Component) {
           selectedValue = elem;
         }
       });
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Select, {
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement("div", {
+        key: fieldElement.name,
+        className: "selectOneDropDown"
+      }, createElement(Select, {
         multi: false,
         name: fieldElement.name,
         options: options,
         value: selectedValue || '',
         onChange: this.onChangeHandler(fieldElement.name)
-      }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      })), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -4184,7 +4600,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$b = function mapStateToProps(state, parentProps) {
+var mapStateToProps$c = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4213,7 +4629,7 @@ var mapStateToProps$b = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$b = {
+var mapDispatchToProps$c = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -4223,7 +4639,7 @@ var mapDispatchToProps$b = {
 
 var ConnectedSelectOneDropDown =
 /*#__PURE__*/
-connect(mapStateToProps$b, mapDispatchToProps$b)(SelectOneDropDown);
+connect(mapStateToProps$c, mapDispatchToProps$c)(SelectOneDropDown);
 
 var SelectOneRadio =
 /*#__PURE__*/
@@ -4395,10 +4811,12 @@ function (_React$Component) {
           this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, resultOptions);
         }
 
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), resultOptions.map(function (elem, index) {
+        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+          className: "requiredTextSteric"
+        }, REQUIRED_SYMBOL), resultOptions.map(function (elem, index) {
           return createElement("div", {
             key: index,
-            className: "col-md-12"
+            className: 'col-md-12 selectOne'
           }, createElement(Input, {
             key: fieldElement.name + '-' + index,
             type: "radio",
@@ -4408,7 +4826,13 @@ function (_React$Component) {
             readOnly: isReadonly,
             checked: elem.name === fieldValue
           }), ' ', getFieldLabelText(elem, defaultLanguage));
-        }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+        }), fieldElement.hint && createElement(Label, {
+          className: "hintText"
+        }, hintLabel), isRequiredViolated && createElement(Label, {
+          className: "requiredText"
+        }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+          className: "constraintText"
+        }, modifiedConstraintLabel));
       } else {
         if (fieldElement.children) {
           var tempObjArray = [];
@@ -4425,10 +4849,12 @@ function (_React$Component) {
             this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, tempObjArray);
           }
 
-          return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), fieldElement.children.map(function (elem, index) {
+          return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+            className: "requiredTextSteric"
+          }, REQUIRED_SYMBOL), fieldElement.children.map(function (elem, index) {
             return createElement("div", {
               key: index,
-              className: "col-md-12"
+              className: 'col-md-12 selectOne'
             }, createElement(Input, {
               key: fieldElement.name + '-' + index,
               type: "radio",
@@ -4437,7 +4863,13 @@ function (_React$Component) {
               onChange: _this2.onChangeHandlerRadio(fieldElement.name),
               readOnly: isReadonly
             }), ' ', getFieldLabelText(elem, defaultLanguage));
-          }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+          }), fieldElement.hint && createElement(Label, {
+            className: "hintText"
+          }, hintLabel), isRequiredViolated && createElement(Label, {
+            className: "requiredText"
+          }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+            className: "constraintText"
+          }, modifiedConstraintLabel));
         } else {
           return null;
         }
@@ -4460,7 +4892,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$c = function mapStateToProps(state, parentProps) {
+var mapStateToProps$d = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4489,7 +4921,7 @@ var mapStateToProps$c = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$c = {
+var mapDispatchToProps$d = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -4499,7 +4931,7 @@ var mapDispatchToProps$c = {
 
 var ConnectedSelectOneRadio =
 /*#__PURE__*/
-connect(mapStateToProps$c, mapDispatchToProps$c)(SelectOneRadio);
+connect(mapStateToProps$d, mapDispatchToProps$d)(SelectOneRadio);
 
 var SelectOne =
 /*#__PURE__*/
@@ -4586,21 +5018,37 @@ function (_React$Component) {
           this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
         }
 
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
+        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+          className: "requiredTextSteric"
+        }, REQUIRED_SYMBOL), createElement(Input, {
           type: "text",
           name: fieldElement.name,
           onChange: this.onChangeHandler,
           value: calculatedValue || '',
           readOnly: isReadonly
-        }), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), createElement(Label, null, hintLabel), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+        }), fieldElement.hint && createElement(Label, {
+          className: "hintText"
+        }, hintLabel), isRequiredViolated && createElement(Label, {
+          className: "requiredText"
+        }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+          className: "constraintText"
+        }, modifiedConstraintLabel));
       } else {
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
+        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+          className: "requiredTextSteric"
+        }, REQUIRED_SYMBOL), createElement(Input, {
           type: "text",
           name: fieldElement.name,
           onChange: this.onChangeHandler,
           value: fieldValue || '',
           readOnly: isReadonly
-        }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+        }), fieldElement.hint && createElement(Label, {
+          className: "hintText"
+        }, hintLabel), isRequiredViolated && createElement(Label, {
+          className: "requiredText"
+        }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+          className: "constraintText"
+        }, modifiedConstraintLabel));
       }
     } else {
       if (fieldValue != null) {
@@ -4620,7 +5068,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$d = function mapStateToProps(state, parentProps) {
+var mapStateToProps$e = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4643,7 +5091,7 @@ var mapStateToProps$d = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$d = {
+var mapDispatchToProps$e = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -4652,7 +5100,7 @@ var mapDispatchToProps$d = {
 
 var ConnectedText =
 /*#__PURE__*/
-connect(mapStateToProps$d, mapDispatchToProps$d)(Text);
+connect(mapStateToProps$e, mapDispatchToProps$e)(Text);
 
 var KbTime =
 /*#__PURE__*/
@@ -4704,13 +5152,21 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), createElement(Input, {
         type: "time",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         value: fieldValue || '',
         readOnly: isReadonly
-      }), fieldElement.hint && createElement(Label, null, hintLabel), isRequiredViolated && createElement(Label, null, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, null, modifiedConstraintLabel));
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -4729,7 +5185,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$e = function mapStateToProps(state, parentProps) {
+var mapStateToProps$f = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4752,7 +5208,7 @@ var mapStateToProps$e = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$e = {
+var mapDispatchToProps$f = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -4761,7 +5217,7 @@ var mapDispatchToProps$e = {
 
 var ConnectedTime =
 /*#__PURE__*/
-connect(mapStateToProps$e, mapDispatchToProps$e)(KbTime);
+connect(mapStateToProps$f, mapDispatchToProps$f)(KbTime);
 
 var BaseTypeEvaluator =
 /*#__PURE__*/
@@ -4776,20 +5232,22 @@ function (_React$Component) {
 
   _proto.render = function render() {
     var _this$props = this.props,
+        choices = _this$props.choices,
         csvList = _this$props.csvList,
         fieldElement = _this$props.fieldElement,
         fieldParentTreeName = _this$props.fieldParentTreeName,
         defaultLanguage = _this$props.defaultLanguage;
-    return this.typeEvaluator(csvList, fieldElement, fieldParentTreeName, defaultLanguage);
+    return this.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage);
   }
   /** returns jsx components based on field types
+   * @param {any} choices - the choices of form definition
    * @param {FieldElement} fieldElement - the field element object
    * @param {FieldParentTreeName} fieldParentTreeName - the field parent hierchical name
    * @return {React.ReactElement} - jsx base components
    */
   ;
 
-  _proto.typeEvaluator = function typeEvaluator(csvList, fieldElement, fieldParentTreeName, defaultLanguage) {
+  _proto.typeEvaluator = function typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage) {
     switch (fieldElement.type) {
       case TEXT_FIELD_TYPE:
         return createElement(ConnectedText, {
@@ -4849,6 +5307,7 @@ function (_React$Component) {
 
       case SELECT_ONE_FIELD_TYPE:
         return createElement(SelectOne, {
+          choices: choices,
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage,
@@ -4857,6 +5316,7 @@ function (_React$Component) {
 
       case SELECT_ALL_FIELD_TYPE:
         return createElement(SelectAll, {
+          choices: choices,
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage,
@@ -4892,27 +5352,33 @@ function (_React$Component) {
     var _this = this;
 
     var _this$props = this.props,
+        choices = _this$props.choices,
         csvList = _this$props.csvList,
         fieldElements = _this$props.fieldElements,
         fieldParentTreeName = _this$props.fieldParentTreeName,
         defaultLanguage = _this$props.defaultLanguage;
-    return createElement("div", null, fieldElements.map(function (fieldElement) {
+    return createElement(Row, null, createElement(Col, {
+      md: 12
+    }, fieldElements.map(function (fieldElement) {
       return createElement("div", {
-        key: 'group_' + fieldElement.name
-      }, _this.typeEvaluator(csvList, fieldElement, fieldParentTreeName, defaultLanguage));
-    }));
+        key: 'group_' + fieldElement.name,
+        className: 'groupTypeEvaluator'
+      }, _this.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
+    })));
   }
   /** returns jsx components based on field types
+   * @param {any} choices - the form choices
    * @param {FieldElement} fieldElement - the field element object
    * @param {FieldParentTreeName} - the field parent hierarchical name
    * @return {React.ReactElement} - jsx group components/ base evaluator component
    */
   ;
 
-  _proto.typeEvaluator = function typeEvaluator(csvList, fieldElement, fieldParentTreeName, defaultLanguage) {
+  _proto.typeEvaluator = function typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage) {
     switch (fieldElement.type) {
       case GROUP_FIELD_TYPE:
         return createElement("div", null, createElement(ConnectedGroup, {
+          choices: choices,
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage,
@@ -4920,7 +5386,8 @@ function (_React$Component) {
         }));
 
       case REPEAT_FIELD_TYPE:
-        return createElement("div", null, createElement(ConnectedRepeat, {
+        return createElement("div", null, createElement(Repeat, {
+          choices: choices,
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage,
@@ -4929,6 +5396,7 @@ function (_React$Component) {
 
       default:
         return createElement(BaseTypeEvaluator, {
+          choices: choices,
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage,
@@ -4947,10 +5415,17 @@ var App =
 function (_React$Component) {
   _inheritsLoose(App, _React$Component);
 
-  function App() {
+  function App(props) {
     var _this;
 
-    _this = _React$Component.apply(this, arguments) || this; // tslint:disable-next-line: variable-name
+    _this = _React$Component.call(this, props) || this;
+
+    _this.handleSelect = function (languageName) {
+      _this.setState({
+        defaultLanguage: languageName
+      });
+    }; // tslint:disable-next-line: variable-name
+
 
     _this.handleClick = function (_event) {
       var _this$props = _this.props,
@@ -4963,7 +5438,19 @@ function (_React$Component) {
         handleSubmit(userInputObj);
       } else {
         handleSubmit('Field Violated');
+
+        _this.setState({
+          isSubmissionError: true
+        });
+
+        window.scrollTo(0, 0);
       }
+    };
+
+    _this.toggleStateValue = function () {
+      _this.setState({
+        isSubmissionError: false
+      });
     };
 
     return _this;
@@ -4979,30 +5466,56 @@ function (_React$Component) {
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
+
+    this.setState({
+      defaultLanguage: this.props.defaultLanguage,
+      isSubmissionError: false
+    });
   };
 
   _proto.render = function render() {
     var _this$props3 = this.props,
         csvList = _this$props3.csvList,
-        defaultLanguage = _this$props3.defaultLanguage,
         fieldElements = _this$props3.fieldElements,
-        formTitle = _this$props3.formTitle;
+        formTitle = _this$props3.formTitle,
+        languageOptions = _this$props3.languageOptions,
+        choices = _this$props3.choices;
+
+    var _ref = this.state || this.props,
+        defaultLanguage = _ref.defaultLanguage;
+
     var props = {
+      choices: choices,
       csvList: csvList,
       defaultLanguage: defaultLanguage,
       fieldElements: fieldElements,
-      fieldParentTreeName: ''
+      fieldParentTreeName: '',
+      languageOptions: languageOptions
     };
     return createElement(Container, {
       className: "form-container"
     }, createElement(Row, {
-      className: "form-title"
-    }, createElement(Col, null, createElement("h3", null, formTitle))), createElement(GroupTypeEvaluator, Object.assign({}, props)), createElement(Row, {
+      className: 'form-title formTitle'
+    }, createElement(Col, null, createElement("h3", {
+      className: "headerText"
+    }, formTitle)), createElement(DropDown, {
+      languages: languageOptions,
+      onChangeSelect: this.handleSelect,
+      defaultLanguage: defaultLanguage
+    })), this.state && this.state.isSubmissionError && createElement(KbAlert, {
+      color: 'danger',
+      isOpen: this.state.isSubmissionError,
+      handleToggle: this.toggleStateValue,
+      headerText: 'Oh snap! You got an error!',
+      bodyText: 'Please make sure the required fields are not missing and there are no errors'
+    }), createElement(Row, {
+      className: "formFieldBody"
+    }, createElement(Col, null, createElement(GroupTypeEvaluator, Object.assign({}, props)), createElement(Row, {
       className: "welcome-box"
     }, createElement(Col, null, createElement(Button, {
       className: "btn btn-success",
       onClick: this.handleClick
-    }, "Submit"))));
+    }, "Submit"))))));
   };
 
   return App;
@@ -5010,7 +5523,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$f = function mapStateToProps(state) {
+var mapStateToProps$g = function mapStateToProps(state) {
   var result = {
     isNoErrors: isErrorsArrayEmpty(state),
     userInputObj: getUserInputFromStore(state)
@@ -5020,14 +5533,14 @@ var mapStateToProps$f = function mapStateToProps(state) {
 /** map props to actions */
 
 
-var mapDispatchToProps$f = {
+var mapDispatchToProps$g = {
   setUserInputAction: setUserInputObj
 };
 /** connect Decimal component to the redux store */
 
 var ConnectedApp =
 /*#__PURE__*/
-connect(mapStateToProps$f, mapDispatchToProps$f)(App);
+connect(mapStateToProps$g, mapDispatchToProps$g)(App);
 
 /** The initial store */
 
@@ -5054,13 +5567,16 @@ function (_React$Component) {
         defaultLanguage = _this$props.defaultLanguage,
         formDefinitionJson = _this$props.formDefinitionJson,
         userInputJson = _this$props.userInputJson,
+        languageOptions = _this$props.languageOptions,
         handleSubmit = _this$props.handleSubmit;
     var props = {
+      choices: formDefinitionJson.choices || {},
       csvList: csvList,
       defaultLanguage: defaultLanguage,
       fieldElements: formDefinitionJson.children,
       formTitle: formDefinitionJson.title,
       handleSubmit: handleSubmit,
+      languageOptions: languageOptions,
       userInputJson: userInputJson
     };
     return createElement(Provider, {

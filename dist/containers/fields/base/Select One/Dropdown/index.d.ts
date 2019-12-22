@@ -3,6 +3,7 @@ import { FieldElement, FieldParentTreeName } from '../../../../../components/typ
 import { addErrorInputId, assignFieldValueAction, assignOptionListAction, removeErrorInputId } from '../../../../../store/ducks/formState';
 /** props interface for the SelectOne component */
 export interface SelectOneDropDownProps {
+    choices: any;
     csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
@@ -51,5 +52,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect SelectOne component to the redux store */
-declare const ConnectedSelectOneDropDown: import("react-redux").ConnectedComponent<typeof SelectOneDropDown, Pick<SelectOneDropDownProps, "fieldElement" | "csvList" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
+declare const ConnectedSelectOneDropDown: import("react-redux").ConnectedComponent<typeof SelectOneDropDown, Pick<SelectOneDropDownProps, "choices" | "csvList" | "fieldElement" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
 export default ConnectedSelectOneDropDown;

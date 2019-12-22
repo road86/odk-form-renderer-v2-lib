@@ -25,9 +25,12 @@ export interface FieldElement {
     default?: any;
     control?: any;
     hint?: any;
+    itemset?: string;
+    choice_filter?: string;
 }
 /** props interface for BaseTypeEvaluator component */
 export interface BaseTypeEvaluatorProps {
+    choices: any;
     csvList: any;
     defaultLanguage: string;
     fieldElement: FieldElement;
@@ -36,6 +39,7 @@ export interface BaseTypeEvaluatorProps {
 declare class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
     render(): React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
     /** returns jsx components based on field types
+     * @param {any} choices - the choices of form definition
      * @param {FieldElement} fieldElement - the field element object
      * @param {FieldParentTreeName} fieldParentTreeName - the field parent hierchical name
      * @return {React.ReactElement} - jsx base components

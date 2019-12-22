@@ -4,6 +4,7 @@ export interface OdkFormRendererProps {
     csvList: any;
     defaultLanguage: string;
     formDefinitionJson: any;
+    languageOptions: any;
     userInputJson: any;
     handleSubmit(userInput: any): any;
 }

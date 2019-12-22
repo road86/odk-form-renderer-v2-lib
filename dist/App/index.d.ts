@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { setUserInputObj } from '../store/ducks/formState';
 export interface AppProps {
+    choices: any;
     csvList: any;
     isNoErrors: any;
     userInputObj: any;
@@ -9,13 +10,21 @@ export interface AppProps {
     formTitle: string;
     fieldElements: any;
     setUserInputAction: typeof setUserInputObj;
+    languageOptions: any;
     handleSubmit(userInput: any): any;
 }
-declare class App extends React.Component<AppProps> {
+export interface AppState {
+    defaultLanguage: string;
+    isSubmissionError: boolean;
+}
+declare class App extends React.Component<AppProps, AppState> {
+    constructor(props: AppProps);
     componentDidMount(): void;
+    handleSelect: (languageName: string) => void;
     render(): JSX.Element;
     private handleClick;
+    private toggleStateValue;
 }
 /** connect Decimal component to the redux store */
-declare const ConnectedApp: import("react-redux").ConnectedComponent<typeof App, Pick<AppProps, "userInputJson" | "csvList" | "defaultLanguage" | "formTitle" | "fieldElements" | "handleSubmit">>;
+declare const ConnectedApp: import("react-redux").ConnectedComponent<typeof App, Pick<AppProps, "choices" | "csvList" | "userInputJson" | "defaultLanguage" | "formTitle" | "fieldElements" | "languageOptions" | "handleSubmit">>;
 export default ConnectedApp;
