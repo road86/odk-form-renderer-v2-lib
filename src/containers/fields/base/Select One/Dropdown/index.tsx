@@ -145,11 +145,7 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         this.setOptionList(resultOptions);
       } else if (fieldElement.itemset) {
         if (choices && choices[fieldElement.itemset.trim()]) {
-          choices[fieldElement.itemset.trim()].forEach((elem: any) => {
-            const childrenLabel: string = getFieldLabelText(
-              elem,
-              defaultLanguage
-            );
+          _.forEach(choices[fieldElement.itemset.trim()], (elem: any) => {
             if (
               fieldElement.choice_filter &&
               this.props.getEvaluatedExpressionSelectorForSelect(
@@ -158,6 +154,10 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
                 elem
               )
             ) {
+              const childrenLabel: string = getFieldLabelText(
+                elem,
+                defaultLanguage
+              );
               options.push({ label: childrenLabel, value: elem.name });
             }
           });
