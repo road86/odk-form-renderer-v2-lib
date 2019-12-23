@@ -25,7 +25,6 @@ import {
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
-
 /** props interface for the integer component */
 export interface IntegerProps {
   fieldElement: FieldElement;
@@ -39,8 +38,15 @@ export interface IntegerProps {
   removeErrorInputIdActionCreator: typeof removeErrorInputId;
   defaultLanguage: string;
 }
-
-class Integer extends React.Component<IntegerProps> {
+export interface IntegerState {
+  fieldValue: string;
+  isFocused: boolean;
+}
+class Integer extends React.Component<IntegerProps, IntegerState> {
+  constructor(props: IntegerProps) {
+    super(props);
+    this.state = { fieldValue: '', isFocused: false };
+  }
   public render() {
     const {
       fieldElement,
@@ -52,15 +58,21 @@ class Integer extends React.Component<IntegerProps> {
       defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
-    const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
+
+    const isRequiredViolated =
+      isRequired &&
+      (fieldValue === null || fieldValue === '' || fieldValue === undefined);
+
     const isConstraintViolated =
-      fieldValue &&
       fieldValue !== '' &&
+      fieldValue !== null &&
+      fieldValue !== undefined &&
       shouldInputViolatesConstraint(
         fieldElement,
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
+
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
       getEvaluatedExpressionSelector,
@@ -71,11 +83,12 @@ class Integer extends React.Component<IntegerProps> {
       fieldElement,
       defaultLanguage
     );
-    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
-      getEvaluatedExpressionSelector,
-      constraintLabel,
-      fieldParentTreeName + fieldElement.name
-    );
+    const modifiedConstraintLabel =
+      customizeLabelsWithPreviousInputs(
+        getEvaluatedExpressionSelector,
+        constraintLabel,
+        fieldParentTreeName + fieldElement.name
+      ) || '';
     const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
@@ -105,12 +118,16 @@ class Integer extends React.Component<IntegerProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-
       if (typeof this.props.fieldValue === 'string') {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
           parseInt(this.props.fieldValue, 10)
         );
+      }
+
+      let modifiedValue: any;
+      {
+        fieldValue === 0 ? (modifiedValue = '0') : (modifiedValue = fieldValue);
       }
 
       return (
@@ -123,7 +140,12 @@ class Integer extends React.Component<IntegerProps> {
             type="number"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue || fieldValue === 0 ? fieldValue : ''}
+            onBlur={this.onBlurHandler}
+            value={
+              this.state.isFocused
+                ? this.state.fieldValue || ''
+                : modifiedValue || ''
+            }
             readOnly={isReadonly}
           />
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
@@ -136,6 +158,9 @@ class Integer extends React.Component<IntegerProps> {
         </FormGroup>
       );
     } else {
+      if (this.state.isFocused) {
+        this.setState({ ...this.state, isFocused: false });
+      }
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
@@ -154,6 +179,19 @@ class Integer extends React.Component<IntegerProps> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      fieldValue: event.currentTarget.value || '',
+      isFocused: true,
+    });
+  };
+
+  private onBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      fieldValue: event.currentTarget.value || '',
+      isFocused: false,
+    });
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
       event.currentTarget.value !== ''
@@ -162,9 +200,7 @@ class Integer extends React.Component<IntegerProps> {
     );
   };
 }
-
 /** connect the component to the store */
-
 /** Interface to describe props from mapStateToProps */
 interface DispatchedStateProps {
   fieldValue: any;
@@ -172,13 +208,11 @@ interface DispatchedStateProps {
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
-
 /** Interface to describe props from parent */
 interface ParentProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
 }
-
 /** Map props to state  */
 const mapStateToProps = (
   state: Partial<Store>,
@@ -191,7 +225,6 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
-
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
@@ -204,18 +237,15 @@ const mapStateToProps = (
   };
   return result;
 };
-
 /** map props to actions */
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
-
 /** connect Integer component to the redux store */
 const ConnectedInteger = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Integer);
-
 export default ConnectedInteger;

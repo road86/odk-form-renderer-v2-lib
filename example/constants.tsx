@@ -54,6 +54,21 @@ export const DEMO_FORM_JSON = {
           "type": "date"
         },
         {
+          name: 'date_time_widget',
+          hint: 'dateTime type with no appearance',
+          label: 'Date time widget',
+          type: 'dateTime',
+          bind: {
+            required: 'Yes',
+          },
+        },
+        {
+          name: 'time_widget',
+          hint: 'time type with no appearance',
+          label: 'Time widget',
+          type: 'time',
+        },
+        {
           "control": {
             "appearance": "w2 minimal"
           },
@@ -339,7 +354,7 @@ export const DEMO_FORM_JSON = {
             "required": "TRUE"
           },
           "label": "*18. Maximum farm capacity (number) birds",
-          "type": "integer"
+          "type": "decimal"
         },
         {
           "control": {

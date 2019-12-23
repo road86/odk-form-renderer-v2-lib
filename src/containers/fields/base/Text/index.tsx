@@ -40,7 +40,17 @@ export interface TextProps {
   defaultLanguage: string;
 }
 
-class Text extends React.Component<TextProps> {
+export interface TextState {
+  fieldValue: string;
+  isFocused: boolean;
+}
+
+class Text extends React.Component<TextProps, TextState> {
+  constructor(props: TextProps) {
+    super(props);
+    this.state = { fieldValue: '', isFocused: false };
+  }
+
   public render() {
     const {
       fieldElement,
@@ -133,7 +143,12 @@ class Text extends React.Component<TextProps> {
               type="text"
               name={fieldElement.name}
               onChange={this.onChangeHandler}
-              value={calculatedValue || ''}
+              onBlur={this.onBlurHandler}
+              value={
+                this.state.isFocused
+                  ? this.state.fieldValue || ''
+                  : calculatedValue || ''
+              }
               readOnly={isReadonly}
             />
             {fieldElement.hint && (
@@ -160,7 +175,12 @@ class Text extends React.Component<TextProps> {
               type="text"
               name={fieldElement.name}
               onChange={this.onChangeHandler}
-              value={fieldValue || ''}
+              onBlur={this.onBlurHandler}
+              value={
+                this.state.isFocused
+                  ? this.state.fieldValue || ''
+                  : fieldValue || ''
+              }
               readOnly={isReadonly}
             />
             {fieldElement.hint && (
@@ -178,6 +198,9 @@ class Text extends React.Component<TextProps> {
         );
       }
     } else {
+      if (this.state.isFocused) {
+        this.setState({ ...this.state, isFocused: false });
+      }
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
@@ -197,6 +220,19 @@ class Text extends React.Component<TextProps> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      fieldValue: event.currentTarget.value || '',
+      isFocused: true,
+    });
+  };
+
+  private onBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      fieldValue: event.currentTarget.value || '',
+      isFocused: false,
+    });
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
       event.currentTarget.value || ''
