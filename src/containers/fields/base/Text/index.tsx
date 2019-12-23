@@ -198,7 +198,7 @@ class Text extends React.Component<TextProps, TextState> {
         );
       }
     } else {
-      if(this.state.isFocused) {
+      if (this.state.isFocused) {
         this.setState({ ...this.state, isFocused: false });
       }
       if (fieldValue != null) {
@@ -220,10 +220,6 @@ class Text extends React.Component<TextProps, TextState> {
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    // this.props.assignFieldValueActionCreator(
-    //   this.props.fieldParentTreeName + event.currentTarget.name,
-    //   event.currentTarget.value || ''
-    // );
     this.setState({
       ...this.state,
       fieldValue: event.currentTarget.value || '',
