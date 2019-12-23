@@ -14,12 +14,18 @@ export interface TextProps {
     removeErrorInputIdActionCreator: typeof removeErrorInputId;
     defaultLanguage: string;
 }
-declare class Text extends React.Component<TextProps> {
+export interface TextState {
+    fieldValue: string;
+    isFocused: boolean;
+}
+declare class Text extends React.Component<TextProps, TextState> {
+    constructor(props: TextProps);
     render(): JSX.Element | null;
     /** sets the value of field element in store
      * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
      */
     private onChangeHandler;
+    private onBlurHandler;
 }
 /** Interface to describe props from parent */
 interface ParentProps {

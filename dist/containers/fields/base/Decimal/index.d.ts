@@ -14,12 +14,18 @@ export interface DecimalProps {
     removeErrorInputIdActionCreator: typeof removeErrorInputId;
     defaultLanguage: string;
 }
-declare class Decimal extends React.Component<DecimalProps> {
+export interface DecimalState {
+    fieldValue: string;
+    isFocused: boolean;
+}
+declare class Decimal extends React.Component<DecimalProps, DecimalState> {
+    constructor(props: DecimalProps);
     render(): JSX.Element | null;
     /** sets the value of field element in store
      * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
      */
     private onChangeHandler;
+    private onBlurHandler;
 }
 /** Interface to describe props from parent */
 interface ParentProps {

@@ -3154,18 +3154,34 @@ var Decimal =
 function (_React$Component) {
   _inheritsLoose(Decimal, _React$Component);
 
-  function Decimal() {
+  function Decimal(props) {
     var _this;
 
-    _this = _React$Component.apply(this, arguments) || this;
+    _this = _React$Component.call(this, props) || this;
     /** sets the value of field element in store
      * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
      */
 
     _this.onChangeHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: true
+      }));
+    };
+
+    _this.onBlurHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: false
+      }));
+
       _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? parseFloat(event.currentTarget.value) : null);
     };
 
+    _this.state = {
+      fieldValue: '',
+      isFocused: false
+    };
     return _this;
   }
 
@@ -3181,8 +3197,8 @@ function (_React$Component) {
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
-    var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
-    var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+    var isRequiredViolated = isRequired && (fieldValue === null || fieldValue === '' || fieldValue === undefined);
+    var isConstraintViolated = fieldValue !== '' && fieldValue !== null && fieldValue !== undefined && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     var modifiedFieldLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, fieldLabel, fieldParentTreeName + fieldElement.name);
     var constraintLabel = getConstraintLabelText(fieldElement, defaultLanguage);
@@ -3206,6 +3222,10 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, parseFloat(this.props.fieldValue));
       }
 
+      var modifiedValue;
+      {
+        fieldValue === 0 ? modifiedValue = '0' : modifiedValue = fieldValue;
+      }
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
         className: "requiredTextSteric"
       }, REQUIRED_SYMBOL), createElement(Input, {
@@ -3213,7 +3233,8 @@ function (_React$Component) {
         step: "any",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
-        value: fieldValue || fieldValue === 0 ? fieldValue : '',
+        onBlur: this.onBlurHandler,
+        value: this.state.isFocused ? this.state.fieldValue || '' : modifiedValue || '',
         readOnly: isReadonly
       }), fieldElement.hint && createElement(Label, {
         className: "hintText"
@@ -3223,6 +3244,12 @@ function (_React$Component) {
         className: "constraintText"
       }, modifiedConstraintLabel));
     } else {
+      if (this.state.isFocused) {
+        this.setState(_extends({}, this.state, {
+          isFocused: false
+        }));
+      }
+
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
 
@@ -3279,18 +3306,34 @@ var Integer =
 function (_React$Component) {
   _inheritsLoose(Integer, _React$Component);
 
-  function Integer() {
+  function Integer(props) {
     var _this;
 
-    _this = _React$Component.apply(this, arguments) || this;
+    _this = _React$Component.call(this, props) || this;
     /** sets the value of field element in store
      * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
      */
 
     _this.onChangeHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: true
+      }));
+    };
+
+    _this.onBlurHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: false
+      }));
+
       _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? parseInt(event.currentTarget.value, 10) : null);
     };
 
+    _this.state = {
+      fieldValue: '',
+      isFocused: false
+    };
     return _this;
   }
 
@@ -3306,12 +3349,12 @@ function (_React$Component) {
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
-    var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
-    var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+    var isRequiredViolated = isRequired && (fieldValue === null || fieldValue === '' || fieldValue === undefined);
+    var isConstraintViolated = fieldValue !== '' && fieldValue !== null && fieldValue !== undefined && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     var modifiedFieldLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, fieldLabel, fieldParentTreeName + fieldElement.name);
     var constraintLabel = getConstraintLabelText(fieldElement, defaultLanguage);
-    var modifiedConstraintLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, constraintLabel, fieldParentTreeName + fieldElement.name);
+    var modifiedConstraintLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, constraintLabel, fieldParentTreeName + fieldElement.name) || '';
     var hintLabel = getHintLabelText(fieldElement, defaultLanguage);
 
     if (isComponentRender) {
@@ -3331,13 +3374,18 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, parseInt(this.props.fieldValue, 10));
       }
 
+      var modifiedValue;
+      {
+        fieldValue === 0 ? modifiedValue = '0' : modifiedValue = fieldValue;
+      }
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
         className: "requiredTextSteric"
       }, REQUIRED_SYMBOL), createElement(Input, {
         type: "number",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
-        value: fieldValue || fieldValue === 0 ? fieldValue : '',
+        onBlur: this.onBlurHandler,
+        value: this.state.isFocused ? this.state.fieldValue || '' : modifiedValue || '',
         readOnly: isReadonly
       }), fieldElement.hint && createElement(Label, {
         className: "hintText"
@@ -3347,6 +3395,12 @@ function (_React$Component) {
         className: "constraintText"
       }, modifiedConstraintLabel));
     } else {
+      if (this.state.isFocused) {
+        this.setState(_extends({}, this.state, {
+          isFocused: false
+        }));
+      }
+
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
 
@@ -4520,16 +4574,16 @@ function (_React$Component) {
         this.setOptionList(resultOptions);
       } else if (fieldElement.itemset) {
         if (choices && choices[fieldElement.itemset.trim()]) {
-          choices[fieldElement.itemset.trim()].forEach(function (elem) {
-            var childrenLabel = getFieldLabelText(elem, defaultLanguage);
-
+          _.forEach(choices[fieldElement.itemset.trim()], function (elem) {
             if (fieldElement.choice_filter && _this2.props.getEvaluatedExpressionSelectorForSelect(fieldElement.choice_filter, fieldParentTreeName + fieldElement.name, elem)) {
+              var childrenLabel = getFieldLabelText(elem, defaultLanguage);
               options.push({
                 label: childrenLabel,
                 value: elem.name
               });
             }
           });
+
           this.setOptionList(choices[fieldElement.itemset.trim()]);
         }
       } else {
@@ -4962,18 +5016,34 @@ var Text =
 function (_React$Component) {
   _inheritsLoose(Text, _React$Component);
 
-  function Text() {
+  function Text(props) {
     var _this;
 
-    _this = _React$Component.apply(this, arguments) || this;
+    _this = _React$Component.call(this, props) || this;
     /** sets the value of field element in store
      * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
      */
 
     _this.onChangeHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: true
+      }));
+    };
+
+    _this.onBlurHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: false
+      }));
+
       _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value || '');
     };
 
+    _this.state = {
+      fieldValue: '',
+      isFocused: false
+    };
     return _this;
   }
 
@@ -5024,7 +5094,8 @@ function (_React$Component) {
           type: "text",
           name: fieldElement.name,
           onChange: this.onChangeHandler,
-          value: calculatedValue || '',
+          onBlur: this.onBlurHandler,
+          value: this.state.isFocused ? this.state.fieldValue || '' : calculatedValue || '',
           readOnly: isReadonly
         }), fieldElement.hint && createElement(Label, {
           className: "hintText"
@@ -5040,7 +5111,8 @@ function (_React$Component) {
           type: "text",
           name: fieldElement.name,
           onChange: this.onChangeHandler,
-          value: fieldValue || '',
+          onBlur: this.onBlurHandler,
+          value: this.state.isFocused ? this.state.fieldValue || '' : fieldValue || '',
           readOnly: isReadonly
         }), fieldElement.hint && createElement(Label, {
           className: "hintText"
@@ -5051,6 +5123,12 @@ function (_React$Component) {
         }, modifiedConstraintLabel));
       }
     } else {
+      if (this.state.isFocused) {
+        this.setState(_extends({}, this.state, {
+          isFocused: false
+        }));
+      }
+
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
 

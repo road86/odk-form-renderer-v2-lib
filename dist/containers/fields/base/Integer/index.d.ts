@@ -14,12 +14,18 @@ export interface IntegerProps {
     removeErrorInputIdActionCreator: typeof removeErrorInputId;
     defaultLanguage: string;
 }
-declare class Integer extends React.Component<IntegerProps> {
+export interface IntegerState {
+    fieldValue: string;
+    isFocused: boolean;
+}
+declare class Integer extends React.Component<IntegerProps, IntegerState> {
+    constructor(props: IntegerProps);
     render(): JSX.Element | null;
     /** sets the value of field element in store
      * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
      */
     private onChangeHandler;
+    private onBlurHandler;
 }
 /** Interface to describe props from parent */
 interface ParentProps {
