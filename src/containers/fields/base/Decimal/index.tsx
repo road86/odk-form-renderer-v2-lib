@@ -40,7 +40,16 @@ export interface DecimalProps {
   defaultLanguage: string;
 }
 
-class Decimal extends React.Component<DecimalProps> {
+export interface DecimalState {
+  fieldValue: string;
+  isFocused: boolean;
+}
+
+class Decimal extends React.Component<DecimalProps, DecimalState> {
+  constructor(props: DecimalProps) {
+    super(props);
+    this.state = { fieldValue: '', isFocused: false };
+  }
   public render() {
     const {
       fieldElement,
@@ -53,10 +62,13 @@ class Decimal extends React.Component<DecimalProps> {
     } = this.props;
 
     const isRequired = isInputRequired(fieldElement);
-    const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
+    const isRequiredViolated =
+      isRequired &&
+      (fieldValue === null || fieldValue === '' || fieldValue === undefined);
     const isConstraintViolated =
-      fieldValue &&
       fieldValue !== '' &&
+      fieldValue !== null &&
+      fieldValue !== undefined &&
       shouldInputViolatesConstraint(
         fieldElement,
         fieldParentTreeName,
@@ -116,6 +128,11 @@ class Decimal extends React.Component<DecimalProps> {
         );
       }
 
+      let modifiedValue: any;
+      {
+        fieldValue === 0 ? (modifiedValue = '0') : (modifiedValue = fieldValue);
+      }
+
       return (
         <FormGroup>
           <Label>{modifiedFieldLabel}</Label>
@@ -127,7 +144,12 @@ class Decimal extends React.Component<DecimalProps> {
             step="any"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue || fieldValue === 0 ? fieldValue : ''}
+            onBlur={this.onBlurHandler}
+            value={
+              this.state.isFocused
+                ? this.state.fieldValue || ''
+                : modifiedValue || ''
+            }
             readOnly={isReadonly}
           />
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
@@ -140,6 +162,9 @@ class Decimal extends React.Component<DecimalProps> {
         </FormGroup>
       );
     } else {
+      if (this.state.isFocused) {
+        this.setState({ ...this.state, isFocused: false });
+      }
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
@@ -154,10 +179,24 @@ class Decimal extends React.Component<DecimalProps> {
       return null;
     }
   }
+
   /** sets the value of field element in store
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      fieldValue: event.currentTarget.value || '',
+      isFocused: true,
+    });
+  };
+
+  private onBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      ...this.state,
+      fieldValue: event.currentTarget.value || '',
+      isFocused: false,
+    });
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
       event.currentTarget.value !== ''
