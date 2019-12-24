@@ -132,6 +132,25 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         }
       }
 
+      const childrenArray: any = [];
+      if (fieldElement.children) {
+        fieldElement.children.map(elem => {
+          const elemObj: any = {};
+          const name: string = 'name';
+          const label: string = 'label';
+          elemObj[name] = elem.name;
+          elemObj[label] = elem.label;
+          childrenArray.push(elemObj);
+        });
+      }
+
+      let values: any = [];
+      {
+        resultOptions.length === 0
+          ? (values = [...childrenArray])
+          : (values = [...resultOptions]);
+      }
+
       if (
         fieldElement.control &&
         fieldElement.control.appearance &&
@@ -159,95 +178,44 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
             resultOptions
           );
         }
-
-        return (
-          <FormGroup>
-            <Label>{modifiedFieldLabel}</Label>
-            {isRequired && (
-              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-            )}
-            {resultOptions.map((elem, index) => (
-              <div key={index} className={'col-md-12 selectOne'}>
-                <Input
-                  key={fieldElement.name + '-' + index}
-                  type="radio"
-                  name={fieldElement.name}
-                  value={elem.name}
-                  onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                  readOnly={isReadonly}
-                  checked={elem.name === fieldValue}
-                />{' '}
-                {getFieldLabelText(elem, defaultLanguage)}
-              </div>
-            ))}
-            {fieldElement.hint && (
-              <Label className="hintText">{hintLabel}</Label>
-            )}
-            {isRequiredViolated && (
-              <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
-            )}
-            {isConstraintViolated && (
-              <Label className="constraintText">
-                {modifiedConstraintLabel}
-              </Label>
-            )}
-          </FormGroup>
-        );
       } else {
-        if (fieldElement.children) {
-          const tempObjArray: any = [];
-          fieldElement.children.map(elem => {
-            const elemObj: any = {};
-            const name: string = 'name';
-            const label: string = 'label';
-            elemObj[name] = elem.name;
-            elemObj[label] = elem.label;
-            tempObjArray.push(elemObj);
-          });
-
-          if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
-            this.props.assignOptionListActionCreator(
-              this.props.fieldParentTreeName + fieldElement.name,
-              tempObjArray
-            );
-          }
-
-          return (
-            <FormGroup>
-              <Label>{modifiedFieldLabel}</Label>
-              {isRequired && (
-                <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-              )}
-              {fieldElement.children.map((elem, index) => (
-                <div key={index} className={'col-md-12 selectOne'}>
-                  <Input
-                    key={fieldElement.name + '-' + index}
-                    type="radio"
-                    name={fieldElement.name}
-                    value={elem.name}
-                    onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                    readOnly={isReadonly}
-                  />{' '}
-                  {getFieldLabelText(elem, defaultLanguage)}
-                </div>
-              ))}
-              {fieldElement.hint && (
-                <Label className="hintText">{hintLabel}</Label>
-              )}
-              {isRequiredViolated && (
-                <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
-              )}
-              {isConstraintViolated && (
-                <Label className="constraintText">
-                  {modifiedConstraintLabel}
-                </Label>
-              )}
-            </FormGroup>
+        if (!_.isEqual(this.props.optionList, { ...childrenArray })) {
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            childrenArray
           );
-        } else {
-          return null;
         }
       }
+
+      return (
+        <FormGroup>
+          <Label>{modifiedFieldLabel}</Label>
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
+          {values.map((elem: any, index: any) => (
+            <div key={index} className={'col-md-12 selectOne'}>
+              <Input
+                key={fieldElement.name + '-' + index}
+                type="radio"
+                name={fieldElement.name}
+                value={elem.name}
+                onChange={this.onChangeHandlerRadio(fieldElement.name)}
+                readOnly={isReadonly}
+                checked={elem.name === fieldValue}
+              />{' '}
+              {getFieldLabelText(elem, defaultLanguage)}
+            </div>
+          ))}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
+        </FormGroup>
+      );
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(
