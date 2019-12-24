@@ -120,7 +120,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
       }
 
       let resultOptions: any[] = [];
-      const options: Options[] = [];
+      let options: Options[] = [];
 
       if (fieldElement.control && fieldElement.control.appearance) {
         const updatedFieldElement: any = fieldElement.control.appearance
@@ -134,17 +134,38 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         }
       }
 
+      const childrenArray: any = [];
+      if (fieldElement.children) {
+        fieldElement.children.map(elem => {
+          const elemObj: any = {};
+          const name: string = 'name';
+          const label: string = 'label';
+          elemObj[name] = elem.name;
+          elemObj[label] = elem.label;
+          childrenArray.push(elemObj);
+        });
+      }
+
+      let values: any = [];
+      {
+        resultOptions.length === 0
+          ? (values = [...childrenArray])
+          : (values = [...resultOptions]);
+      }
+
       if (
         fieldElement.control &&
         fieldElement.control.appearance &&
         /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
       ) {
+        options = [];
+        const tmpValueArray: any = [];
+        let isNotIncluded: boolean = false;
+
         resultOptions.map(elem =>
           options.push({ label: elem.label, value: elem.name })
         );
 
-        const tmpValueArray: any = [];
-        let isNotIncluded: boolean = false;
         if (fieldValue && fieldValue.length > 0) {
           const optionsValueArray: any = [];
           options.map(elem => {
@@ -169,111 +190,68 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           );
         }
 
-        const selectedValues: any[] = [];
-        if (fieldValue && fieldValue.length > 0) {
-          options.map(elem => {
-            for (const row of fieldValue) {
-              if (elem.value === row) {
-                selectedValues.push(elem.value);
-              }
-            }
-          });
-        }
-
         if (!_.isEqual(this.props.optionList, { ...resultOptions })) {
           this.props.assignOptionListActionCreator(
             this.props.fieldParentTreeName + fieldElement.name,
             resultOptions
           );
         }
-
-        return (
-          <FormGroup>
-            <Label>{modifiedFieldLabel}</Label>
-            {isRequired && (
-              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-            )}
-            {resultOptions.map((elem, index) => (
-              <div key={index} className={'col-md-12 selectAll'}>
-                <Input
-                  key={fieldElement.name + '-' + index}
-                  type="checkbox"
-                  name={fieldElement.name}
-                  value={elem.name || []}
-                  onChange={this.onChangeHandlerCheckBox}
-                  readOnly={isReadonly}
-                  checked={selectedValues.includes(elem.name)}
-                />{' '}
-                {getFieldLabelText(elem, defaultLanguage)}
-              </div>
-            ))}
-            {fieldElement.hint && (
-              <Label className="hintText">{hintLabel}</Label>
-            )}
-            {isRequiredViolated && (
-              <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
-            )}
-            {isConstraintViolated && (
-              <Label className="constraintText">
-                {modifiedConstraintLabel}
-              </Label>
-            )}
-          </FormGroup>
-        );
       } else {
+        options = [];
         if (fieldElement.children) {
-          const tempObjArray: any = [];
-          fieldElement.children.map(elem => {
-            const elemObj: any = {};
-            const name: string = 'name';
-            const label: string = 'label';
-            elemObj[name] = elem.name;
-            elemObj[label] = elem.label;
-            tempObjArray.push(elemObj);
-          });
-
-          if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
-            this.props.assignOptionListActionCreator(
-              this.props.fieldParentTreeName + fieldElement.name,
-              tempObjArray
-            );
-          }
-          return (
-            <FormGroup>
-              <Label>{modifiedFieldLabel}</Label>
-              {isRequired && (
-                <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-              )}
-              {fieldElement.children.map((elem, index) => (
-                <div key={index} className={'col-md-12 selectAll'}>
-                  <Input
-                    key={fieldElement.name + '-' + index}
-                    type="checkbox"
-                    name={fieldElement.name}
-                    value={elem.name || []}
-                    onChange={this.onChangeHandlerCheckBox}
-                    readOnly={isReadonly}
-                  />{' '}
-                  {getFieldLabelText(elem, defaultLanguage)}
-                </div>
-              ))}
-              {fieldElement.hint && (
-                <Label className="hintText">{hintLabel}</Label>
-              )}
-              {isRequiredViolated && (
-                <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
-              )}
-              {isConstraintViolated && (
-                <Label className="constraintText">
-                  {modifiedConstraintLabel}
-                </Label>
-              )}
-            </FormGroup>
+          fieldElement.children.map(elem =>
+            options.push({ label: elem.label, value: elem.name })
           );
-        } else {
-          return null;
+        }
+
+        if (!_.isEqual(this.props.optionList, { ...childrenArray })) {
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            childrenArray
+          );
         }
       }
+
+      const selectedValues: any[] = [];
+      if (fieldValue && fieldValue.length > 0) {
+        options.map(elem => {
+          for (const row of fieldValue) {
+            if (elem.value === row) {
+              selectedValues.push(elem.value);
+            }
+          }
+        });
+      }
+
+      return (
+        <FormGroup>
+          <Label>{modifiedFieldLabel}</Label>
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
+          {values.map((elem: any, index: any) => (
+            <div key={index} className={'col-md-12 selectAll'}>
+              <Input
+                key={fieldElement.name + '-' + index}
+                type="checkbox"
+                name={fieldElement.name}
+                value={elem.name || []}
+                onChange={this.onChangeHandlerCheckBox}
+                readOnly={isReadonly}
+                checked={selectedValues.includes(elem.name)}
+              />{' '}
+              {getFieldLabelText(elem, defaultLanguage)}
+            </div>
+          ))}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
+        </FormGroup>
+      );
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(
