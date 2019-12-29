@@ -32,6 +32,7 @@ import {
 
 /** props interface for the SelectOne component */
 export interface SelectOneRadioProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -56,6 +57,7 @@ export interface Options {
 class SelectOneRadio extends React.Component<SelectOneRadioProps> {
   public render() {
     const {
+      choices,
       fieldElement,
       fieldParentTreeName,
       fieldValue,
@@ -64,6 +66,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
+
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
@@ -177,6 +180,49 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
             this.props.fieldParentTreeName + fieldElement.name,
             resultOptions
           );
+        }
+      } else if (fieldElement.itemset) {
+        const choiceOptions: any = [];
+        values = [];
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          _.forEach(choices[fieldElement.itemset.trim()], (elem: any) => {
+            if (
+              fieldElement.choice_filter &&
+              this.props.getEvaluatedExpressionSelectorForSelect(
+                fieldElement.choice_filter,
+                fieldParentTreeName + fieldElement.name,
+                elem
+              )
+            ) {
+              const childrenLabel: string = getFieldLabelText(
+                elem,
+                defaultLanguage
+              );
+              choiceOptions.push({ label: childrenLabel, name: elem.name });
+            }
+          });
+
+          if (fieldValue) {
+            const optionsValueArray: any = [];
+            choiceOptions.map((elem: any) => {
+              if (elem.name) {
+                optionsValueArray.push(elem.name);
+              }
+            });
+            if (!optionsValueArray.includes(fieldValue)) {
+              this.props.assignFieldValueActionCreator(
+                this.props.fieldParentTreeName + fieldElement.name,
+                ''
+              );
+            }
+          }
+          if (!_.isEqual(this.props.optionList, { ...choiceOptions })) {
+            this.props.assignOptionListActionCreator(
+              this.props.fieldParentTreeName + fieldElement.name,
+              choiceOptions
+            );
+          }
+          values = [...choiceOptions];
         }
       } else {
         if (!_.isEqual(this.props.optionList, { ...childrenArray })) {
