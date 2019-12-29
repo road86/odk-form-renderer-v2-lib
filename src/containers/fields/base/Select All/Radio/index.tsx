@@ -32,6 +32,7 @@ import {
 
 /** props interface for the SelectAll Radio component */
 export interface SelectAllRadioProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -56,6 +57,7 @@ export interface Options {
 class SelectAllRadio extends React.Component<SelectAllRadioProps> {
   public render() {
     const {
+      choices,
       fieldElement,
       fieldParentTreeName,
       fieldValue,
@@ -196,6 +198,75 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
             resultOptions
           );
         }
+      } else if (fieldElement.itemset) {
+        values = [];
+        options = [];
+        const tmpValueArray: any = [];
+        const optionsArray: any = [];
+        let isNotIncluded: boolean = false;
+
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          _.forEach(choices[fieldElement.itemset.trim()], (elem: any) => {
+            if (
+              fieldElement.choice_filter &&
+              this.props.getEvaluatedExpressionSelectorForSelect(
+                fieldElement.choice_filter,
+                fieldParentTreeName + fieldElement.name,
+                elem
+              )
+            ) {
+              const childrenLabel: string = getFieldLabelText(
+                elem,
+                defaultLanguage
+              );
+              options.push({ label: childrenLabel, value: elem.name });
+            }
+          });
+        }
+
+        if (fieldValue && fieldValue.length > 0) {
+          const optionsValueArray: any = [];
+          options.map((elem: any) => {
+            if (elem.value) {
+              optionsValueArray.push(elem.value);
+            }
+          });
+
+          for (const row of fieldValue) {
+            if (!optionsValueArray.includes(row)) {
+              isNotIncluded = true;
+            } else {
+              tmpValueArray.push(row);
+            }
+          }
+        }
+
+        if (fieldValue && fieldValue.length > 0 && isNotIncluded) {
+          this.props.assignFieldValueActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            tmpValueArray || []
+          );
+        }
+
+        if (options) {
+          options.map(elem => {
+            const elemObj: any = {};
+            const name: string = 'name';
+            const label: string = 'label';
+            elemObj[name] = elem.value;
+            elemObj[label] = elem.label;
+            optionsArray.push(elemObj);
+          });
+        }
+
+        if (!_.isEqual(this.props.optionList, { ...optionsArray })) {
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            optionsArray
+          );
+        }
+
+        values = [...optionsArray];
       } else {
         options = [];
         if (fieldElement.children) {
