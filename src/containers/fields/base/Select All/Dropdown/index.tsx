@@ -143,14 +143,35 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         this.setOptionList(resultOptions);
       } else if (fieldElement.itemset) {
         if (choices && choices[fieldElement.itemset.trim()]) {
-          choices[fieldElement.itemset.trim()].forEach((elem: any) => {
-            const childrenLabel: string = getFieldLabelText(
-              elem,
-              defaultLanguage
-            );
-            options.push({ label: childrenLabel, value: elem.name });
+          _.forEach(choices[fieldElement.itemset.trim()], (elem: any) => {
+            if (
+              fieldElement.choice_filter &&
+              this.props.getEvaluatedExpressionSelectorForSelect(
+                fieldElement.choice_filter,
+                fieldParentTreeName + fieldElement.name,
+                elem
+              )
+            ) {
+              const childrenLabel: string = getFieldLabelText(
+                elem,
+                defaultLanguage
+              );
+              options.push({ label: childrenLabel, value: elem.name });
+            }
           });
-          this.setOptionList(choices[fieldElement.itemset.trim()]);
+
+          const optionsArray: any = [];
+          if (options) {
+            options.map(elem => {
+              const elemObj: any = {};
+              const name: string = 'name';
+              const label: string = 'label';
+              elemObj[name] = elem.value;
+              elemObj[label] = elem.label;
+              optionsArray.push(elemObj);
+            });
+          }
+          this.setOptionList(optionsArray);
         }
       } else {
         if (fieldElement.children) {
