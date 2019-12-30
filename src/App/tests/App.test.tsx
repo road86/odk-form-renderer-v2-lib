@@ -15,6 +15,7 @@ describe('App', () => {
     const mock: any = jest.fn();
     const div = document.createElement('div');
     const props = {
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElements: [],
@@ -45,6 +46,7 @@ describe('App', () => {
   it('renders App correctly', () => {
     const mock: any = jest.fn();
     const props = {
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElements: [],
