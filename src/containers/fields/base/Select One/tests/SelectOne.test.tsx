@@ -18,6 +18,7 @@ describe('containers/fields/group/Select One/Dropdown', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElement: selectOneDropDownFieldElement,
@@ -35,6 +36,7 @@ describe('containers/fields/group/Select One/Dropdown', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElement: selectOneDropDownFieldElement,
@@ -63,6 +65,7 @@ describe('containers/fields/group/Select One/Radio', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElement: selectOneRadioFieldElement,
@@ -80,6 +83,7 @@ describe('containers/fields/group/Select One/Radio', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElement: selectOneRadioFieldElement,

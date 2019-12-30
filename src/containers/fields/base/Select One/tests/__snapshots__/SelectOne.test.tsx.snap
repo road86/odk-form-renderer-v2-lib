@@ -14,6 +14,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
 >
   <Connect(SelectOneDropDown)
     assignFieldValueActionCreator={[MockFunction]}
+    choices={Object {}}
     csvList={Object {}}
     defaultLanguage="English"
     fieldElement={
@@ -55,6 +56,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       assignOptionListActionCreator={[Function]}
+      choices={Object {}}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
@@ -1507,6 +1509,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
 >
   <Connect(SelectOneRadio)
     assignFieldValueActionCreator={[MockFunction]}
+    choices={Object {}}
     csvList={Object {}}
     defaultLanguage="English"
     fieldElement={
@@ -1534,6 +1537,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       assignOptionListActionCreator={[Function]}
+      choices={Object {}}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
@@ -1603,6 +1607,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
             key="0"
           >
             <Input
+              checked={false}
               key="select_one_autocomplete_widget-0"
               name="select_one_autocomplete_widget"
               onChange={[Function]}
@@ -1611,6 +1616,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
               value="a"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 name="select_one_autocomplete_widget"
                 onChange={[Function]}
@@ -1627,6 +1633,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
             key="1"
           >
             <Input
+              checked={false}
               key="select_one_autocomplete_widget-1"
               name="select_one_autocomplete_widget"
               onChange={[Function]}
@@ -1635,6 +1642,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
               value="b"
             >
               <input
+                checked={false}
                 className="form-check-input"
                 name="select_one_autocomplete_widget"
                 onChange={[Function]}
