@@ -71,6 +71,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
           </Label>
           <Input
             name="decimal_widget"
+            onBlur={[Function]}
             onChange={[Function]}
             readOnly={false}
             step="any"
@@ -80,6 +81,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
             <input
               className="form-control"
               name="decimal_widget"
+              onBlur={[Function]}
               onChange={[Function]}
               readOnly={false}
               step="any"

@@ -106,6 +106,7 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
           </Label>
           <Input
             name="integer_widget"
+            onBlur={[Function]}
             onChange={[Function]}
             readOnly={true}
             type="number"
@@ -114,6 +115,7 @@ exports[`containers/fields/group/Group renders correctly 1`] = `
             <input
               className="form-control"
               name="integer_widget"
+              onBlur={[Function]}
               onChange={[Function]}
               readOnly={true}
               type="number"
