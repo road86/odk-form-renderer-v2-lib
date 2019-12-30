@@ -14,6 +14,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
 >
   <Connect(SelectAllRadio)
     assignFieldValueActionCreator={[MockFunction]}
+    choices={Object {}}
     csvList={Object {}}
     defaultLanguage="English"
     fieldElement={
@@ -52,6 +53,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
       addErrorInputIdActionCreator={[Function]}
       assignFieldValueActionCreator={[Function]}
       assignOptionListActionCreator={[Function]}
+      choices={Object {}}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElement={
@@ -151,6 +153,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
             key="0"
           >
             <Input
+              checked={true}
               key="spinner_multi_widget-0"
               name="spinner_multi_widget"
               onChange={[Function]}
@@ -159,6 +162,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
               value="a"
             >
               <input
+                checked={true}
                 className="form-check-input"
                 name="spinner_multi_widget"
                 onChange={[Function]}
@@ -175,6 +179,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
             key="1"
           >
             <Input
+              checked={true}
               key="spinner_multi_widget-1"
               name="spinner_multi_widget"
               onChange={[Function]}
@@ -183,6 +188,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
               value="b"
             >
               <input
+                checked={true}
                 className="form-check-input"
                 name="spinner_multi_widget"
                 onChange={[Function]}

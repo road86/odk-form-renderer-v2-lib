@@ -16,6 +16,7 @@ describe('containers/fields/group/Select All/Dropdown', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElement: selectAllDropDownFieldElement,
@@ -33,6 +34,7 @@ describe('containers/fields/group/Select All/Dropdown', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
+      choices: {},
       csvList: {},
       defaultLanguage: 'English',
       fieldElement: selectAllDropDownFieldElement,
