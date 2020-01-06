@@ -143,14 +143,35 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         this.setOptionList(resultOptions);
       } else if (fieldElement.itemset) {
         if (choices && choices[fieldElement.itemset.trim()]) {
-          choices[fieldElement.itemset.trim()].forEach((elem: any) => {
-            const childrenLabel: string = getFieldLabelText(
-              elem,
-              defaultLanguage
-            );
-            options.push({ label: childrenLabel, value: elem.name });
+          _.forEach(choices[fieldElement.itemset.trim()], (elem: any) => {
+            if (
+              fieldElement.choice_filter &&
+              this.props.getEvaluatedExpressionSelectorForSelect(
+                fieldElement.choice_filter,
+                fieldParentTreeName + fieldElement.name,
+                elem
+              )
+            ) {
+              const childrenLabel: string = getFieldLabelText(
+                elem,
+                defaultLanguage
+              );
+              options.push({ label: childrenLabel, value: elem.name });
+            }
           });
-          this.setOptionList(choices[fieldElement.itemset.trim()]);
+
+          const optionsArray: any = [];
+          if (options) {
+            options.map(elem => {
+              const elemObj: any = {};
+              const name: string = 'name';
+              const label: string = 'label';
+              elemObj[name] = elem.value;
+              elemObj[label] = elem.label;
+              optionsArray.push(elemObj);
+            });
+          }
+          this.setOptionList(optionsArray);
         }
       } else {
         if (fieldElement.children) {
@@ -278,6 +299,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   private onChangeHandler = (fieldName: any) => (values: any) => {
     const selectedValues: any = [];
     let i = 0;
+
     if (values) {
       values.map(() => {
         if (!selectedValues.includes(values[i].value)) {
@@ -285,6 +307,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         }
         i++;
       });
+
       this.props.assignFieldValueActionCreator(
         this.props.fieldParentTreeName + fieldName,
         selectedValues
@@ -338,8 +361,10 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
     let options: any[] = [];
     const distinctOptions: any[] = [];
     const finalRes: any[] = [];
+    const csv: any = this.props.csvList;
+    csvName = csvName.substring(1, csvName.length - 1) + '.csv';
 
-    if (csvName) {
+    if (csv[csvName]) {
       const modifiedName = csvName.replace(/'/g, '');
       options = this.props.csvList[modifiedName] || [];
     }
@@ -352,22 +377,23 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         const interConnectedValue = filterCriterias[i + 1];
         const tempOptions = [...options];
 
+        let filterResult: any = [];
         tempOptions.forEach(elm => {
-          const filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
+          filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
             interConnectedValue,
             this.props.fieldParentTreeName + this.props.fieldElement.name,
             elm
           );
+        });
 
-          let j = 0;
-          filterResult.map(() => {
-            options.map(option => {
-              if (option[nameOfKey] === filterResult[j]) {
-                finalRes.push(option);
-              }
-            });
-            j = j + 1;
+        let j = 0;
+        filterResult.map(() => {
+          options.map(option => {
+            if (option[nameOfKey] === filterResult[j]) {
+              finalRes.push(option);
+            }
           });
+          j = j + 1;
         });
 
         i = i + 2;

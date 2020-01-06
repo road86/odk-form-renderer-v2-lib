@@ -98,6 +98,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
           </Label>
           <Input
             name="event_name"
+            onBlur={[Function]}
             onChange={[Function]}
             readOnly={false}
             type="text"
@@ -106,6 +107,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
             <input
               className="form-control"
               name="event_name"
+              onBlur={[Function]}
               onChange={[Function]}
               readOnly={false}
               type="text"

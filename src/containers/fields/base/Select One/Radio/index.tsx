@@ -32,6 +32,7 @@ import {
 
 /** props interface for the SelectOne component */
 export interface SelectOneRadioProps {
+  choices: any;
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
@@ -56,6 +57,7 @@ export interface Options {
 class SelectOneRadio extends React.Component<SelectOneRadioProps> {
   public render() {
     const {
+      choices,
       fieldElement,
       fieldParentTreeName,
       fieldValue,
@@ -64,6 +66,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
+
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
@@ -132,11 +135,26 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         }
       }
 
+      const childrenArray: any = [];
+      if (fieldElement.children) {
+        fieldElement.children.map(elem => {
+          const elemObj: any = {};
+          const name: string = 'name';
+          const label: string = 'label';
+          elemObj[name] = elem.name;
+          elemObj[label] = elem.label;
+          childrenArray.push(elemObj);
+        });
+      }
+
+      let values: any = [];
+
       if (
         fieldElement.control &&
         fieldElement.control.appearance &&
         /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
       ) {
+        values = [];
         if (fieldValue) {
           const optionsValueArray: any = [];
           resultOptions.map(elem => {
@@ -159,95 +177,90 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
             resultOptions
           );
         }
-
-        return (
-          <FormGroup>
-            <Label>{modifiedFieldLabel}</Label>
-            {isRequired && (
-              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-            )}
-            {resultOptions.map((elem, index) => (
-              <div key={index} className={'col-md-12 selectOne'}>
-                <Input
-                  key={fieldElement.name + '-' + index}
-                  type="radio"
-                  name={fieldElement.name}
-                  value={elem.name}
-                  onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                  readOnly={isReadonly}
-                  checked={elem.name === fieldValue}
-                />{' '}
-                {getFieldLabelText(elem, defaultLanguage)}
-              </div>
-            ))}
-            {fieldElement.hint && (
-              <Label className="hintText">{hintLabel}</Label>
-            )}
-            {isRequiredViolated && (
-              <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
-            )}
-            {isConstraintViolated && (
-              <Label className="constraintText">
-                {modifiedConstraintLabel}
-              </Label>
-            )}
-          </FormGroup>
-        );
-      } else {
-        if (fieldElement.children) {
-          const tempObjArray: any = [];
-          fieldElement.children.map(elem => {
-            const elemObj: any = {};
-            const name: string = 'name';
-            const label: string = 'label';
-            elemObj[name] = elem.name;
-            elemObj[label] = elem.label;
-            tempObjArray.push(elemObj);
+        values = [...resultOptions];
+      } else if (fieldElement.itemset) {
+        const choiceOptions: any = [];
+        values = [];
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          _.forEach(choices[fieldElement.itemset.trim()], (elem: any) => {
+            if (
+              fieldElement.choice_filter &&
+              this.props.getEvaluatedExpressionSelectorForSelect(
+                fieldElement.choice_filter,
+                fieldParentTreeName + fieldElement.name,
+                elem
+              )
+            ) {
+              const childrenLabel: string = getFieldLabelText(
+                elem,
+                defaultLanguage
+              );
+              choiceOptions.push({ label: childrenLabel, name: elem.name });
+            }
           });
 
-          if (!_.isEqual(this.props.optionList, { ...tempObjArray })) {
+          if (fieldValue) {
+            const optionsValueArray: any = [];
+            choiceOptions.map((elem: any) => {
+              if (elem.name) {
+                optionsValueArray.push(elem.name);
+              }
+            });
+            if (!optionsValueArray.includes(fieldValue)) {
+              this.props.assignFieldValueActionCreator(
+                this.props.fieldParentTreeName + fieldElement.name,
+                ''
+              );
+            }
+          }
+          if (!_.isEqual(this.props.optionList, { ...choiceOptions })) {
             this.props.assignOptionListActionCreator(
               this.props.fieldParentTreeName + fieldElement.name,
-              tempObjArray
+              choiceOptions
             );
           }
-
-          return (
-            <FormGroup>
-              <Label>{modifiedFieldLabel}</Label>
-              {isRequired && (
-                <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-              )}
-              {fieldElement.children.map((elem, index) => (
-                <div key={index} className={'col-md-12 selectOne'}>
-                  <Input
-                    key={fieldElement.name + '-' + index}
-                    type="radio"
-                    name={fieldElement.name}
-                    value={elem.name}
-                    onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                    readOnly={isReadonly}
-                  />{' '}
-                  {getFieldLabelText(elem, defaultLanguage)}
-                </div>
-              ))}
-              {fieldElement.hint && (
-                <Label className="hintText">{hintLabel}</Label>
-              )}
-              {isRequiredViolated && (
-                <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
-              )}
-              {isConstraintViolated && (
-                <Label className="constraintText">
-                  {modifiedConstraintLabel}
-                </Label>
-              )}
-            </FormGroup>
-          );
-        } else {
-          return null;
+          values = [...choiceOptions];
         }
+      } else {
+        values = [];
+        if (!_.isEqual(this.props.optionList, { ...childrenArray })) {
+          this.props.assignOptionListActionCreator(
+            this.props.fieldParentTreeName + fieldElement.name,
+            childrenArray
+          );
+        }
+        values = [...childrenArray];
       }
+
+      return (
+        <FormGroup>
+          <Label>{modifiedFieldLabel}</Label>
+          {isRequired && (
+            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
+          )}
+          {values.map((elem: any, index: any) => (
+            <div key={index} className={'col-md-12 selectOne'}>
+              <Input
+                key={fieldElement.name + '-' + index}
+                type="radio"
+                name={fieldElement.name}
+                value={elem.name}
+                onChange={this.onChangeHandlerRadio(fieldElement.name)}
+                readOnly={isReadonly}
+                checked={elem.name === fieldValue}
+              />{' '}
+              {getFieldLabelText(elem, defaultLanguage)}
+            </div>
+          ))}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
+        </FormGroup>
+      );
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(
@@ -314,7 +327,9 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
 
     let options: any[] = [];
     const distinctOptions: any[] = [];
-    if (csvName) {
+    const csv: any = this.props.csvList;
+    csvName = csvName.substring(1, csvName.length - 1) + '.csv';
+    if (csv[csvName]) {
       const modifiedName = csvName.replace(/'/g, '');
       options = this.props.csvList[modifiedName] || [];
     }
@@ -326,17 +341,15 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
         const interConnectedValue = filterCriterias[i + 1];
         const tempOptions = [...options];
+        let filterResult: any = '';
         tempOptions.forEach(elm => {
-          const filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
+          filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
             interConnectedValue,
             this.props.fieldParentTreeName + this.props.fieldElement.name,
             elm
           );
-          options = options.filter(
-            option => option[nameOfKey] === filterResult
-          );
         });
-
+        options = options.filter(option => option[nameOfKey] === filterResult);
         i = i + 2;
       }
     }

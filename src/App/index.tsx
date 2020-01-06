@@ -115,7 +115,6 @@ class App extends React.Component<AppProps, AppState> {
   // tslint:disable-next-line: variable-name
   private handleClick = (_event: React.MouseEvent<HTMLButtonElement>) => {
     const { handleSubmit, isNoErrors, userInputObj } = this.props;
-    handleSubmit('submitted');
     if (isNoErrors) {
       handleSubmit(userInputObj);
     } else {

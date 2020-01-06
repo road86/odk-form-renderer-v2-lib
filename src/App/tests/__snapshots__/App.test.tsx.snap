@@ -13,6 +13,7 @@ exports[`App renders App correctly 1`] = `
   }
 >
   <Connect(App)
+    choices={Object {}}
     csvList={Object {}}
     defaultLanguage="English"
     fieldElements={Array []}
@@ -33,6 +34,7 @@ exports[`App renders App correctly 1`] = `
     userInputJson={Object {}}
   >
     <App
+      choices={Object {}}
       csvList={Object {}}
       defaultLanguage="English"
       fieldElements={Array []}
@@ -1476,6 +1478,7 @@ exports[`App renders App correctly 1`] = `
                   className="col"
                 >
                   <GroupTypeEvaluator
+                    choices={Object {}}
                     csvList={Object {}}
                     defaultLanguage="English"
                     fieldElements={Array []}
