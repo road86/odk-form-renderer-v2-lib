@@ -149,17 +149,13 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
       }
 
       let values: any = [];
-      {
-        resultOptions.length === 0
-          ? (values = [...childrenArray])
-          : (values = [...resultOptions]);
-      }
 
       if (
         fieldElement.control &&
         fieldElement.control.appearance &&
         /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)
       ) {
+        values = [];
         options = [];
         const tmpValueArray: any = [];
         let isNotIncluded: boolean = false;
@@ -198,6 +194,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
             resultOptions
           );
         }
+        values = [...resultOptions];
       } else if (fieldElement.itemset) {
         values = [];
         options = [];
@@ -268,6 +265,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
 
         values = [...optionsArray];
       } else {
+        values = [];
         options = [];
         if (fieldElement.children) {
           fieldElement.children.map(elem =>
@@ -281,6 +279,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
             childrenArray
           );
         }
+        values = [...childrenArray];
       }
 
       const selectedValues: any[] = [];
@@ -427,8 +426,10 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
     let options: any[] = [];
     const distinctOptions: any[] = [];
     const finalRes: any[] = [];
+    const csv: any = this.props.csvList;
+    csvName = csvName.substring(1, csvName.length - 1) + '.csv';
 
-    if (csvName) {
+    if (csv[csvName]) {
       const modifiedName = csvName.replace(/'/g, '');
       options = this.props.csvList[modifiedName] || [];
     }
@@ -441,22 +442,23 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         const interConnectedValue = filterCriterias[i + 1];
         const tempOptions = [...options];
 
+        let filterResult: any = [];
         tempOptions.forEach(elm => {
-          const filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
+          filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
             interConnectedValue,
             this.props.fieldParentTreeName + this.props.fieldElement.name,
             elm
           );
+        });
 
-          let j = 0;
-          filterResult.map(() => {
-            options.map(option => {
-              if (option[nameOfKey] === filterResult[j]) {
-                finalRes.push(option);
-              }
-            });
-            j = j + 1;
+        let j = 0;
+        filterResult.map(() => {
+          options.map(option => {
+            if (option[nameOfKey] === filterResult[j]) {
+              finalRes.push(option);
+            }
           });
+          j = j + 1;
         });
 
         i = i + 2;
