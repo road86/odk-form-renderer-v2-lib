@@ -3704,8 +3704,10 @@ function (_React$Component) {
       var options = [];
       var distinctOptions = [];
       var finalRes = [];
+      var csv = _this.props.csvList;
+      csvName = csvName.substring(1, csvName.length - 1) + '.csv';
 
-      if (csvName) {
+      if (csv[csvName]) {
         var modifiedName = csvName.replace(/'/g, '');
         options = _this.props.csvList[modifiedName] || [];
       }
@@ -3718,18 +3720,18 @@ function (_React$Component) {
           nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
           var interConnectedValue = filterCriterias[i + 1];
           var tempOptions = [].concat(options);
+          var filterResult = [];
           tempOptions.forEach(function (elm) {
-            var filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
-
-            var j = 0;
-            filterResult.map(function () {
-              options.map(function (option) {
-                if (option[nameOfKey] === filterResult[j]) {
-                  finalRes.push(option);
-                }
-              });
-              j = j + 1;
+            filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
+          });
+          var j = 0;
+          filterResult.map(function () {
+            options.map(function (option) {
+              if (option[nameOfKey] === filterResult[j]) {
+                finalRes.push(option);
+              }
             });
+            j = j + 1;
           });
           i = i + 2;
         };
@@ -3770,6 +3772,8 @@ function (_React$Component) {
   var _proto = SelectAllDropDown.prototype;
 
   _proto.render = function render() {
+    var _this2 = this;
+
     var _this$props = this.props,
         choices = _this$props.choices,
         fieldElement = _this$props.fieldElement,
@@ -3821,14 +3825,30 @@ function (_React$Component) {
         this.setOptionList(resultOptions);
       } else if (fieldElement.itemset) {
         if (choices && choices[fieldElement.itemset.trim()]) {
-          choices[fieldElement.itemset.trim()].forEach(function (elem) {
-            var childrenLabel = getFieldLabelText(elem, defaultLanguage);
-            options.push({
-              label: childrenLabel,
-              value: elem.name
-            });
+          _.forEach(choices[fieldElement.itemset.trim()], function (elem) {
+            if (fieldElement.choice_filter && _this2.props.getEvaluatedExpressionSelectorForSelect(fieldElement.choice_filter, fieldParentTreeName + fieldElement.name, elem)) {
+              var childrenLabel = getFieldLabelText(elem, defaultLanguage);
+              options.push({
+                label: childrenLabel,
+                value: elem.name
+              });
+            }
           });
-          this.setOptionList(choices[fieldElement.itemset.trim()]);
+
+          var optionsArray = [];
+
+          if (options) {
+            options.map(function (elem) {
+              var elemObj = {};
+              var name = 'name';
+              var label = 'label';
+              elemObj[name] = elem.value;
+              elemObj[label] = elem.label;
+              optionsArray.push(elemObj);
+            });
+          }
+
+          this.setOptionList(optionsArray);
         }
       } else {
         if (fieldElement.children) {
@@ -4057,8 +4077,10 @@ function (_React$Component) {
       var options = [];
       var distinctOptions = [];
       var finalRes = [];
+      var csv = _this.props.csvList;
+      csvName = csvName.substring(1, csvName.length - 1) + '.csv';
 
-      if (csvName) {
+      if (csv[csvName]) {
         var modifiedName = csvName.replace(/'/g, '');
         options = _this.props.csvList[modifiedName] || [];
       }
@@ -4071,18 +4093,18 @@ function (_React$Component) {
           nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
           var interConnectedValue = filterCriterias[i + 1];
           var tempOptions = [].concat(options);
+          var filterResult = [];
           tempOptions.forEach(function (elm) {
-            var filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
-
-            var j = 0;
-            filterResult.map(function () {
-              options.map(function (option) {
-                if (option[nameOfKey] === filterResult[j]) {
-                  finalRes.push(option);
-                }
-              });
-              j = j + 1;
+            filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
+          });
+          var j = 0;
+          filterResult.map(function () {
+            options.map(function (option) {
+              if (option[nameOfKey] === filterResult[j]) {
+                finalRes.push(option);
+              }
             });
+            j = j + 1;
           });
           i = i + 2;
         };
@@ -4126,6 +4148,7 @@ function (_React$Component) {
     var _this2 = this;
 
     var _this$props2 = this.props,
+        choices = _this$props2.choices,
         fieldElement = _this$props2.fieldElement,
         fieldParentTreeName = _this$props2.fieldParentTreeName,
         fieldValue = _this$props2.fieldValue,
@@ -4167,15 +4190,32 @@ function (_React$Component) {
         }
       }
 
+      var childrenArray = [];
+
+      if (fieldElement.children) {
+        fieldElement.children.map(function (elem) {
+          var elemObj = {};
+          var name = 'name';
+          var label = 'label';
+          elemObj[name] = elem.name;
+          elemObj[label] = elem.label;
+          childrenArray.push(elemObj);
+        });
+      }
+
+      var values = [];
+
       if (fieldElement.control && fieldElement.control.appearance && /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)) {
+        values = [];
+        options = [];
+        var tmpValueArray = [];
+        var isNotIncluded = false;
         resultOptions.map(function (elem) {
           return options.push({
             label: elem.label,
             value: elem.name
           });
         });
-        var tmpValueArray = [];
-        var isNotIncluded = false;
 
         if (fieldValue && fieldValue.length > 0) {
           var optionsValueArray = [];
@@ -4211,98 +4251,147 @@ function (_React$Component) {
           this.props.assignFieldValueActionCreator(this.props.fieldParentTreeName + fieldElement.name, tmpValueArray || []);
         }
 
-        var selectedValues = [];
-
-        if (fieldValue && fieldValue.length > 0) {
-          options.map(function (elem) {
-            for (var _iterator2 = fieldValue, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-              var _ref2;
-
-              if (_isArray2) {
-                if (_i2 >= _iterator2.length) break;
-                _ref2 = _iterator2[_i2++];
-              } else {
-                _i2 = _iterator2.next();
-                if (_i2.done) break;
-                _ref2 = _i2.value;
-              }
-
-              var _row = _ref2;
-
-              if (elem.value === _row) {
-                selectedValues.push(elem.value);
-              }
-            }
-          });
-        }
-
         if (!_.isEqual(this.props.optionList, _extends({}, resultOptions))) {
           this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, resultOptions);
         }
 
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
-          className: "requiredTextSteric"
-        }, REQUIRED_SYMBOL), resultOptions.map(function (elem, index) {
-          return createElement("div", {
-            key: index,
-            className: 'col-md-12 selectAll'
-          }, createElement(Input, {
-            key: fieldElement.name + '-' + index,
-            type: "checkbox",
-            name: fieldElement.name,
-            value: elem.name || [],
-            onChange: _this2.onChangeHandlerCheckBox,
-            readOnly: isReadonly,
-            checked: selectedValues.includes(elem.name)
-          }), ' ', getFieldLabelText(elem, defaultLanguage));
-        }), fieldElement.hint && createElement(Label, {
-          className: "hintText"
-        }, hintLabel), isRequiredViolated && createElement(Label, {
-          className: "requiredText"
-        }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
-          className: "constraintText"
-        }, modifiedConstraintLabel));
-      } else {
-        if (fieldElement.children) {
-          var tempObjArray = [];
-          fieldElement.children.map(function (elem) {
+        values = [].concat(resultOptions);
+      } else if (fieldElement.itemset) {
+        values = [];
+        options = [];
+        var _tmpValueArray = [];
+        var optionsArray = [];
+        var _isNotIncluded = false;
+
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          _.forEach(choices[fieldElement.itemset.trim()], function (elem) {
+            if (fieldElement.choice_filter && _this2.props.getEvaluatedExpressionSelectorForSelect(fieldElement.choice_filter, fieldParentTreeName + fieldElement.name, elem)) {
+              var childrenLabel = getFieldLabelText(elem, defaultLanguage);
+              options.push({
+                label: childrenLabel,
+                value: elem.name
+              });
+            }
+          });
+        }
+
+        if (fieldValue && fieldValue.length > 0) {
+          var _optionsValueArray = [];
+          options.map(function (elem) {
+            if (elem.value) {
+              _optionsValueArray.push(elem.value);
+            }
+          });
+
+          for (var _iterator2 = fieldValue, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+            var _ref2;
+
+            if (_isArray2) {
+              if (_i2 >= _iterator2.length) break;
+              _ref2 = _iterator2[_i2++];
+            } else {
+              _i2 = _iterator2.next();
+              if (_i2.done) break;
+              _ref2 = _i2.value;
+            }
+
+            var _row = _ref2;
+
+            if (!_optionsValueArray.includes(_row)) {
+              _isNotIncluded = true;
+            } else {
+              _tmpValueArray.push(_row);
+            }
+          }
+        }
+
+        if (fieldValue && fieldValue.length > 0 && _isNotIncluded) {
+          this.props.assignFieldValueActionCreator(this.props.fieldParentTreeName + fieldElement.name, _tmpValueArray || []);
+        }
+
+        if (options) {
+          options.map(function (elem) {
             var elemObj = {};
             var name = 'name';
             var label = 'label';
-            elemObj[name] = elem.name;
+            elemObj[name] = elem.value;
             elemObj[label] = elem.label;
-            tempObjArray.push(elemObj);
+            optionsArray.push(elemObj);
           });
-
-          if (!_.isEqual(this.props.optionList, _extends({}, tempObjArray))) {
-            this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, tempObjArray);
-          }
-
-          return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
-            className: "requiredTextSteric"
-          }, REQUIRED_SYMBOL), fieldElement.children.map(function (elem, index) {
-            return createElement("div", {
-              key: index,
-              className: 'col-md-12 selectAll'
-            }, createElement(Input, {
-              key: fieldElement.name + '-' + index,
-              type: "checkbox",
-              name: fieldElement.name,
-              value: elem.name || [],
-              onChange: _this2.onChangeHandlerCheckBox,
-              readOnly: isReadonly
-            }), ' ', getFieldLabelText(elem, defaultLanguage));
-          }), fieldElement.hint && createElement(Label, {
-            className: "hintText"
-          }, hintLabel), isRequiredViolated && createElement(Label, {
-            className: "requiredText"
-          }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
-            className: "constraintText"
-          }, modifiedConstraintLabel));
-        } else {
-          return null;
         }
+
+        if (!_.isEqual(this.props.optionList, _extends({}, optionsArray))) {
+          this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, optionsArray);
+        }
+
+        values = [].concat(optionsArray);
+      } else {
+        values = [];
+        options = [];
+
+        if (fieldElement.children) {
+          fieldElement.children.map(function (elem) {
+            return options.push({
+              label: elem.label,
+              value: elem.name
+            });
+          });
+        }
+
+        if (!_.isEqual(this.props.optionList, _extends({}, childrenArray))) {
+          this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, childrenArray);
+        }
+
+        values = [].concat(childrenArray);
       }
+
+      var selectedValues = [];
+
+      if (fieldValue && fieldValue.length > 0) {
+        options.map(function (elem) {
+          for (var _iterator3 = fieldValue, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+            var _ref3;
+
+            if (_isArray3) {
+              if (_i3 >= _iterator3.length) break;
+              _ref3 = _iterator3[_i3++];
+            } else {
+              _i3 = _iterator3.next();
+              if (_i3.done) break;
+              _ref3 = _i3.value;
+            }
+
+            var _row2 = _ref3;
+
+            if (elem.value === _row2) {
+              selectedValues.push(elem.value);
+            }
+          }
+        });
+      }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), values.map(function (elem, index) {
+        return createElement("div", {
+          key: index,
+          className: 'col-md-12 selectAll'
+        }, createElement(Input, {
+          key: fieldElement.name + '-' + index,
+          type: "checkbox",
+          name: fieldElement.name,
+          value: elem.name || [],
+          onChange: _this2.onChangeHandlerCheckBox,
+          readOnly: isReadonly,
+          checked: selectedValues.includes(elem.name)
+        }), ' ', getFieldLabelText(elem, defaultLanguage));
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -4463,8 +4552,10 @@ function (_React$Component) {
 
       var options = [];
       var distinctOptions = [];
+      var csv = _this.props.csvList;
+      csvName = csvName.substring(1, csvName.length - 1) + '.csv';
 
-      if (csvName) {
+      if (csv[csvName]) {
         var modifiedName = csvName.replace(/'/g, '');
         options = _this.props.csvList[modifiedName] || [];
       }
@@ -4477,12 +4568,12 @@ function (_React$Component) {
           nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
           var interConnectedValue = filterCriterias[i + 1];
           var tempOptions = [].concat(options);
+          var filterResult = '';
           tempOptions.forEach(function (elm) {
-            var filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
-
-            options = options.filter(function (option) {
-              return option[nameOfKey] === filterResult;
-            });
+            filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
+          });
+          options = options.filter(function (option) {
+            return option[nameOfKey] === filterResult;
           });
           i = i + 2;
         };
@@ -4748,8 +4839,10 @@ function (_React$Component) {
 
       var options = [];
       var distinctOptions = [];
+      var csv = _this.props.csvList;
+      csvName = csvName.substring(1, csvName.length - 1) + '.csv';
 
-      if (csvName) {
+      if (csv[csvName]) {
         var modifiedName = csvName.replace(/'/g, '');
         options = _this.props.csvList[modifiedName] || [];
       }
@@ -4762,12 +4855,12 @@ function (_React$Component) {
           nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
           var interConnectedValue = filterCriterias[i + 1];
           var tempOptions = [].concat(options);
+          var filterResult = '';
           tempOptions.forEach(function (elm) {
-            var filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
-
-            options = options.filter(function (option) {
-              return option[nameOfKey] === filterResult;
-            });
+            filterResult = _this.props.getEvaluatedExpressionSelectorForSelect(interConnectedValue, _this.props.fieldParentTreeName + _this.props.fieldElement.name, elm);
+          });
+          options = options.filter(function (option) {
+            return option[nameOfKey] === filterResult;
           });
           i = i + 2;
         };
@@ -4809,6 +4902,7 @@ function (_React$Component) {
     var _this2 = this;
 
     var _this$props = this.props,
+        choices = _this$props.choices,
         fieldElement = _this$props.fieldElement,
         fieldParentTreeName = _this$props.fieldParentTreeName,
         fieldValue = _this$props.fieldValue,
@@ -4847,7 +4941,24 @@ function (_React$Component) {
         }
       }
 
+      var childrenArray = [];
+
+      if (fieldElement.children) {
+        fieldElement.children.map(function (elem) {
+          var elemObj = {};
+          var name = 'name';
+          var label = 'label';
+          elemObj[name] = elem.name;
+          elemObj[label] = elem.label;
+          childrenArray.push(elemObj);
+        });
+      }
+
+      var values = [];
+
       if (fieldElement.control && fieldElement.control.appearance && /search\([^\)|(]+\)/i.test(fieldElement.control.appearance)) {
+        values = [];
+
         if (fieldValue) {
           var optionsValueArray = [];
           resultOptions.map(function (elem) {
@@ -4865,69 +4976,73 @@ function (_React$Component) {
           this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, resultOptions);
         }
 
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
-          className: "requiredTextSteric"
-        }, REQUIRED_SYMBOL), resultOptions.map(function (elem, index) {
-          return createElement("div", {
-            key: index,
-            className: 'col-md-12 selectOne'
-          }, createElement(Input, {
-            key: fieldElement.name + '-' + index,
-            type: "radio",
-            name: fieldElement.name,
-            value: elem.name,
-            onChange: _this2.onChangeHandlerRadio(fieldElement.name),
-            readOnly: isReadonly,
-            checked: elem.name === fieldValue
-          }), ' ', getFieldLabelText(elem, defaultLanguage));
-        }), fieldElement.hint && createElement(Label, {
-          className: "hintText"
-        }, hintLabel), isRequiredViolated && createElement(Label, {
-          className: "requiredText"
-        }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
-          className: "constraintText"
-        }, modifiedConstraintLabel));
-      } else {
-        if (fieldElement.children) {
-          var tempObjArray = [];
-          fieldElement.children.map(function (elem) {
-            var elemObj = {};
-            var name = 'name';
-            var label = 'label';
-            elemObj[name] = elem.name;
-            elemObj[label] = elem.label;
-            tempObjArray.push(elemObj);
+        values = [].concat(resultOptions);
+      } else if (fieldElement.itemset) {
+        var choiceOptions = [];
+        values = [];
+
+        if (choices && choices[fieldElement.itemset.trim()]) {
+          _.forEach(choices[fieldElement.itemset.trim()], function (elem) {
+            if (fieldElement.choice_filter && _this2.props.getEvaluatedExpressionSelectorForSelect(fieldElement.choice_filter, fieldParentTreeName + fieldElement.name, elem)) {
+              var childrenLabel = getFieldLabelText(elem, defaultLanguage);
+              choiceOptions.push({
+                label: childrenLabel,
+                name: elem.name
+              });
+            }
           });
 
-          if (!_.isEqual(this.props.optionList, _extends({}, tempObjArray))) {
-            this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, tempObjArray);
+          if (fieldValue) {
+            var _optionsValueArray = [];
+            choiceOptions.map(function (elem) {
+              if (elem.name) {
+                _optionsValueArray.push(elem.name);
+              }
+            });
+
+            if (!_optionsValueArray.includes(fieldValue)) {
+              this.props.assignFieldValueActionCreator(this.props.fieldParentTreeName + fieldElement.name, '');
+            }
           }
 
-          return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
-            className: "requiredTextSteric"
-          }, REQUIRED_SYMBOL), fieldElement.children.map(function (elem, index) {
-            return createElement("div", {
-              key: index,
-              className: 'col-md-12 selectOne'
-            }, createElement(Input, {
-              key: fieldElement.name + '-' + index,
-              type: "radio",
-              name: fieldElement.name,
-              value: elem.name,
-              onChange: _this2.onChangeHandlerRadio(fieldElement.name),
-              readOnly: isReadonly
-            }), ' ', getFieldLabelText(elem, defaultLanguage));
-          }), fieldElement.hint && createElement(Label, {
-            className: "hintText"
-          }, hintLabel), isRequiredViolated && createElement(Label, {
-            className: "requiredText"
-          }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
-            className: "constraintText"
-          }, modifiedConstraintLabel));
-        } else {
-          return null;
+          if (!_.isEqual(this.props.optionList, _extends({}, choiceOptions))) {
+            this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, choiceOptions);
+          }
+
+          values = [].concat(choiceOptions);
         }
+      } else {
+        values = [];
+
+        if (!_.isEqual(this.props.optionList, _extends({}, childrenArray))) {
+          this.props.assignOptionListActionCreator(this.props.fieldParentTreeName + fieldElement.name, childrenArray);
+        }
+
+        values = [].concat(childrenArray);
       }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL), values.map(function (elem, index) {
+        return createElement("div", {
+          key: index,
+          className: 'col-md-12 selectOne'
+        }, createElement(Input, {
+          key: fieldElement.name + '-' + index,
+          type: "radio",
+          name: fieldElement.name,
+          value: elem.name,
+          onChange: _this2.onChangeHandlerRadio(fieldElement.name),
+          readOnly: isReadonly,
+          checked: elem.name === fieldValue
+        }), ' ', getFieldLabelText(elem, defaultLanguage));
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
     } else {
       if (fieldValue != null) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
@@ -5510,7 +5625,6 @@ function (_React$Component) {
           handleSubmit = _this$props.handleSubmit,
           isNoErrors = _this$props.isNoErrors,
           userInputObj = _this$props.userInputObj;
-      handleSubmit('submitted');
 
       if (isNoErrors) {
         handleSubmit(userInputObj);

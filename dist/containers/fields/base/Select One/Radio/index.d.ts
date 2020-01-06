@@ -3,6 +3,7 @@ import { FieldElement, FieldParentTreeName } from '../../../../../components/typ
 import { addErrorInputId, assignFieldValueAction, assignOptionListAction, removeErrorInputId } from '../../../../../store/ducks/formState';
 /** props interface for the SelectOne component */
 export interface SelectOneRadioProps {
+    choices: any;
     csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
@@ -47,5 +48,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect SelectOne Radio component to the redux store */
-declare const ConnectedSelectOneRadio: import("react-redux").ConnectedComponent<typeof SelectOneRadio, Pick<SelectOneRadioProps, "fieldElement" | "csvList" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
+declare const ConnectedSelectOneRadio: import("react-redux").ConnectedComponent<typeof SelectOneRadio, Pick<SelectOneRadioProps, "choices" | "csvList" | "fieldElement" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
 export default ConnectedSelectOneRadio;
