@@ -313,7 +313,10 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
 
     let options: any[] = [];
     const distinctOptions: any[] = [];
-    if (csvName) {
+    const csv: any = this.props.csvList;
+    csvName = csvName.substring(1, csvName.length - 1) + '.csv';
+
+    if (csv[csvName]) {
       const modifiedName = csvName.replace(/'/g, '');
       options = this.props.csvList[modifiedName] || [];
     }
@@ -325,17 +328,15 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         nameOfKey = nameOfKey.substring(1, nameOfKey.length - 1).trim();
         const interConnectedValue = filterCriterias[i + 1];
         const tempOptions = [...options];
+        let filterResult: any = '';
         tempOptions.forEach(elm => {
-          const filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
+          filterResult = this.props.getEvaluatedExpressionSelectorForSelect(
             interConnectedValue,
             this.props.fieldParentTreeName + this.props.fieldElement.name,
             elm
           );
-          options = options.filter(
-            option => option[nameOfKey] === filterResult
-          );
         });
-
+        options = options.filter(option => option[nameOfKey] === filterResult);
         i = i + 2;
       }
     }
