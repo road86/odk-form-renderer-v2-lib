@@ -1578,103 +1578,154 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
       }
       removeErrorInputIdActionCreator={[Function]}
     >
-      <FormGroup
-        tag="div"
-      >
-        <div
-          className="form-group"
+      <div>
+        <Label
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
         >
-          <Label
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
+          <label
+            className=""
           >
-            <label
-              className=""
-            >
-              Select one search widget
-            </label>
-          </Label>
-          <div
-            className="col-md-12 selectOne"
-            key="0"
+            Select one search widget
+          </label>
+        </Label>
+        <Form
+          key="selectOne"
+          tag="form"
+        >
+          <form
+            className=""
           >
-            <Input
-              checked={false}
-              key="select_one_autocomplete_widget-0"
-              name="select_one_autocomplete_widget"
-              onChange={[Function]}
-              readOnly={false}
-              type="radio"
-              value="a"
+            <FormGroup
+              check={true}
+              inline={false}
+              key="0"
+              tag="div"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                name="select_one_autocomplete_widget"
-                onChange={[Function]}
-                readOnly={false}
-                type="radio"
-                value="a"
-              />
-            </Input>
-             
-            A
-          </div>
-          <div
-            className="col-md-12 selectOne"
-            key="1"
-          >
-            <Input
-              checked={false}
-              key="select_one_autocomplete_widget-1"
-              name="select_one_autocomplete_widget"
-              onChange={[Function]}
-              readOnly={false}
-              type="radio"
-              value="b"
+              <div
+                className="form-check"
+              >
+                <Label
+                  check={true}
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <label
+                    className="form-check-label"
+                  >
+                    <Input
+                      checked={false}
+                      key="select_one_autocomplete_widget-0"
+                      name="select_one_autocomplete_widget"
+                      onChange={[Function]}
+                      readOnly={false}
+                      type="radio"
+                      value="a"
+                    >
+                      <input
+                        checked={false}
+                        className="form-check-input"
+                        name="select_one_autocomplete_widget"
+                        onChange={[Function]}
+                        readOnly={false}
+                        type="radio"
+                        value="a"
+                      />
+                    </Input>
+                     
+                    A
+                  </label>
+                </Label>
+              </div>
+            </FormGroup>
+            <FormGroup
+              check={true}
+              inline={false}
+              key="1"
+              tag="div"
             >
-              <input
-                checked={false}
-                className="form-check-input"
-                name="select_one_autocomplete_widget"
-                onChange={[Function]}
-                readOnly={false}
-                type="radio"
-                value="b"
-              />
-            </Input>
-             
-            B
-          </div>
-          <Label
+              <div
+                className="form-check"
+              >
+                <Label
+                  check={true}
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <label
+                    className="form-check-label"
+                  >
+                    <Input
+                      checked={false}
+                      key="select_one_autocomplete_widget-1"
+                      name="select_one_autocomplete_widget"
+                      onChange={[Function]}
+                      readOnly={false}
+                      type="radio"
+                      value="b"
+                    >
+                      <input
+                        checked={false}
+                        className="form-check-input"
+                        name="select_one_autocomplete_widget"
+                        onChange={[Function]}
+                        readOnly={false}
+                        type="radio"
+                        value="b"
+                      />
+                    </Input>
+                     
+                    B
+                  </label>
+                </Label>
+              </div>
+            </FormGroup>
+          </form>
+        </Form>
+        <Label
+          className="hintText"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <label
             className="hintText"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
           >
-            <label
-              className="hintText"
-            >
-              select_one type with autocomplete appearance, 4 text choices
-            </label>
-          </Label>
-        </div>
-      </FormGroup>
+            select_one type with autocomplete appearance, 4 text choices
+          </label>
+        </Label>
+      </div>
     </SelectOneRadio>
   </Connect(SelectOneRadio)>
 </Provider>
