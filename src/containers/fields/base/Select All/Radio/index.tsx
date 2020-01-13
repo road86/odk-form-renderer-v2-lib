@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Input, Label } from 'reactstrap';
+import { Form, FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -293,26 +293,39 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         });
       }
 
+      let flagInline = false;
+      if (fieldElement.control && fieldElement.control.appearance) {
+        fieldElement.control.appearance.split(' ').forEach((tmpStyle: any) => {
+          if (!flagInline && tmpStyle === 'horizontal-compact') {
+            flagInline = true;
+          }
+        });
+      }
+
       return (
-        <FormGroup>
+        <div>
           <Label>{modifiedFieldLabel}</Label>
           {isRequired && (
             <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
           )}
-          {values.map((elem: any, index: any) => (
-            <div key={index} className={'col-md-12 selectAll'}>
-              <Input
-                key={fieldElement.name + '-' + index}
-                type="checkbox"
-                name={fieldElement.name}
-                value={elem.name || []}
-                onChange={this.onChangeHandlerCheckBox}
-                readOnly={isReadonly}
-                checked={selectedValues.includes(elem.name)}
-              />{' '}
-              {getFieldLabelText(elem, defaultLanguage)}
-            </div>
-          ))}
+          <Form key="selectAll">
+            {values.map((elem: any, index: any) => (
+              <FormGroup key={index} check={true} inline={flagInline}>
+                <Label check={true}>
+                  <Input
+                    key={fieldElement.name + '-' + index}
+                    type="checkbox"
+                    name={fieldElement.name}
+                    value={elem.name || []}
+                    onChange={this.onChangeHandlerCheckBox}
+                    readOnly={isReadonly}
+                    checked={selectedValues.includes(elem.name)}
+                  />{' '}
+                  {getFieldLabelText(elem, defaultLanguage)}
+                </Label>
+              </FormGroup>
+            ))}
+          </Form>
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
           {isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
@@ -320,7 +333,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
           {isConstraintViolated && (
             <Label className="constraintText">{modifiedConstraintLabel}</Label>
           )}
-        </FormGroup>
+        </div>
       );
     } else {
       if (fieldValue != null) {
