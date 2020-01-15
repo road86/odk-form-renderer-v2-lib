@@ -44,6 +44,12 @@ class Group extends React.Component<GroupProps> {
       isComponentRender,
     } = this.props;
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    let isAppearanceApplicable = false;
+    if (fieldElement.control && fieldElement.control.appearance) {
+      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+        isAppearanceApplicable = true;
+      }
+    }
     if (isComponentRender) {
       return (
         <FormGroup>
@@ -57,6 +63,7 @@ class Group extends React.Component<GroupProps> {
               }
               defaultLanguage={defaultLanguage}
               csvList={csvList}
+              isAppearanceApplicable={isAppearanceApplicable}
             />
           )}
         </FormGroup>
