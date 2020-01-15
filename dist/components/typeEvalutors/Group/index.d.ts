@@ -7,6 +7,7 @@ export interface GroupTypeEvaluatorProps {
     defaultLanguage: string;
     fieldElements: FieldElement[];
     fieldParentTreeName: string;
+    isAppearanceApplicable: boolean;
 }
 declare class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
     render(): JSX.Element;
@@ -17,5 +18,6 @@ declare class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps
      * @return {React.ReactElement} - jsx group components/ base evaluator component
      */
     private typeEvaluator;
+    private getAppearanceValue;
 }
 export default GroupTypeEvaluator;

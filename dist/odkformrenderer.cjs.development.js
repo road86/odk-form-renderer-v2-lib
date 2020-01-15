@@ -2055,6 +2055,15 @@ var RemoveFromOptionList = function RemoveFromOptionList(fieldTreeName, repeatIn
     type: REMOVE_FROM_OPTION_LIST_REPEAT
   };
 };
+/** Resets the redux store state to initial state
+ * @return {ResetStoreAction} - an action to reset the redux store state
+ */
+
+var resetStoreAction = function resetStoreAction() {
+  return {
+    type: RESET_STORE
+  };
+};
 /** add the field tree name as error id to store in redux store that violates constraints
  * @param fieldTreeName - the field tree name
  * @returns {AddErrorInputId} - an action to add input id for errors
@@ -2337,6 +2346,13 @@ function (_React$Component) {
         defaultLanguage = _this$props.defaultLanguage,
         isComponentRender = _this$props.isComponentRender;
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    var isAppearanceApplicable = false;
+
+    if (fieldElement.control && fieldElement.control.appearance) {
+      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+        isAppearanceApplicable = true;
+      }
+    }
 
     if (isComponentRender) {
       return React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
@@ -2346,7 +2362,8 @@ function (_React$Component) {
         fieldElements: fieldElement.children,
         fieldParentTreeName: fieldParentTreeName + 'group/' + fieldElement.name + '/',
         defaultLanguage: defaultLanguage,
-        csvList: csvList
+        csvList: csvList,
+        isAppearanceApplicable: isAppearanceApplicable
       }));
     } else {
       if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + 'group/' + fieldElement.name + '/')) {
@@ -2453,7 +2470,8 @@ function (_React$Component) {
       fieldElements: fieldElement.children,
       fieldParentTreeName: fieldParentTreeName + 'repeat/' + fieldElement.name + '/' + repeatIndex + '/',
       defaultLanguage: defaultLanguage,
-      csvList: csvList
+      csvList: csvList,
+      isAppearanceApplicable: false
     }), unControlFlag === false ? React__default.createElement("div", {
       className: 'minusIconWrapper'
     }, React__default.createElement("span", {
@@ -4375,12 +4393,27 @@ function (_React$Component) {
         });
       }
 
-      return React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, null, modifiedFieldLabel), isRequired && React.createElement(reactstrap.Label, {
+      var flagInline = false;
+
+      if (fieldElement.control && fieldElement.control.appearance) {
+        fieldElement.control.appearance.split(' ').forEach(function (tmpStyle) {
+          if (!flagInline && tmpStyle === 'horizontal-compact') {
+            flagInline = true;
+          }
+        });
+      }
+
+      return React.createElement("div", null, React.createElement(reactstrap.Label, null, modifiedFieldLabel), isRequired && React.createElement(reactstrap.Label, {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), values.map(function (elem, index) {
-        return React.createElement("div", {
+      }, REQUIRED_SYMBOL), React.createElement(reactstrap.Form, {
+        key: "selectAll"
+      }, values.map(function (elem, index) {
+        return React.createElement(reactstrap.FormGroup, {
           key: index,
-          className: 'col-md-12 selectAll'
+          check: true,
+          inline: flagInline
+        }, React.createElement(reactstrap.Label, {
+          check: true
         }, React.createElement(reactstrap.Input, {
           key: fieldElement.name + '-' + index,
           type: "checkbox",
@@ -4389,8 +4422,8 @@ function (_React$Component) {
           onChange: _this2.onChangeHandlerCheckBox,
           readOnly: isReadonly,
           checked: selectedValues.includes(elem.name)
-        }), ' ', getFieldLabelText(elem, defaultLanguage));
-      }), fieldElement.hint && React.createElement(reactstrap.Label, {
+        }), ' ', getFieldLabelText(elem, defaultLanguage)));
+      })), fieldElement.hint && React.createElement(reactstrap.Label, {
         className: "hintText"
       }, hintLabel), isRequiredViolated && React.createElement(reactstrap.Label, {
         className: "requiredText"
@@ -5026,12 +5059,27 @@ function (_React$Component) {
         values = [].concat(childrenArray);
       }
 
-      return React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, null, modifiedFieldLabel), isRequired && React.createElement(reactstrap.Label, {
+      var flagInline = false;
+
+      if (fieldElement.control && fieldElement.control.appearance) {
+        fieldElement.control.appearance.split(' ').forEach(function (tmpStyle) {
+          if (!flagInline && tmpStyle === 'horizontal-compact') {
+            flagInline = true;
+          }
+        });
+      }
+
+      return React.createElement("div", null, React.createElement(reactstrap.Label, null, modifiedFieldLabel), isRequired && React.createElement(reactstrap.Label, {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), values.map(function (elem, index) {
-        return React.createElement("div", {
+      }, REQUIRED_SYMBOL), React.createElement(reactstrap.Form, {
+        key: "selectOne"
+      }, values.map(function (elem, index) {
+        return React.createElement(reactstrap.FormGroup, {
           key: index,
-          className: 'col-md-12 selectOne'
+          check: true,
+          inline: flagInline
+        }, React.createElement(reactstrap.Label, {
+          check: true
         }, React.createElement(reactstrap.Input, {
           key: fieldElement.name + '-' + index,
           type: "radio",
@@ -5040,8 +5088,8 @@ function (_React$Component) {
           onChange: _this2.onChangeHandlerRadio(fieldElement.name),
           readOnly: isReadonly,
           checked: elem.name === fieldValue
-        }), ' ', getFieldLabelText(elem, defaultLanguage));
-      }), fieldElement.hint && React.createElement(reactstrap.Label, {
+        }), ' ', getFieldLabelText(elem, defaultLanguage)));
+      })), fieldElement.hint && React.createElement(reactstrap.Label, {
         className: "hintText"
       }, hintLabel), isRequiredViolated && React.createElement(reactstrap.Label, {
         className: "requiredText"
@@ -5528,7 +5576,11 @@ function (_React$Component) {
         });
 
       default:
-        return React.createElement("div", null, "Other ", fieldElement.type, " ", fieldElement.name);
+        return React.createElement("div", {
+          style: {
+            display: 'none'
+          }
+        }, "Other ", fieldElement.type, " ", fieldElement.name);
     }
   };
 
@@ -5541,28 +5593,45 @@ function (_React$Component) {
   _inheritsLoose(GroupTypeEvaluator, _React$Component);
 
   function GroupTypeEvaluator() {
-    return _React$Component.apply(this, arguments) || this;
+    var _this;
+
+    _this = _React$Component.apply(this, arguments) || this;
+
+    _this.getAppearanceValue = function (fieldElement, isAppearanceApplicable) {
+      if (isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
+        if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+          var processedStringArray = fieldElement.control.appearance.match(/^w(\d+)\b/i);
+          var processedString = processedStringArray[0].replace('w', '');
+          var result = isNaN(processedString) ? 12 : parseInt(processedString, 10);
+          return result;
+        }
+      }
+
+      return 12;
+    };
+
+    return _this;
   }
 
   var _proto = GroupTypeEvaluator.prototype;
 
   _proto.render = function render() {
-    var _this = this;
+    var _this2 = this;
 
     var _this$props = this.props,
         choices = _this$props.choices,
         csvList = _this$props.csvList,
         fieldElements = _this$props.fieldElements,
         fieldParentTreeName = _this$props.fieldParentTreeName,
-        defaultLanguage = _this$props.defaultLanguage;
-    return React.createElement(reactstrap.Row, null, React.createElement(reactstrap.Col, {
-      md: 12
-    }, fieldElements.map(function (fieldElement) {
-      return React.createElement("div", {
+        defaultLanguage = _this$props.defaultLanguage,
+        isAppearanceApplicable = _this$props.isAppearanceApplicable;
+    return React.createElement(reactstrap.Row, null, fieldElements.map(function (fieldElement) {
+      return React.createElement(reactstrap.Col, {
         key: 'group_' + fieldElement.name,
-        className: 'groupTypeEvaluator'
-      }, _this.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
-    })));
+        className: 'groupTypeEvaluator',
+        md: _this2.getAppearanceValue(fieldElement, isAppearanceApplicable)
+      }, _this2.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
+    }));
   }
   /** returns jsx components based on field types
    * @param {any} choices - the form choices
@@ -5659,6 +5728,7 @@ function (_React$Component) {
     var _this$props2 = this.props,
         userInputJson = _this$props2.userInputJson,
         userInputObj = _this$props2.userInputObj;
+    this.props.resetStoreActionCreator();
 
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
@@ -5687,6 +5757,7 @@ function (_React$Component) {
       defaultLanguage: defaultLanguage,
       fieldElements: fieldElements,
       fieldParentTreeName: '',
+      isAppearanceApplicable: false,
       languageOptions: languageOptions
     };
     return React.createElement(reactstrap.Container, {
@@ -5731,6 +5802,7 @@ var mapStateToProps$g = function mapStateToProps(state) {
 
 
 var mapDispatchToProps$g = {
+  resetStoreActionCreator: resetStoreAction,
   setUserInputAction: setUserInputObj
 };
 /** connect Decimal component to the redux store */
