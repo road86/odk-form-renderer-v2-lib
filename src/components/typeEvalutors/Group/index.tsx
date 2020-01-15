@@ -12,6 +12,7 @@ export interface GroupTypeEvaluatorProps {
   defaultLanguage: string;
   fieldElements: FieldElement[];
   fieldParentTreeName: string;
+  isAppearanceApplicable: boolean;
 }
 
 class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
@@ -22,25 +23,25 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       fieldElements,
       fieldParentTreeName,
       defaultLanguage,
+      isAppearanceApplicable,
     } = this.props;
     return (
       <Row>
-        <Col md={12}>
-          {fieldElements.map(fieldElement => (
-            <div
-              key={'group_' + fieldElement.name}
-              className={'groupTypeEvaluator'}
-            >
-              {this.typeEvaluator(
-                choices,
-                csvList,
-                fieldElement,
-                fieldParentTreeName,
-                defaultLanguage
-              )}
-            </div>
-          ))}
-        </Col>
+        {fieldElements.map(fieldElement => (
+          <Col
+            key={'group_' + fieldElement.name}
+            className={'groupTypeEvaluator'}
+            md={this.getAppearanceValue(fieldElement, isAppearanceApplicable)}
+          >
+            {this.typeEvaluator(
+              choices,
+              csvList,
+              fieldElement,
+              fieldParentTreeName,
+              defaultLanguage
+            )}
+          </Col>
+        ))}
       </Row>
     );
   }
@@ -95,6 +96,29 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
         );
     }
   }
+
+  private getAppearanceValue = (
+    fieldElement: FieldElement,
+    isAppearanceApplicable: boolean
+  ): number => {
+    if (
+      isAppearanceApplicable &&
+      fieldElement.control &&
+      fieldElement.control.appearance
+    ) {
+      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+        const processedStringArray = fieldElement.control.appearance.match(
+          /^w(\d+)\b/i
+        );
+        const processedString = processedStringArray[0].replace('w', '');
+        const result = isNaN(processedString)
+          ? 12
+          : parseInt(processedString, 10);
+        return result;
+      }
+    }
+    return 12;
+  };
 }
 
 export default GroupTypeEvaluator;
