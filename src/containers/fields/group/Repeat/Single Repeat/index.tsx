@@ -47,6 +47,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
             }
             defaultLanguage={defaultLanguage}
             csvList={csvList}
+            isAppearanceApplicable={false}
           />
         )}
 
