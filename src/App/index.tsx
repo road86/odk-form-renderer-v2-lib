@@ -10,6 +10,7 @@ import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
   getUserInputFromStore,
   isErrorsArrayEmpty,
+  resetStoreAction,
   setUserInputObj,
 } from '../store/ducks/formState';
 
@@ -26,6 +27,7 @@ export interface AppProps {
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
   languageOptions: any;
+  resetStoreActionCreator: typeof resetStoreAction;
   handleSubmit(userInput: any): any;
 }
 
@@ -41,6 +43,7 @@ class App extends React.Component<AppProps, AppState> {
 
   public componentDidMount() {
     const { userInputJson, userInputObj } = this.props;
+    this.props.resetStoreActionCreator();
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
@@ -70,6 +73,7 @@ class App extends React.Component<AppProps, AppState> {
       defaultLanguage,
       fieldElements,
       fieldParentTreeName: '',
+      isAppearanceApplicable: false,
       languageOptions,
     };
 
@@ -148,6 +152,7 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
 
 /** map props to actions */
 const mapDispatchToProps = {
+  resetStoreActionCreator: resetStoreAction,
   setUserInputAction: setUserInputObj,
 };
 
