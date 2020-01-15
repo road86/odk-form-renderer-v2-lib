@@ -105,122 +105,173 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
       }
       removeErrorInputIdActionCreator={[Function]}
     >
-      <FormGroup
-        tag="div"
-      >
-        <div
-          className="form-group"
+      <div>
+        <Label
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
         >
-          <Label
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
+          <label
+            className=""
           >
-            <label
-              className=""
-            >
-              Spinner widget: select multiple
-            </label>
-          </Label>
-          <Label
+            Spinner widget: select multiple
+          </label>
+        </Label>
+        <Label
+          className="requiredTextSteric"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <label
             className="requiredTextSteric"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
           >
-            <label
-              className="requiredTextSteric"
-            >
-              *
-            </label>
-          </Label>
-          <div
-            className="col-md-12 selectAll"
-            key="0"
+            *
+          </label>
+        </Label>
+        <Form
+          key="selectAll"
+          tag="form"
+        >
+          <form
+            className=""
           >
-            <Input
-              checked={true}
-              key="spinner_multi_widget-0"
-              name="spinner_multi_widget"
-              onChange={[Function]}
-              readOnly={false}
-              type="checkbox"
-              value="a"
+            <FormGroup
+              check={true}
+              inline={false}
+              key="0"
+              tag="div"
             >
-              <input
-                checked={true}
-                className="form-check-input"
-                name="spinner_multi_widget"
-                onChange={[Function]}
-                readOnly={false}
-                type="checkbox"
-                value="a"
-              />
-            </Input>
-             
-            A
-          </div>
-          <div
-            className="col-md-12 selectAll"
-            key="1"
-          >
-            <Input
-              checked={true}
-              key="spinner_multi_widget-1"
-              name="spinner_multi_widget"
-              onChange={[Function]}
-              readOnly={false}
-              type="checkbox"
-              value="b"
+              <div
+                className="form-check"
+              >
+                <Label
+                  check={true}
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <label
+                    className="form-check-label"
+                  >
+                    <Input
+                      checked={true}
+                      key="spinner_multi_widget-0"
+                      name="spinner_multi_widget"
+                      onChange={[Function]}
+                      readOnly={false}
+                      type="checkbox"
+                      value="a"
+                    >
+                      <input
+                        checked={true}
+                        className="form-check-input"
+                        name="spinner_multi_widget"
+                        onChange={[Function]}
+                        readOnly={false}
+                        type="checkbox"
+                        value="a"
+                      />
+                    </Input>
+                     
+                    A
+                  </label>
+                </Label>
+              </div>
+            </FormGroup>
+            <FormGroup
+              check={true}
+              inline={false}
+              key="1"
+              tag="div"
             >
-              <input
-                checked={true}
-                className="form-check-input"
-                name="spinner_multi_widget"
-                onChange={[Function]}
-                readOnly={false}
-                type="checkbox"
-                value="b"
-              />
-            </Input>
-             
-            B
-          </div>
-          <Label
+              <div
+                className="form-check"
+              >
+                <Label
+                  check={true}
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <label
+                    className="form-check-label"
+                  >
+                    <Input
+                      checked={true}
+                      key="spinner_multi_widget-1"
+                      name="spinner_multi_widget"
+                      onChange={[Function]}
+                      readOnly={false}
+                      type="checkbox"
+                      value="b"
+                    >
+                      <input
+                        checked={true}
+                        className="form-check-input"
+                        name="spinner_multi_widget"
+                        onChange={[Function]}
+                        readOnly={false}
+                        type="checkbox"
+                        value="b"
+                      />
+                    </Input>
+                     
+                    B
+                  </label>
+                </Label>
+              </div>
+            </FormGroup>
+          </form>
+        </Form>
+        <Label
+          className="hintText"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <label
             className="hintText"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
           >
-            <label
-              className="hintText"
-            >
-              select_multiple type with minimal appearance, 4 image choices
-            </label>
-          </Label>
-        </div>
-      </FormGroup>
+            select_multiple type with minimal appearance, 4 image choices
+          </label>
+        </Label>
+      </div>
     </SelectAllRadio>
   </Connect(SelectAllRadio)>
 </Provider>

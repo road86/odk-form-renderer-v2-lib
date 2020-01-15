@@ -186,7 +186,7 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
         );
       default:
         return (
-          <div>
+          <div style={{ display: 'none' }}>
             Other {fieldElement.type} {fieldElement.name}
           </div>
         );
