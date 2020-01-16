@@ -36,7 +36,7 @@ export interface SelectAllRadioProps {
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string[];
+  fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
@@ -302,6 +302,14 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         });
       }
 
+      if (typeof this.props.fieldValue === 'string') {
+        const seperatedValues: string[] = fieldValue.split(' ');
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          seperatedValues
+        );
+      }
+
       return (
         <div>
           <Label>{modifiedFieldLabel}</Label>
@@ -388,7 +396,9 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         fieldValue.length > 0 &&
         fieldValue.includes(event.target.value)
       ) {
-        const newValue = fieldValue.filter(elm => elm !== event.target.value);
+        const newValue = fieldValue.filter(
+          (elm: any) => elm !== event.target.value
+        );
 
         this.props.assignFieldValueActionCreator(
           fieldName,
