@@ -31,6 +31,12 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
       repeatIndex,
       unControlFlag,
     } = this.props;
+    let isAppearanceApplicable = false;
+    if (fieldElement.control && fieldElement.control.appearance) {
+      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+        isAppearanceApplicable = true;
+      }
+    }
     return (
       <div className={'groupFormFieldBody'}>
         {fieldElement.children && (
@@ -47,7 +53,7 @@ class SingleRepeat extends React.Component<SingleRepeatProps> {
             }
             defaultLanguage={defaultLanguage}
             csvList={csvList}
-            isAppearanceApplicable={false}
+            isAppearanceApplicable={isAppearanceApplicable}
           />
         )}
 

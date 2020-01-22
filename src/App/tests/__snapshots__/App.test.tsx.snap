@@ -53,6 +53,7 @@ exports[`App renders App correctly 1`] = `
           },
         ]
       }
+      resetStoreActionCreator={[Function]}
       setUserInputAction={[Function]}
       userInputJson={Object {}}
       userInputObj={Object {}}
@@ -1483,6 +1484,7 @@ exports[`App renders App correctly 1`] = `
                     defaultLanguage="English"
                     fieldElements={Array []}
                     fieldParentTreeName=""
+                    isAppearanceApplicable={false}
                     languageOptions={
                       Array [
                         Object {
@@ -1501,25 +1503,7 @@ exports[`App renders App correctly 1`] = `
                     >
                       <div
                         className="row"
-                      >
-                        <Col
-                          md={12}
-                          tag="div"
-                          widths={
-                            Array [
-                              "xs",
-                              "sm",
-                              "md",
-                              "lg",
-                              "xl",
-                            ]
-                          }
-                        >
-                          <div
-                            className="col-md-12"
-                          />
-                        </Col>
-                      </div>
+                      />
                     </Row>
                   </GroupTypeEvaluator>
                   <Row

@@ -36,7 +36,7 @@ export interface SelectAllDropDownProps {
   csvList: any;
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
-  fieldValue: string[];
+  fieldValue: any;
   optionList: object;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   assignOptionListActionCreator: typeof assignOptionListAction;
@@ -66,6 +66,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
+
     const isRequired = isInputRequired(fieldElement);
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === []);
     const isConstraintViolated =
@@ -222,6 +223,14 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
             }
           }
         });
+      }
+
+      if (typeof this.props.fieldValue === 'string') {
+        const seperatedValues: string[] = fieldValue.split(' ');
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          seperatedValues
+        );
       }
 
       return (
