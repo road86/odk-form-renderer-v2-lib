@@ -7,7 +7,7 @@ export interface SelectAllRadioProps {
     csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
-    fieldValue: string[];
+    fieldValue: any;
     assignFieldValueActionCreator: typeof assignFieldValueAction;
     assignOptionListActionCreator: typeof assignOptionListAction;
     getEvaluatedExpressionSelector: any;

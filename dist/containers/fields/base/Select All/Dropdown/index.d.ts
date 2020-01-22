@@ -7,7 +7,7 @@ export interface SelectAllDropDownProps {
     csvList: any;
     fieldElement: FieldElement;
     fieldParentTreeName: FieldParentTreeName;
-    fieldValue: string[];
+    fieldValue: any;
     optionList: object;
     assignFieldValueActionCreator: typeof assignFieldValueAction;
     assignOptionListActionCreator: typeof assignOptionListAction;

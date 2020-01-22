@@ -2463,6 +2463,14 @@ function (_React$Component) {
         fieldParentTreeName = _this$props2.fieldParentTreeName,
         repeatIndex = _this$props2.repeatIndex,
         unControlFlag = _this$props2.unControlFlag;
+    var isAppearanceApplicable = false;
+
+    if (fieldElement.control && fieldElement.control.appearance) {
+      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+        isAppearanceApplicable = true;
+      }
+    }
+
     return React__default.createElement("div", {
       className: 'groupFormFieldBody'
     }, fieldElement.children && React__default.createElement(GroupTypeEvaluator, {
@@ -2471,7 +2479,7 @@ function (_React$Component) {
       fieldParentTreeName: fieldParentTreeName + 'repeat/' + fieldElement.name + '/' + repeatIndex + '/',
       defaultLanguage: defaultLanguage,
       csvList: csvList,
-      isAppearanceApplicable: false
+      isAppearanceApplicable: isAppearanceApplicable
     }), unControlFlag === false ? React__default.createElement("div", {
       className: 'minusIconWrapper'
     }, React__default.createElement("span", {
@@ -3948,6 +3956,11 @@ function (_React$Component) {
         });
       }
 
+      if (typeof this.props.fieldValue === 'string') {
+        var seperatedValues = fieldValue.split(' ');
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, seperatedValues);
+      }
+
       return React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, null, modifiedFieldLabel), isRequired && React.createElement(reactstrap.Label, {
         className: "requiredTextSteric"
       }, REQUIRED_SYMBOL), React.createElement("div", {
@@ -4401,6 +4414,11 @@ function (_React$Component) {
             flagInline = true;
           }
         });
+      }
+
+      if (typeof this.props.fieldValue === 'string') {
+        var seperatedValues = fieldValue.split(' ');
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, seperatedValues);
       }
 
       return React.createElement("div", null, React.createElement(reactstrap.Label, null, modifiedFieldLabel), isRequired && React.createElement(reactstrap.Label, {
