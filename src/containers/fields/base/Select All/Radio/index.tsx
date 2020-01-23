@@ -312,10 +312,12 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
 
       return (
         <div>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <Form key="selectAll">
             {values.map((elem: any, index: any) => (
               <FormGroup key={index} check={true} inline={flagInline}>

@@ -202,10 +202,12 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
 
       return (
         <FormGroup>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <div key={fieldElement.name} className="selectOneDropDown">
             <Select
               multi={false}

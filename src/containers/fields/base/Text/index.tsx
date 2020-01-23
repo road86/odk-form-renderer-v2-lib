@@ -135,10 +135,12 @@ class Text extends React.Component<TextProps, TextState> {
 
         return (
           <FormGroup>
-            <Label>{modifiedFieldLabel}</Label>
-            {isRequired && (
-              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-            )}
+            <Label>
+              {modifiedFieldLabel}{' '}
+              {isRequired && (
+                <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+              )}
+            </Label>
             <Input
               type="text"
               name={fieldElement.name}
@@ -167,10 +169,12 @@ class Text extends React.Component<TextProps, TextState> {
       } else {
         return (
           <FormGroup>
-            <Label>{modifiedFieldLabel}</Label>
-            {isRequired && (
-              <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-            )}
+            <Label>
+              {modifiedFieldLabel}{' '}
+              {isRequired && (
+                <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+              )}
+            </Label>
             <Input
               type="text"
               name={fieldElement.name}
