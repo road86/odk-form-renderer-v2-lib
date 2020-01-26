@@ -11,6 +11,7 @@ import {
   getUserInputFromStore,
   isErrorsArrayEmpty,
   resetStoreAction,
+  setFormSubmitStatus,
   setUserInputObj,
 } from '../store/ducks/formState';
 
@@ -27,6 +28,7 @@ export interface AppProps {
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
   languageOptions: any;
+  setFormSubmitStatusAction: typeof setFormSubmitStatus;
   resetStoreActionCreator: typeof resetStoreAction;
   handleSubmit(userInput: any): any;
 }
@@ -124,6 +126,7 @@ class App extends React.Component<AppProps, AppState> {
     } else {
       handleSubmit('Field Violated');
       this.setState({ isSubmissionError: true });
+      this.props.setFormSubmitStatusAction(true);
       window.scrollTo(0, 0);
     }
   };
@@ -153,6 +156,7 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
 /** map props to actions */
 const mapDispatchToProps = {
   resetStoreActionCreator: resetStoreAction,
+  setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
 };
 
