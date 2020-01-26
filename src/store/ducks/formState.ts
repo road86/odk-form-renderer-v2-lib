@@ -37,6 +37,7 @@ export const EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 export const REMOVE_GROUP_FIELDS_FROM_ERRORS =
   'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 export const SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
+export const SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -92,6 +93,12 @@ export interface RemoveGroupFieldsFromErrors extends AnyAction {
 export interface SetUserInputObj extends AnyAction {
   userInputObj: any;
   type: typeof SET_USER_INPUT_OBJ;
+}
+
+/** interface for SET_FORM_SUBMIT_STATUS action */
+export interface SetFormSubmitStatus extends AnyAction {
+  isFormSubmitted: boolean;
+  type: typeof SET_FORM_SUBMIT_STATUS;
 }
 
 /** Assigns the value to the proper field name
@@ -191,6 +198,17 @@ export const setUserInputObj = (userInputObj: any): SetUserInputObj => ({
   userInputObj,
 });
 
+/** sets the form submit info to redux store
+ * @param {boolean} isFormSubmitted - the form submit info variable
+ * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
+ */
+export const setFormSubmitStatus = (
+  isFormSubmitted: boolean
+): SetFormSubmitStatus => ({
+  isFormSubmitted,
+  type: SET_FORM_SUBMIT_STATUS,
+});
+
 /** Create type for forms reducer actions */
 export type FormActionTypes =
   | AssignFieldValueAction
@@ -202,6 +220,7 @@ export type FormActionTypes =
   | EmptyGroupFields
   | RemoveGroupFieldsFromErrors
   | SetUserInputObj
+  | SetFormSubmitStatus
   | AnyAction;
 
 /** Create an immutable form state */
@@ -210,6 +229,7 @@ export type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
 export const initialState: ImmutableFormState = SeamlessImmutable({
   errors: [],
+  isFormSubmitted: false,
   optionList: {},
   userInput: {},
 });
@@ -297,6 +317,11 @@ export default function reducer(
       return SeamlessImmutable({
         ...state,
         userInput: (action as any).userInputObj,
+      });
+    case SET_FORM_SUBMIT_STATUS:
+      return SeamlessImmutable({
+        ...state,
+        isFormSubmitted: (action as any).isFormSubmitted,
       });
     default:
       return state;
@@ -426,4 +451,12 @@ export function isErrorsArrayEmpty(state: Partial<Store>): any {
  */
 export function getUserInputFromStore(state: Partial<Store>): any {
   return (state as any).getIn(['userInput']).asMutable({ deep: true });
+}
+
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current isFormSubmitted
+ */
+export function getFormSubmitStatus(state: Partial<Store>): any {
+  return (state as any).isFormSubmitted;
 }
