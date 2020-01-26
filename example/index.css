@@ -108,3 +108,8 @@
   width: 20px !important;
   height: 20px !important;
 }
+
+.errorSign {
+  color: rgb(207, 35, 35);
+  margin-right: 2px;
+}
