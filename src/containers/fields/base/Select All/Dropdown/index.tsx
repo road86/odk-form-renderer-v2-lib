@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -16,6 +17,7 @@ import {
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getFormSubmitStatus,
   getOptionList,
   isPresentInError,
   removeErrorInputId,
@@ -42,6 +44,7 @@ export interface SelectAllDropDownProps {
   assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -63,6 +66,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
@@ -233,6 +237,10 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         );
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
       return (
         <FormGroup>
           <Label>
@@ -250,6 +258,9 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
               value={selectedValues || []}
             />
           </div>
+          {getFormSubmitStatusSelector && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
           {isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
@@ -481,10 +492,12 @@ const mapStateToProps = (
     getEvaluatedExpressionForSelect(state, expression, options, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,
