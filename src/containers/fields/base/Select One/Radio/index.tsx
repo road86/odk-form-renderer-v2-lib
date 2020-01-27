@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ import {
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getFormSubmitStatus,
   getOptionList,
   isPresentInError,
   removeErrorInputId,
@@ -42,6 +44,7 @@ export interface SelectOneRadioProps {
   assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -63,6 +66,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
@@ -241,6 +245,10 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         });
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
       return (
         <div>
           <Label>
@@ -267,6 +275,9 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
               </FormGroup>
             ))}
           </Form>
+          {getFormSubmitStatusSelector && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
           {isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
@@ -434,10 +445,12 @@ const mapStateToProps = (
     getEvaluatedExpressionForSelect(state, expression, options, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,
