@@ -270,6 +270,7 @@ class Text extends React.Component<TextProps, TextState> {
 interface DispatchedStateProps {
   fieldValue: string;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
