@@ -25,6 +25,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
     }
     fieldParentTreeName=""
     fieldValue={12.23}
+    getFormSubmitStatusSelector={false}
   >
     <Decimal
       addErrorInputIdActionCreator={[Function]}
@@ -41,6 +42,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
       fieldParentTreeName=""
       fieldValue={12.23}
       getEvaluatedExpressionSelector={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
@@ -67,6 +69,7 @@ exports[`containers/fields/base/Decimal renders correctly 1`] = `
               className=""
             >
               Decimal widget
+               
             </label>
           </Label>
           <Input
