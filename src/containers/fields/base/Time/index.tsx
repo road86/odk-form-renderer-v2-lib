@@ -171,6 +171,7 @@ class KbTime extends React.Component<TimeProps> {
 interface DispatchedStateProps {
   fieldValue: any;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
