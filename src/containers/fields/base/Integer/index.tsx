@@ -219,6 +219,7 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
 interface DispatchedStateProps {
   fieldValue: any;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
