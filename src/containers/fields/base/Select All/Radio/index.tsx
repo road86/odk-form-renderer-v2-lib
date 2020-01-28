@@ -541,6 +541,7 @@ interface DispatchedStateProps {
   fieldValue: string[];
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   optionList: object;

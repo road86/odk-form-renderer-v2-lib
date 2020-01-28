@@ -321,8 +321,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   private onChangeHandler = (fieldName: any) => (values: any) => {
     const selectedValues: any = [];
     let i = 0;
-
-    if (values) {
+    if (values && values.length > 0) {
       values.map(() => {
         if (!selectedValues.includes(values[i].value)) {
           selectedValues.push(values[i].value);
@@ -462,6 +461,7 @@ interface DispatchedStateProps {
   fieldValue: string[];
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   optionList: object;
