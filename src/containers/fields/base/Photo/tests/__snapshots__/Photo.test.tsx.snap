@@ -60,6 +60,7 @@ exports[`containers/fields/base/Photo renders correctly 1`] = `
               className=""
             >
               Image widget
+               
             </label>
           </Label>
           <Input
