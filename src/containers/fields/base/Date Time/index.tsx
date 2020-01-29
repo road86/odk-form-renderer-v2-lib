@@ -118,6 +118,13 @@ class DateTime extends React.Component<DateTimeProps> {
         fieldParentTreeName + fieldElement.name
       );
 
+      let modifiedDate: any = null;
+      if (fieldValue) {
+        modifiedDate = new Date(fieldValue);
+        const timeZoneOffset = modifiedDate.getTimezoneOffset() / 60;
+        modifiedDate.setHours(modifiedDate.getHours() - timeZoneOffset);
+      }
+
       return (
         <FormGroup>
           <Label>
@@ -129,7 +136,7 @@ class DateTime extends React.Component<DateTimeProps> {
           <br />
           <DatePicker
             name={fieldElement.name}
-            selected={fieldValue ? new Date(fieldValue) : null}
+            selected={fieldValue ? modifiedDate : null}
             onChange={this.handleChange(fieldElement.name)}
             showTimeSelect={true}
             timeFormat="h:m aa"
@@ -170,9 +177,12 @@ class DateTime extends React.Component<DateTimeProps> {
   }
 
   private handleChange = (name: any) => (value: any) => {
+    const modifiedDate: any = new Date(value);
+    const timeZoneOffset = modifiedDate.getTimezoneOffset() / 60;
+    modifiedDate.setHours(modifiedDate.getHours() + timeZoneOffset);
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + name,
-      value !== '' ? new Date(value) : null
+      value !== '' ? modifiedDate : null
     );
   };
 }
