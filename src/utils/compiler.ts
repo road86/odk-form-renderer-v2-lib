@@ -260,7 +260,7 @@ function tokenizeDiv(input: any, current: any) {
 }
 
 function tokenizeName(input: any, current: any) {
-  return tokenizePattern('name', /[a-z]/i, input, current);
+  return tokenizePattern('name', /[a-z_]/i, input, current);
 }
 
 function skipWhiteSpace(input: any, current: any) {
