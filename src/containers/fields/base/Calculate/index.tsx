@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -100,14 +100,14 @@ class Calculate extends React.Component<CalculateProps> {
         );
       }
       return (
-        <FormGroup>
+        <div>
           <Input
             type="hidden"
             name={fieldElement.name}
             value={calculatedValue || ''}
             readOnly={isReadonly}
           />
-        </FormGroup>
+        </div>
       );
     } else {
       if (fieldValue != null) {

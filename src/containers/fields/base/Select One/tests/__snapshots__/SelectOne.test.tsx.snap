@@ -95,6 +95,7 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
       fieldValue=""
       getEvaluatedExpressionSelector={[Function]}
       getEvaluatedExpressionSelectorForSelect={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       optionList={
@@ -139,25 +140,12 @@ exports[`containers/fields/group/Select One/Dropdown renders correctly for DropD
               className=""
             >
               Return From
-            </label>
-          </Label>
-          <Label
-            className="requiredTextSteric"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <label
-              className="requiredTextSteric"
-            >
-              *
+               
+              <span
+                className="requiredTextSteric"
+              >
+                *
+              </span>
             </label>
           </Label>
           <div
@@ -1562,6 +1550,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
       fieldValue="BD"
       getEvaluatedExpressionSelector={[Function]}
       getEvaluatedExpressionSelectorForSelect={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       optionList={
@@ -1595,6 +1584,7 @@ exports[`containers/fields/group/Select One/Radio renders correctly for Radio Bu
             className=""
           >
             Select one search widget
+             
           </label>
         </Label>
         <Form

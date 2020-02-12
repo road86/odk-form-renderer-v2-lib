@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -16,6 +17,7 @@ import {
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getFormSubmitStatus,
   getOptionList,
   isPresentInError,
   removeErrorInputId,
@@ -42,6 +44,7 @@ export interface SelectAllDropDownProps {
   assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -63,6 +66,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
@@ -233,12 +237,18 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         );
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
       return (
         <FormGroup>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <div key={fieldElement.name} className="selectAllDropDown">
             <Select
               isMulti={true}
@@ -248,6 +258,9 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
               value={selectedValues || []}
             />
           </div>
+          {getFormSubmitStatusSelector && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
           {isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
@@ -308,8 +321,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   private onChangeHandler = (fieldName: any) => (values: any) => {
     const selectedValues: any = [];
     let i = 0;
-
-    if (values) {
+    if (values && values.length > 0) {
       values.map(() => {
         if (!selectedValues.includes(values[i].value)) {
           selectedValues.push(values[i].value);
@@ -449,6 +461,7 @@ interface DispatchedStateProps {
   fieldValue: string[];
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   optionList: object;
@@ -479,10 +492,12 @@ const mapStateToProps = (
     getEvaluatedExpressionForSelect(state, expression, options, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,

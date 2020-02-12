@@ -25,8 +25,12 @@ class Photo extends React.Component<PhotoProps> {
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     return (
       <FormGroup>
-        <Label>{fieldLabel}</Label>
-        {isRequired && <Label>{REQUIRED_SYMBOL}</Label>}
+        <Label>
+          {fieldLabel}{' '}
+          {isRequired && (
+            <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+          )}
+        </Label>
         <Input
           type="file"
           accept="image/*"

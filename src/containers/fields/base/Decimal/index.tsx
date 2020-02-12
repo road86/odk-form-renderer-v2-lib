@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Input, Label } from 'reactstrap';
@@ -12,6 +13,7 @@ import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  getFormSubmitStatus,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
@@ -33,6 +35,7 @@ export interface DecimalProps {
   fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -57,6 +60,7 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
@@ -133,12 +137,18 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
         fieldValue === 0 ? (modifiedValue = '0') : (modifiedValue = fieldValue);
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
       return (
         <FormGroup>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <Input
             type="number"
             step="any"
@@ -152,6 +162,9 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
             }
             readOnly={isReadonly}
           />
+          {getFormSubmitStatusSelector && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
           {isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
@@ -212,6 +225,7 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
 interface DispatchedStateProps {
   fieldValue: any;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
@@ -234,9 +248,11 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,

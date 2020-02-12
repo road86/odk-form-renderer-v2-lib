@@ -20,6 +20,7 @@ describe('containers/fields/group/Group', () => {
       fieldElement: integerFieldElement1,
       fieldParentTreeName: '',
       fieldValue: 100,
+      getFormSubmitStatusSelector: false,
     };
     shallow(
       <Provider store={store}>
@@ -36,6 +37,7 @@ describe('containers/fields/group/Group', () => {
       fieldElement: integerFieldElement1,
       fieldParentTreeName: '',
       fieldValue: 120,
+      getFormSubmitStatusSelector: false,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)

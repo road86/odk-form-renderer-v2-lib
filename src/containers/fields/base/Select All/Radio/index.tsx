@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ import {
   getEvaluatedExpression,
   getEvaluatedExpressionForSelect,
   getFieldValue,
+  getFormSubmitStatus,
   getOptionList,
   isPresentInError,
   removeErrorInputId,
@@ -41,6 +43,7 @@ export interface SelectAllRadioProps {
   assignOptionListActionCreator: typeof assignOptionListAction;
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -63,6 +66,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
@@ -310,12 +314,18 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         );
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
       return (
         <div>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <Form key="selectAll">
             {values.map((elem: any, index: any) => (
               <FormGroup key={index} check={true} inline={flagInline}>
@@ -334,6 +344,9 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
               </FormGroup>
             ))}
           </Form>
+          {getFormSubmitStatusSelector && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
           {isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
@@ -528,6 +541,7 @@ interface DispatchedStateProps {
   fieldValue: string[];
   getEvaluatedExpressionSelector: any;
   getEvaluatedExpressionSelectorForSelect: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   optionList: object;
@@ -557,10 +571,12 @@ const mapStateToProps = (
     getEvaluatedExpressionForSelect(state, expression, options, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,
