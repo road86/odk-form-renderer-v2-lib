@@ -139,6 +139,22 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
         fieldParentTreeName + fieldElement.name
       );
 
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        let calculatedValue: any = '';
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+
+        if (fieldValue && calculatedValue !== fieldValue) {
+          this.props.assignFieldValueActionCreator(
+            fieldParentTreeName + fieldElement.name,
+            calculatedValue
+          );
+        }
+        modifiedValue = calculatedValue;
+      }
+
       return (
         <FormGroup>
           <Label>
