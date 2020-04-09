@@ -93,12 +93,13 @@ class Calculate extends React.Component<CalculateProps> {
         );
       }
 
-      if (calculatedValue !== fieldValue) {
+      if (calculatedValue && fieldValue !== calculatedValue) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
           calculatedValue
         );
       }
+
       return (
         <div>
           <Input
