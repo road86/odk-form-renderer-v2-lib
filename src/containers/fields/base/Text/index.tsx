@@ -134,7 +134,7 @@ class Text extends React.Component<TextProps, TextState> {
           fieldParentTreeName + fieldElement.name
         );
 
-        if (calculatedValue !== fieldValue) {
+        if (fieldValue && calculatedValue !== fieldValue) {
           this.props.assignFieldValueActionCreator(
             fieldParentTreeName + fieldElement.name,
             calculatedValue
