@@ -66,6 +66,7 @@ class Text extends React.Component<TextProps, TextState> {
       defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
       fieldValue &&
@@ -161,7 +162,7 @@ class Text extends React.Component<TextProps, TextState> {
               }
               readOnly={isReadonly}
             />
-            {getFormSubmitStatusSelector && isError && (
+            {isFormSubmitted && isError && (
               <FontAwesomeIcon
                 icon="exclamation-circle"
                 className="errorSign"
@@ -170,7 +171,7 @@ class Text extends React.Component<TextProps, TextState> {
             {fieldElement.hint && (
               <Label className="hintText">{hintLabel}</Label>
             )}
-            {isRequiredViolated && (
+            {isFormSubmitted && isRequiredViolated && (
               <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
             )}
             {isConstraintViolated && (
@@ -201,7 +202,7 @@ class Text extends React.Component<TextProps, TextState> {
               }
               readOnly={isReadonly}
             />
-            {getFormSubmitStatusSelector && isError && (
+            {isFormSubmitted && isError && (
               <FontAwesomeIcon
                 icon="exclamation-circle"
                 className="errorSign"
@@ -210,7 +211,7 @@ class Text extends React.Component<TextProps, TextState> {
             {fieldElement.hint && (
               <Label className="hintText">{hintLabel}</Label>
             )}
-            {isRequiredViolated && (
+            {isFormSubmitted && isRequiredViolated && (
               <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
             )}
             {isConstraintViolated && (
