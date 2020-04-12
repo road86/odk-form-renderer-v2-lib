@@ -66,6 +66,7 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
     } = this.props;
 
     const isRequired = isInputRequired(fieldElement);
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated =
       isRequired &&
       (fieldValue === null || fieldValue === '' || fieldValue === undefined);
@@ -178,11 +179,11 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
             }
             readOnly={isReadonly}
           />
-          {getFormSubmitStatusSelector && isError && (
+          {isFormSubmitted && isError && (
             <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
           )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
-          {isRequiredViolated && (
+          {isFormSubmitted && isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
           )}
           {isConstraintViolated && (
