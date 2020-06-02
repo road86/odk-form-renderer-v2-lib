@@ -14,6 +14,8 @@ export interface FormState {
   userInput: object;
   errors: string[];
   optionList: object;
+  isFormSubmitted: boolean;
+  mediaList: object;
 }
 
 // actions
@@ -22,6 +24,8 @@ export interface FormState {
 export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 /** OPTION_LIST_ASSIGNED action type */
 export const OPTION_LIST_ASSIGNED = 'odk/reducer/form/OPTION_LIST_ASSIGNED';
+/** MEDIA_LIST_ASSIGNED action type */
+export const MEDIA_LIST_ASSIGNED = 'odk/reducer/form/MEDIA_LIST_ASSIGNED';
 /** REMOVE_FROM_OPTION_LIST action type */
 export const REMOVE_FROM_OPTION_LIST_REPEAT =
   'odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT';
@@ -51,6 +55,13 @@ export interface AssignOptionListAction extends AnyAction {
   fieldTreeName: string;
   optionList: any;
   type: typeof OPTION_LIST_ASSIGNED;
+}
+
+/** interface for MEDIA_LIST_ASSIGNED action */
+export interface AssignMediaListAction extends AnyAction {
+  fieldTreeName: string;
+  mediaList: any;
+  type: typeof MEDIA_LIST_ASSIGNED;
 }
 
 /** interface for REMOVE_FROM_OPTION_LIST action */
@@ -117,7 +128,7 @@ export const assignFieldValueAction = (
 
 /** Assigns option list to the proper field name
  * @param {string} fieldTreeName - the extended field name
- * @param {any} fieldValue - the option list that will be assigned
+ * @param {any} optionList - the option list that will be assigned
  * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
  */
 export const assignOptionListAction = (
@@ -127,6 +138,20 @@ export const assignOptionListAction = (
   fieldTreeName,
   optionList,
   type: OPTION_LIST_ASSIGNED,
+});
+
+/** Assigns media object to the proper field name
+ * @param {string} fieldTreeName - the extended field name
+ * @param {any} mediaList - the media object that will be assigned
+ * @return {AssignMediaListAction} - an action to assign media object to a field in the redux store
+ */
+export const assignMediaListAction = (
+  fieldTreeName: string,
+  mediaList: any
+): AssignMediaListAction => ({
+  fieldTreeName,
+  mediaList,
+  type: MEDIA_LIST_ASSIGNED,
 });
 
 /** Remove option list from Redux Store
@@ -213,6 +238,7 @@ export const setFormSubmitStatus = (
 export type FormActionTypes =
   | AssignFieldValueAction
   | AssignOptionListAction
+  | AssignMediaListAction
   | RemoveFromOptionList
   | ResetStoreAction
   | AddErrorInputId
@@ -230,6 +256,7 @@ export type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 export const initialState: ImmutableFormState = SeamlessImmutable({
   errors: [],
   isFormSubmitted: false,
+  mediaList: {},
   optionList: {},
   userInput: {},
 });
@@ -248,6 +275,7 @@ export default function reducer(
       );
       const stateM = state.asMutable({ deep: true });
       return SeamlessImmutable({ ...stateM, userInput: modifiedUserInputObj });
+
     case OPTION_LIST_ASSIGNED:
       const modifiedUserInputObjList = getModifiedUserInputObject(
         state.getIn(['optionList']).asMutable({ deep: true }),
@@ -259,6 +287,19 @@ export default function reducer(
         ...newState,
         optionList: modifiedUserInputObjList,
       });
+
+    case MEDIA_LIST_ASSIGNED:
+      const modifiedMediaObject = getModifiedUserInputObject(
+        state.getIn(['mediaList']).asMutable({ deep: true }),
+        action.fieldTreeName,
+        action.mediaList != null ? { ...action.mediaList } : null
+      );
+      const newMediaState = state.asMutable({ deep: true });
+      return SeamlessImmutable({
+        ...newMediaState,
+        mediaList: modifiedMediaObject,
+      });
+
     case REMOVE_FROM_OPTION_LIST_REPEAT:
       let filteredRepeatArray: any = [];
       if (
@@ -286,8 +327,10 @@ export default function reducer(
         });
       }
       return state;
+
     case RESET_STORE:
       return initialState;
+
     case ADD_ERROR_INPUT_ID:
       if (!state.errors.includes(action.fieldTreeName)) {
         return state.updateIn(['errors'], arr =>
@@ -295,6 +338,7 @@ export default function reducer(
         );
       }
       return state;
+
     case REMOVE_ERROR_INPUT_ID:
       if (state.errors.includes(action.fieldTreeName)) {
         return state.updateIn(['errors'], arr =>
@@ -302,6 +346,7 @@ export default function reducer(
         );
       }
       return state;
+
     case EMPTY_GROUP_FIELDS:
       const mUserInputObj = emptyGroupedValues(
         state.getIn(['userInput']).asMutable({ deep: true }),
@@ -309,20 +354,24 @@ export default function reducer(
       );
       const mState = state.asMutable({ deep: true });
       return SeamlessImmutable({ ...mState, userInput: mUserInputObj });
+
     case REMOVE_GROUP_FIELDS_FROM_ERRORS:
       return state.updateIn(['errors'], arr =>
         arr.filter(elm => !elm.startsWith(action.fieldTreeName))
       );
+
     case SET_USER_INPUT_OBJ:
       return SeamlessImmutable({
         ...state,
         userInput: (action as any).userInputObj,
       });
+
     case SET_FORM_SUBMIT_STATUS:
       return SeamlessImmutable({
         ...state,
         isFormSubmitted: (action as any).isFormSubmitted,
       });
+
     default:
       return state;
   }
