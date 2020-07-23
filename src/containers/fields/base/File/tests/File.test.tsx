@@ -2,10 +2,10 @@ import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import React from 'react';
 import { Provider } from 'react-redux';
-import Photo from '..';
+import File from '..';
 import store from '../../../../../store';
 import { assignFieldValueAction } from '../../../../../store/ducks/formState';
-import { photoFieldElement } from './fixtures';
+import { fileFieldElement } from './fixtures';
 
 describe('containers/fields/base/Photo', () => {
   beforeEach(() => {
@@ -17,12 +17,13 @@ describe('containers/fields/base/Photo', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       defaultLanguage: 'English',
-      fieldElement: photoFieldElement,
+      fieldElement: fileFieldElement,
+      fieldParentTreeName: '',
       fieldValue: '',
     };
     shallow(
       <Provider store={store}>
-        <Photo {...props} />
+        <File {...props} />
       </Provider>
     );
   });
@@ -32,7 +33,8 @@ describe('containers/fields/base/Photo', () => {
     const props = {
       assignFieldValueActionCreator: mock,
       defaultLanguage: 'English',
-      fieldElement: photoFieldElement,
+      fieldElement: fileFieldElement,
+      fieldParentTreeName: '',
       fieldValue: '',
     };
     store.dispatch(
@@ -40,7 +42,7 @@ describe('containers/fields/base/Photo', () => {
     );
     const wrapper = mount(
       <Provider store={store}>
-        <Photo {...props} />
+        <File {...props} />
       </Provider>
     );
     expect(toJson(wrapper)).toMatchSnapshot();
