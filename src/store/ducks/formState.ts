@@ -26,6 +26,8 @@ export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 export const OPTION_LIST_ASSIGNED = 'odk/reducer/form/OPTION_LIST_ASSIGNED';
 /** MEDIA_LIST_ASSIGNED action type */
 export const MEDIA_LIST_ASSIGNED = 'odk/reducer/form/MEDIA_LIST_ASSIGNED';
+/** REMOVE_FROM_MEDIA_LIST action type */
+export const REMOVE_FROM_MEDIA_LIST = 'odk/reducer/form/REMOVE_FROM_MEDIA_LIST';
 /** REMOVE_FROM_OPTION_LIST action type */
 export const REMOVE_FROM_OPTION_LIST_REPEAT =
   'odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT';
@@ -62,6 +64,13 @@ export interface AssignMediaListAction extends AnyAction {
   fieldTreeName: string;
   mediaList: any;
   type: typeof MEDIA_LIST_ASSIGNED;
+}
+
+/** interface for REMOVE_FROM_MEDIA_LIST action */
+export interface RemoveFromMediaListAction extends AnyAction {
+  fieldTreeName: string;
+  mediaList: any;
+  type: typeof REMOVE_FROM_MEDIA_LIST;
 }
 
 /** interface for REMOVE_FROM_OPTION_LIST action */
@@ -140,6 +149,19 @@ export const assignOptionListAction = (
   type: OPTION_LIST_ASSIGNED,
 });
 
+/** Remove option list from Redux Store
+ * @param fieldTreeName - the field tree name
+ * @returns {RemoveFromOptionList} - an action to remove input id for errors
+ */
+export const RemoveFromOptionList = (
+  fieldTreeName: string,
+  repeatIndex: number
+): RemoveFromOptionList => ({
+  fieldTreeName,
+  repeatIndex,
+  type: REMOVE_FROM_OPTION_LIST_REPEAT,
+});
+
 /** Assigns media object to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} mediaList - the media object that will be assigned
@@ -154,17 +176,17 @@ export const assignMediaListAction = (
   type: MEDIA_LIST_ASSIGNED,
 });
 
-/** Remove option list from Redux Store
+/** Remove a media item in option list from Redux Store
  * @param fieldTreeName - the field tree name
- * @returns {RemoveFromOptionList} - an action to remove input id for errors
+ * @returns {RemoveFromMediaListAction} - an action to remove media info from redux store
  */
-export const RemoveFromOptionList = (
+export const removeFromMediaListAction = (
   fieldTreeName: string,
-  repeatIndex: number
-): RemoveFromOptionList => ({
+  mediaList: any
+): RemoveFromMediaListAction => ({
   fieldTreeName,
-  repeatIndex,
-  type: REMOVE_FROM_OPTION_LIST_REPEAT,
+  mediaList,
+  type: REMOVE_FROM_MEDIA_LIST,
 });
 
 /** Resets the redux store state to initial state
@@ -238,8 +260,9 @@ export const setFormSubmitStatus = (
 export type FormActionTypes =
   | AssignFieldValueAction
   | AssignOptionListAction
-  | AssignMediaListAction
   | RemoveFromOptionList
+  | AssignMediaListAction
+  | RemoveFromMediaListAction
   | ResetStoreAction
   | AddErrorInputId
   | RemoveErrorInputId
@@ -288,18 +311,6 @@ export default function reducer(
         optionList: modifiedUserInputObjList,
       });
 
-    case MEDIA_LIST_ASSIGNED:
-      const modifiedMediaObject = getModifiedUserInputObject(
-        state.getIn(['mediaList']).asMutable({ deep: true }),
-        action.fieldTreeName,
-        action.mediaList != null ? { ...action.mediaList } : null
-      );
-      const newMediaState = state.asMutable({ deep: true });
-      return SeamlessImmutable({
-        ...newMediaState,
-        mediaList: modifiedMediaObject,
-      });
-
     case REMOVE_FROM_OPTION_LIST_REPEAT:
       let filteredRepeatArray: any = [];
       if (
@@ -325,6 +336,33 @@ export default function reducer(
           ...newStateForRepeat,
           optionList: modifiedOptionListRepeat,
         });
+      }
+      return state;
+
+    case MEDIA_LIST_ASSIGNED:
+      const modifiedMediaObject = getModifiedUserInputObject(
+        state.getIn(['mediaList']).asMutable({ deep: true }),
+        action.fieldTreeName,
+        action.mediaList != null ? { ...action.mediaList } : null
+      );
+      const newMediaState = state.asMutable({ deep: true });
+      return SeamlessImmutable({
+        ...newMediaState,
+        mediaList: modifiedMediaObject,
+      });
+
+    case REMOVE_FROM_MEDIA_LIST:
+      if (
+        state
+          .getIn(['mediaList'])
+          .asMutable({ deep: true })
+          .hasOwnProperty(action.fieldTreeName)
+      ) {
+        // const tempMediaState = state.asMutable({ deep: true });
+        // return SeamlessImmutable({
+        //   ...tempMediaState,
+        //   mediaList: modifiedMediaObject,
+        // });
       }
       return state;
 
