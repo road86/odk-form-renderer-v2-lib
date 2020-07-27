@@ -8,10 +8,11 @@ import {
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
 import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
+import { PHOTO_FIELD_TYPE } from '../../../../constants';
 import {
   addErrorInputId,
+  addMediaListAction,
   assignFieldValueAction,
-  assignMediaListAction,
   getEvaluatedExpression,
   getFieldValue,
   getFormSubmitStatus,
@@ -28,6 +29,7 @@ import {
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
+import FilePreview from './FilePreview/FilePreview';
 
 /** props interface for the file component */
 export interface FileProps {
@@ -35,7 +37,7 @@ export interface FileProps {
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
-  assignMediaListActionCreator: typeof assignMediaListAction;
+  addMediaListActionCreator: typeof addMediaListAction;
   getEvaluatedExpressionSelector: any;
   getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
@@ -127,13 +129,27 @@ class File extends React.Component<FileProps> {
               <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
             )}
           </Label>
-          <Input
-            type="file"
-            accept="image/*"
-            name={fieldElement.name}
-            onChange={this.onChangeHandler}
-            readOnly={isReadonly}
-          />
+          {fieldValue ? (
+            <FilePreview
+              fieldName={fieldParentTreeName + fieldElement.name}
+              fieldValue={fieldValue}
+            />
+          ) : fieldElement.type === PHOTO_FIELD_TYPE ? (
+            <Input
+              type="file"
+              accept="image/*"
+              name={fieldElement.name}
+              onChange={this.onChangeHandler}
+              readOnly={isReadonly}
+            />
+          ) : (
+            <Input
+              type="file"
+              name={fieldElement.name}
+              onChange={this.onChangeHandler}
+              readOnly={isReadonly}
+            />
+          )}
           {isFormSubmitted && isError && (
             <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
           )}
@@ -171,15 +187,7 @@ class File extends React.Component<FileProps> {
         this.props.fieldParentTreeName + event.target.name,
         event.target.files[0].name
       );
-      const fileInfo: object = {
-        file_blob: URL.createObjectURL(event.target.files[0]),
-        file_name: event.target.files[0].name,
-      };
-
-      this.props.assignMediaListActionCreator(
-        this.props.fieldParentTreeName + event.target.name,
-        fileInfo
-      );
+      this.props.addMediaListActionCreator(event.target.files[0]);
     } else {
       this.props.assignFieldValueActionCreator(
         this.props.fieldParentTreeName + event.target.name,
@@ -236,8 +244,8 @@ const mapStateToProps = (
 /** map props to actions */
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
+  addMediaListActionCreator: addMediaListAction,
   assignFieldValueActionCreator: assignFieldValueAction,
-  assignMediaListActionCreator: assignMediaListAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
