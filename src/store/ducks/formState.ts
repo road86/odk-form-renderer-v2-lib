@@ -25,7 +25,7 @@ export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 /** OPTION_LIST_ASSIGNED action type */
 export const OPTION_LIST_ASSIGNED = 'odk/reducer/form/OPTION_LIST_ASSIGNED';
 /** MEDIA_LIST_ASSIGNED action type */
-export const MEDIA_LIST_ASSIGNED = 'odk/reducer/form/MEDIA_LIST_ASSIGNED';
+export const MEDIA_LIST_ADDED = 'odk/reducer/form/MEDIA_LIST_ADDED';
 /** REMOVE_FROM_MEDIA_LIST action type */
 export const REMOVE_FROM_MEDIA_LIST = 'odk/reducer/form/REMOVE_FROM_MEDIA_LIST';
 /** REMOVE_FROM_OPTION_LIST action type */
@@ -59,11 +59,10 @@ export interface AssignOptionListAction extends AnyAction {
   type: typeof OPTION_LIST_ASSIGNED;
 }
 
-/** interface for MEDIA_LIST_ASSIGNED action */
-export interface AssignMediaListAction extends AnyAction {
-  fieldTreeName: string;
-  mediaList: any;
-  type: typeof MEDIA_LIST_ASSIGNED;
+/** interface for MEDIA_LIST_ADDED action */
+export interface AddMediaListAction extends AnyAction {
+  mediaObject: any;
+  type: typeof MEDIA_LIST_ADDED;
 }
 
 /** interface for REMOVE_FROM_MEDIA_LIST action */
@@ -162,18 +161,13 @@ export const RemoveFromOptionList = (
   type: REMOVE_FROM_OPTION_LIST_REPEAT,
 });
 
-/** Assigns media object to the proper field name
- * @param {string} fieldTreeName - the extended field name
- * @param {any} mediaList - the media object that will be assigned
- * @return {AssignMediaListAction} - an action to assign media object to a field in the redux store
+/** Adds media object to the proper field name
+ * @param {any} mediaObject - the media object that will be added
+ * @return {AddMediaListAction} - an action to assign media object to a field in the redux store
  */
-export const assignMediaListAction = (
-  fieldTreeName: string,
-  mediaList: any
-): AssignMediaListAction => ({
-  fieldTreeName,
-  mediaList,
-  type: MEDIA_LIST_ASSIGNED,
+export const addMediaListAction = (mediaObject: any): AddMediaListAction => ({
+  mediaObject,
+  type: MEDIA_LIST_ADDED,
 });
 
 /** Remove a media item in option list from Redux Store
@@ -261,7 +255,7 @@ export type FormActionTypes =
   | AssignFieldValueAction
   | AssignOptionListAction
   | RemoveFromOptionList
-  | AssignMediaListAction
+  | AddMediaListAction
   | RemoveFromMediaListAction
   | ResetStoreAction
   | AddErrorInputId
@@ -339,16 +333,15 @@ export default function reducer(
       }
       return state;
 
-    case MEDIA_LIST_ASSIGNED:
-      const modifiedMediaObject = getModifiedUserInputObject(
-        state.getIn(['mediaList']).asMutable({ deep: true }),
-        action.fieldTreeName,
-        action.mediaList != null ? { ...action.mediaList } : null
-      );
+    case MEDIA_LIST_ADDED:
+      const modifiedMediaList = {
+        ...state.getIn(['mediaList']).asMutable({ deep: true }),
+        [action.mediaObject.name]: action.mediaObject,
+      };
       const newMediaState = state.asMutable({ deep: true });
       return SeamlessImmutable({
         ...newMediaState,
-        mediaList: modifiedMediaObject,
+        mediaList: modifiedMediaList,
       });
 
     case REMOVE_FROM_MEDIA_LIST:
@@ -546,4 +539,14 @@ export function getUserInputFromStore(state: Partial<Store>): any {
  */
 export function getFormSubmitStatus(state: Partial<Store>): any {
   return (state as any).isFormSubmitted;
+}
+
+/** get the file if present in store
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fileName - the fileName
+ * @return {any} - the file or null
+ */
+export function getFileObject(state: Partial<Store>, fileName: string): any {
+  const fileObject = (state as any).getIn(['mediaList', fileName]);
+  return fileObject ? (state as any).getIn(['mediaList', fileName]) : null;
 }
