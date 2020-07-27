@@ -10,7 +10,7 @@ export interface OdkFormRendererProps {
   formDefinitionJson: any;
   languageOptions: any;
   userInputJson: any;
-  handleSubmit(userInput: any): any;
+  handleSubmit: (userInput: any, mediaList: any) => any;
 }
 
 class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
