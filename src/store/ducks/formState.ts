@@ -550,3 +550,11 @@ export function getFileObject(state: Partial<Store>, fileName: string): any {
   const fileObject = (state as any).getIn(['mediaList', fileName]);
   return fileObject ? (state as any).getIn(['mediaList', fileName]) : null;
 }
+
+/** get all the files
+ * @param {Partial<Store>} state - the redux store
+ * @return {any} - the files or empty object
+ */
+export function getAllFileObjects(state: Partial<Store>): any {
+  return (state as any).getIn(['mediaList']);
+}
