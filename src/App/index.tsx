@@ -12,7 +12,6 @@ import KbAlert from '../components/Alert';
 import DropDown from '../components/DropDown';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
-  assignMediaListAction,
   getUserInputFromStore,
   isErrorsArrayEmpty,
   resetStoreAction,
@@ -160,7 +159,6 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
 
 /** map props to actions */
 const mapDispatchToProps = {
-  assignMediaListActionCreator: assignMediaListAction,
   resetStoreActionCreator: resetStoreAction,
   setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
