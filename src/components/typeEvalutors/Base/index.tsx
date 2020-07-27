@@ -4,6 +4,7 @@ import {
   DATE_FIELD_TYPE,
   DATE_TIME_FIELD_TYPE,
   DECIMAL_FIELD_TYPE,
+  FILE_FIELD_TYPE,
   INTEGER_FIELD_TYPE,
   NOTE_FIELD_TYPE,
   PHOTO_FIELD_TYPE,
@@ -178,6 +179,14 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
           />
         );
       case PHOTO_FIELD_TYPE:
+        return (
+          <File
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
+          />
+        );
+      case FILE_FIELD_TYPE:
         return (
           <File
             fieldElement={fieldElement}
