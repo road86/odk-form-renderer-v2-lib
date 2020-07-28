@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Input, Label } from 'reactstrap';
@@ -12,6 +13,7 @@ import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  getFormSubmitStatus,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
@@ -33,6 +35,7 @@ export interface DateProps {
   fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -48,10 +51,12 @@ class KbDate extends React.Component<DateProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
       fieldValue &&
@@ -110,12 +115,17 @@ class KbDate extends React.Component<DateProps> {
         const modifiedDate = new Date(fieldValue);
         defaultValue = modifiedDate.toISOString().slice(0, 10);
       }
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
       return (
         <FormGroup>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <Input
             type="date"
             name={fieldElement.name}
@@ -123,8 +133,11 @@ class KbDate extends React.Component<DateProps> {
             value={defaultValue}
             readOnly={isReadonly}
           />
+          {isFormSubmitted && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
-          {isRequiredViolated && (
+          {isFormSubmitted && isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
           )}
           {isConstraintViolated && (
@@ -167,6 +180,7 @@ class KbDate extends React.Component<DateProps> {
 interface DispatchedStateProps {
   fieldValue: any;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
@@ -189,9 +203,11 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,

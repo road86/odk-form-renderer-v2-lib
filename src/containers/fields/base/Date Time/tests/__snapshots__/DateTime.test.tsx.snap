@@ -29,6 +29,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
     }
     fieldParentTreeName=""
     fieldValue="2019-11-12T07:02:00.000Z"
+    getFormSubmitStatusSelector={false}
   >
     <DateTime
       addErrorInputIdActionCreator={[Function]}
@@ -49,6 +50,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
       fieldParentTreeName=""
       fieldValue="2019-11-12T07:02:00.000Z"
       getEvaluatedExpressionSelector={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
@@ -75,25 +77,12 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
               className=""
             >
               End Date Time
-            </label>
-          </Label>
-          <Label
-            className="requiredTextSteric"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <label
-              className="requiredTextSteric"
-            >
-              *
+               
+              <span
+                className="requiredTextSteric"
+              >
+                *
+              </span>
             </label>
           </Label>
           <br />
@@ -128,7 +117,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
             previousYearButtonLabel="Previous Year"
             readOnly={false}
             renderDayContents={[Function]}
-            selected={2019-11-12T07:02:00.000Z}
+            selected={2019-11-12T13:02:00.000Z}
             shouldCloseOnSelect={true}
             showMonthYearPicker={false}
             showPopperArrow={true}
@@ -173,7 +162,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
                     placeholder="mm/dd/yyyy h:m aa"
                     readOnly={false}
                     type="text"
-                    value="11/12/2019 1:02 PM"
+                    value="11/12/2019 7:02 PM"
                   />
                 </div>
               }
@@ -203,7 +192,7 @@ exports[`containers/fields/base/Date Time renders correctly 1`] = `
                           placeholder="mm/dd/yyyy h:m aa"
                           readOnly={false}
                           type="text"
-                          value="11/12/2019 1:02 PM"
+                          value="11/12/2019 7:02 PM"
                         />
                       </div>
                     </div>

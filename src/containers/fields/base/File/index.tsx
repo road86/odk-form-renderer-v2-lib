@@ -1,34 +1,45 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
   FieldParentTreeName,
 } from '../../../../components/typeEvalutors/Base';
-
+import { REQUIRED_FIELD_MSG, REQUIRED_SYMBOL } from '../../../../constants';
+import { PHOTO_FIELD_TYPE } from '../../../../constants';
 import {
   addErrorInputId,
+  addMediaListAction,
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  getFormSubmitStatus,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
 import {
+  customizeLabelsWithPreviousInputs,
+  getConstraintLabelText,
+  getFieldLabelText,
+  getHintLabelText,
   isInputRequired,
   shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
+import FilePreview from './FilePreview/FilePreview';
 
-/** props interface for the calculate component */
-export interface CalculateProps {
+/** props interface for the file component */
+export interface FileProps {
   fieldElement: FieldElement;
   fieldParentTreeName: FieldParentTreeName;
   fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
+  addMediaListActionCreator: typeof addMediaListAction;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -36,7 +47,7 @@ export interface CalculateProps {
   defaultLanguage: string;
 }
 
-class Calculate extends React.Component<CalculateProps> {
+class File extends React.Component<FileProps> {
   public render() {
     const {
       fieldElement,
@@ -44,9 +55,12 @@ class Calculate extends React.Component<CalculateProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
+      defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
       fieldValue &&
@@ -56,6 +70,23 @@ class Calculate extends React.Component<CalculateProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
+    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      fieldLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+    const constraintLabel = getConstraintLabelText(
+      fieldElement,
+      defaultLanguage
+    );
+    const modifiedConstraintLabel = customizeLabelsWithPreviousInputs(
+      getEvaluatedExpressionSelector,
+      constraintLabel,
+      fieldParentTreeName + fieldElement.name
+    );
+
+    const hintLabel = getHintLabelText(fieldElement, defaultLanguage);
 
     if (isComponentRender) {
       if (fieldValue == null && 'default' in fieldElement) {
@@ -85,30 +116,51 @@ class Calculate extends React.Component<CalculateProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      let calculatedValue: any = '';
-      if (fieldElement.bind && fieldElement.bind.calculate) {
-        calculatedValue = this.props.getEvaluatedExpressionSelector(
-          fieldElement.bind.calculate,
-          fieldParentTreeName + fieldElement.name
-        );
-      }
 
-      if (calculatedValue && fieldValue !== calculatedValue) {
-        this.props.assignFieldValueActionCreator(
-          fieldParentTreeName + fieldElement.name,
-          calculatedValue
-        );
-      }
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
 
       return (
-        <div>
-          <Input
-            type="hidden"
-            name={fieldElement.name}
-            value={calculatedValue || ''}
-            readOnly={isReadonly}
-          />
-        </div>
+        <FormGroup>
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
+          {fieldValue ? (
+            <FilePreview
+              fieldName={fieldParentTreeName + fieldElement.name}
+              fieldValue={fieldValue}
+            />
+          ) : fieldElement.type === PHOTO_FIELD_TYPE ? (
+            <Input
+              type="file"
+              accept="image/*"
+              name={fieldElement.name}
+              onChange={this.onChangeHandler}
+              readOnly={isReadonly}
+            />
+          ) : (
+            <Input
+              type="file"
+              name={fieldElement.name}
+              onChange={this.onChangeHandler}
+              readOnly={isReadonly}
+            />
+          )}
+          {isFormSubmitted && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
+          {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
+          {isFormSubmitted && isRequiredViolated && (
+            <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
+          )}
+          {isConstraintViolated && (
+            <Label className="constraintText">{modifiedConstraintLabel}</Label>
+          )}
+        </FormGroup>
       );
     } else {
       if (fieldValue != null) {
@@ -125,6 +177,24 @@ class Calculate extends React.Component<CalculateProps> {
       return null;
     }
   }
+
+  /** sets the value of field element in store
+   * @param event - the onchange input event
+   */
+  private onChangeHandler = (event: any) => {
+    if (event.target.files[0]) {
+      this.props.assignFieldValueActionCreator(
+        this.props.fieldParentTreeName + event.target.name,
+        event.target.files[0].name
+      );
+      this.props.addMediaListActionCreator(event.target.files[0]);
+    } else {
+      this.props.assignFieldValueActionCreator(
+        this.props.fieldParentTreeName + event.target.name,
+        null
+      );
+    }
+  };
 }
 
 /** connect the component to the store */
@@ -133,6 +203,7 @@ class Calculate extends React.Component<CalculateProps> {
 interface DispatchedStateProps {
   fieldValue: any;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
@@ -155,9 +226,11 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,
@@ -171,14 +244,15 @@ const mapStateToProps = (
 /** map props to actions */
 const mapDispatchToProps = {
   addErrorInputIdActionCreator: addErrorInputId,
+  addMediaListActionCreator: addMediaListAction,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId,
 };
 
-/** connect Calculate component to the redux store */
-const ConnectedCalculate = connect(
+/** connect File component to the redux store */
+const ConnectedFile = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Calculate);
+)(File);
 
-export default ConnectedCalculate;
+export default ConnectedFile;

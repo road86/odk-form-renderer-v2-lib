@@ -1,11 +1,7 @@
-export const selectAllDropDownFieldElement = {
+export const selectAllRadioFieldElement = {
   bind: {
     required: 'Yes',
   },
-  control: {
-    appearance: 'minimal',
-  },
-
   children: [
     {
       label: 'A',
@@ -16,7 +12,7 @@ export const selectAllDropDownFieldElement = {
       name: 'b',
     },
   ],
-  hint: 'select_multiple type with minimal appearance, 4 image choices',
+  hint: 'select_multiple type, 4 image choices',
   label: 'Spinner widget: select multiple',
   name: 'spinner_multi_widget',
   type: 'select all that apply',

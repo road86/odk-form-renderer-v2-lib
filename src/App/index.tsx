@@ -1,5 +1,9 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExclamationCircle,
+  faMinusCircle,
+  faPlusCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Button, Col, Container, Row } from 'reactstrap';
@@ -8,13 +12,15 @@ import KbAlert from '../components/Alert';
 import DropDown from '../components/DropDown';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
+  getAllFileObjects,
   getUserInputFromStore,
   isErrorsArrayEmpty,
   resetStoreAction,
+  setFormSubmitStatus,
   setUserInputObj,
 } from '../store/ducks/formState';
 
-library.add(faPlusCircle, faMinusCircle);
+library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
 
 export interface AppProps {
   choices: any;
@@ -27,8 +33,10 @@ export interface AppProps {
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
   languageOptions: any;
+  setFormSubmitStatusAction: typeof setFormSubmitStatus;
   resetStoreActionCreator: typeof resetStoreAction;
-  handleSubmit(userInput: any): any;
+  mediaList: any;
+  handleSubmit(userInput: any, mediaList: any): any;
 }
 
 export interface AppState {
@@ -118,12 +126,13 @@ class App extends React.Component<AppProps, AppState> {
 
   // tslint:disable-next-line: variable-name
   private handleClick = (_event: React.MouseEvent<HTMLButtonElement>) => {
-    const { handleSubmit, isNoErrors, userInputObj } = this.props;
+    const { handleSubmit, isNoErrors, userInputObj, mediaList } = this.props;
     if (isNoErrors) {
-      handleSubmit(userInputObj);
+      handleSubmit(userInputObj, mediaList);
     } else {
-      handleSubmit('Field Violated');
+      handleSubmit('Field Violated', mediaList);
       this.setState({ isSubmissionError: true });
+      this.props.setFormSubmitStatusAction(true);
       window.scrollTo(0, 0);
     }
   };
@@ -139,12 +148,14 @@ class App extends React.Component<AppProps, AppState> {
 interface DispatchedStateProps {
   isNoErrors: any;
   userInputObj: any;
+  mediaList: any;
 }
 
 /** Map props to state  */
 const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
   const result = {
     isNoErrors: isErrorsArrayEmpty(state),
+    mediaList: getAllFileObjects(state),
     userInputObj: getUserInputFromStore(state),
   };
   return result;
@@ -153,6 +164,7 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
 /** map props to actions */
 const mapDispatchToProps = {
   resetStoreActionCreator: resetStoreAction,
+  setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
 };
 
