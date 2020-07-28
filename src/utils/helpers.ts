@@ -62,6 +62,7 @@ export function customizeLabelsWithPreviousInputs(
   }
   const placesOfCustomizationsRequiredList = labelText.match(/\[(.*?)\]/g);
 
+  // to calculate - i.e, [${departure_date_from_bangladesh}]
   if (placesOfCustomizationsRequiredList) {
     placesOfCustomizationsRequiredList.forEach(tmpPlace => {
       tmpPlace = tmpPlace.substring(1, tmpPlace.length - 1);
@@ -73,6 +74,19 @@ export function customizeLabelsWithPreviousInputs(
         labelText = labelText.replace(tmp, '');
       }
     });
+  } else {
+    // to calculate - i.e, ${departure_date_from_bangladesh}
+    const matchList = labelText.match(/\${(.*[^}])[\}?]$/g);
+    if (matchList) {
+      matchList.forEach(tmpPlace => {
+        const customizedName = evaluator(tmpPlace, fieldTreeName);
+        if (customizedName != null && customizedName !== undefined) {
+          labelText = labelText.replace(tmpPlace, customizedName);
+        } else {
+          labelText = labelText.replace(tmpPlace, '');
+        }
+      });
+    }
   }
 
   return labelText;

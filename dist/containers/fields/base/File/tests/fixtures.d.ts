@@ -1,4 +1,4 @@
-export declare const photoFieldElement: {
+export declare const fileFieldElement: {
     hint: string;
     label: string;
     name: string;

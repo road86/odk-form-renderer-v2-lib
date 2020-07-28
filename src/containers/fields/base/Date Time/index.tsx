@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
@@ -13,6 +14,7 @@ import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  getFormSubmitStatus,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
@@ -36,6 +38,7 @@ export interface DateTimeProps {
   fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -51,10 +54,12 @@ class DateTime extends React.Component<DateTimeProps> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     const isConstraintViolated =
       fieldValue &&
@@ -110,16 +115,29 @@ class DateTime extends React.Component<DateTimeProps> {
         );
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
+      let modifiedDate: any = null;
+      if (fieldValue) {
+        modifiedDate = new Date(fieldValue);
+        const timeZoneOffset = modifiedDate.getTimezoneOffset() / 60;
+        modifiedDate.setHours(modifiedDate.getHours() - timeZoneOffset);
+      }
+
       return (
         <FormGroup>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <br />
           <DatePicker
             name={fieldElement.name}
-            selected={fieldValue ? new Date(fieldValue) : null}
+            selected={fieldValue ? modifiedDate : null}
             onChange={this.handleChange(fieldElement.name)}
             showTimeSelect={true}
             timeFormat="h:m aa"
@@ -131,8 +149,11 @@ class DateTime extends React.Component<DateTimeProps> {
             readOnly={isReadonly}
           />
           <br />
+          {isFormSubmitted && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
-          {isRequiredViolated && (
+          {isFormSubmitted && isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
           )}
           {isConstraintViolated && (
@@ -157,9 +178,12 @@ class DateTime extends React.Component<DateTimeProps> {
   }
 
   private handleChange = (name: any) => (value: any) => {
+    const modifiedDate: any = new Date(value);
+    const timeZoneOffset = modifiedDate.getTimezoneOffset() / 60;
+    modifiedDate.setHours(modifiedDate.getHours() + timeZoneOffset);
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + name,
-      value !== '' ? new Date(value) : null
+      value !== '' ? modifiedDate : null
     );
   };
 }
@@ -170,6 +194,7 @@ class DateTime extends React.Component<DateTimeProps> {
 interface DispatchedStateProps {
   fieldValue: string;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
@@ -192,9 +217,11 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,

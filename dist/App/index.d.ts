@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { resetStoreAction, setUserInputObj } from '../store/ducks/formState';
+import { resetStoreAction, setFormSubmitStatus, setUserInputObj } from '../store/ducks/formState';
 export interface AppProps {
     choices: any;
     csvList: any;
@@ -11,8 +11,10 @@ export interface AppProps {
     fieldElements: any;
     setUserInputAction: typeof setUserInputObj;
     languageOptions: any;
+    setFormSubmitStatusAction: typeof setFormSubmitStatus;
     resetStoreActionCreator: typeof resetStoreAction;
-    handleSubmit(userInput: any): any;
+    mediaList: any;
+    handleSubmit(userInput: any, mediaList: any): any;
 }
 export interface AppState {
     defaultLanguage: string;

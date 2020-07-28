@@ -49,6 +49,7 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
       fieldParentTreeName=""
       fieldValue="hello"
       getEvaluatedExpressionSelector={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
@@ -75,25 +76,12 @@ exports[`containers/fields/base/Text renders correctly 1`] = `
               className=""
             >
               Name of the event
-            </label>
-          </Label>
-          <Label
-            className="requiredTextSteric"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <label
-              className="requiredTextSteric"
-            >
-              *
+               
+              <span
+                className="requiredTextSteric"
+              >
+                *
+              </span>
             </label>
           </Label>
           <Input

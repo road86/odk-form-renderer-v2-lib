@@ -20,6 +20,7 @@ describe('containers/fields/base/Decimal', () => {
       fieldElement: decimalFieldElement,
       fieldParentTreeName: '',
       fieldValue: 12.23,
+      getFormSubmitStatusSelector: false,
     };
     shallow(
       <Provider store={store}>
@@ -36,6 +37,7 @@ describe('containers/fields/base/Decimal', () => {
       fieldElement: decimalFieldElement,
       fieldParentTreeName: '',
       fieldValue: 12.23,
+      getFormSubmitStatusSelector: false,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)

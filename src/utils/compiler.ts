@@ -260,7 +260,7 @@ function tokenizeDiv(input: any, current: any) {
 }
 
 function tokenizeName(input: any, current: any) {
-  return tokenizePattern('name', /[a-z]/i, input, current);
+  return tokenizePattern('name', /[a-z_]/i, input, current);
 }
 
 function skipWhiteSpace(input: any, current: any) {
@@ -608,7 +608,7 @@ function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
     if (tokens[current].value.toLowerCase() === 'false') {
       return [1, false];
     }
-    if (tokens[current].value in formItemProperty) {
+    if (formItemProperty && tokens[current].value in formItemProperty) {
       return [1, formItemProperty[tokens[current].value]];
     }
     return [1, null];
