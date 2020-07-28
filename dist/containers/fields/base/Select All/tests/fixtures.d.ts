@@ -1,9 +1,6 @@
-export declare const selectAllDropDownFieldElement: {
+export declare const selectAllRadioFieldElement: {
     bind: {
         required: string;
-    };
-    control: {
-        appearance: string;
     };
     children: {
         label: string;

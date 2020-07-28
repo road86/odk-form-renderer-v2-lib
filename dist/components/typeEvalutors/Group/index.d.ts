@@ -8,6 +8,7 @@ export interface GroupTypeEvaluatorProps {
     fieldElements: FieldElement[];
     fieldParentTreeName: string;
     isAppearanceApplicable: boolean;
+    getEvaluatedExpressionSelector: any;
 }
 declare class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
     render(): JSX.Element;
@@ -20,4 +21,6 @@ declare class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps
     private typeEvaluator;
     private getAppearanceValue;
 }
-export default GroupTypeEvaluator;
+/** connect GroupTypeEvaluator component to the redux store */
+declare const ConnectedGroupTypeEvaluator: import("react-redux").ConnectedComponent<typeof GroupTypeEvaluator, Pick<GroupTypeEvaluatorProps, "choices" | "csvList" | "defaultLanguage" | "fieldElements" | "fieldParentTreeName" | "isAppearanceApplicable">>;
+export default ConnectedGroupTypeEvaluator;

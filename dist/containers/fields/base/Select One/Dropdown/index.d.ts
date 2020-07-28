@@ -12,6 +12,7 @@ export interface SelectOneDropDownProps {
     assignFieldValueActionCreator: typeof assignFieldValueAction;
     assignOptionListActionCreator: typeof assignOptionListAction;
     getEvaluatedExpressionSelector: any;
+    getFormSubmitStatusSelector: boolean;
     getEvaluatedExpressionSelectorForSelect: any;
     isComponentRender: boolean;
     isPresentInErrorSelector: any;

@@ -13,6 +13,7 @@ export interface SelectOneRadioProps {
     assignOptionListActionCreator: typeof assignOptionListAction;
     getEvaluatedExpressionSelector: any;
     getEvaluatedExpressionSelectorForSelect: any;
+    getFormSubmitStatusSelector: boolean;
     isComponentRender: boolean;
     isPresentInErrorSelector: any;
     addErrorInputIdActionCreator: typeof addErrorInputId;

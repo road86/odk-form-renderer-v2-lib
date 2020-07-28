@@ -5,11 +5,17 @@ export interface FormState {
     userInput: object;
     errors: string[];
     optionList: object;
+    isFormSubmitted: boolean;
+    mediaList: object;
 }
 /** FIELD_VALUE_ASSIGNED action type */
 export declare const FIELD_VALUE_ASSIGNED = "odk/reducer/form/FIELD_VALUE_ASSIGNED";
 /** OPTION_LIST_ASSIGNED action type */
 export declare const OPTION_LIST_ASSIGNED = "odk/reducer/form/OPTION_LIST_ASSIGNED";
+/** MEDIA_LIST_ASSIGNED action type */
+export declare const MEDIA_LIST_ADDED = "odk/reducer/form/MEDIA_LIST_ADDED";
+/** REMOVE_FROM_MEDIA_LIST action type */
+export declare const REMOVE_FROM_MEDIA_LIST = "odk/reducer/form/REMOVE_FROM_MEDIA_LIST";
 /** REMOVE_FROM_OPTION_LIST action type */
 export declare const REMOVE_FROM_OPTION_LIST_REPEAT = "odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT";
 /** RESET_STORE action type */
@@ -23,6 +29,7 @@ export declare const EMPTY_GROUP_FIELDS = "odk/reducer/form/EMPTY_GROUP_FIELDS";
 /** REMOVE_GROUP_FIELDS_FROM_ERRORS */
 export declare const REMOVE_GROUP_FIELDS_FROM_ERRORS = "odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS";
 export declare const SET_USER_INPUT_OBJ = "odk/reducer/form/SET_USER_INPUT_OBJ";
+export declare const SET_FORM_SUBMIT_STATUS = "odk/reducer/form/SET_FORM_SUBMIT_STATUS";
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
     fieldTreeName: string;
@@ -34,6 +41,17 @@ export interface AssignOptionListAction extends AnyAction {
     fieldTreeName: string;
     optionList: any;
     type: typeof OPTION_LIST_ASSIGNED;
+}
+/** interface for MEDIA_LIST_ADDED action */
+export interface AddMediaListAction extends AnyAction {
+    mediaObject: any;
+    type: typeof MEDIA_LIST_ADDED;
+}
+/** interface for REMOVE_FROM_MEDIA_LIST action */
+export interface RemoveFromMediaListAction extends AnyAction {
+    fieldTreeName: string;
+    mediaList: any;
+    type: typeof REMOVE_FROM_MEDIA_LIST;
 }
 /** interface for REMOVE_FROM_OPTION_LIST action */
 export interface RemoveFromOptionList extends AnyAction {
@@ -70,6 +88,11 @@ export interface SetUserInputObj extends AnyAction {
     userInputObj: any;
     type: typeof SET_USER_INPUT_OBJ;
 }
+/** interface for SET_FORM_SUBMIT_STATUS action */
+export interface SetFormSubmitStatus extends AnyAction {
+    isFormSubmitted: boolean;
+    type: typeof SET_FORM_SUBMIT_STATUS;
+}
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the value that will be assigned
@@ -78,7 +101,7 @@ export interface SetUserInputObj extends AnyAction {
 export declare const assignFieldValueAction: (fieldTreeName: string, fieldValue: any) => AssignFieldValueAction;
 /** Assigns option list to the proper field name
  * @param {string} fieldTreeName - the extended field name
- * @param {any} fieldValue - the option list that will be assigned
+ * @param {any} optionList - the option list that will be assigned
  * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
  */
 export declare const assignOptionListAction: (fieldTreeName: string, optionList: any) => AssignOptionListAction;
@@ -87,6 +110,16 @@ export declare const assignOptionListAction: (fieldTreeName: string, optionList:
  * @returns {RemoveFromOptionList} - an action to remove input id for errors
  */
 export declare const RemoveFromOptionList: (fieldTreeName: string, repeatIndex: number) => RemoveFromOptionList;
+/** Adds media object to the proper field name
+ * @param {any} mediaObject - the media object that will be added
+ * @return {AddMediaListAction} - an action to assign media object to a field in the redux store
+ */
+export declare const addMediaListAction: (mediaObject: any) => AddMediaListAction;
+/** Remove a media item in option list from Redux Store
+ * @param fieldTreeName - the field tree name
+ * @returns {RemoveFromMediaListAction} - an action to remove media info from redux store
+ */
+export declare const removeFromMediaListAction: (fieldTreeName: string, mediaList: any) => RemoveFromMediaListAction;
 /** Resets the redux store state to initial state
  * @return {ResetStoreAction} - an action to reset the redux store state
  */
@@ -116,8 +149,13 @@ export declare const removeGroupFieldsFromErrors: (fieldTreeName: string) => Rem
  * @returns {SetUserInputObj} - an action to set user input to redux store
  */
 export declare const setUserInputObj: (userInputObj: any) => SetUserInputObj;
+/** sets the form submit info to redux store
+ * @param {boolean} isFormSubmitted - the form submit info variable
+ * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
+ */
+export declare const setFormSubmitStatus: (isFormSubmitted: boolean) => SetFormSubmitStatus;
 /** Create type for forms reducer actions */
-export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | AnyAction;
+export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | AddMediaListAction | RemoveFromMediaListAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | SetFormSubmitStatus | AnyAction;
 /** Create an immutable form state */
 export declare type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
@@ -179,3 +217,19 @@ export declare function isErrorsArrayEmpty(state: Partial<Store>): any;
  * @return {boolean} the current userInputObject
  */
 export declare function getUserInputFromStore(state: Partial<Store>): any;
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current isFormSubmitted
+ */
+export declare function getFormSubmitStatus(state: Partial<Store>): any;
+/** get the file if present in store
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fileName - the fileName
+ * @return {any} - the file or null
+ */
+export declare function getFileObject(state: Partial<Store>, fileName: string): any;
+/** get all the files
+ * @param {Partial<Store>} state - the redux store
+ * @return {any} - the files or empty object
+ */
+export declare function getAllFileObjects(state: Partial<Store>): any;

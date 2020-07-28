@@ -8,6 +8,7 @@ export interface TextProps {
     fieldValue: string;
     assignFieldValueActionCreator: typeof assignFieldValueAction;
     getEvaluatedExpressionSelector: any;
+    getFormSubmitStatusSelector: boolean;
     isPresentInErrorSelector: any;
     isComponentRender: boolean;
     addErrorInputIdActionCreator: typeof addErrorInputId;
