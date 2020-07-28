@@ -11,9 +11,11 @@ import {
 import './index.css';
 
 const App = () => {
-  const handleSubmit = (userInput: any) => {
+  const handleSubmit = (userInput: any, mediaList: any) => {
     // tslint:disable-next-line: no-console
     console.log(JSON.stringify(userInput));
+    // tslint:disable-next-line: no-console
+    console.log('mediaList', mediaList);
   };
 
   const props = {
