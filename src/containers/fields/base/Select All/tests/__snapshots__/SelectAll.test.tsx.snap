@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop Down 1`] = `
+exports[`containers/fields/group/Select All/Dropdown renders correctly for Select All Radio 1`] = `
 <Provider
   store={
     Object {
@@ -32,10 +32,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
             "name": "b",
           },
         ],
-        "control": Object {
-          "appearance": "minimal",
-        },
-        "hint": "select_multiple type with minimal appearance, 4 image choices",
+        "hint": "select_multiple type, 4 image choices",
         "label": "Spinner widget: select multiple",
         "name": "spinner_multi_widget",
         "type": "select all that apply",
@@ -48,6 +45,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
         "b",
       ]
     }
+    getFormSubmitStatusSelector={false}
   >
     <SelectAllRadio
       addErrorInputIdActionCreator={[Function]}
@@ -71,10 +69,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
               "name": "b",
             },
           ],
-          "control": Object {
-            "appearance": "minimal",
-          },
-          "hint": "select_multiple type with minimal appearance, 4 image choices",
+          "hint": "select_multiple type, 4 image choices",
           "label": "Spinner widget: select multiple",
           "name": "spinner_multi_widget",
           "type": "select all that apply",
@@ -89,6 +84,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
       }
       getEvaluatedExpressionSelector={[Function]}
       getEvaluatedExpressionSelectorForSelect={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       optionList={
@@ -122,25 +118,12 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
             className=""
           >
             Spinner widget: select multiple
-          </label>
-        </Label>
-        <Label
-          className="requiredTextSteric"
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-            ]
-          }
-        >
-          <label
-            className="requiredTextSteric"
-          >
-            *
+             
+            <span
+              className="requiredTextSteric"
+            >
+              *
+            </span>
           </label>
         </Label>
         <Form
@@ -268,7 +251,7 @@ exports[`containers/fields/group/Select All/Dropdown renders correctly for Drop 
           <label
             className="hintText"
           >
-            select_multiple type with minimal appearance, 4 image choices
+            select_multiple type, 4 image choices
           </label>
         </Label>
       </div>

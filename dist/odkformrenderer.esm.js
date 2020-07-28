@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React__default, { createElement, Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import { Alert, FormGroup, Label, Input, FormText, Form, Row, Col, Container, Button } from 'reactstrap';
+import { faPlusCircle, faMinusCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { Alert, FormGroup, Label, Input, Button, FormText, Form, Row, Col, Container } from 'reactstrap';
 import Select from 'react-select';
 import SeamlessImmutable from 'seamless-immutable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -129,6 +129,7 @@ var TIME_FIELD_TYPE = 'time';
 var INTEGER_FIELD_TYPE = 'integer';
 var DECIMAL_FIELD_TYPE = 'decimal';
 var PHOTO_FIELD_TYPE = 'photo';
+var FILE_FIELD_TYPE = 'file';
 var NOTE_FIELD_TYPE = 'note';
 var SELECT_ONE_FIELD_TYPE = 'select one';
 var SELECT_ALL_FIELD_TYPE = 'select all that apply';
@@ -452,7 +453,7 @@ function tokenizeDiv(input, current) {
 }
 
 function tokenizeName(input, current) {
-  return tokenizePattern('name', /[a-z]/i, input, current);
+  return tokenizePattern('name', /[a-z_]/i, input, current);
 }
 
 function skipWhiteSpace(input, current) {
@@ -801,7 +802,7 @@ function parseLiterals(_tmpOutput, tokens, current) {
       return [1, false];
     }
 
-    if (tokens[current].value in formItemProperty) {
+    if (formItemProperty && tokens[current].value in formItemProperty) {
       return [1, formItemProperty[tokens[current].value]];
     }
 
@@ -1640,7 +1641,7 @@ function customizeLabelsWithPreviousInputs(evaluator, labelText, fieldTreeName) 
     return null;
   }
 
-  var placesOfCustomizationsRequiredList = labelText.match(/\[(.*?)\]/g);
+  var placesOfCustomizationsRequiredList = labelText.match(/\[(.*?)\]/g); // to calculate - i.e, [${departure_date_from_bangladesh}]
 
   if (placesOfCustomizationsRequiredList) {
     placesOfCustomizationsRequiredList.forEach(function (tmpPlace) {
@@ -1654,6 +1655,21 @@ function customizeLabelsWithPreviousInputs(evaluator, labelText, fieldTreeName) 
         labelText = labelText.replace(tmp, '');
       }
     });
+  } else {
+    // to calculate - i.e, ${departure_date_from_bangladesh}
+    var matchList = labelText.match(/\${(.*[^}])[\}?]$/g);
+
+    if (matchList) {
+      matchList.forEach(function (tmpPlace) {
+        var customizedName = evaluator(tmpPlace, fieldTreeName);
+
+        if (customizedName != null && customizedName !== undefined) {
+          labelText = labelText.replace(tmpPlace, customizedName);
+        } else {
+          labelText = labelText.replace(tmpPlace, '');
+        }
+      });
+    }
   }
 
   return labelText;
@@ -1993,6 +2009,12 @@ var FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 /** OPTION_LIST_ASSIGNED action type */
 
 var OPTION_LIST_ASSIGNED = 'odk/reducer/form/OPTION_LIST_ASSIGNED';
+/** MEDIA_LIST_ASSIGNED action type */
+
+var MEDIA_LIST_ADDED = 'odk/reducer/form/MEDIA_LIST_ADDED';
+/** REMOVE_FROM_MEDIA_LIST action type */
+
+var REMOVE_FROM_MEDIA_LIST = 'odk/reducer/form/REMOVE_FROM_MEDIA_LIST';
 /** REMOVE_FROM_OPTION_LIST action type */
 
 var REMOVE_FROM_OPTION_LIST_REPEAT = 'odk/reducer/form/REMOVE_FROM_OPTION_LIST_REPEAT';
@@ -2012,6 +2034,7 @@ var EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 
 var REMOVE_GROUP_FIELDS_FROM_ERRORS = 'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 var SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
+var SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the value that will be assigned
@@ -2027,7 +2050,7 @@ var assignFieldValueAction = function assignFieldValueAction(fieldTreeName, fiel
 };
 /** Assigns option list to the proper field name
  * @param {string} fieldTreeName - the extended field name
- * @param {any} fieldValue - the option list that will be assigned
+ * @param {any} optionList - the option list that will be assigned
  * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
  */
 
@@ -2048,6 +2071,17 @@ var RemoveFromOptionList = function RemoveFromOptionList(fieldTreeName, repeatIn
     fieldTreeName: fieldTreeName,
     repeatIndex: repeatIndex,
     type: REMOVE_FROM_OPTION_LIST_REPEAT
+  };
+};
+/** Adds media object to the proper field name
+ * @param {any} mediaObject - the media object that will be added
+ * @return {AddMediaListAction} - an action to assign media object to a field in the redux store
+ */
+
+var addMediaListAction = function addMediaListAction(mediaObject) {
+  return {
+    mediaObject: mediaObject,
+    type: MEDIA_LIST_ADDED
   };
 };
 /** Resets the redux store state to initial state
@@ -2114,18 +2148,33 @@ var setUserInputObj = function setUserInputObj(userInputObj) {
     userInputObj: userInputObj
   };
 };
+/** sets the form submit info to redux store
+ * @param {boolean} isFormSubmitted - the form submit info variable
+ * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
+ */
+
+var setFormSubmitStatus = function setFormSubmitStatus(isFormSubmitted) {
+  return {
+    isFormSubmitted: isFormSubmitted,
+    type: SET_FORM_SUBMIT_STATUS
+  };
+};
 /** initial form state */
 
 var initialState =
 /*#__PURE__*/
 SeamlessImmutable({
   errors: [],
+  isFormSubmitted: false,
+  mediaList: {},
   optionList: {},
   userInput: {}
 });
 /** the form reducer function */
 
 function reducer(state, action) {
+  var _extends2;
+
   if (state === void 0) {
     state = initialState;
   }
@@ -2175,6 +2224,25 @@ function reducer(state, action) {
 
       return state;
 
+    case MEDIA_LIST_ADDED:
+      var modifiedMediaList = _extends({}, state.getIn(['mediaList']).asMutable({
+        deep: true
+      }), (_extends2 = {}, _extends2[action.mediaObject.name] = action.mediaObject, _extends2));
+
+      var newMediaState = state.asMutable({
+        deep: true
+      });
+      return SeamlessImmutable(_extends({}, newMediaState, {
+        mediaList: modifiedMediaList
+      }));
+
+    case REMOVE_FROM_MEDIA_LIST:
+      if (state.getIn(['mediaList']).asMutable({
+        deep: true
+      }).hasOwnProperty(action.fieldTreeName)) ;
+
+      return state;
+
     case RESET_STORE:
       return initialState;
 
@@ -2219,6 +2287,11 @@ function reducer(state, action) {
     case SET_USER_INPUT_OBJ:
       return SeamlessImmutable(_extends({}, state, {
         userInput: action.userInputObj
+      }));
+
+    case SET_FORM_SUBMIT_STATUS:
+      return SeamlessImmutable(_extends({}, state, {
+        isFormSubmitted: action.isFormSubmitted
       }));
 
     default:
@@ -2320,6 +2393,32 @@ function getUserInputFromStore(state) {
     deep: true
   });
 }
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current isFormSubmitted
+ */
+
+function getFormSubmitStatus(state) {
+  return state.isFormSubmitted;
+}
+/** get the file if present in store
+ * @param {Partial<Store>} state - the redux store
+ * @param {string} fileName - the fileName
+ * @return {any} - the file or null
+ */
+
+function getFileObject(state, fileName) {
+  var fileObject = state.getIn(['mediaList', fileName]);
+  return fileObject ? state.getIn(['mediaList', fileName]) : null;
+}
+/** get all the files
+ * @param {Partial<Store>} state - the redux store
+ * @return {any} - the files or empty object
+ */
+
+function getAllFileObjects(state) {
+  return state.getIn(['mediaList']);
+}
 
 var Group =
 /*#__PURE__*/
@@ -2352,7 +2451,7 @@ function (_React$Component) {
     if (isComponentRender) {
       return createElement(FormGroup, null, createElement(Label, {
         className: 'groupLabel'
-      }, fieldLabel), fieldElement.children && createElement(GroupTypeEvaluator, {
+      }, fieldLabel), fieldElement.children && createElement(ConnectedGroupTypeEvaluator, {
         choices: choices,
         fieldElements: fieldElement.children,
         fieldParentTreeName: fieldParentTreeName + 'group/' + fieldElement.name + '/',
@@ -2468,7 +2567,7 @@ function (_React$Component) {
 
     return React__default.createElement("div", {
       className: 'groupFormFieldBody'
-    }, fieldElement.children && React__default.createElement(GroupTypeEvaluator, {
+    }, fieldElement.children && React__default.createElement(ConnectedGroupTypeEvaluator, {
       choices: choices,
       fieldElements: fieldElement.children,
       fieldParentTreeName: fieldParentTreeName + 'repeat/' + fieldElement.name + '/' + repeatIndex + '/',
@@ -2861,11 +2960,11 @@ function (_React$Component) {
         calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
       }
 
-      if (calculatedValue !== fieldValue) {
+      if (calculatedValue && fieldValue !== calculatedValue) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
       }
 
-      return createElement(FormGroup, null, createElement(Input, {
+      return createElement("div", null, createElement(Input, {
         type: "hidden",
         name: fieldElement.name,
         value: calculatedValue || '',
@@ -2952,9 +3051,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -2983,17 +3084,21 @@ function (_React$Component) {
         defaultValue = modifiedDate.toISOString().slice(0, 10);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement(Input, {
+      }, REQUIRED_SYMBOL)), createElement(Input, {
         type: "date",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         value: defaultValue,
         readOnly: isReadonly
+      }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
       }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -3028,9 +3133,11 @@ var mapStateToProps$4 = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
   };
@@ -3062,7 +3169,11 @@ function (_React$Component) {
 
     _this.handleChange = function (name) {
       return function (value) {
-        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + name, value !== '' ? new Date(value) : null);
+        var modifiedDate = new Date(value);
+        var timeZoneOffset = modifiedDate.getTimezoneOffset() / 60;
+        modifiedDate.setHours(modifiedDate.getHours() + timeZoneOffset);
+
+        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + name, value !== '' ? modifiedDate : null);
       };
     };
 
@@ -3078,9 +3189,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -3102,11 +3215,20 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      var modifiedDate = null;
+
+      if (fieldValue) {
+        modifiedDate = new Date(fieldValue);
+        var timeZoneOffset = modifiedDate.getTimezoneOffset() / 60;
+        modifiedDate.setHours(modifiedDate.getHours() - timeZoneOffset);
+      }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement("br", null), createElement(DatePicker, {
+      }, REQUIRED_SYMBOL)), createElement("br", null), createElement(DatePicker, {
         name: fieldElement.name,
-        selected: fieldValue ? new Date(fieldValue) : null,
+        selected: fieldValue ? modifiedDate : null,
         onChange: this.handleChange(fieldElement.name),
         showTimeSelect: true,
         timeFormat: "h:m aa",
@@ -3116,9 +3238,12 @@ function (_React$Component) {
         placeholderText: "mm/dd/yyyy h:m aa",
         className: "form-control",
         readOnly: isReadonly
-      }), createElement("br", null), fieldElement.hint && createElement(Label, {
+      }), createElement("br", null), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -3153,9 +3278,11 @@ var mapStateToProps$5 = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
   };
@@ -3220,9 +3347,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (fieldValue === null || fieldValue === '' || fieldValue === undefined);
     var isConstraintViolated = fieldValue !== '' && fieldValue !== null && fieldValue !== undefined && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -3252,9 +3381,22 @@ function (_React$Component) {
       {
         fieldValue === 0 ? modifiedValue = '0' : modifiedValue = fieldValue;
       }
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        var calculatedValue = '';
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+
+        if (fieldValue && calculatedValue !== fieldValue) {
+          this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+        }
+
+        modifiedValue = calculatedValue;
+      }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement(Input, {
+      }, REQUIRED_SYMBOL)), createElement(Input, {
         type: "number",
         step: "any",
         name: fieldElement.name,
@@ -3262,9 +3404,12 @@ function (_React$Component) {
         onBlur: this.onBlurHandler,
         value: this.state.isFocused ? this.state.fieldValue || '' : modifiedValue || '',
         readOnly: isReadonly
+      }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
       }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -3305,9 +3450,11 @@ var mapStateToProps$6 = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
   };
@@ -3326,6 +3473,205 @@ var mapDispatchToProps$6 = {
 var ConnectedDecimal =
 /*#__PURE__*/
 connect(mapStateToProps$6, mapDispatchToProps$6)(Decimal);
+
+var FilePreview =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(FilePreview, _React$Component);
+
+  function FilePreview() {
+    return _React$Component.apply(this, arguments) || this;
+  }
+
+  var _proto = FilePreview.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        fieldName = _this$props.fieldName,
+        fieldValue = _this$props.fieldValue,
+        assignFieldValueActionCreator = _this$props.assignFieldValueActionCreator;
+
+    var removeHandler = function removeHandler() {
+      assignFieldValueActionCreator(fieldName, null);
+    };
+
+    return React__default.createElement(React__default.Fragment, null, React__default.createElement("p", {
+      className: "text-muted"
+    }, "Uploaded File Name: ", React__default.createElement("strong", {
+      className: "text-primary"
+    }, " ", fieldValue, " ")), React__default.createElement(Button, {
+      size: "sm",
+      color: "danger",
+      onClick: removeHandler
+    }, "Remove File"));
+  };
+
+  return FilePreview;
+}(React__default.Component);
+/** Map props to state  */
+
+
+var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
+  var fieldValue = parentProps.fieldValue;
+  var result = {
+    fileObject: getFileObject(state, fieldValue)
+  };
+  return result;
+};
+/** map props to actions */
+
+
+var mapDispatchToProps$7 = {
+  assignFieldValueActionCreator: assignFieldValueAction
+};
+/** connect FilePreview component to the redux store */
+
+var ConnectedFilePreview =
+/*#__PURE__*/
+connect(mapStateToProps$7, mapDispatchToProps$7)(FilePreview);
+
+var File =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(File, _React$Component);
+
+  function File() {
+    var _this;
+
+    _this = _React$Component.apply(this, arguments) || this;
+    /** sets the value of field element in store
+     * @param event - the onchange input event
+     */
+
+    _this.onChangeHandler = function (event) {
+      if (event.target.files[0]) {
+        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.target.name, event.target.files[0].name);
+
+        _this.props.addMediaListActionCreator(event.target.files[0]);
+      } else {
+        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.target.name, null);
+      }
+    };
+
+    return _this;
+  }
+
+  var _proto = File.prototype;
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        fieldElement = _this$props.fieldElement,
+        fieldParentTreeName = _this$props.fieldParentTreeName,
+        fieldValue = _this$props.fieldValue,
+        isComponentRender = _this$props.isComponentRender,
+        getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
+        isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
+        defaultLanguage = _this$props.defaultLanguage;
+    var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
+    var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
+    var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+    var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    var modifiedFieldLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, fieldLabel, fieldParentTreeName + fieldElement.name);
+    var constraintLabel = getConstraintLabelText(fieldElement, defaultLanguage);
+    var modifiedConstraintLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, constraintLabel, fieldParentTreeName + fieldElement.name);
+    var hintLabel = getHintLabelText(fieldElement, defaultLanguage);
+
+    if (isComponentRender) {
+      if (fieldValue == null && 'default' in fieldElement) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, fieldElement["default"]);
+      }
+
+      var isReadonly = shouldComponentBeReadOnly(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+
+      if ((isRequiredViolated || isConstraintViolated) && !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+        this.props.addErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
+      } else if (!isRequiredViolated && !isConstraintViolated && isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+        this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
+      }
+
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL)), fieldValue ? createElement(ConnectedFilePreview, {
+        fieldName: fieldParentTreeName + fieldElement.name,
+        fieldValue: fieldValue
+      }) : fieldElement.type === PHOTO_FIELD_TYPE ? createElement(Input, {
+        type: "file",
+        accept: "image/*",
+        name: fieldElement.name,
+        onChange: this.onChangeHandler,
+        readOnly: isReadonly
+      }) : createElement(Input, {
+        type: "file",
+        name: fieldElement.name,
+        onChange: this.onChangeHandler,
+        readOnly: isReadonly
+      }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
+    } else {
+      if (fieldValue != null) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
+
+        if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+          this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
+        }
+      }
+
+      return null;
+    }
+  };
+
+  return File;
+}(Component);
+/** Map props to state  */
+
+
+var mapStateToProps$8 = function mapStateToProps(state, parentProps) {
+  var fieldElement = parentProps.fieldElement,
+      fieldParentTreeName = parentProps.fieldParentTreeName;
+
+  var getEvaluatedExpressionSelector = function getEvaluatedExpressionSelector(expression, fieldTreeName) {
+    return getEvaluatedExpression(state, expression, fieldTreeName);
+  };
+
+  var isPresentInErrorSelector = function isPresentInErrorSelector(fieldTreeName) {
+    return isPresentInError(state, fieldTreeName);
+  };
+
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
+  var result = {
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
+    getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
+    isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
+    isPresentInErrorSelector: isPresentInErrorSelector
+  };
+  return result;
+};
+/** map props to actions */
+
+
+var mapDispatchToProps$8 = {
+  addErrorInputIdActionCreator: addErrorInputId,
+  addMediaListActionCreator: addMediaListAction,
+  assignFieldValueActionCreator: assignFieldValueAction,
+  removeErrorInputIdActionCreator: removeErrorInputId
+};
+/** connect File component to the redux store */
+
+var ConnectedFile =
+/*#__PURE__*/
+connect(mapStateToProps$8, mapDispatchToProps$8)(File);
 
 var Integer =
 /*#__PURE__*/
@@ -3372,9 +3718,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (fieldValue === null || fieldValue === '' || fieldValue === undefined);
     var isConstraintViolated = fieldValue !== '' && fieldValue !== null && fieldValue !== undefined && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -3404,18 +3752,34 @@ function (_React$Component) {
       {
         fieldValue === 0 ? modifiedValue = '0' : modifiedValue = fieldValue;
       }
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        var calculatedValue = '';
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+
+        if (fieldValue && calculatedValue !== fieldValue) {
+          this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+        }
+
+        modifiedValue = calculatedValue;
+      }
+
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement(Input, {
+      }, REQUIRED_SYMBOL)), createElement(Input, {
         type: "number",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         onBlur: this.onBlurHandler,
         value: this.state.isFocused ? this.state.fieldValue || '' : modifiedValue || '',
         readOnly: isReadonly
+      }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
       }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -3444,7 +3808,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -3456,9 +3820,11 @@ var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
   };
@@ -3467,7 +3833,7 @@ var mapStateToProps$7 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$7 = {
+var mapDispatchToProps$9 = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -3476,7 +3842,7 @@ var mapDispatchToProps$7 = {
 
 var ConnectedInteger =
 /*#__PURE__*/
-connect(mapStateToProps$7, mapDispatchToProps$7)(Integer);
+connect(mapStateToProps$9, mapDispatchToProps$9)(Integer);
 
 var Note =
 /*#__PURE__*/
@@ -3545,7 +3911,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$8 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$a = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -3568,7 +3934,7 @@ var mapStateToProps$8 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$8 = {
+var mapDispatchToProps$a = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -3577,69 +3943,7 @@ var mapDispatchToProps$8 = {
 
 var ConnectedNote =
 /*#__PURE__*/
-connect(mapStateToProps$8, mapDispatchToProps$8)(Note);
-
-var Photo =
-/*#__PURE__*/
-function (_React$Component) {
-  _inheritsLoose(Photo, _React$Component);
-
-  function Photo() {
-    var _this;
-
-    _this = _React$Component.apply(this, arguments) || this;
-    /** sets the value of field element in store
-     * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
-     */
-
-    _this.onChangeHandler = function (event) {
-      _this.props.assignFieldValueActionCreator(event.currentTarget.name, event.currentTarget.value);
-    };
-
-    return _this;
-  }
-
-  var _proto = Photo.prototype;
-
-  _proto.render = function render() {
-    var _this$props = this.props,
-        fieldElement = _this$props.fieldElement,
-        fieldValue = _this$props.fieldValue,
-        defaultLanguage = _this$props.defaultLanguage;
-    var isRequired = isInputRequired(fieldElement);
-    var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
-    return createElement(FormGroup, null, createElement(Label, null, fieldLabel), isRequired && createElement(Label, null, REQUIRED_SYMBOL), createElement(Input, {
-      type: "file",
-      accept: "image/*",
-      name: fieldElement.name,
-      onChange: this.onChangeHandler,
-      value: fieldValue
-    }), isRequired && createElement(Label, null, REQUIRED_FIELD_MSG));
-  };
-
-  return Photo;
-}(Component);
-/** Map props to state  */
-
-
-var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
-  var fieldElement = parentProps.fieldElement;
-  var result = {
-    fieldValue: getFieldValue(state, fieldElement.name)
-  };
-  return result;
-};
-/** map props to actions */
-
-
-var mapDispatchToProps$9 = {
-  assignFieldValueActionCreator: assignFieldValueAction
-};
-/** connect Photo component to the redux store */
-
-var ConnectedPhoto =
-/*#__PURE__*/
-connect(mapStateToProps$9, mapDispatchToProps$9)(Photo);
+connect(mapStateToProps$a, mapDispatchToProps$a)(Note);
 
 var SelectAllDropDown =
 /*#__PURE__*/
@@ -3680,7 +3984,7 @@ function (_React$Component) {
         var selectedValues = [];
         var i = 0;
 
-        if (values) {
+        if (values && values.length > 0) {
           values.map(function () {
             if (!selectedValues.includes(values[i].value)) {
               selectedValues.push(values[i].value);
@@ -3807,9 +4111,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === []);
     var isConstraintViolated = fieldValue && fieldValue !== [] && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -3956,9 +4262,10 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, seperatedValues);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement("div", {
+      }, REQUIRED_SYMBOL)), createElement("div", {
         key: fieldElement.name,
         className: "selectAllDropDown"
       }, createElement(Select, {
@@ -3967,9 +4274,12 @@ function (_React$Component) {
         options: options,
         onChange: this.onChangeHandler(fieldElement.name),
         value: selectedValues || []
-      })), fieldElement.hint && createElement(Label, {
+      })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -3996,7 +4306,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$a = function mapStateToProps(state, parentProps) {
+var mapStateToProps$b = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4012,10 +4322,12 @@ var mapStateToProps$a = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect: getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector,
     optionList: getOptionList(state, fieldParentTreeName + fieldElement.name)
@@ -4025,7 +4337,7 @@ var mapStateToProps$a = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$a = {
+var mapDispatchToProps$b = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -4035,7 +4347,7 @@ var mapDispatchToProps$a = {
 
 var ConnectedSelectAllDropDown =
 /*#__PURE__*/
-connect(mapStateToProps$a, mapDispatchToProps$a)(SelectAllDropDown);
+connect(mapStateToProps$b, mapDispatchToProps$b)(SelectAllDropDown);
 
 var SelectAllRadio =
 /*#__PURE__*/
@@ -4185,9 +4497,11 @@ function (_React$Component) {
         fieldValue = _this$props2.fieldValue,
         isComponentRender = _this$props2.isComponentRender,
         getEvaluatedExpressionSelector = _this$props2.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props2.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props2.isPresentInErrorSelector,
         defaultLanguage = _this$props2.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === []);
     var isConstraintViolated = fieldValue && fieldValue !== [] && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -4416,9 +4730,10 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, seperatedValues);
       }
 
-      return createElement("div", null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement("div", null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement(Form, {
+      }, REQUIRED_SYMBOL)), createElement(Form, {
         key: "selectAll"
       }, values.map(function (elem, index) {
         return createElement(FormGroup, {
@@ -4436,9 +4751,12 @@ function (_React$Component) {
           readOnly: isReadonly,
           checked: selectedValues.includes(elem.name)
         }), ' ', getFieldLabelText(elem, defaultLanguage)));
-      })), fieldElement.hint && createElement(Label, {
+      })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -4465,7 +4783,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$b = function mapStateToProps(state, parentProps) {
+var mapStateToProps$c = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4481,10 +4799,12 @@ var mapStateToProps$b = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect: getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector,
     optionList: getOptionList(state, fieldParentTreeName + fieldElement.name)
@@ -4494,7 +4814,7 @@ var mapStateToProps$b = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$b = {
+var mapDispatchToProps$c = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -4504,7 +4824,7 @@ var mapDispatchToProps$b = {
 
 var ConnectedSelectAllRadio =
 /*#__PURE__*/
-connect(mapStateToProps$b, mapDispatchToProps$b)(SelectAllRadio);
+connect(mapStateToProps$c, mapDispatchToProps$c)(SelectAllRadio);
 
 var SelectAll =
 /*#__PURE__*/
@@ -4672,9 +4992,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -4760,9 +5082,10 @@ function (_React$Component) {
           selectedValue = elem;
         }
       });
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement("div", {
+      }, REQUIRED_SYMBOL)), createElement("div", {
         key: fieldElement.name,
         className: "selectOneDropDown"
       }, createElement(Select, {
@@ -4771,9 +5094,12 @@ function (_React$Component) {
         options: options,
         value: selectedValue || '',
         onChange: this.onChangeHandler(fieldElement.name)
-      })), fieldElement.hint && createElement(Label, {
+      })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -4796,7 +5122,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$c = function mapStateToProps(state, parentProps) {
+var mapStateToProps$d = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4812,10 +5138,12 @@ var mapStateToProps$c = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect: getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector,
     optionList: getOptionList(state, fieldParentTreeName + fieldElement.name)
@@ -4825,7 +5153,7 @@ var mapStateToProps$c = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$c = {
+var mapDispatchToProps$d = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -4835,7 +5163,7 @@ var mapDispatchToProps$c = {
 
 var ConnectedSelectOneDropDown =
 /*#__PURE__*/
-connect(mapStateToProps$c, mapDispatchToProps$c)(SelectOneDropDown);
+connect(mapStateToProps$d, mapDispatchToProps$d)(SelectOneDropDown);
 
 var SelectOneRadio =
 /*#__PURE__*/
@@ -4959,9 +5287,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -5082,9 +5412,10 @@ function (_React$Component) {
         });
       }
 
-      return createElement("div", null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement("div", null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement(Form, {
+      }, REQUIRED_SYMBOL)), createElement(Form, {
         key: "selectOne"
       }, values.map(function (elem, index) {
         return createElement(FormGroup, {
@@ -5102,9 +5433,12 @@ function (_React$Component) {
           readOnly: isReadonly,
           checked: elem.name === fieldValue
         }), ' ', getFieldLabelText(elem, defaultLanguage)));
-      })), fieldElement.hint && createElement(Label, {
+      })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -5127,7 +5461,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$d = function mapStateToProps(state, parentProps) {
+var mapStateToProps$e = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -5143,10 +5477,12 @@ var mapStateToProps$d = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     getEvaluatedExpressionSelectorForSelect: getEvaluatedExpressionSelectorForSelect,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector,
     optionList: getOptionList(state, fieldParentTreeName + fieldElement.name)
@@ -5156,7 +5492,7 @@ var mapStateToProps$d = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$d = {
+var mapDispatchToProps$e = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -5166,7 +5502,7 @@ var mapDispatchToProps$d = {
 
 var ConnectedSelectOneRadio =
 /*#__PURE__*/
-connect(mapStateToProps$d, mapDispatchToProps$d)(SelectOneRadio);
+connect(mapStateToProps$e, mapDispatchToProps$e)(SelectOneRadio);
 
 var SelectOne =
 /*#__PURE__*/
@@ -5237,9 +5573,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -5261,43 +5599,51 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+
       if (fieldElement.bind && fieldElement.bind.calculate) {
         var calculatedValue = '';
         calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
 
-        if (calculatedValue !== fieldValue) {
+        if (fieldValue && calculatedValue !== fieldValue) {
           this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
         }
 
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
           className: "requiredTextSteric"
-        }, REQUIRED_SYMBOL), createElement(Input, {
+        }, REQUIRED_SYMBOL)), createElement(Input, {
           type: "text",
           name: fieldElement.name,
           onChange: this.onChangeHandler,
           onBlur: this.onBlurHandler,
           value: this.state.isFocused ? this.state.fieldValue || '' : calculatedValue || '',
           readOnly: isReadonly
+        }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+          icon: "exclamation-circle",
+          className: "errorSign"
         }), fieldElement.hint && createElement(Label, {
           className: "hintText"
-        }, hintLabel), isRequiredViolated && createElement(Label, {
+        }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
           className: "requiredText"
         }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
           className: "constraintText"
         }, modifiedConstraintLabel));
       } else {
-        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+        return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
           className: "requiredTextSteric"
-        }, REQUIRED_SYMBOL), createElement(Input, {
+        }, REQUIRED_SYMBOL)), createElement(Input, {
           type: "text",
           name: fieldElement.name,
           onChange: this.onChangeHandler,
           onBlur: this.onBlurHandler,
           value: this.state.isFocused ? this.state.fieldValue || '' : fieldValue || '',
           readOnly: isReadonly
+        }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+          icon: "exclamation-circle",
+          className: "errorSign"
         }), fieldElement.hint && createElement(Label, {
           className: "hintText"
-        }, hintLabel), isRequiredViolated && createElement(Label, {
+        }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
           className: "requiredText"
         }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
           className: "constraintText"
@@ -5327,7 +5673,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$e = function mapStateToProps(state, parentProps) {
+var mapStateToProps$f = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -5339,9 +5685,11 @@ var mapStateToProps$e = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
   };
@@ -5350,7 +5698,7 @@ var mapStateToProps$e = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$e = {
+var mapDispatchToProps$f = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -5359,7 +5707,7 @@ var mapDispatchToProps$e = {
 
 var ConnectedText =
 /*#__PURE__*/
-connect(mapStateToProps$e, mapDispatchToProps$e)(Text);
+connect(mapStateToProps$f, mapDispatchToProps$f)(Text);
 
 var KbTime =
 /*#__PURE__*/
@@ -5387,9 +5735,11 @@ function (_React$Component) {
         fieldValue = _this$props.fieldValue,
         isComponentRender = _this$props.isComponentRender,
         getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
         isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
         defaultLanguage = _this$props.defaultLanguage;
     var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
     var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
@@ -5411,17 +5761,21 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel), isRequired && createElement(Label, {
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL), createElement(Input, {
+      }, REQUIRED_SYMBOL)), createElement(Input, {
         type: "time",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
         value: fieldValue || '',
         readOnly: isReadonly
+      }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
       }), fieldElement.hint && createElement(Label, {
         className: "hintText"
-      }, hintLabel), isRequiredViolated && createElement(Label, {
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
         className: "requiredText"
       }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
         className: "constraintText"
@@ -5444,7 +5798,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$f = function mapStateToProps(state, parentProps) {
+var mapStateToProps$g = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -5456,9 +5810,11 @@ var mapStateToProps$f = function mapStateToProps(state, parentProps) {
     return isPresentInError(state, fieldTreeName);
   };
 
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
   var result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isPresentInErrorSelector: isPresentInErrorSelector
   };
@@ -5467,7 +5823,7 @@ var mapStateToProps$f = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$f = {
+var mapDispatchToProps$g = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -5476,7 +5832,7 @@ var mapDispatchToProps$f = {
 
 var ConnectedTime =
 /*#__PURE__*/
-connect(mapStateToProps$f, mapDispatchToProps$f)(KbTime);
+connect(mapStateToProps$g, mapDispatchToProps$g)(KbTime);
 
 var BaseTypeEvaluator =
 /*#__PURE__*/
@@ -5583,8 +5939,16 @@ function (_React$Component) {
         });
 
       case PHOTO_FIELD_TYPE:
-        return createElement(ConnectedPhoto, {
+        return createElement(ConnectedFile, {
           fieldElement: fieldElement,
+          fieldParentTreeName: fieldParentTreeName,
+          defaultLanguage: defaultLanguage
+        });
+
+      case FILE_FIELD_TYPE:
+        return createElement(ConnectedFile, {
+          fieldElement: fieldElement,
+          fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage
         });
 
@@ -5610,8 +5974,12 @@ function (_React$Component) {
 
     _this = _React$Component.apply(this, arguments) || this;
 
-    _this.getAppearanceValue = function (fieldElement, isAppearanceApplicable) {
-      if (isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
+    _this.getAppearanceValue = function (fieldElement, fieldParentTreeName, isAppearanceApplicable) {
+      var isRender = shouldComponentBeRelevant(fieldElement, fieldParentTreeName, _this.props.getEvaluatedExpressionSelector);
+
+      if (!isRender) {
+        return 0;
+      } else if (isRender && isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
         if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
           var processedStringArray = fieldElement.control.appearance.match(/^w(\d+)\b/i);
           var processedString = processedStringArray[0].replace('w', '');
@@ -5638,11 +6006,16 @@ function (_React$Component) {
         fieldParentTreeName = _this$props.fieldParentTreeName,
         defaultLanguage = _this$props.defaultLanguage,
         isAppearanceApplicable = _this$props.isAppearanceApplicable;
-    return createElement(Row, null, fieldElements.map(function (fieldElement) {
+    return createElement(Row, {
+      className: 'groupTypeEvaluatorRow'
+    }, fieldElements.map(function (fieldElement) {
+      var value = _this2.getAppearanceValue(fieldElement, fieldParentTreeName, isAppearanceApplicable);
+
       return createElement(Col, {
         key: 'group_' + fieldElement.name,
         className: 'groupTypeEvaluator',
-        md: _this2.getAppearanceValue(fieldElement, isAppearanceApplicable)
+        md: value,
+        hidden: value === 0 ? true : false
       }, _this2.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
     }));
   }
@@ -5687,8 +6060,27 @@ function (_React$Component) {
 
   return GroupTypeEvaluator;
 }(Component);
+/** Map props to state  */
 
-library.add(faPlusCircle, faMinusCircle);
+
+var mapStateToProps$h = function mapStateToProps(state) {
+  var getEvaluatedExpressionSelector = function getEvaluatedExpressionSelector(expression, fieldTreeName) {
+    return getEvaluatedExpression(state, expression, fieldTreeName);
+  };
+
+  var result = {
+    getEvaluatedExpressionSelector: getEvaluatedExpressionSelector
+  };
+  return result;
+};
+/** connect GroupTypeEvaluator component to the redux store */
+
+
+var ConnectedGroupTypeEvaluator =
+/*#__PURE__*/
+connect(mapStateToProps$h)(GroupTypeEvaluator);
+
+library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
 
 var App =
 /*#__PURE__*/
@@ -5711,16 +6103,19 @@ function (_React$Component) {
       var _this$props = _this.props,
           handleSubmit = _this$props.handleSubmit,
           isNoErrors = _this$props.isNoErrors,
-          userInputObj = _this$props.userInputObj;
+          userInputObj = _this$props.userInputObj,
+          mediaList = _this$props.mediaList;
 
       if (isNoErrors) {
-        handleSubmit(userInputObj);
+        handleSubmit(userInputObj, mediaList);
       } else {
-        handleSubmit('Field Violated');
+        handleSubmit('Field Violated', mediaList);
 
         _this.setState({
           isSubmissionError: true
         });
+
+        _this.props.setFormSubmitStatusAction(true);
 
         window.scrollTo(0, 0);
       }
@@ -5791,7 +6186,7 @@ function (_React$Component) {
       bodyText: 'Please make sure the required fields are not missing and there are no errors'
     }), createElement(Row, {
       className: "formFieldBody"
-    }, createElement(Col, null, createElement(GroupTypeEvaluator, Object.assign({}, props)), createElement(Row, {
+    }, createElement(Col, null, createElement(ConnectedGroupTypeEvaluator, Object.assign({}, props)), createElement(Row, {
       className: "welcome-box"
     }, createElement(Col, null, createElement(Button, {
       className: "btn btn-success",
@@ -5804,9 +6199,10 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$g = function mapStateToProps(state) {
+var mapStateToProps$i = function mapStateToProps(state) {
   var result = {
     isNoErrors: isErrorsArrayEmpty(state),
+    mediaList: getAllFileObjects(state),
     userInputObj: getUserInputFromStore(state)
   };
   return result;
@@ -5814,15 +6210,16 @@ var mapStateToProps$g = function mapStateToProps(state) {
 /** map props to actions */
 
 
-var mapDispatchToProps$g = {
+var mapDispatchToProps$h = {
   resetStoreActionCreator: resetStoreAction,
+  setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj
 };
 /** connect Decimal component to the redux store */
 
 var ConnectedApp =
 /*#__PURE__*/
-connect(mapStateToProps$g, mapDispatchToProps$g)(App);
+connect(mapStateToProps$i, mapDispatchToProps$h)(App);
 
 /** The initial store */
 

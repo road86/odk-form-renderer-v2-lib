@@ -8,6 +8,7 @@ export interface DateProps {
     fieldValue: any;
     assignFieldValueActionCreator: typeof assignFieldValueAction;
     getEvaluatedExpressionSelector: any;
+    getFormSubmitStatusSelector: boolean;
     isComponentRender: boolean;
     isPresentInErrorSelector: any;
     addErrorInputIdActionCreator: typeof addErrorInputId;

@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Input, Label } from 'reactstrap';
@@ -12,6 +13,7 @@ import {
   assignFieldValueAction,
   getEvaluatedExpression,
   getFieldValue,
+  getFormSubmitStatus,
   isPresentInError,
   removeErrorInputId,
 } from '../../../../store/ducks/formState';
@@ -25,6 +27,7 @@ import {
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../utils/helpers';
+
 /** props interface for the integer component */
 export interface IntegerProps {
   fieldElement: FieldElement;
@@ -32,6 +35,7 @@ export interface IntegerProps {
   fieldValue: any;
   assignFieldValueActionCreator: typeof assignFieldValueAction;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: boolean;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
   addErrorInputIdActionCreator: typeof addErrorInputId;
@@ -54,11 +58,12 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
       fieldValue,
       isComponentRender,
       getEvaluatedExpressionSelector,
+      getFormSubmitStatusSelector,
       isPresentInErrorSelector,
       defaultLanguage,
     } = this.props;
     const isRequired = isInputRequired(fieldElement);
-
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated =
       isRequired &&
       (fieldValue === null || fieldValue === '' || fieldValue === undefined);
@@ -130,12 +135,34 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
         fieldValue === 0 ? (modifiedValue = '0') : (modifiedValue = fieldValue);
       }
 
+      const isError = isPresentInErrorSelector(
+        fieldParentTreeName + fieldElement.name
+      );
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        let calculatedValue: any = '';
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+
+        if (fieldValue && calculatedValue !== fieldValue) {
+          this.props.assignFieldValueActionCreator(
+            fieldParentTreeName + fieldElement.name,
+            calculatedValue
+          );
+        }
+        modifiedValue = calculatedValue;
+      }
+
       return (
         <FormGroup>
-          <Label>{modifiedFieldLabel}</Label>
-          {isRequired && (
-            <Label className="requiredTextSteric">{REQUIRED_SYMBOL}</Label>
-          )}
+          <Label>
+            {modifiedFieldLabel}{' '}
+            {isRequired && (
+              <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
+            )}
+          </Label>
           <Input
             type="number"
             name={fieldElement.name}
@@ -148,8 +175,11 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
             }
             readOnly={isReadonly}
           />
+          {isFormSubmitted && isError && (
+            <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
+          )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
-          {isRequiredViolated && (
+          {isFormSubmitted && isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
           )}
           {isConstraintViolated && (
@@ -205,6 +235,7 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
 interface DispatchedStateProps {
   fieldValue: any;
   getEvaluatedExpressionSelector: any;
+  getFormSubmitStatusSelector: any;
   isComponentRender: boolean;
   isPresentInErrorSelector: any;
 }
@@ -225,9 +256,11 @@ const mapStateToProps = (
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
   const isPresentInErrorSelector = (fieldTreeName: string) =>
     isPresentInError(state, fieldTreeName);
+  const getFormSubmitStatusSelector = getFormSubmitStatus(state);
   const result = {
     fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
     getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,

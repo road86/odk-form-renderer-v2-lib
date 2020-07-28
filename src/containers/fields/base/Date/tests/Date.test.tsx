@@ -20,6 +20,7 @@ describe('containers/fields/base/Date', () => {
       fieldElement: textFieldElement1,
       fieldParentTreeName: '',
       fieldValue: '2019-10-11',
+      getFormSubmitStatusSelector: false,
     };
     shallow(
       <Provider store={store}>
@@ -36,6 +37,7 @@ describe('containers/fields/base/Date', () => {
       fieldElement: textFieldElement1,
       fieldParentTreeName: '',
       fieldValue: '2019-10-11',
+      getFormSubmitStatusSelector: false,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)

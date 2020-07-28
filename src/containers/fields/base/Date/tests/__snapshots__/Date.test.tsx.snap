@@ -29,6 +29,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
     }
     fieldParentTreeName=""
     fieldValue="2019-10-11"
+    getFormSubmitStatusSelector={false}
   >
     <KbDate
       addErrorInputIdActionCreator={[Function]}
@@ -49,6 +50,7 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
       fieldParentTreeName=""
       fieldValue="2019-10-11"
       getEvaluatedExpressionSelector={[Function]}
+      getFormSubmitStatusSelector={false}
       isComponentRender={true}
       isPresentInErrorSelector={[Function]}
       removeErrorInputIdActionCreator={[Function]}
@@ -75,25 +77,12 @@ exports[`containers/fields/base/Date renders correctly 1`] = `
               className=""
             >
               End Date
-            </label>
-          </Label>
-          <Label
-            className="requiredTextSteric"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <label
-              className="requiredTextSteric"
-            >
-              *
+               
+              <span
+                className="requiredTextSteric"
+              >
+                *
+              </span>
             </label>
           </Label>
           <Input

@@ -20,6 +20,7 @@ describe('containers/fields/base/Date Time', () => {
       fieldElement: dateTimeFieldElement,
       fieldParentTreeName: '',
       fieldValue: '2019-11-12T07:02:00.000Z',
+      getFormSubmitStatusSelector: false,
     };
     shallow(
       <Provider store={store}>
@@ -36,6 +37,7 @@ describe('containers/fields/base/Date Time', () => {
       fieldElement: dateTimeFieldElement,
       fieldParentTreeName: '',
       fieldValue: '2019-11-12T07:02:00.000Z',
+      getFormSubmitStatusSelector: false,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)

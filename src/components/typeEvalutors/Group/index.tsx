@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
+import { Store } from 'redux';
 import { GROUP_FIELD_TYPE, REPEAT_FIELD_TYPE } from '../../../constants';
 import Group from '../../../containers/fields/group/Group';
 import Repeat from '../../../containers/fields/group/Repeat';
+import { getEvaluatedExpression } from '../../../store/ducks/formState';
+import { shouldComponentBeRelevant } from '../../../utils/helpers';
 import BaseTypeEvaluator, { FieldElement, FieldParentTreeName } from '../Base';
 
 /** props Interface for the GroupTypeEvaluator component */
@@ -13,6 +17,7 @@ export interface GroupTypeEvaluatorProps {
   fieldElements: FieldElement[];
   fieldParentTreeName: string;
   isAppearanceApplicable: boolean;
+  getEvaluatedExpressionSelector: any;
 }
 
 class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
@@ -26,22 +31,30 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       isAppearanceApplicable,
     } = this.props;
     return (
-      <Row>
-        {fieldElements.map(fieldElement => (
-          <Col
-            key={'group_' + fieldElement.name}
-            className={'groupTypeEvaluator'}
-            md={this.getAppearanceValue(fieldElement, isAppearanceApplicable)}
-          >
-            {this.typeEvaluator(
-              choices,
-              csvList,
-              fieldElement,
-              fieldParentTreeName,
-              defaultLanguage
-            )}
-          </Col>
-        ))}
+      <Row className={'groupTypeEvaluatorRow'}>
+        {fieldElements.map(fieldElement => {
+          const value: number = this.getAppearanceValue(
+            fieldElement,
+            fieldParentTreeName,
+            isAppearanceApplicable
+          );
+          return (
+            <Col
+              key={'group_' + fieldElement.name}
+              className={'groupTypeEvaluator'}
+              md={value}
+              hidden={value === 0 ? true : false}
+            >
+              {this.typeEvaluator(
+                choices,
+                csvList,
+                fieldElement,
+                fieldParentTreeName,
+                defaultLanguage
+              )}
+            </Col>
+          );
+        })}
       </Row>
     );
   }
@@ -99,9 +112,19 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
 
   private getAppearanceValue = (
     fieldElement: FieldElement,
+    fieldParentTreeName: string,
     isAppearanceApplicable: boolean
   ): number => {
-    if (
+    const isRender: boolean = shouldComponentBeRelevant(
+      fieldElement,
+      fieldParentTreeName,
+      this.props.getEvaluatedExpressionSelector
+    );
+
+    if (!isRender) {
+      return 0;
+    } else if (
+      isRender &&
       isAppearanceApplicable &&
       fieldElement.control &&
       fieldElement.control.appearance
@@ -121,4 +144,29 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   };
 }
 
-export default GroupTypeEvaluator;
+/** connect the component to the store */
+
+/** Interface to describe props from mapStateToProps */
+interface DispatchedStateProps {
+  getEvaluatedExpressionSelector: any;
+}
+
+/** Map props to state  */
+const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
+  const getEvaluatedExpressionSelector = (
+    expression: string,
+    fieldTreeName: string
+  ) => getEvaluatedExpression(state, expression, fieldTreeName);
+
+  const result = {
+    getEvaluatedExpressionSelector,
+  };
+  return result;
+};
+
+/** connect GroupTypeEvaluator component to the redux store */
+const ConnectedGroupTypeEvaluator = connect(mapStateToProps)(
+  GroupTypeEvaluator
+);
+
+export default ConnectedGroupTypeEvaluator;

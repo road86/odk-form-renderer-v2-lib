@@ -69,7 +69,14 @@
   color: #305472;
 }
 .groupTypeEvaluator {
-  margin-left: 10px;
+  margin-left: 0px;
+  height: auto;
+}
+
+.groupTypeEvaluatorRow {
+  height: auto;
+  width: 99%;
+  margin-left: 1%;
 }
 
 .groupBody {
@@ -106,4 +113,9 @@
   color: #0b5679;
   width: 20px !important;
   height: 20px !important;
+}
+
+.errorSign {
+  color: #cc0000;
+  margin-right: 2px;
 }

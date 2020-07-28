@@ -5,23 +5,24 @@ import { Provider } from 'react-redux';
 import store from '../../../../../store';
 import { assignFieldValueAction } from '../../../../../store/ducks/formState';
 import SelectAllRadio from '../Radio';
-import { selectAllDropDownFieldElement } from './fixtures';
+import { selectAllRadioFieldElement } from './fixtures';
 
 describe('containers/fields/group/Select All/Dropdown', () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
-  it('renders renders without crashing for Drop Down', () => {
+  it('renders renders without crashing for Select All Radio', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
       choices: {},
       csvList: {},
       defaultLanguage: 'English',
-      fieldElement: selectAllDropDownFieldElement,
+      fieldElement: selectAllRadioFieldElement,
       fieldParentTreeName: '',
       fieldValue: ['a', 'b'],
+      getFormSubmitStatusSelector: false,
     };
     shallow(
       <Provider store={store}>
@@ -30,16 +31,17 @@ describe('containers/fields/group/Select All/Dropdown', () => {
     );
   });
 
-  it('renders correctly for Drop Down', () => {
+  it('renders correctly for Select All Radio', () => {
     const mock: any = jest.fn();
     const props = {
       assignFieldValueActionCreator: mock,
       choices: {},
       csvList: {},
       defaultLanguage: 'English',
-      fieldElement: selectAllDropDownFieldElement,
+      fieldElement: selectAllRadioFieldElement,
       fieldParentTreeName: '',
       fieldValue: ['a', 'b'],
+      getFormSubmitStatusSelector: false,
     };
     store.dispatch(
       assignFieldValueAction(props.fieldElement.name, props.fieldValue)
