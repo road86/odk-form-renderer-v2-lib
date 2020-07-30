@@ -150,7 +150,7 @@ cd [\root\to\project\directory\]
 
 ```
 yarn build
-````
+```
 
 ### Others
 
