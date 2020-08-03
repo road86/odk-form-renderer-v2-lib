@@ -41,7 +41,7 @@ The root/config file that is used to setup unit testing of the library.
 
 Should have been named `constants.ts` instead of `constants.tsx` since it does not contain any react component. It contains the global variables used throughout the codebase. Mostly, this involves field types and default message texts. 
 
- ### `App/` 
+### `App/` 
 
 The `App/index.tsx` contains the app component (main component), a direct descendent of the `src/index.tsx`. It contains handlers and methods required to be associated with the root component. Moreover, it is connected with the redux `store`.  
 
@@ -72,7 +72,7 @@ utils/
 
  The `helpers.ts` contain the utility methods that need/can be shared among many components.
 
- ### `components/`
+### `components/`
 
 Mostly, contain the reusable react components. Notable ones are `typeEvalutors\Base\index.tsx` and `typeEvalutors\Group\index.tsx` which calls the base or group related field component based on field type.
 
