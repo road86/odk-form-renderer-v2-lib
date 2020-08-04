@@ -65,6 +65,12 @@ function tokenizeEqual(input: any, current: any) {
   return tokenizeCharacter('equal', '=', input, current);
 }
 
+/**
+ * tokenizePlus returns tokenizeReturnObject for character +
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizePlus(input: any, current: any) {
   return tokenizeCharacter('plus', '+', input, current);
 }
