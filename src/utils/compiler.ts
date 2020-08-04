@@ -145,6 +145,12 @@ function tokenizeComma(input: any, current: any) {
   return tokenizeCharacter('comma', ',', input, current);
 }
 
+/**
+ * tokenizeDot returns tokenizeReturnObject for character .
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeDot(input: any, current: any) {
   return tokenizeCharacter('dot', '.', input, current);
 }
