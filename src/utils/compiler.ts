@@ -902,8 +902,16 @@ function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseFuntion parses the functions present in expression
+ * @param {any} _output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parsed value
+ */
 // tslint:disable-next-line: variable-name
 function parseFunction(_output: any, tokens: any, current: any) {
+  // precedence of functions
   const possibleFunctions = [
     kbSelected,
     kbCountSelected,
