@@ -834,6 +834,10 @@ function parseMostClosestScopedVariable(variableName: any) {
   return variableValue;
 }
 
+/**
+ * parseDot parses the dot
+ * @returns parsed value
+ */
 function parseDot() {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
