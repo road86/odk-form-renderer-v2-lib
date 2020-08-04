@@ -660,6 +660,13 @@ function kbPosition(funcName: any, _params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * sumValuesOverJsn is a utility method for kbSum
+ * @param sum - initial sum value
+ * @param jsnObj - variable name and value in json object
+ * @param variableName - variable name
+ * @returns the calculated sum
+ */
 function sumValuesOverJsn(sum: any, jsnObj: any, variableName: any) {
   if (Array.isArray(jsnObj)) {
     let i;
