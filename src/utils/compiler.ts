@@ -1316,6 +1316,13 @@ function parseGreaterThan(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseParen parses the paren present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseParen(_output: any, tokens: any, current: any) {
   if (tokens[current].type === 'paren' && tokens[current].value === '(') {
