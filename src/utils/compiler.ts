@@ -1439,6 +1439,13 @@ function parseDivide(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseMultiply parses the multiply present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseMultiply(output: any, tokens: any, current: any) {
   if (output != null && tokens[current].type === 'multiply') {
     const possibleTokens = [
