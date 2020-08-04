@@ -522,6 +522,13 @@ function kbSelected(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbToday parses the function today and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbToday(funcName: any, _params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
