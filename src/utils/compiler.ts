@@ -690,6 +690,13 @@ function sumValuesOverJsn(sum: any, jsnObj: any, variableName: any) {
   return sum;
 }
 
+/**
+ * kbSum parses the function sum and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbSum(funcName: any, _params: any, paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
