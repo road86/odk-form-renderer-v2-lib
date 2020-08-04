@@ -45,6 +45,12 @@ function tokenizeBrakeClose(input: any, current: any) {
   return tokenizeCharacter('brac', ']', input, current);
 }
 
+/**
+ * tokenizeParenClose returns tokenizeReturnObject for character )
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeParenClose(input: any, current: any) {
   return tokenizeCharacter('paren', ')', input, current);
 }
