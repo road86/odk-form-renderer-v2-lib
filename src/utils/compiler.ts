@@ -235,6 +235,12 @@ function tokenizeFunction(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeNumber returns tokenizeReturnObject for discrete numbers. Example: 123 , 02113
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeNumber(input: any, current: any) {
   if (/[0-9]/i.test(input[current])) {
     let value = '';
