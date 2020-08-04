@@ -3,6 +3,14 @@ let currentHierarchicalName: string = '';
 let formItemProperty: any = {};
 let userInput: any = {};
 
+/**
+ * tokenizeCharacter is a type of util method
+ * @param {any} type - the type that will be returned if matches
+ * @param {any} value - the actual value of the tokenize character
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeCharacter(type: any, value: any, input: any, current: any) {
   return value === input[current] ? [1, { type, value }] : [0, null];
 }
