@@ -329,6 +329,12 @@ function tokenizeVariable(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeOr returns tokenizeReturnObject for syntax or
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeOr(input: any, current: any) {
   if (input[current] === 'o') {
     if (input[current + 1] && input[current + 1] === 'r') {
