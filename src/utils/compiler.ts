@@ -580,6 +580,13 @@ function kbRegex(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbCountSelected parses the function count-selected and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbCountSelected(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
