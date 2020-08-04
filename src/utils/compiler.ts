@@ -1170,6 +1170,13 @@ function parseAnd(output: any, tokens: any, current: any): any {
   return [0, null];
 }
 
+/**
+ * parseOr parses the or present in expression
+ * @param {any} _output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseOr(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'or' && output != null) {
     const tmpTokens = [];
