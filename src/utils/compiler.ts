@@ -498,6 +498,13 @@ function tokenizer(input: any) {
   return tokens;
 }
 
+/**
+ * kbSelected parses the function selected and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbSelected(funcName: any, params: any, _paramsTokens: any) {
   if (funcName === 'selected') {
