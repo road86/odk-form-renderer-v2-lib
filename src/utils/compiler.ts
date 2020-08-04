@@ -178,6 +178,12 @@ function tokenizePattern(type: any, pattern: any, input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeString returns tokenizeReturnObject for strings. example: 'abc12' , "test1", "afgkj dafgk"
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeString(input: any, current: any) {
   if (input[current] === '"' || input[current] === "'") {
     const matchQuote = input[current];
