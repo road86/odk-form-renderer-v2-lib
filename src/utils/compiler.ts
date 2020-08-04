@@ -55,6 +55,12 @@ function tokenizeParenClose(input: any, current: any) {
   return tokenizeCharacter('paren', ')', input, current);
 }
 
+/**
+ * tokenizeEqual returns tokenizeReturnObject for character =
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeEqual(input: any, current: any) {
   return tokenizeCharacter('equal', '=', input, current);
 }
