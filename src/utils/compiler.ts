@@ -1518,6 +1518,13 @@ function parseMultiply(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parsePlus parses the addition present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parsePlus(output: any, tokens: any, current: any) {
   if (output != null && tokens[current].type === 'plus') {
     const possibleTokens = [
