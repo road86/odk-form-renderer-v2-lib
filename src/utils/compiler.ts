@@ -1067,7 +1067,7 @@ function parseIf(_output: any, tokens: any, current: any) {
 
 /**
  * parseNot parses the not present in expression
- * @param {any} _output - the parsed output of previous tokens
+ * @param {any} output - the parsed output of previous tokens
  * @param {any} tokens - the array of tokens
  * @param {any} current - the current position of the parser
  * @returns parserReturnObject
@@ -1127,7 +1127,7 @@ function parseNot(output: any, tokens: any, current: any) {
 
 /**
  * parseAnd parses the and present in expression
- * @param {any} _output - the parsed output of previous tokens
+ * @param {any} output - the parsed output of previous tokens
  * @param {any} tokens - the array of tokens
  * @param {any} current - the current position of the parser
  * @returns parserReturnObject
@@ -1172,7 +1172,7 @@ function parseAnd(output: any, tokens: any, current: any): any {
 
 /**
  * parseOr parses the or present in expression
- * @param {any} _output - the parsed output of previous tokens
+ * @param {any} output - the parsed output of previous tokens
  * @param {any} tokens - the array of tokens
  * @param {any} current - the current position of the parser
  * @returns parserReturnObject
@@ -1214,6 +1214,13 @@ function parseOr(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseEqual parses the equal present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseEqual(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'equal' && output != null) {
     const tmpTokens = [];
