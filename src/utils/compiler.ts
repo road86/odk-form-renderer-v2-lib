@@ -105,6 +105,12 @@ function tokenizeDivide(input: any, current: any) {
   return tokenizeCharacter('divide', '/', input, current);
 }
 
+/**
+ * tokenizeLessThan returns tokenizeReturnObject for character <
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeLessThan(input: any, current: any) {
   return tokenizeCharacter('lessThan', '<', input, current);
 }
