@@ -744,9 +744,9 @@ function kbConcat(funcName: any, params: any, _paramsTokens: any) {
 
 /**
  * kbSubstr parses the function substr and returns functionParseReturnObject
- * @param funcName - the function name of the token
- * @param params - calculated value of the params tokens
- * @param _paramsTokens - orginal param tokens
+ * @param {any} funcName - the function name of the token
+ * @param {any} params - calculated value of the params tokens
+ * @param {any} _paramsTokens - orginal param tokens
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
@@ -766,6 +766,13 @@ function kbSubstr(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * outerScopedVariables is a utility method that returns same variable values based on outerscope
+ * @param {any} variableName - variable name
+ * @param {any} variableValue - variable value upto now
+ * @param {any} tmpUserInput - variable key-value storage
+ * @returns parsed scoped variable value
+ */
 function outerScopedVariables(
   variableName: any,
   variableValue: any,
