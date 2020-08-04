@@ -204,6 +204,12 @@ function tokenizeString(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeFunction returns tokenizeReturnObject for functions. Example: round( , substring(
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject; value contains function name if matched
+ */
 function tokenizeFunction(input: any, current: any) {
   if (/[a-z_]/i.test(input[current])) {
     let value = '';
