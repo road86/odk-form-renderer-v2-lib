@@ -135,6 +135,12 @@ function tokenizeNot(input: any, current: any) {
   return tokenizeCharacter('not', '!', input, current);
 }
 
+/**
+ * tokenizeComma returns tokenizeReturnObject for character ,
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeComma(input: any, current: any) {
   return tokenizeCharacter('comma', ',', input, current);
 }
