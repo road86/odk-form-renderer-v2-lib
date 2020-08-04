@@ -115,6 +115,12 @@ function tokenizeLessThan(input: any, current: any) {
   return tokenizeCharacter('lessThan', '<', input, current);
 }
 
+/**
+ * tokenizeGreaterThan returns tokenizeReturnObject for character >
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeGreaterThan(input: any, current: any) {
   return tokenizeCharacter('greaterThan', '>', input, current);
 }
