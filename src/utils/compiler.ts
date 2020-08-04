@@ -1597,6 +1597,13 @@ function parsePlus(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseMinus parses the minus present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseMinus(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'minus') {
     const possibleTokens = [
