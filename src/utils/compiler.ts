@@ -422,6 +422,7 @@ function tokenizeDiv(input: any, current: any) {
 function tokenizeName(input: any, current: any) {
   return tokenizePattern('name', /[a-z_]/i, input, current);
 }
+
 /**
  * skipWhiteSpace removes space and iterates the position of compiler
  * @param {any} input - the input expression, valid cases involve only string type
@@ -432,6 +433,10 @@ function skipWhiteSpace(input: any, current: any) {
   return /\s/.test(input[current]) ? [1, null] : [0, null];
 }
 
+/**
+ * Precedence of the tokenizer methods
+ * If new tokenizer method is created, please add inside tokenizers with correct precedence
+ */
 const tokenizers = [
   skipWhiteSpace,
   tokenizeParenOpen,
@@ -460,6 +465,12 @@ const tokenizers = [
   tokenizeName,
 ];
 
+/**
+ * tokenizer is primary method that takes the expression and convert them to appropiate tokens.
+ * Throws syntax error if expression is not appropiate or could not be tokenized properly
+ * @param {string} input - should be of string for valid cases
+ * @returns array of tokens
+ */
 function tokenizer(input: any) {
   let current: number = 0;
   const tokens: any = [];
