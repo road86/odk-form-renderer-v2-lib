@@ -907,7 +907,7 @@ function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
  * @param {any} _output - the parsed output of previous tokens
  * @param {any} tokens - the array of tokens
  * @param {any} current - the current position of the parser
- * @returns parsed value
+ * @returns parserReturnObject
  */
 // tslint:disable-next-line: variable-name
 function parseFunction(_output: any, tokens: any, current: any) {
@@ -992,6 +992,13 @@ function parseFunction(_output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseIf parses the if present in expression
+ * @param {any} _output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseIf(_output: any, tokens: any, current: any) {
   if (tokens[current].type === 'if') {
