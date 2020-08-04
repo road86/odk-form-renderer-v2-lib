@@ -369,6 +369,12 @@ function tokenizeIf(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeAnd returns tokenizeReturnObject for word and
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeAnd(input: any, current: any) {
   if (input[current] === 'a') {
     if (input[current + 1] && input[current + 1] === 'n') {
