@@ -602,6 +602,13 @@ function kbCountSelected(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbInt parses the function int and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbInt(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
