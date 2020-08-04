@@ -391,6 +391,12 @@ function tokenizeAnd(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeDiv returns tokenizeReturnObject of type divide for word div
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeDiv(input: any, current: any) {
   if (input[current] === 'd') {
     if (input[current + 1] && input[current + 1] === 'i') {
