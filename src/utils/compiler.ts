@@ -349,6 +349,12 @@ function tokenizeOr(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeIf returns tokenizeReturnObject for word if
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeIf(input: any, current: any) {
   if (input[current] === 'i') {
     if (input[current + 1] && input[current + 1] === 'f') {
