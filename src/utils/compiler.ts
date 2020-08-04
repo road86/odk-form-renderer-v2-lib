@@ -863,6 +863,13 @@ function parseDot() {
   return tmpUserInput;
 }
 
+/**
+ * parseLiterals parse a set of tokens, starting from number, string, decimal, variable, name, dot
+ * @param {any} _tmpOutput - the parsed value of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the position of parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
   if (tokens[current].type === 'number') {
