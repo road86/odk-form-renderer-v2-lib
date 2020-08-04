@@ -798,6 +798,11 @@ function outerScopedVariables(
   return variableValue;
 }
 
+/**
+ * parseMostClosestScopedVariable returns the closest scoped parsed variable value
+ * @param {any} variableName - the variable name
+ * @returns the parsed variable value
+ */
 function parseMostClosestScopedVariable(variableName: any) {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
