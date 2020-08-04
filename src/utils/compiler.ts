@@ -1065,6 +1065,13 @@ function parseIf(_output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseNot parses the not present in expression
+ * @param {any} _output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseNot(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'not') {
     let tmpTokens;
