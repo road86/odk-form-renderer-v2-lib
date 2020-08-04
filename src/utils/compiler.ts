@@ -413,6 +413,12 @@ function tokenizeDiv(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeName returns tokenizeReturnObject of type name for regex [a-z_]+
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeName(input: any, current: any) {
   return tokenizePattern('name', /[a-z_]/i, input, current);
 }
