@@ -155,6 +155,14 @@ function tokenizeDot(input: any, current: any) {
   return tokenizeCharacter('dot', '.', input, current);
 }
 
+/**
+ * tokenizePattern is a type of util method
+ * @param {any} type - the type that will be returned if matches
+ * @param {any} pattern - the pattern that will be matched for tokenization
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizePattern(type: any, pattern: any, input: any, current: any) {
   let char = input[current];
   let consumedChars = 0;
