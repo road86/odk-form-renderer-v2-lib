@@ -1360,6 +1360,13 @@ function parseParen(_output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseDivide parses the divide present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseDivide(output: any, tokens: any, current: any) {
   if (output != null && tokens[current].type === 'divide') {
     const possibleTokens = [
