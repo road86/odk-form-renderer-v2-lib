@@ -140,7 +140,7 @@ For the case of easier understanding, we have an `expression` like below:
 
 2. It will start calling out the tokenizer utility methods from the precedence array, starting from `skipWhiteSpace` to `tokenizeName`.
 
-3. Methods like `skipWhiteSpace` will not be matched and will return `[0, null]` untile `tokenizeNumber`.
+3. Methods like `skipWhiteSpace` will not be matched and will return `[0, null]` until `tokenizeNumber`.
 
 4. The `tokenizeNumber` will return a valid token and will consume a character, `'1'`. So, now the position of root tokenizer will change and it will move from `0` to `1` 
 
@@ -158,7 +158,7 @@ For the case of easier understanding, we have an `expression` like below:
     [number]
 ```
 
-5. In addition, the calling procedure will break and the root tokenizer will start to call from start again. In simple terms, it will not call `tokenizeDecimal` since `tokenizeNumber` returns a valid token and consumes character. It will start calling from top, i.e `skipWhiteSpace`.
+5. In addition, the calling procedure will break and the root tokenizer will start to call from start again. In simple terms, it will not call the next method, `tokenizeDecimal`, since `tokenizeNumber` returns a valid token and consumes character. It will again start calling from top, i.e `skipWhiteSpace`.
 
 6. Now, unlike the first time, `skipWhiteSpace` will be matched this time. And so there will be a change on the position but not on `tokens` array.
 
