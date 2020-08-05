@@ -125,17 +125,17 @@ For the case of easier understanding, we have an `expression` like below:
 
 1. First, the root tokenizer will take the `expression` and will set its positon to `0`.
 
-*position*
+    *position*
 
-```js
-1 + 2
-^
-```
+    ```js
+    1 + 2
+    ^
+    ```
 
-*tokens*
-```
-[]
-```
+    *tokens*
+    ```
+    []
+    ```
 
 2. It will start calling out the tokenizer utility methods from the precedence array, starting from `skipWhiteSpace` to `tokenizeName`.
 
@@ -143,49 +143,51 @@ For the case of easier understanding, we have an `expression` like below:
 
 4. The `tokenizeNumber` will return a valid token and will consume a character, `'1'`. So, now the position of root tokenizer will change and it will move from `0` to `1`.
 
-*position*
+    *position*
 
-```js
-1 + 2
- ^
-```
+    ```js
+    1 + 2
+    ^
+    ```
 
-*tokens*
-```json
-[number]
-```
+    *tokens*
+    ```json
+    [number]
+    ```
 
 5. In addition, the calling procedure will break and the root tokenizer will start to call from start again. In simple terms, it will not call `tokenizeDecimal` since `tokenizeNumber` returns a valid token and consumes character. It will start calling from top, i.e `skipWhiteSpace`.
 
 6. Now, unlike the first time, `skipWhiteSpace` will be matched this time. And so there will be a change on the position but not on `tokens` array.
 
-*expression*
 
-```js
-1 + 2
-  ^
-```
+   *expression*
 
-*tokens*
-```json
-[number]
-```
+    ```js
+    1 + 2
+      ^
+    ```
 
-7. The same thing, like no `5`, will repeat and will go on until it reaches the end of the expression and the tokenization process is complete.
+    *tokens*
+    ```json
+    [number]
+    ```
 
-At the end, the expression and tokens will be like below
 
-*position*
+7. The same thing, like no `5`, will repeat and will go on until it reaches the end of the expression and the tokenization process is complete. 
 
-```js
-1 + 2
-     ^
-```
+    **At the end, the expression and tokens will be like below**
 
-*tokens*
-```json
-[number, plus, number]
-```
+    *position*
+
+    ```js
+    1 + 2
+        ^
+    ```
+
+    *tokens*
+    ```json
+    [number, plus, number]
+    ```
 
 ## Parser
 
@@ -201,7 +203,7 @@ The root parser method goes by the name `parser`.
  * @returns parsed value of the set of tokens
  */
 function parser(leftOutput: any, tokens: any, pos: any) {
-  ```
+```
 
 The `leftOutput` parameter is used to initialize a predefined parsed value. The `tokens` is where the set of generated tokens are passed and the `pos` is used to set the initial position of the parser, default is `0`.
 
