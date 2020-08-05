@@ -27,7 +27,7 @@ The root tokenizer method goes by the name `tokenizer`.
  * @returns array of tokens
  */
 function tokenizer(input: any) {
-  ```
+```
 
 The `input` parameter is where the expression is passed. If there is no unknown character, it will return a set of tokens; otherwise will throw a `js error`.
 
@@ -145,15 +145,15 @@ For the case of easier understanding, we have an `expression` like below:
 
     *position*
 
-    ```js
+```js
     1 + 2
     ^
-    ```
+```
 
     *tokens*
-    ```json
+```json
     [number]
-    ```
+```
 
 5. In addition, the calling procedure will break and the root tokenizer will start to call from start again. In simple terms, it will not call `tokenizeDecimal` since `tokenizeNumber` returns a valid token and consumes character. It will start calling from top, i.e `skipWhiteSpace`.
 
@@ -162,15 +162,15 @@ For the case of easier understanding, we have an `expression` like below:
 
    *expression*
 
-    ```js
+```js
     1 + 2
       ^
-    ```
+```
 
     *tokens*
-    ```json
+```json
     [number]
-    ```
+```
 
 
 7. The same thing, like no `5`, will repeat and will go on until it reaches the end of the expression and the tokenization process is complete. 
@@ -179,15 +179,16 @@ For the case of easier understanding, we have an `expression` like below:
 
     *position*
 
-    ```js
+```js
     1 + 2
         ^
-    ```
+```
 
     *tokens*
-    ```json
+
+```json
     [number, plus, number]
-    ```
+```
 
 ## Parser
 
