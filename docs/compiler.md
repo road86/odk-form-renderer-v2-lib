@@ -127,15 +127,16 @@ For the case of easier understanding, we have an `expression` like below:
 
     *position*
 
-    ```js
+```js
     1 + 2
     ^
-    ```
+```
 
     *tokens*
-    ```
+    
+```
     []
-    ```
+```
 
 2. It will start calling out the tokenizer utility methods from the precedence array, starting from `skipWhiteSpace` to `tokenizeName`.
 
@@ -151,6 +152,8 @@ For the case of easier understanding, we have an `expression` like below:
 ```
 
     *tokens*
+
+
 ```json
     [number]
 ```
@@ -168,6 +171,7 @@ For the case of easier understanding, we have an `expression` like below:
 ```
 
     *tokens*
+
 ```json
     [number]
 ```
@@ -175,16 +179,16 @@ For the case of easier understanding, we have an `expression` like below:
 
 7. The same thing, like no `5`, will repeat and will go on until it reaches the end of the expression and the tokenization process is complete. 
 
-    **At the end, the expression and tokens will be like below**
+**At the end, the expression and tokens will be like below**
 
-    *position*
+*position*
 
 ```js
     1 + 2
         ^
 ```
 
-    *tokens*
+*tokens*
 
 ```json
     [number, plus, number]
