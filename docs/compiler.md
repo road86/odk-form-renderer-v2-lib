@@ -125,15 +125,15 @@ For the case of easier understanding, we have an `expression` like below:
 
 1. First, the root tokenizer will take the `expression` and will set its positon to `0`.
 
-    *position*
+>*position*
 
 ```js
     1 + 2
     ^
 ```
 
-    *tokens*
-    
+>*tokens*
+
 ```
     []
 ```
@@ -142,16 +142,16 @@ For the case of easier understanding, we have an `expression` like below:
 
 3. Methods like `skipWhiteSpace` will not be matched and will return `[0, null]` untile `tokenizeNumber`.
 
-4. The `tokenizeNumber` will return a valid token and will consume a character, `'1'`. So, now the position of root tokenizer will change and it will move from `0` to `1`.
+4. The `tokenizeNumber` will return a valid token and will consume a character, `'1'`. So, now the position of root tokenizer will change and it will move from `0` to `1` 
 
-    *position*
+>*position*
 
 ```js
     1 + 2
     ^
 ```
 
-    *tokens*
+>*tokens*
 
 
 ```json
@@ -163,14 +163,13 @@ For the case of easier understanding, we have an `expression` like below:
 6. Now, unlike the first time, `skipWhiteSpace` will be matched this time. And so there will be a change on the position but not on `tokens` array.
 
 
-   *expression*
+>*position*
 
 ```js
     1 + 2
       ^
 ```
-
-    *tokens*
+>*tokens*
 
 ```json
     [number]
@@ -181,14 +180,14 @@ For the case of easier understanding, we have an `expression` like below:
 
 **At the end, the expression and tokens will be like below**
 
-*position*
+>*position*
 
 ```js
     1 + 2
         ^
 ```
 
-*tokens*
+>*tokens*
 
 ```json
     [number, plus, number]
