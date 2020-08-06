@@ -193,6 +193,45 @@ For the case of easier understanding, we have an `expression` like below:
     [number, plus, number]
 ```
 
+### Precedence is important !!!
+
+The powerful tokenizer utility/helper methods need to be at a lower precedence than their weaker ones. For example,
+
+#### <img src="./images/cross.png" width="25" height="20"> Incorrect use of precedence 
+
+```diff
+const tokenizers = [
+  skipWhiteSpace,
+  tokenizeParenOpen,
+  tokenizeParenClose,
+  tokenizeIf,
+  tokenizeOr,
+- tokenizeAnd,
+  tokenizeVariable,
+  tokenizeString,
+  tokenizeFunction,
+  tokenizeEqual,
+  tokenizePlus,
+  tokenizeMinus,
+  tokenizeMultiply,
+  tokenizeDivide,
+  tokenizeDiv,
+  tokenizeLessThan,
+  tokenizeGreaterThan,
+  tokenizeNot,
+  tokenizeBrakeOpen,
+  tokenizeBrakeClose,
+  tokenizeDot,
+  tokenizeComma,
+  tokenizeNumber,
+  tokenizeDecimal,
+- tokenizeName,
++ tokenizeName,
++ tokenizeAnd,
+];
+```
+Having the `tokenizeName` at a higher precedence than `tokenizeAnd` will result in a situation where the root `tokenizer` will never need to call `tokenizerAnd`. This is because the pattern `"and"` will always be parsed as token `name` rather than `and`. 
+
 ## Parser
 
 The root parser method goes by the name `parser`.
