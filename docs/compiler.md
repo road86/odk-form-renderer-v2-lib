@@ -1,3 +1,5 @@
+![cross](./images/compiler.svg)
+
 # Compiler
 
 The codebase can be found in `src/utils/compiler.ts`.
@@ -197,7 +199,7 @@ For the case of easier understanding, we have an `expression` like below:
 
 The powerful tokenizer utility/helper methods need to be at a lower precedence than their weaker ones. For example,
 
-#### <img src="./images/cross.png" width="25" height="20"> Incorrect use of precedence 
+#### ![cross](./images/cross.png) Incorrect use of precedence 
 
 ```diff
 const tokenizers = [
