@@ -152,8 +152,14 @@ cd [\root\to\project\directory\]
 yarn build
 ```
 
-### Others
+### Code Quality
 
 For linting, we have used `tslint`. Since developers of `tslint` published they will no longer update the `tslint` and will move to shipping the `tslint` with `eslint`, one crucial contribution will be to remove the `tslint` and modify the `eslint` config, as well as resolve the `eslint` issues. <br/>
 
 **Until then, you are advised to keep `eslint` extension in your `vscode` disabled (given you are using `vscode` and have the `eslint` extension enabled).**
+
+### Learn More
+
+#### To learn more about the codebase folders, visit [here](./docs/codebase.md).
+#### To learn more about the redux store, visit [here](./docs/store.md).
+#### To learn more about the compiler, visit [here](./docs/compiler.md).
