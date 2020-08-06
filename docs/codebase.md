@@ -1,3 +1,5 @@
+![codebase](./images/codebase.svg)
+
 # Codebase Walkthrough 
 
 The library code resides in the `src/` directory and the root file is ‘src/index.tsx’.   

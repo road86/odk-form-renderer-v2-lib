@@ -1,4 +1,4 @@
-![cross](./images/compiler.svg)
+![compiler](./images/compiler.svg)
 
 # Compiler
 

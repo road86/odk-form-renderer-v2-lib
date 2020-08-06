@@ -1,3 +1,5 @@
+![store](./images/store.svg)
+
 # Walkthrough through Redux store
 
 ## Store

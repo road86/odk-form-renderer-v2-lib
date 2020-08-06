@@ -1,3 +1,5 @@
+![readme](./docs/images/readme.svg)
+
 # odk-form-renderer-v2
 ## Odk Form Renderer (Version 2)
 
