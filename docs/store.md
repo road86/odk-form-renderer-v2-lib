@@ -46,6 +46,7 @@ The initial value of this key is `false`. It acts as a utility flag on whether t
 The method returns an action that is used to set user input value to respective fields in `userInput` key based on field names.
 
 Brief Info:
+
  * param {string} fieldTreeName - the extended field name
  * param {any} fieldValue - the value that will be assigned
  * return {AssignFieldValueAction} - an action to assign value to a field in the redux store
@@ -58,23 +59,25 @@ The method returns an action that is used to set option list value to respective
 
 Brief Info:
 
- * @param {string} fieldTreeName - the extended field name
- * @param {any} fieldValue - the option list that will be assigned
- * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
+* @param {string} fieldTreeName - the extended field name
+* @param {any} fieldValue - the option list that will be assigned
+* @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
 
 #### `RemoveFromOptionList`
 
- The method returns an action that is used to remove the existing option list.
+The method returns an action that is used to remove the existing option list.
 
- Brief Info:
- * @param fieldTreeName - the field tree name
- * @returns {RemoveFromOptionList} - an action to remove input id for errors
+Brief Info:
+
+* @param fieldTreeName - the field tree name
+* @returns {RemoveFromOptionList} - an action to remove input id for errors
 
 #### `resetStoreAction`
 
  The method returns an action that is used to reset the state of the store to its initial state.
 
 Brief Info:
+
 * @return {ResetStoreAction} - an action to reset the redux store state
 
 #### `addErrorInputId`
@@ -90,6 +93,7 @@ Brief Info:
 The method returns an action that removes the existing field name from the error list. This action creator is usually called when the form field is no longer empty if required or contains a value that violates the field constraint.
 
 Brief Info:
+
 * @param fieldTreeName - the field tree name
 * @returns {RemoveErrorInputId} - an action to remove input id for errors
 
@@ -99,6 +103,7 @@ Brief Info:
 The method returns an action that empties the group field values given a specific group field name. It is usually called when the existing rendered group element is no longer required and has populated values. 
 
 Brief Info:
+
 * @param fieldTreeName - the group field tree name
 * @returns {RemoveErrorInputId} - an action to empty the group field values
 
@@ -107,6 +112,7 @@ Brief Info:
 The method returns an action that removes the field names exist under a passed group field name from the error list. 
 
 Brief Info:
+
 * @param {string} fieldTreeName - the group field tree name
 * @returns {RemoveGroupFieldsFromErrors} - an action to remove group field names from errors
 
@@ -115,6 +121,7 @@ Brief Info:
 The method returns an action that is used to set passed object to the `userInput` state of the store.
 
 Brief Info:
+
 * @param {any} userInputObj - the user input obj
 * @returns {SetUserInputObj} - an action to set user input to redux store
 
@@ -123,5 +130,6 @@ Brief Info:
 The returns an action that is used to set the flag of the `isFormSubmitted`.
 
 Brief Info:
+
 * @param {boolean} isFormSubmitted - the form submit info variable
 * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
