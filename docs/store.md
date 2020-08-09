@@ -57,11 +57,12 @@ Brief Info:
 The method returns an action that is used to set option list value to respective fields in `optionList` key based on field names.
 
 Brief Info:
+
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the option list that will be assigned
  * @return {AssignOptionListAction} - an action to assign option List to a field in the redux store
 
- #### `RemoveFromOptionList`
+#### `RemoveFromOptionList`
 
  The method returns an action that is used to remove the existing option list.
 
@@ -69,7 +70,7 @@ Brief Info:
  * @param fieldTreeName - the field tree name
  * @returns {RemoveFromOptionList} - an action to remove input id for errors
 
- #### `resetStoreAction`
+#### `resetStoreAction`
 
  The method returns an action that is used to reset the state of the store to its initial state.
 
