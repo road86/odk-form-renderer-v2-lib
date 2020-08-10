@@ -3,66 +3,166 @@ let currentHierarchicalName: string = '';
 let formItemProperty: any = {};
 let userInput: any = {};
 
+/**
+ * tokenizeCharacter is a type of util method
+ * @param {any} type - the type that will be returned if matches
+ * @param {any} value - the actual value of the tokenize character
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeCharacter(type: any, value: any, input: any, current: any) {
   return value === input[current] ? [1, { type, value }] : [0, null];
 }
 
+/**
+ * tokenizeParenOpen returns tokenizeReturnObject for character (
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeParenOpen(input: any, current: any) {
   return tokenizeCharacter('paren', '(', input, current);
 }
 
+/**
+ * tokenizeBrakeOpen returns tokenizeReturnObject for character [
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeBrakeOpen(input: any, current: any) {
   return tokenizeCharacter('brac', '[', input, current);
 }
 
+/**
+ * tokenizeBrakeClose returns tokenizeReturnObject for character ]
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeBrakeClose(input: any, current: any) {
   return tokenizeCharacter('brac', ']', input, current);
 }
 
+/**
+ * tokenizeParenClose returns tokenizeReturnObject for character )
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeParenClose(input: any, current: any) {
   return tokenizeCharacter('paren', ')', input, current);
 }
 
+/**
+ * tokenizeEqual returns tokenizeReturnObject for character =
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeEqual(input: any, current: any) {
   return tokenizeCharacter('equal', '=', input, current);
 }
 
+/**
+ * tokenizePlus returns tokenizeReturnObject for character +
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizePlus(input: any, current: any) {
   return tokenizeCharacter('plus', '+', input, current);
 }
 
+/**
+ * tokenizeMinus returns tokenizeReturnObject for character -
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeMinus(input: any, current: any) {
   return tokenizeCharacter('minus', '-', input, current);
 }
 
+/**
+ * tokenizeMultiply returns tokenizeReturnObject for character *
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeMultiply(input: any, current: any) {
   return tokenizeCharacter('multiply', '*', input, current);
 }
 
+/**
+ * tokenizeDivide returns tokenizeReturnObject for character /
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeDivide(input: any, current: any) {
   return tokenizeCharacter('divide', '/', input, current);
 }
 
+/**
+ * tokenizeLessThan returns tokenizeReturnObject for character <
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeLessThan(input: any, current: any) {
   return tokenizeCharacter('lessThan', '<', input, current);
 }
 
+/**
+ * tokenizeGreaterThan returns tokenizeReturnObject for character >
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeGreaterThan(input: any, current: any) {
   return tokenizeCharacter('greaterThan', '>', input, current);
 }
 
+/**
+ * tokenizeNot returns tokenizeReturnObject for character !
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeNot(input: any, current: any) {
   return tokenizeCharacter('not', '!', input, current);
 }
 
+/**
+ * tokenizeComma returns tokenizeReturnObject for character ,
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeComma(input: any, current: any) {
   return tokenizeCharacter('comma', ',', input, current);
 }
 
+/**
+ * tokenizeDot returns tokenizeReturnObject for character .
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeDot(input: any, current: any) {
   return tokenizeCharacter('dot', '.', input, current);
 }
 
+/**
+ * tokenizePattern is a type of util method
+ * @param {any} type - the type that will be returned if matches
+ * @param {any} pattern - the pattern that will be matched for tokenization
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizePattern(type: any, pattern: any, input: any, current: any) {
   let char = input[current];
   let consumedChars = 0;
@@ -78,6 +178,12 @@ function tokenizePattern(type: any, pattern: any, input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeString returns tokenizeReturnObject for strings. example: 'abc12' , "test1", "afgkj dafgk"
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns - tokenizeReturnObject
+ */
 function tokenizeString(input: any, current: any) {
   if (input[current] === '"' || input[current] === "'") {
     const matchQuote = input[current];
@@ -98,6 +204,12 @@ function tokenizeString(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeFunction returns tokenizeReturnObject for functions. Example: round( , substring(
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject; value contains function name if matched
+ */
 function tokenizeFunction(input: any, current: any) {
   if (/[a-z_]/i.test(input[current])) {
     let value = '';
@@ -123,6 +235,12 @@ function tokenizeFunction(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeNumber returns tokenizeReturnObject for discrete numbers. Example: 123 , 02113
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeNumber(input: any, current: any) {
   if (/[0-9]/i.test(input[current])) {
     let value = '';
@@ -144,6 +262,12 @@ function tokenizeNumber(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeDecimal returns tokenizeReturnObject for decimal numbers. Example: 12.3 , 0.2113
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeDecimal(input: any, current: any) {
   if (/[0-9.]/i.test(input[current])) {
     let value = '';
@@ -178,6 +302,12 @@ function tokenizeDecimal(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeVariable returns tokenizeReturnObject for variables. Example syntax: ${Iamvariable} , #{urvariable}
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeVariable(input: any, current: any) {
   if (input[current] === '#' || input[current] === '$') {
     if (input[current + 1] && input[current + 1] === '{') {
@@ -199,6 +329,12 @@ function tokenizeVariable(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeOr returns tokenizeReturnObject for syntax or
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeOr(input: any, current: any) {
   if (input[current] === 'o') {
     if (input[current + 1] && input[current + 1] === 'r') {
@@ -213,6 +349,12 @@ function tokenizeOr(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeIf returns tokenizeReturnObject for word if
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeIf(input: any, current: any) {
   if (input[current] === 'i') {
     if (input[current + 1] && input[current + 1] === 'f') {
@@ -227,6 +369,12 @@ function tokenizeIf(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeAnd returns tokenizeReturnObject for word and
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeAnd(input: any, current: any) {
   if (input[current] === 'a') {
     if (input[current + 1] && input[current + 1] === 'n') {
@@ -243,6 +391,12 @@ function tokenizeAnd(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeDiv returns tokenizeReturnObject of type divide for word div
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeDiv(input: any, current: any) {
   if (input[current] === 'd') {
     if (input[current + 1] && input[current + 1] === 'i') {
@@ -259,14 +413,30 @@ function tokenizeDiv(input: any, current: any) {
   return [0, null];
 }
 
+/**
+ * tokenizeName returns tokenizeReturnObject of type name for regex [a-z_]+
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject
+ */
 function tokenizeName(input: any, current: any) {
   return tokenizePattern('name', /[a-z_]/i, input, current);
 }
 
+/**
+ * skipWhiteSpace removes space and iterates the position of compiler
+ * @param {any} input - the input expression, valid cases involve only string type
+ * @param {any} current - the position of the compiler at the input expression
+ * @returns tokenizeReturnObject that consumes characters without returning type
+ */
 function skipWhiteSpace(input: any, current: any) {
   return /\s/.test(input[current]) ? [1, null] : [0, null];
 }
 
+/**
+ * Precedence of the tokenizer methods
+ * If new tokenizer method is created, please add inside tokenizers with correct precedence
+ */
 const tokenizers = [
   skipWhiteSpace,
   tokenizeParenOpen,
@@ -295,6 +465,12 @@ const tokenizers = [
   tokenizeName,
 ];
 
+/**
+ * tokenizer is primary method that takes the expression and convert them to appropiate tokens.
+ * Throws syntax error if expression is not appropiate or could not be tokenized properly
+ * @param {string} input - should be of string for valid cases
+ * @returns array of tokens
+ */
 function tokenizer(input: any) {
   let current: number = 0;
   const tokens: any = [];
@@ -322,6 +498,13 @@ function tokenizer(input: any) {
   return tokens;
 }
 
+/**
+ * kbSelected parses the function selected and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbSelected(funcName: any, params: any, _paramsTokens: any) {
   if (funcName === 'selected') {
@@ -339,6 +522,13 @@ function kbSelected(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbToday parses the function today and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbToday(funcName: any, _params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -350,6 +540,13 @@ function kbToday(funcName: any, _params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbRound parses the function round and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbRound(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -366,6 +563,13 @@ function kbRound(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbRegex parses the function regex and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbRegex(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -376,6 +580,13 @@ function kbRegex(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbCountSelected parses the function count-selected and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbCountSelected(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -391,6 +602,13 @@ function kbCountSelected(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbInt parses the function int and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbInt(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -402,6 +620,13 @@ function kbInt(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbCoalesce parses the function coalesce and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbCoalesce(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -414,6 +639,13 @@ function kbCoalesce(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbPosition parses the function position and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbPosition(funcName: any, _params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -428,6 +660,13 @@ function kbPosition(funcName: any, _params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * sumValuesOverJsn is a utility method for kbSum
+ * @param sum - initial sum value
+ * @param jsnObj - variable name and value in json object
+ * @param variableName - variable name
+ * @returns the calculated sum
+ */
 function sumValuesOverJsn(sum: any, jsnObj: any, variableName: any) {
   if (Array.isArray(jsnObj)) {
     let i;
@@ -451,6 +690,13 @@ function sumValuesOverJsn(sum: any, jsnObj: any, variableName: any) {
   return sum;
 }
 
+/**
+ * kbSum parses the function sum and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbSum(funcName: any, _params: any, paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -470,6 +716,13 @@ function kbSum(funcName: any, _params: any, paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbConcat parses the function concat and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbConcat(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -489,6 +742,13 @@ function kbConcat(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * kbSubstr parses the function substr and returns functionParseReturnObject
+ * @param {any} funcName - the function name of the token
+ * @param {any} params - calculated value of the params tokens
+ * @param {any} _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function kbSubstr(funcName: any, params: any, _paramsTokens: any) {
   // tslint:disable-next-line: triple-equals
@@ -506,6 +766,13 @@ function kbSubstr(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+/**
+ * outerScopedVariables is a utility method that returns same variable values based on outerscope
+ * @param {any} variableName - variable name
+ * @param {any} variableValue - variable value upto now
+ * @param {any} tmpUserInput - variable key-value storage
+ * @returns parsed scoped variable value
+ */
 function outerScopedVariables(
   variableName: any,
   variableValue: any,
@@ -531,6 +798,11 @@ function outerScopedVariables(
   return variableValue;
 }
 
+/**
+ * parseMostClosestScopedVariable returns the closest scoped parsed variable value
+ * @param {any} variableName - the variable name
+ * @returns the parsed variable value
+ */
 function parseMostClosestScopedVariable(variableName: any) {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
@@ -562,6 +834,10 @@ function parseMostClosestScopedVariable(variableName: any) {
   return variableValue;
 }
 
+/**
+ * parseDot parses the dot
+ * @returns parsed value
+ */
 function parseDot() {
   const tmpHierchicalName = currentHierarchicalName.split('/');
   let i;
@@ -587,6 +863,13 @@ function parseDot() {
   return tmpUserInput;
 }
 
+/**
+ * parseLiterals parse a set of tokens, starting from number, string, decimal, variable, name, dot
+ * @param {any} _tmpOutput - the parsed value of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the position of parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
   if (tokens[current].type === 'number') {
@@ -619,8 +902,16 @@ function parseLiterals(_tmpOutput: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseFuntion parses the functions present in expression
+ * @param {any} _output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseFunction(_output: any, tokens: any, current: any) {
+  // precedence of functions
   const possibleFunctions = [
     kbSelected,
     kbCountSelected,
@@ -701,6 +992,13 @@ function parseFunction(_output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseIf parses the if present in expression
+ * @param {any} _output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseIf(_output: any, tokens: any, current: any) {
   if (tokens[current].type === 'if') {
@@ -767,6 +1065,13 @@ function parseIf(_output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseNot parses the not present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseNot(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'not') {
     let tmpTokens;
@@ -820,6 +1125,13 @@ function parseNot(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseAnd parses the and present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseAnd(output: any, tokens: any, current: any): any {
   if (tokens[current].type === 'and' && output != null) {
     const tmpTokens = [];
@@ -858,6 +1170,13 @@ function parseAnd(output: any, tokens: any, current: any): any {
   return [0, null];
 }
 
+/**
+ * parseOr parses the or present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseOr(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'or' && output != null) {
     const tmpTokens = [];
@@ -895,6 +1214,13 @@ function parseOr(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseEqual parses the equal present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseEqual(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'equal' && output != null) {
     const tmpTokens = [];
@@ -917,6 +1243,13 @@ function parseEqual(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseLessThan parses the less than or equal present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseLessThan(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'lessThan' && output != null) {
     let flagLessThanOrEqual = false;
@@ -946,6 +1279,13 @@ function parseLessThan(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseGreaterThan parses the greater than or equal present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseGreaterThan(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'greaterThan' && output != null) {
     let flagGreaterThanOrEqual = false;
@@ -976,6 +1316,13 @@ function parseGreaterThan(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseParen parses the paren present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 // tslint:disable-next-line: variable-name
 function parseParen(_output: any, tokens: any, current: any) {
   if (tokens[current].type === 'paren' && tokens[current].value === '(') {
@@ -1013,6 +1360,13 @@ function parseParen(_output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseDivide parses the divide present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseDivide(output: any, tokens: any, current: any) {
   if (output != null && tokens[current].type === 'divide') {
     const possibleTokens = [
@@ -1085,6 +1439,13 @@ function parseDivide(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseMultiply parses the multiply present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseMultiply(output: any, tokens: any, current: any) {
   if (output != null && tokens[current].type === 'multiply') {
     const possibleTokens = [
@@ -1157,6 +1518,13 @@ function parseMultiply(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parsePlus parses the addition present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parsePlus(output: any, tokens: any, current: any) {
   if (output != null && tokens[current].type === 'plus') {
     const possibleTokens = [
@@ -1229,6 +1597,13 @@ function parsePlus(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+/**
+ * parseMinus parses the minus present in expression
+ * @param {any} output - the parsed output of previous tokens
+ * @param {any} tokens - the array of tokens
+ * @param {any} current - the current position of the parser
+ * @returns parserReturnObject
+ */
 function parseMinus(output: any, tokens: any, current: any) {
   if (tokens[current].type === 'minus') {
     const possibleTokens = [
@@ -1320,6 +1695,7 @@ function parseMinus(output: any, tokens: any, current: any) {
   return [0, null];
 }
 
+// precedence of the parser methods
 const parsers = [
   parseIf,
   parseParen,
@@ -1337,6 +1713,14 @@ const parsers = [
   parseFunction,
 ];
 
+/**
+ * the main parser that parses the series of tokens generated by the tokenizer.
+ * Throws syntax error if not parsed
+ * @param {any} leftOutput - the initial output or output of previous left side tokens
+ * @param {any} tokens - the set or array of tokens need to be parsed
+ * @param {any} pos - the start position of the parser
+ * @returns parsed value of the set of tokens
+ */
 function parser(leftOutput: any, tokens: any, pos: any) {
   let current = pos;
   let output = leftOutput;
@@ -1367,6 +1751,14 @@ function parser(leftOutput: any, tokens: any, pos: any) {
   return output;
 }
 
+/**
+ * odk wrapper evaluator, default method that will be exported, parses expressions
+ * @param {any} expression - expression that needs to be evaluated
+ * @param {any} tmpUserInput - the variable key-value json, (current user input json)
+ * @param {any} tmpFormItemProperty - the name key-value json (current option list)
+ * @param {any} tmpCurrentHierarchicalName - the node at which the evaluater is called
+ * @returns evaluated value
+ */
 export default function evaluater(
   expression: string,
   tmpUserInput: any,

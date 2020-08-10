@@ -4,6 +4,7 @@ import {
   DATE_FIELD_TYPE,
   DATE_TIME_FIELD_TYPE,
   DECIMAL_FIELD_TYPE,
+  FILE_FIELD_TYPE,
   INTEGER_FIELD_TYPE,
   NOTE_FIELD_TYPE,
   PHOTO_FIELD_TYPE,
@@ -16,9 +17,9 @@ import Calculate from '../../../containers/fields/base/Calculate';
 import KbDate from '../../../containers/fields/base/Date';
 import DateTime from '../../../containers/fields/base/Date Time';
 import Decimal from '../../../containers/fields/base/Decimal';
+import File from '../../../containers/fields/base/File';
 import Integer from '../../../containers/fields/base/Integer';
 import Note from '../../../containers/fields/base/Note';
-import Photo from '../../../containers/fields/base/Photo';
 import SelectAll from '../../../containers/fields/base/Select All';
 import SelectOne from '../../../containers/fields/base/Select One';
 import Text from '../../../containers/fields/base/Text';
@@ -179,8 +180,17 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
         );
       case PHOTO_FIELD_TYPE:
         return (
-          <Photo
+          <File
             fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
+          />
+        );
+      case FILE_FIELD_TYPE:
+        return (
+          <File
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
           />
         );

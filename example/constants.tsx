@@ -1922,12 +1922,23 @@ export const DEMO_FORM_JSON = {
       "type": "text"
     },
     {
-      "name": "image",
+      "name": "image_base",
       "label": "*43. Outline/draw the farm biosecurity plan in place (take a photo and upload in database)",
-      "type": "photo"
+      "type": "file",
+      "bind": {
+        "required": "TRUE"
+      },
     },
     {
       "children": [
+        {
+          "name": "image",
+          "label": "*43. Outline/draw the farm biosecurity plan in place (take a photo and upload in database)",
+          "type": "photo",
+          "bind": {
+            "required": "TRUE"
+          },
+        },
         {
           "control": {
             "appearance": "w2"
@@ -1962,7 +1973,7 @@ export const DEMO_FORM_JSON = {
         }
       ],
       "name": "name",
-      "type": "group"
+      "type": "repeat"
     },
     {
       "name": "start",
@@ -28150,6 +28161,7 @@ export const sampleUserInput = {
       'repeat_1/repeat_q': 'gsh',
     },
   ],
+  'image_base': 'text.ppt',
   'text_widgets/division': '10',
   'text_widgets/district': '1004',
   'text_widgets/division_d': '10',

@@ -31,7 +31,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       isAppearanceApplicable,
     } = this.props;
     return (
-      <Row>
+      <Row className={'groupTypeEvaluatorRow'}>
         {fieldElements.map(fieldElement => {
           const value: number = this.getAppearanceValue(
             fieldElement,

@@ -72,6 +72,7 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
     } = this.props;
 
     const isRequired = isInputRequired(fieldElement);
+    const isFormSubmitted: boolean = getFormSubmitStatusSelector;
     const isRequiredViolated = isRequired && (!fieldValue || fieldValue === []);
     const isConstraintViolated =
       fieldValue &&
@@ -258,11 +259,11 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
               value={selectedValues || []}
             />
           </div>
-          {getFormSubmitStatusSelector && isError && (
+          {isFormSubmitted && isError && (
             <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
           )}
           {fieldElement.hint && <Label className="hintText">{hintLabel}</Label>}
-          {isRequiredViolated && (
+          {isFormSubmitted && isRequiredViolated && (
             <Label className="requiredText">{REQUIRED_FIELD_MSG}</Label>
           )}
           {isConstraintViolated && (
