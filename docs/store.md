@@ -19,6 +19,7 @@ export interface FormState {
   errors: string[];
   optionList: object;
   isFormSubmitted: boolean;
+  mediaList: object;
 }
 ```
 ### Brief description of the store major keys
@@ -38,6 +39,10 @@ The `optionList` holds all the options of single select and multiple select pres
 #### isFormSubmitted
 
 The initial value of this key is `false`. It acts as a utility flag on whether to show required or constraint messages If a form gets submitted and the submission is not successful, the flag is assigned `true`.
+
+#### mediaList
+
+The mediaList stores the file objects that are uploaded to the form. It saves in a dictionary where keys represent file name and values represent the file object.
 
 ### Action Creatorers
 
@@ -127,13 +132,23 @@ Brief Info:
 
 #### `setFormSubmitStatus`
 
-The returns an action that is used to set the flag of the `isFormSubmitted`.
+The method returns an action that is used to set the flag of the `isFormSubmitted`.
 
 Brief Info:
 
 * @param {boolean} isFormSubmitted - the form submit info variable
 * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
 
+#### `addMediaListAction`
+
+The method returns an action that is used to add media/file object to the `mediaList` key.
+
+Brief Info:
+
+* @param {any} mediaObject - the media object that will be added
+* @return {AddMediaListAction} - an action to assign media object to a field in the redux store
+
+> The `removeFromMediaListAction` is not functional. May need to be implemented in the future if a use case rises.
 
 ### Selectors
 
