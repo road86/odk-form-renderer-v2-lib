@@ -133,3 +133,25 @@ Brief Info:
 
 * @param {boolean} isFormSubmitted - the form submit info variable
 * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
+
+
+### Selectors
+
+Selectors retrieve data from the store state. The following table shows the list of selectors currently available.
+
+|Name|Description|
+|--|--|
+|`getFieldValue`| The method returns the field value from the `userInput` key of the store based on the passed field tree name. |
+|`getOptionList`| The method returns the option list from the `optionList` key of the store based on the passed field tree name. |
+|`getEvaluatedExpression`| The method is a wrapper method that encapsulates the redux state data and compiler into one unit. |
+|`getEvaluatedExpressionForSelect`| The method is a special wrapper method that encapsulates the redux state data and compiler into one unit while exposing the option list parameter.|
+|`isPresentInError`| The method checks whether the passed field element is in the error list key |
+|`isGroupFieldsEmpty`| The method checks whether the fields under the passed group field name is empty or not |
+| `isErrorsIncludeGroupFields` | The method checks whether the field names under the passed group field name are present in the error list or not |
+| `isErrorsArrayEmpty` | The method checks whether the error list is empty or not. |
+| `getUserInputFromStore` | The method returns the `userInput` key value. |
+| `getFormSubmitStatus` | The method returns the flag value of isFormSubmitted |
+| `getFileObject` | The method returns a file object given the file name |
+|`getAllFileObjects` | The method returns all the file objects present in the store |
+
+For more information or details on selectors, please check inside the file `src/store/ducks/formState.ts`.
