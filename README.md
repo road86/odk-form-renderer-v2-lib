@@ -165,3 +165,4 @@ For linting, we have used `tslint`. Since developers of `tslint` published they 
 #### To learn more about the codebase folders, visit [here](./docs/codebase.md).
 #### To learn more about the redux store, visit [here](./docs/store.md).
 #### To learn more about the compiler, visit [here](./docs/compiler.md).
+#### To learn more about publishing the library, visit [here](./docs/publish.md).
