@@ -11,7 +11,7 @@ The step is pretty straight forward. You will need to store the transpiled code 
 #### Clone the master branch of [odk-form-renderer-v2-lib](https://bitbucket.org/mpowersocial/odk-form-renderer-v2-lib/src/master/).
 
 ```sh
-git clone https://bitbucket.org/mpowersocial/odk-form-renderer-v2-lib/src/master/
+git clone git@bitbucket.org:mpowersocial/odk-form-renderer-v2-lib.git
 ```
 
 
@@ -19,6 +19,12 @@ git clone https://bitbucket.org/mpowersocial/odk-form-renderer-v2-lib/src/master
 
 ```sh
 rm -rf dist/
+```
+
+### Add the [[odk-form-renderer-v2](https://bitbucket.org/mpowersocial/odk-form-renderer-v2/src/master/) repo.
+
+```sh
+git remote add codebase git@bitbucket.org:mpowersocial/odk-form-renderer-v2.git
 ```
 
 #### Pull from the branch which has the updated code.
