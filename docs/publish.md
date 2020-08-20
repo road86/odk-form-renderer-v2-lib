@@ -21,7 +21,7 @@ git clone git@bitbucket.org:mpowersocial/odk-form-renderer-v2-lib.git
 rm -rf dist/
 ```
 
-### Add the [[odk-form-renderer-v2](https://bitbucket.org/mpowersocial/odk-form-renderer-v2/src/master/) repo.
+### Add the [odk-form-renderer-v2](https://bitbucket.org/mpowersocial/odk-form-renderer-v2/src/master/) repo.
 
 ```sh
 git remote add codebase git@bitbucket.org:mpowersocial/odk-form-renderer-v2.git
