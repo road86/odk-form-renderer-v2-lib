@@ -132,7 +132,16 @@ function tokenizeGreaterThan(input: any, current: any) {
  * @returns - tokenizeReturnObject
  */
 function tokenizeNot(input: any, current: any) {
-  return tokenizeCharacter('not', '!', input, current);
+  if(input[current] == '!') {
+    return tokenizeCharacter('not', '!', input, current);
+  } else if(input[current] == 'n') {
+    if ( (input[current + 1] && input[current + 1] == 'o') && (input[current + 2] && input[current + 2] == 't')) {
+      const type = 'not';
+      const value = '!';
+      return [3, { type, value }]
+    }
+  }
+  return [0, null];
 }
 
 /**
@@ -227,6 +236,9 @@ function tokenizeFunction(input: any, current: any) {
     while (char && /\s/.test(char)) {
       consumedChars += 1;
       char = input[current + consumedChars];
+    }
+    if(value == 'not') {
+      return [0, null];
     }
     if (char && char === '(') {
       return [consumedChars, { type: 'function', value }];
@@ -495,6 +507,7 @@ function tokenizer(input: any) {
       );
     }
   }
+  console.log(tokens);
   return tokens;
 }
 

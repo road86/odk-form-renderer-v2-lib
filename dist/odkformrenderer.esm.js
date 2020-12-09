@@ -287,7 +287,20 @@ function tokenizeGreaterThan(input, current) {
 
 
 function tokenizeNot(input, current) {
-  return tokenizeCharacter('not', '!', input, current);
+  if (input[current] == '!') {
+    return tokenizeCharacter('not', '!', input, current);
+  } else if (input[current] == 'n') {
+    if (input[current + 1] && input[current + 1] == 'o' && input[current + 2] && input[current + 2] == 't') {
+      var type = 'not';
+      var value = '!';
+      return [3, {
+        type: type,
+        value: value
+      }];
+    }
+  }
+
+  return [0, null];
 }
 /**
  * tokenizeComma returns tokenizeReturnObject for character ,
@@ -404,6 +417,10 @@ function tokenizeFunction(input, current) {
     while (_char3 && /\s/.test(_char3)) {
       consumedChars += 1;
       _char3 = input[current + consumedChars];
+    }
+
+    if (value == 'not') {
+      return [0, null];
     }
 
     if (_char3 && _char3 === '(') {
@@ -699,6 +716,7 @@ function tokenizer(input) {
     _loop();
   }
 
+  console.log(tokens);
   return tokens;
 }
 /**
