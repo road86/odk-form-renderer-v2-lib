@@ -10,6 +10,11 @@ var fontawesomeSvgCore = require('@fortawesome/fontawesome-svg-core');
 var freeSolidSvgIcons = require('@fortawesome/free-solid-svg-icons');
 var reactstrap = require('reactstrap');
 var Select = _interopDefault(require('react-select'));
+var ExpansionPanel = _interopDefault(require('@material-ui/core/ExpansionPanel'));
+var ExpansionPanelDetails = _interopDefault(require('@material-ui/core/ExpansionPanelDetails'));
+var ExpansionPanelSummary = _interopDefault(require('@material-ui/core/ExpansionPanelSummary'));
+var Typography = _interopDefault(require('@material-ui/core/Typography'));
+var ExpandMoreIcon = _interopDefault(require('@material-ui/icons/ExpandMore'));
 var SeamlessImmutable = _interopDefault(require('seamless-immutable'));
 var reactFontawesome = require('@fortawesome/react-fontawesome');
 var _ = _interopDefault(require('lodash'));
@@ -2921,27 +2926,32 @@ function (_React$Component) {
     }
 
     if (isComponentRender) {
-      return React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
-        className: 'groupLabel'
+      return React.createElement(ExpansionPanel, null, React.createElement(ExpansionPanelSummary, {
+        style: {
+          border: '0000ff6b 5px solid'
+        },
+        expandIcon: React.createElement(ExpandMoreIcon, null)
+      }, React.createElement(Typography, null, fieldLabel)), React.createElement(ExpansionPanelDetails, null, React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
+        className: "groupLabel"
       }, fieldLabel), fieldElement.children && React.createElement(ConnectedGroupTypeEvaluator, {
         choices: choices,
         fieldElements: fieldElement.children,
-        fieldParentTreeName: fieldParentTreeName + 'group/' + fieldElement.name + '/',
+        fieldParentTreeName: fieldParentTreeName + "group/" + fieldElement.name + "/",
         defaultLanguage: defaultLanguage,
         csvList: csvList,
         isAppearanceApplicable: isAppearanceApplicable
-      }));
-    } else {
-      if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + 'group/' + fieldElement.name + '/')) {
-        this.props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + 'group/' + fieldElement.name + '/');
-      }
-
-      if (!this.props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)) {
-        this.props.emptyGroupFieldsActionCreator(fieldParentTreeName + fieldElement.name);
-      }
-
-      return null;
+      }))));
     }
+
+    if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + "group/" + fieldElement.name + "/")) {
+      this.props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + "group/" + fieldElement.name + "/");
+    }
+
+    if (!this.props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)) {
+      this.props.emptyGroupFieldsActionCreator(fieldParentTreeName + fieldElement.name);
+    }
+
+    return null;
   };
 
   return Group;
@@ -6451,7 +6461,9 @@ function (_React$Component) {
 
       if (!isRender) {
         return 0;
-      } else if (isRender && isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
+      }
+
+      if (isRender && isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
         if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
           var processedStringArray = fieldElement.control.appearance.match(/^w(\d+)\b/i);
           var processedString = processedStringArray[0].replace('w', '');
@@ -6479,15 +6491,15 @@ function (_React$Component) {
         defaultLanguage = _this$props.defaultLanguage,
         isAppearanceApplicable = _this$props.isAppearanceApplicable;
     return React.createElement(reactstrap.Row, {
-      className: 'groupTypeEvaluatorRow'
+      className: "groupTypeEvaluatorRow"
     }, fieldElements.map(function (fieldElement) {
       var value = _this2.getAppearanceValue(fieldElement, fieldParentTreeName, isAppearanceApplicable);
 
       return React.createElement(reactstrap.Col, {
-        key: 'group_' + fieldElement.name,
-        className: 'groupTypeEvaluator',
+        key: "group_" + fieldElement.name,
+        className: "groupTypeEvaluator",
         md: value,
-        hidden: value === 0 ? true : false
+        hidden: value === 0
       }, _this2.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
     }));
   }

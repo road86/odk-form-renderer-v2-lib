@@ -31,26 +31,26 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
       isAppearanceApplicable,
     } = this.props;
     return (
-      <Row className={'groupTypeEvaluatorRow'}>
-        {fieldElements.map(fieldElement => {
+      <Row className="groupTypeEvaluatorRow">
+        {fieldElements.map((fieldElement) => {
           const value: number = this.getAppearanceValue(
             fieldElement,
             fieldParentTreeName,
-            isAppearanceApplicable
+            isAppearanceApplicable,
           );
           return (
             <Col
-              key={'group_' + fieldElement.name}
-              className={'groupTypeEvaluator'}
+              key={`group_${fieldElement.name}`}
+              className="groupTypeEvaluator"
               md={value}
-              hidden={value === 0 ? true : false}
+              hidden={value === 0}
             >
               {this.typeEvaluator(
                 choices,
                 csvList,
                 fieldElement,
                 fieldParentTreeName,
-                defaultLanguage
+                defaultLanguage,
               )}
             </Col>
           );
@@ -70,7 +70,7 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
     csvList: any,
     fieldElement: FieldElement,
     fieldParentTreeName: FieldParentTreeName,
-    defaultLanguage: string
+    defaultLanguage: string,
   ): React.ReactElement {
     switch (fieldElement.type) {
       case GROUP_FIELD_TYPE:
@@ -113,25 +113,25 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
   private getAppearanceValue = (
     fieldElement: FieldElement,
     fieldParentTreeName: string,
-    isAppearanceApplicable: boolean
+    isAppearanceApplicable: boolean,
   ): number => {
     const isRender: boolean = shouldComponentBeRelevant(
       fieldElement,
       fieldParentTreeName,
-      this.props.getEvaluatedExpressionSelector
+      this.props.getEvaluatedExpressionSelector,
     );
 
     if (!isRender) {
       return 0;
-    } else if (
-      isRender &&
-      isAppearanceApplicable &&
-      fieldElement.control &&
-      fieldElement.control.appearance
+    } if (
+      isRender
+      && isAppearanceApplicable
+      && fieldElement.control
+      && fieldElement.control.appearance
     ) {
       if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
         const processedStringArray = fieldElement.control.appearance.match(
-          /^w(\d+)\b/i
+          /^w(\d+)\b/i,
         );
         const processedString = processedStringArray[0].replace('w', '');
         const result = isNaN(processedString)
@@ -155,7 +155,7 @@ interface DispatchedStateProps {
 const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
   const getEvaluatedExpressionSelector = (
     expression: string,
-    fieldTreeName: string
+    fieldTreeName: string,
   ) => getEvaluatedExpression(state, expression, fieldTreeName);
 
   const result = {
@@ -166,7 +166,7 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
 
 /** connect GroupTypeEvaluator component to the redux store */
 const ConnectedGroupTypeEvaluator = connect(mapStateToProps)(
-  GroupTypeEvaluator
+  GroupTypeEvaluator,
 );
 
 export default ConnectedGroupTypeEvaluator;

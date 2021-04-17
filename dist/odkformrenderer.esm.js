@@ -5,6 +5,11 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlusCircle, faMinusCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { Alert, FormGroup, Label, Input, Button, FormText, Form, Row, Col, Container } from 'reactstrap';
 import Select from 'react-select';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SeamlessImmutable from 'seamless-immutable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import _ from 'lodash-es';
@@ -2916,27 +2921,32 @@ function (_React$Component) {
     }
 
     if (isComponentRender) {
-      return createElement(FormGroup, null, createElement(Label, {
-        className: 'groupLabel'
+      return createElement(ExpansionPanel, null, createElement(ExpansionPanelSummary, {
+        style: {
+          border: '0000ff6b 5px solid'
+        },
+        expandIcon: createElement(ExpandMoreIcon, null)
+      }, createElement(Typography, null, fieldLabel)), createElement(ExpansionPanelDetails, null, createElement(FormGroup, null, createElement(Label, {
+        className: "groupLabel"
       }, fieldLabel), fieldElement.children && createElement(ConnectedGroupTypeEvaluator, {
         choices: choices,
         fieldElements: fieldElement.children,
-        fieldParentTreeName: fieldParentTreeName + 'group/' + fieldElement.name + '/',
+        fieldParentTreeName: fieldParentTreeName + "group/" + fieldElement.name + "/",
         defaultLanguage: defaultLanguage,
         csvList: csvList,
         isAppearanceApplicable: isAppearanceApplicable
-      }));
-    } else {
-      if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + 'group/' + fieldElement.name + '/')) {
-        this.props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + 'group/' + fieldElement.name + '/');
-      }
-
-      if (!this.props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)) {
-        this.props.emptyGroupFieldsActionCreator(fieldParentTreeName + fieldElement.name);
-      }
-
-      return null;
+      }))));
     }
+
+    if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + "group/" + fieldElement.name + "/")) {
+      this.props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + "group/" + fieldElement.name + "/");
+    }
+
+    if (!this.props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)) {
+      this.props.emptyGroupFieldsActionCreator(fieldParentTreeName + fieldElement.name);
+    }
+
+    return null;
   };
 
   return Group;
@@ -6446,7 +6456,9 @@ function (_React$Component) {
 
       if (!isRender) {
         return 0;
-      } else if (isRender && isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
+      }
+
+      if (isRender && isAppearanceApplicable && fieldElement.control && fieldElement.control.appearance) {
         if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
           var processedStringArray = fieldElement.control.appearance.match(/^w(\d+)\b/i);
           var processedString = processedStringArray[0].replace('w', '');
@@ -6474,15 +6486,15 @@ function (_React$Component) {
         defaultLanguage = _this$props.defaultLanguage,
         isAppearanceApplicable = _this$props.isAppearanceApplicable;
     return createElement(Row, {
-      className: 'groupTypeEvaluatorRow'
+      className: "groupTypeEvaluatorRow"
     }, fieldElements.map(function (fieldElement) {
       var value = _this2.getAppearanceValue(fieldElement, fieldParentTreeName, isAppearanceApplicable);
 
       return createElement(Col, {
-        key: 'group_' + fieldElement.name,
-        className: 'groupTypeEvaluator',
+        key: "group_" + fieldElement.name,
+        className: "groupTypeEvaluator",
         md: value,
-        hidden: value === 0 ? true : false
+        hidden: value === 0
       }, _this2.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
     }));
   }

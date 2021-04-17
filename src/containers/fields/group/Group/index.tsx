@@ -1,3 +1,8 @@
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
@@ -52,43 +57,50 @@ class Group extends React.Component<GroupProps> {
     }
     if (isComponentRender) {
       return (
-        <FormGroup>
-          <Label className={'groupLabel'}>{fieldLabel}</Label>
-          {fieldElement.children && (
-            <GroupTypeEvaluator
-              choices={choices}
-              fieldElements={fieldElement.children}
-              fieldParentTreeName={
-                fieldParentTreeName + 'group/' + fieldElement.name + '/'
-              }
-              defaultLanguage={defaultLanguage}
-              csvList={csvList}
-              isAppearanceApplicable={isAppearanceApplicable}
-            />
-          )}
-        </FormGroup>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            style={{ border: '0000ff6b 5px solid' }}
+            expandIcon={<ExpandMoreIcon />}
+          >
+            <Typography>{fieldLabel}</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <FormGroup>
+              <Label className="groupLabel">{fieldLabel}</Label>
+              {fieldElement.children && (
+                <GroupTypeEvaluator
+                  choices={choices}
+                  fieldElements={fieldElement.children}
+                  fieldParentTreeName={`${fieldParentTreeName}group/${fieldElement.name}/`}
+                  defaultLanguage={defaultLanguage}
+                  csvList={csvList}
+                  isAppearanceApplicable={isAppearanceApplicable}
+                />
+              )}
+            </FormGroup>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       );
-    } else {
-      if (
-        this.props.isErrorsIncludeGroupFieldsSelector(
-          fieldParentTreeName + 'group/' + fieldElement.name + '/'
-        )
-      ) {
-        this.props.removeGroupFieldsFromErrorsActionCreator(
-          fieldParentTreeName + 'group/' + fieldElement.name + '/'
-        );
-      }
-      if (
-        !this.props.isGroupFieldsEmptySelector(
-          fieldParentTreeName + fieldElement.name
-        )
-      ) {
-        this.props.emptyGroupFieldsActionCreator(
-          fieldParentTreeName + fieldElement.name
-        );
-      }
-      return null;
     }
+    if (
+      this.props.isErrorsIncludeGroupFieldsSelector(
+        `${fieldParentTreeName}group/${fieldElement.name}/`
+      )
+    ) {
+      this.props.removeGroupFieldsFromErrorsActionCreator(
+        `${fieldParentTreeName}group/${fieldElement.name}/`
+      );
+    }
+    if (
+      !this.props.isGroupFieldsEmptySelector(
+        fieldParentTreeName + fieldElement.name
+      )
+    ) {
+      this.props.emptyGroupFieldsActionCreator(
+        fieldParentTreeName + fieldElement.name
+      );
+    }
+    return null;
   }
 }
 
