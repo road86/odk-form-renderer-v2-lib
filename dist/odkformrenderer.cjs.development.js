@@ -10,11 +10,13 @@ var fontawesomeSvgCore = require('@fortawesome/fontawesome-svg-core');
 var freeSolidSvgIcons = require('@fortawesome/free-solid-svg-icons');
 var reactstrap = require('reactstrap');
 var Select = _interopDefault(require('react-select'));
+var core = require('@material-ui/core');
 var ExpansionPanel = _interopDefault(require('@material-ui/core/ExpansionPanel'));
 var ExpansionPanelDetails = _interopDefault(require('@material-ui/core/ExpansionPanelDetails'));
 var ExpansionPanelSummary = _interopDefault(require('@material-ui/core/ExpansionPanelSummary'));
 var Typography = _interopDefault(require('@material-ui/core/Typography'));
 var ExpandMoreIcon = _interopDefault(require('@material-ui/icons/ExpandMore'));
+var styles = require('@material-ui/styles');
 var SeamlessImmutable = _interopDefault(require('seamless-immutable'));
 var reactFontawesome = require('@fortawesome/react-fontawesome');
 var _ = _interopDefault(require('lodash'));
@@ -2897,65 +2899,172 @@ function getAllFileObjects(state) {
   return state.getIn(['mediaList']);
 }
 
-var Group =
-/*#__PURE__*/
-function (_React$Component) {
-  _inheritsLoose(Group, _React$Component);
+var GroupStyle = function GroupStyle(theme) {
+  var _drawerPaperClose, _drawerClose;
 
-  function Group() {
-    return _React$Component.apply(this, arguments) || this;
+  return core.createStyles({
+    root: {
+      color: theme.palette.common.white,
+      '&.MuiExpansionPanelSummary-root': {
+        borderTop: "5px solid " + theme.palette.primary.dark,
+        color: theme.palette.primary.dark,
+        '&:hover': {
+          backgroundColor: theme.palette.primary.dark,
+          color: theme.palette.common.white
+        },
+        '&.Mui-expanded': {
+          backgroundColor: theme.palette.primary.dark,
+          color: theme.palette.common.white
+        }
+      }
+    },
+    toolbarIcon: _extends({
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: '0 8px'
+    }, theme.mixins.toolbar, {
+      '& button': {
+        color: '#FFF'
+      }
+    }),
+    drawerPaperClose: (_drawerPaperClose = {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+      }),
+      width: theme.spacing(7)
+    }, _drawerPaperClose[theme.breakpoints.up('sm')] = {
+      width: theme.spacing(9)
+    }, _drawerPaperClose.background = theme.palette.primary.dark, _drawerPaperClose),
+    paper: {
+      padding: theme.spacing(2),
+      display: 'flex',
+      overflow: 'auto',
+      flexDirection: 'column'
+    },
+    listItem: {
+      width: '94%',
+      background: theme.palette.primary.main,
+      color: '#FFF',
+      marginTop: '2px',
+      marginLeft: '8px',
+      marginRight: '2px',
+      borderRadius: '3px',
+      '&:hover': {
+        background: theme.palette.primary.light
+      }
+    },
+    listItemIcon: {
+      color: '#FFF'
+    },
+    listItemActive: {
+      width: '94%',
+      background: theme.palette.primary.light,
+      color: '#FFF',
+      marginTop: '2px',
+      marginLeft: '8px',
+      marginRight: '2px',
+      borderRadius: '3px',
+      '&:hover': {
+        background: theme.palette.primary.light
+      }
+    },
+    nested: {
+      paddingLeft: theme.spacing(4),
+      color: '#FFF'
+    },
+    navlogo: {
+      width: '40%',
+      margin: '0 auto',
+      padding: 3,
+      backgroundColor: '#FFF',
+      borderRadius: 5
+    },
+    listParent: {
+      color: theme.palette.common.white,
+      '&.MuiListItem-root': {
+        color: theme.palette.common.white,
+        '&.Mui-selected': {
+          color: theme.palette.common.white,
+          backgroundColor: theme.palette.primary.main
+        },
+        '&:hover': {
+          color: theme.palette.common.white,
+          backgroundColor: theme.palette.primary.dark
+        }
+      }
+    },
+    drawerClose: (_drawerClose = {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        duration: theme.transitions.duration.leavingScreen,
+        easing: theme.transitions.easing.sharp
+      }),
+      width: theme.spacing(7) + 1
+    }, _drawerClose[theme.breakpoints.up('sm')] = {
+      width: theme.spacing(7) + 1
+    }, _drawerClose.background = theme.palette.primary.dark, _drawerClose),
+    drawerOpen: {
+      '&:hover': {
+        overflowY: 'auto'
+      },
+      overflowY: 'hidden',
+      transition: theme.transitions.create('width', {
+        duration: theme.transitions.duration.enteringScreen,
+        easing: theme.transitions.easing.sharp
+      })
+    }
+  });
+};
+
+function Group(props) {
+  var choices = props.choices,
+      csvList = props.csvList,
+      fieldElement = props.fieldElement,
+      fieldParentTreeName = props.fieldParentTreeName,
+      defaultLanguage = props.defaultLanguage,
+      isComponentRender = props.isComponentRender;
+  var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+  var isAppearanceApplicable = false;
+
+  if (fieldElement.control && fieldElement.control.appearance) {
+    if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+      isAppearanceApplicable = true;
+    }
   }
 
-  var _proto = Group.prototype;
+  var theme = core.useTheme();
+  var useStyles = styles.makeStyles(GroupStyle(theme));
+  var classNames = useStyles();
 
-  _proto.render = function render() {
-    var _this$props = this.props,
-        choices = _this$props.choices,
-        csvList = _this$props.csvList,
-        fieldElement = _this$props.fieldElement,
-        fieldParentTreeName = _this$props.fieldParentTreeName,
-        defaultLanguage = _this$props.defaultLanguage,
-        isComponentRender = _this$props.isComponentRender;
-    var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
-    var isAppearanceApplicable = false;
+  if (isComponentRender && (fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
+    return React.createElement(ExpansionPanel, null, React.createElement(ExpansionPanelSummary, {
+      className: classNames.root,
+      expandIcon: React.createElement(ExpandMoreIcon, null)
+    }, React.createElement(Typography, null, fieldLabel)), React.createElement(ExpansionPanelDetails, null, React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
+      className: "groupLabel"
+    }, fieldLabel), fieldElement.children && React.createElement(ConnectedGroupTypeEvaluator, {
+      choices: choices,
+      fieldElements: fieldElement.children,
+      fieldParentTreeName: fieldParentTreeName + "group/" + fieldElement.name + "/",
+      defaultLanguage: defaultLanguage,
+      csvList: csvList,
+      isAppearanceApplicable: isAppearanceApplicable
+    }))));
+  }
 
-    if (fieldElement.control && fieldElement.control.appearance) {
-      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
-        isAppearanceApplicable = true;
-      }
-    }
+  if (props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + "group/" + fieldElement.name + "/")) {
+    props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + "group/" + fieldElement.name + "/");
+  }
 
-    if (isComponentRender) {
-      return React.createElement(ExpansionPanel, null, React.createElement(ExpansionPanelSummary, {
-        style: {
-          border: '0000ff6b 5px solid'
-        },
-        expandIcon: React.createElement(ExpandMoreIcon, null)
-      }, React.createElement(Typography, null, fieldLabel)), React.createElement(ExpansionPanelDetails, null, React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
-        className: "groupLabel"
-      }, fieldLabel), fieldElement.children && React.createElement(ConnectedGroupTypeEvaluator, {
-        choices: choices,
-        fieldElements: fieldElement.children,
-        fieldParentTreeName: fieldParentTreeName + "group/" + fieldElement.name + "/",
-        defaultLanguage: defaultLanguage,
-        csvList: csvList,
-        isAppearanceApplicable: isAppearanceApplicable
-      }))));
-    }
+  if (!props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)) {
+    props.emptyGroupFieldsActionCreator(fieldParentTreeName + fieldElement.name);
+  }
 
-    if (this.props.isErrorsIncludeGroupFieldsSelector(fieldParentTreeName + "group/" + fieldElement.name + "/")) {
-      this.props.removeGroupFieldsFromErrorsActionCreator(fieldParentTreeName + "group/" + fieldElement.name + "/");
-    }
-
-    if (!this.props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)) {
-      this.props.emptyGroupFieldsActionCreator(fieldParentTreeName + fieldElement.name);
-    }
-
-    return null;
-  };
-
-  return Group;
-}(React.Component);
+  return null;
+}
 /** Map props to state  */
 
 

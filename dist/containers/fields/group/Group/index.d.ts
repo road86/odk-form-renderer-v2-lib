@@ -1,4 +1,4 @@
-import * as React from 'react';
+/// <reference types="react" />
 import { FieldElement, FieldParentTreeName } from '../../../../components/typeEvalutors/Base';
 import { emptyGroupFields, removeGroupFieldsFromErrors } from '../../../../store/ducks/formState';
 export interface GroupProps {
@@ -14,9 +14,7 @@ export interface GroupProps {
     emptyGroupFieldsActionCreator: typeof emptyGroupFields;
     removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
 }
-declare class Group extends React.Component<GroupProps> {
-    render(): JSX.Element | null;
-}
+declare function Group(props: GroupProps): JSX.Element | null;
 /** Interface to describe props from parent */
 interface ParentProps {
     fieldElement: FieldElement;
@@ -24,5 +22,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect Group component to the redux store */
-declare const ConnectedGroup: import("react-redux").ConnectedComponent<typeof Group, Pick<GroupProps, "choices" | "csvList" | "defaultLanguage" | "fieldElement" | "fieldParentTreeName"> & ParentProps>;
+declare const ConnectedGroup: import("react-redux").ConnectedComponent<typeof Group, Pick<GroupProps, "choices" | "csvList" | "fieldElement" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
 export default ConnectedGroup;

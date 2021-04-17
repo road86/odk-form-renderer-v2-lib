@@ -1,8 +1,10 @@
+import { useTheme } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { makeStyles } from '@material-ui/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
@@ -23,6 +25,7 @@ import {
   getFieldLabelText,
   shouldComponentBeRelevant,
 } from '../../../../utils/helpers';
+import GroupStyle from './styles';
 
 export interface GroupProps {
   choices: any;
@@ -38,70 +41,75 @@ export interface GroupProps {
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
 }
 
-class Group extends React.Component<GroupProps> {
-  public render() {
-    const {
-      choices,
-      csvList,
-      fieldElement,
-      fieldParentTreeName,
-      defaultLanguage,
-      isComponentRender,
-    } = this.props;
-    const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
-    let isAppearanceApplicable = false;
-    if (fieldElement.control && fieldElement.control.appearance) {
-      if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
-        isAppearanceApplicable = true;
-      }
+function Group(props: GroupProps) {
+  const {
+    choices,
+    csvList,
+    fieldElement,
+    fieldParentTreeName,
+    defaultLanguage,
+    isComponentRender,
+  } = props;
+  const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+  let isAppearanceApplicable = false;
+  if (fieldElement.control && fieldElement.control.appearance) {
+    if (/^w(\d+)\b/i.test(fieldElement.control.appearance)) {
+      isAppearanceApplicable = true;
     }
-    if (isComponentRender) {
-      return (
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            style={{ border: '0000ff6b 5px solid' }}
-            expandIcon={<ExpandMoreIcon />}
-          >
-            <Typography>{fieldLabel}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <FormGroup>
-              <Label className="groupLabel">{fieldLabel}</Label>
-              {fieldElement.children && (
-                <GroupTypeEvaluator
-                  choices={choices}
-                  fieldElements={fieldElement.children}
-                  fieldParentTreeName={`${fieldParentTreeName}group/${fieldElement.name}/`}
-                  defaultLanguage={defaultLanguage}
-                  csvList={csvList}
-                  isAppearanceApplicable={isAppearanceApplicable}
-                />
-              )}
-            </FormGroup>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      );
-    }
-    if (
-      this.props.isErrorsIncludeGroupFieldsSelector(
-        `${fieldParentTreeName}group/${fieldElement.name}/`
-      )
-    ) {
-      this.props.removeGroupFieldsFromErrorsActionCreator(
-        `${fieldParentTreeName}group/${fieldElement.name}/`
-      );
-    }
-    if (
-      !this.props.isGroupFieldsEmptySelector(
-        fieldParentTreeName + fieldElement.name
-      )
-    ) {
-      this.props.emptyGroupFieldsActionCreator(
-        fieldParentTreeName + fieldElement.name
-      );
-    }
-    return null;
   }
+  const theme = useTheme();
+  const useStyles = makeStyles(GroupStyle(theme));
+  const classNames = useStyles();
+  if (
+    isComponentRender
+    && (fieldElement.control.bodyless
+      ? fieldElement.control.bodyless === false
+      : true)
+  ) {
+    return (
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          className={classNames.root}
+          expandIcon={<ExpandMoreIcon />}
+        >
+          <Typography>{fieldLabel}</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <FormGroup>
+            <Label className="groupLabel">{fieldLabel}</Label>
+            {fieldElement.children && (
+              <GroupTypeEvaluator
+                choices={choices}
+                fieldElements={fieldElement.children}
+                fieldParentTreeName={`${fieldParentTreeName}group/${fieldElement.name}/`}
+                defaultLanguage={defaultLanguage}
+                csvList={csvList}
+                isAppearanceApplicable={isAppearanceApplicable}
+              />
+            )}
+          </FormGroup>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    );
+  }
+
+  if (
+    props.isErrorsIncludeGroupFieldsSelector(
+      `${fieldParentTreeName}group/${fieldElement.name}/`
+    )
+  ) {
+    props.removeGroupFieldsFromErrorsActionCreator(
+      `${fieldParentTreeName}group/${fieldElement.name}/`
+    );
+  }
+  if (
+    !props.isGroupFieldsEmptySelector(fieldParentTreeName + fieldElement.name)
+  ) {
+    props.emptyGroupFieldsActionCreator(
+      fieldParentTreeName + fieldElement.name
+    );
+  }
+  return null;
 }
 
 /** connect the component to the store */
