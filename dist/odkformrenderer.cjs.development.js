@@ -728,7 +728,6 @@ function tokenizer(input) {
     _loop();
   }
 
-  console.log(tokens);
   return tokens;
 }
 /**
@@ -992,10 +991,12 @@ function kbConcat(funcName, params, _paramsTokens) {
 
       for (var i = 0; i < params.length; i += 1) {
         if (params[i] == null) {
-          return [false, null];
+          // continue;
+          // return [false, null];
+          concatStr += '';
+        } else {
+          concatStr += params[i];
         }
-
-        concatStr += params[i];
       }
 
       return [true, concatStr];
@@ -5512,6 +5513,7 @@ function (_React$Component) {
         criteriaType = criteriaType.substring(1, criteriaType.length - 1).trim();
       }
 
+      console.log(csvName, criteriaType, filterCriterias);
       var options = [];
       var distinctOptions = [];
       var csv = _this.props.csvList;
@@ -5554,7 +5556,9 @@ function (_React$Component) {
           valueColumnName = _this.props.fieldElement.children[0].name;
         }
 
+        console.log(options);
         options.forEach(function (elem) {
+          console.log(elem[labelColumnName], elem[valueColumnName], valueColumnName);
           var tmpOpt = {};
           var label = 'label';
           var name = 'name';

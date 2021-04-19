@@ -324,6 +324,7 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
       criteriaType = criteriaType.trim();
       criteriaType = criteriaType.substring(1, criteriaType.length - 1).trim();
     }
+    console.log(csvName, criteriaType, filterCriterias);
 
     let options: any[] = [];
     const distinctOptions: any[] = [];
@@ -370,8 +371,10 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         );
         valueColumnName = this.props.fieldElement.children[0].name;
       }
+      console.log(options);
 
       options.forEach(elem => {
+        console.log(elem[labelColumnName], elem[valueColumnName], valueColumnName);
         const tmpOpt: any = {};
         const label: string = 'label';
         const name: string = 'name';

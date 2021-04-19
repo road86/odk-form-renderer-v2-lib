@@ -507,7 +507,6 @@ function tokenizer(input: any) {
       );
     }
   }
-  console.log(tokens);
   return tokens;
 }
 
@@ -745,9 +744,12 @@ function kbConcat(funcName: any, params: any, _paramsTokens: any) {
       // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < params.length; i += 1) {
         if (params[i] == null) {
-          return [false, null];
+          // continue;
+          // return [false, null];
+          concatStr += '';
+        } else {
+          concatStr += params[i];
         }
-        concatStr += params[i];
       }
       return [true, concatStr];
     }
