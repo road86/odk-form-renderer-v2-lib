@@ -134,13 +134,17 @@ function tokenizeGreaterThan(input: any, current: any) {
  * @returns - tokenizeReturnObject
  */
 function tokenizeNot(input: any, current: any) {
-  if(input[current] == '!') {
+  if (input[current] == '!') {
     return tokenizeCharacter('not', '!', input, current);
-  } else if(input[current] == 'n') {
-    if ( (input[current + 1] && input[current + 1] == 'o') && (input[current + 2] && input[current + 2] == 't')) {
+  } else if (input[current] == 'n') {
+    if (
+      input[current + 1] &&
+      input[current + 1] == 'o' &&
+      (input[current + 2] && input[current + 2] == 't')
+    ) {
       const type = 'not';
       const value = '!';
-      return [3, { type, value }]
+      return [3, { type, value }];
     }
   }
   return [0, null];
@@ -239,7 +243,7 @@ function tokenizeFunction(input: any, current: any) {
       consumedChars += 1;
       char = input[current + consumedChars];
     }
-    if(value == 'not') {
+    if (value == 'not') {
       return [0, null];
     }
     if (char && char === '(') {
@@ -553,11 +557,15 @@ function kbChoice(funcName: any, params: any, _paramsTokens: any) {
       }
     }
     const state = store.getState();
-    const variableName = parent + params[params.length - 1].replace(/[^a-zA-Z ]/g, "");
+    const variableName =
+      parent + params[params.length - 1].replace(/[^a-zA-Z ]/g, '');
     if (variableName in state.optionList) {
-      for (let key in state.optionList[variableName]) {
+      for (const key in state.optionList[variableName]) {
         if (state.optionList[variableName][key].name === params[0]) {
-          return [true, state.optionList[variableName][key].label[state.language]];
+          return [
+            true,
+            state.optionList[variableName][key].label[state.language],
+          ];
         }
       }
     }
@@ -1075,6 +1083,7 @@ function parseIf(_output: any, tokens: any, current: any) {
         if (tokens[current + i].type === 'comma' && tmpQueue.length === 1) {
           tmpTokens.pop();
           const tmpVal = parser(null, tmpTokens, 0);
+          // console.log(tmpTokens, tmpVal);
           arrayOfParams.push(tmpVal);
           tmpTokens = [];
         }
@@ -1248,7 +1257,7 @@ function parseOr(output: any, tokens: any, current: any) {
         newOutput = parser(null, tmpTokens, 0);
       }
     }
-    if (newOutput != null) {
+    if (newOutput != null || output != null) {
       if (tokens[current + i] && tokens[current + i].type === 'and') {
         let consumedChars = 0;
         [consumedChars, newOutput] = parseAnd(newOutput, tokens, current + i);
@@ -1781,6 +1790,7 @@ function parser(leftOutput: any, tokens: any, pos: any) {
         parsed = true;
         current += consumedTokens;
       }
+      // console.log(current);
       if (newOutput != null) {
         output = newOutput;
       }

@@ -778,7 +778,7 @@ function kbChoice(funcName, params, _paramsTokens) {
     }
 
     var state = store.getState();
-    var variableName = parent + params[params.length - 1].replace(/[^a-zA-Z ]/g, "");
+    var variableName = parent + params[params.length - 1].replace(/[^a-zA-Z ]/g, '');
 
     if (variableName in state.optionList) {
       for (var key in state.optionList[variableName]) {
@@ -1317,7 +1317,8 @@ function parseIf(_output, tokens, current) {
 
         if (tokens[current + i].type === 'comma' && tmpQueue.length === 1) {
           tmpTokens.pop();
-          var tmpVal = parser(null, tmpTokens, 0);
+          var tmpVal = parser(null, tmpTokens, 0); // console.log(tmpTokens, tmpVal);
+
           arrayOfParams.push(tmpVal);
           tmpTokens = [];
         }
@@ -1519,7 +1520,7 @@ function parseOr(output, tokens, current) {
       }
     }
 
-    if (newOutput != null) {
+    if (newOutput != null || output != null) {
       if (tokens[current + i] && tokens[current + i].type === 'and') {
         var _consumedChars2 = 0;
 
@@ -2053,7 +2054,8 @@ function parser(leftOutput, tokens, pos) {
       if (consumedTokens !== 0) {
         parsed = true;
         current += consumedTokens;
-      }
+      } // console.log(current);
+
 
       if (newOutput != null) {
         output = newOutput;
