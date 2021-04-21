@@ -16,6 +16,7 @@ export interface FormState {
   optionList: object;
   isFormSubmitted: boolean;
   mediaList: object;
+  language: string;
 }
 
 // actions
@@ -44,6 +45,7 @@ export const REMOVE_GROUP_FIELDS_FROM_ERRORS =
   'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 export const SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
 export const SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
+export const SET_LANGUAGE = 'odk/reducer/form/SET_LANGUAGE';
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -112,6 +114,12 @@ export interface RemoveGroupFieldsFromErrors extends AnyAction {
 export interface SetUserInputObj extends AnyAction {
   userInputObj: any;
   type: typeof SET_USER_INPUT_OBJ;
+}
+
+/** interface for SET_LANGUAGE action */
+export interface SetLanguage extends AnyAction {
+  language: string;
+  type: typeof SET_LANGUAGE;
 }
 
 /** interface for SET_FORM_SUBMIT_STATUS action */
@@ -239,6 +247,15 @@ export const setUserInputObj = (userInputObj: any): SetUserInputObj => ({
   userInputObj,
 });
 
+/** sets the language to redux store
+ * @param {string} language - the user input obj
+ * @returns {SetLanguage} - an action to set user input to redux store
+ */
+export const setUserLanguage = (language: string): SetLanguage => ({
+  type: SET_LANGUAGE,
+  language,
+});
+
 /** sets the form submit info to redux store
  * @param {boolean} isFormSubmitted - the form submit info variable
  * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
@@ -276,6 +293,7 @@ export const initialState: ImmutableFormState = SeamlessImmutable({
   mediaList: {},
   optionList: {},
   userInput: {},
+  language: 'English'
 });
 
 /** the form reducer function */
@@ -420,7 +438,7 @@ export function getFieldValue(
   fieldTreeName: string
 ): any {
   return getValueFromUserInputObj(
-    (state as any).getIn(['userInput']).asMutable({ deep: true }),
+    (state as any) != undefined && (state as any).getIn(['userInput']).asMutable({ deep: true }),
     fieldTreeName
   );
 }
@@ -435,7 +453,7 @@ export function getOptionList(
   fieldTreeName: string
 ): any {
   return getValueFromUserInputObj(
-    (state as any).getIn(['optionList']).asMutable({ deep: true }),
+    (state as any) != undefined && (state as any).getIn(['optionList']).asMutable({ deep: true }),
     fieldTreeName
   );
 }
@@ -451,7 +469,7 @@ export function getEvaluatedExpression(
   expression: string,
   fieldTreeName: string
 ): any {
-  return evaluater(expression, (state as any).userInput, null, fieldTreeName);
+  return evaluater(expression, (state as any) != undefined && (state as any).userInput, null, fieldTreeName);
 }
 
 /** get the value of the evaluated expression for Select One and Select All
@@ -484,7 +502,7 @@ export function isPresentInError(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return (state as any).errors.includes(fieldTreeName);
+  return  (state as any) != undefined && (state as any).errors.includes(fieldTreeName);
 }
 
 /** check if the field elements under group are empty or not
@@ -496,7 +514,7 @@ export function isGroupFieldsEmpty(
   state: Partial<Store>,
   fieldTreeName: string
 ): any {
-  return checkGroupedValuesForEmpty((state as any).userInput, fieldTreeName);
+  return checkGroupedValuesForEmpty( (state as any) != undefined && (state as any).userInput, fieldTreeName);
 }
 
 /** check if the field elements under group are present in errors or not
@@ -522,7 +540,7 @@ export function isErrorsIncludeGroupFields(
  * @return {boolean} true if empty; otherwise, false
  */
 export function isErrorsArrayEmpty(state: Partial<Store>): any {
-  return (state as any).errors && (state as any).errors.length ? false : true;
+  return (state as any) != undefined && (state as any).errors && (state as any).errors.length ? false : true;
 }
 
 /** get the userInput object from store
@@ -530,7 +548,7 @@ export function isErrorsArrayEmpty(state: Partial<Store>): any {
  * @return {boolean} the current userInputObject
  */
 export function getUserInputFromStore(state: Partial<Store>): any {
-  return (state as any).getIn(['userInput']).asMutable({ deep: true });
+  return (state as any) != undefined && (state as any).getIn(['userInput']).asMutable({ deep: true });
 }
 
 /** get the userInput object from store
@@ -538,7 +556,7 @@ export function getUserInputFromStore(state: Partial<Store>): any {
  * @return {boolean} the current isFormSubmitted
  */
 export function getFormSubmitStatus(state: Partial<Store>): any {
-  return (state as any).isFormSubmitted;
+  return (state as any) != undefined && (state as any).isFormSubmitted;
 }
 
 /** get the file if present in store
@@ -556,5 +574,5 @@ export function getFileObject(state: Partial<Store>, fileName: string): any {
  * @return {any} - the files or empty object
  */
 export function getAllFileObjects(state: Partial<Store>): any {
-  return (state as any).getIn(['mediaList']);
+  return (state as any) != undefined && (state as any).getIn(['mediaList']);
 }

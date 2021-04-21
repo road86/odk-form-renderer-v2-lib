@@ -7,6 +7,7 @@ export interface FormState {
     optionList: object;
     isFormSubmitted: boolean;
     mediaList: object;
+    language: string;
 }
 /** FIELD_VALUE_ASSIGNED action type */
 export declare const FIELD_VALUE_ASSIGNED = "odk/reducer/form/FIELD_VALUE_ASSIGNED";
@@ -30,6 +31,7 @@ export declare const EMPTY_GROUP_FIELDS = "odk/reducer/form/EMPTY_GROUP_FIELDS";
 export declare const REMOVE_GROUP_FIELDS_FROM_ERRORS = "odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS";
 export declare const SET_USER_INPUT_OBJ = "odk/reducer/form/SET_USER_INPUT_OBJ";
 export declare const SET_FORM_SUBMIT_STATUS = "odk/reducer/form/SET_FORM_SUBMIT_STATUS";
+export declare const SET_LANGUAGE = "odk/reducer/form/SET_LANGUAGE";
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
     fieldTreeName: string;
@@ -87,6 +89,11 @@ export interface RemoveGroupFieldsFromErrors extends AnyAction {
 export interface SetUserInputObj extends AnyAction {
     userInputObj: any;
     type: typeof SET_USER_INPUT_OBJ;
+}
+/** interface for SET_LANGUAGE action */
+export interface SetLanguage extends AnyAction {
+    language: string;
+    type: typeof SET_LANGUAGE;
 }
 /** interface for SET_FORM_SUBMIT_STATUS action */
 export interface SetFormSubmitStatus extends AnyAction {
@@ -149,6 +156,11 @@ export declare const removeGroupFieldsFromErrors: (fieldTreeName: string) => Rem
  * @returns {SetUserInputObj} - an action to set user input to redux store
  */
 export declare const setUserInputObj: (userInputObj: any) => SetUserInputObj;
+/** sets the language to redux store
+ * @param {string} language - the user input obj
+ * @returns {SetLanguage} - an action to set user input to redux store
+ */
+export declare const setUserLanguage: (language: string) => SetLanguage;
 /** sets the form submit info to redux store
  * @param {boolean} isFormSubmitted - the form submit info variable
  * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store

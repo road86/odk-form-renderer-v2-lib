@@ -4,7 +4,7 @@ const GroupStyle = (theme: Theme) =>
   createStyles({
     root: {
       color: theme.palette.common.white,
-      '&.MuiExpansionPanelSummary-root': {
+      '&.MuiAccordionSummary-root': {
         borderTop: `5px solid ${theme.palette.primary.dark}`,
         color: theme.palette.primary.dark,
         '&:hover': {

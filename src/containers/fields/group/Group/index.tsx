@@ -1,7 +1,5 @@
+import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
 import { useTheme } from '@material-ui/core';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/styles';
@@ -67,14 +65,14 @@ function Group(props: GroupProps) {
       : true)
   ) {
     return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary
+      <Accordion>
+        <AccordionSummary
           className={classNames.root}
           expandIcon={<ExpandMoreIcon />}
         >
           <Typography>{fieldLabel}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
           <FormGroup>
             <Label className="groupLabel">{fieldLabel}</Label>
             {fieldElement.children && (
@@ -88,8 +86,8 @@ function Group(props: GroupProps) {
               />
             )}
           </FormGroup>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     );
   }
 

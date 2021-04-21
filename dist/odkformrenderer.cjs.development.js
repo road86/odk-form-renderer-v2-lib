@@ -11,19 +11,16 @@ var freeSolidSvgIcons = require('@fortawesome/free-solid-svg-icons');
 var reactstrap = require('reactstrap');
 var Select = _interopDefault(require('react-select'));
 var core = require('@material-ui/core');
-var ExpansionPanel = _interopDefault(require('@material-ui/core/ExpansionPanel'));
-var ExpansionPanelDetails = _interopDefault(require('@material-ui/core/ExpansionPanelDetails'));
-var ExpansionPanelSummary = _interopDefault(require('@material-ui/core/ExpansionPanelSummary'));
 var Typography = _interopDefault(require('@material-ui/core/Typography'));
 var ExpandMoreIcon = _interopDefault(require('@material-ui/icons/ExpandMore'));
 var styles = require('@material-ui/styles');
 var SeamlessImmutable = _interopDefault(require('seamless-immutable'));
+var redux = require('redux');
+var reduxDevtoolsExtension = require('redux-devtools-extension');
 var reactFontawesome = require('@fortawesome/react-fontawesome');
 var _ = _interopDefault(require('lodash'));
 var DatePicker = _interopDefault(require('react-datepicker'));
 require('react-datepicker/dist/react-datepicker.css');
-var redux = require('redux');
-var reduxDevtoolsExtension = require('redux-devtools-extension');
 
 function _extends() {
   _extends = Object.assign || function (target) {
@@ -149,6 +146,14 @@ var CALCULATE_FIELD_TYPE = 'calculate'; // Required Properties
 
 var REQUIRED_FIELD_MSG = 'This field is required';
 var REQUIRED_SYMBOL = '*';
+
+/** The initial store */
+
+var store =
+/*#__PURE__*/
+redux.createStore(reducer,
+/*#__PURE__*/
+reduxDevtoolsExtension.composeWithDevTools());
 
 var actualExpression;
 var currentHierarchicalName = '';
@@ -757,6 +762,39 @@ function kbSelected(funcName, params, _paramsTokens) {
   }
 
   return [false, null];
+} // tslint:disable-next-line: variable-name
+
+
+function kbChoice(funcName, params, _paramsTokens) {
+  if (funcName === 'jr:choice-name') {
+    var tmpHierchicalName = currentHierarchicalName.split('/');
+    var i;
+    var parent = '';
+
+    for (i = 0; i < tmpHierchicalName.length - 1;) {
+      // tslint:disable-next-line: triple-equals
+      if (tmpHierchicalName[i] == 'repeat') {
+        i += 3;
+      } else {
+        // path.push(parent + tmpHierchicalName[i + 1]);
+        parent = parent + tmpHierchicalName[i + 1] + '/';
+        i += 2;
+      }
+    }
+
+    var state = store.getState();
+    var variableName = parent + params[params.length - 1].replace(/[^a-zA-Z ]/g, "");
+
+    if (variableName in state.optionList) {
+      for (var key in state.optionList[variableName]) {
+        if (state.optionList[variableName][key].name === params[0]) {
+          return [true, state.optionList[variableName][key].label[state.language]];
+        }
+      }
+    }
+  }
+
+  return [false, null];
 }
 /**
  * kbToday parses the function today and returns functionParseReturnObject
@@ -1083,7 +1121,6 @@ function parseMostClosestScopedVariable(variableName) {
       variableValue = outerScopedVariables(variableName, variableValue, tmpUserInput[parent + tmpHierchicalName[i]][index]);
       i += 2;
     } else {
-      // path.push(parent + tmpHierchicalName[i + 1]);
       parent = parent + tmpHierchicalName[i + 1] + '/';
       i += 2;
     }
@@ -1184,7 +1221,7 @@ function parseLiterals(_tmpOutput, tokens, current) {
 
 function parseFunction(_output, tokens, current) {
   // precedence of functions
-  var possibleFunctions = [kbSelected, kbCountSelected, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound];
+  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound];
 
   if (tokens[current].type === 'function') {
     var funcName = tokens[current].value;
@@ -2515,6 +2552,7 @@ var EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 var REMOVE_GROUP_FIELDS_FROM_ERRORS = 'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 var SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
 var SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
+var SET_LANGUAGE = 'odk/reducer/form/SET_LANGUAGE';
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the value that will be assigned
@@ -2628,6 +2666,17 @@ var setUserInputObj = function setUserInputObj(userInputObj) {
     userInputObj: userInputObj
   };
 };
+/** sets the language to redux store
+ * @param {string} language - the user input obj
+ * @returns {SetLanguage} - an action to set user input to redux store
+ */
+
+var setUserLanguage = function setUserLanguage(language) {
+  return {
+    type: SET_LANGUAGE,
+    language: language
+  };
+};
 /** sets the form submit info to redux store
  * @param {boolean} isFormSubmitted - the form submit info variable
  * @returns {SetFormSubmitInfo} - an action to set form submit info to redux store
@@ -2648,7 +2697,8 @@ SeamlessImmutable({
   isFormSubmitted: false,
   mediaList: {},
   optionList: {},
-  userInput: {}
+  userInput: {},
+  language: 'English'
 });
 /** the form reducer function */
 
@@ -2786,7 +2836,7 @@ function reducer(state, action) {
  */
 
 function getFieldValue(state, fieldTreeName) {
-  return getValueFromUserInputObj(state.getIn(['userInput']).asMutable({
+  return getValueFromUserInputObj(state != undefined && state.getIn(['userInput']).asMutable({
     deep: true
   }), fieldTreeName);
 }
@@ -2797,7 +2847,7 @@ function getFieldValue(state, fieldTreeName) {
  */
 
 function getOptionList(state, fieldTreeName) {
-  return getValueFromUserInputObj(state.getIn(['optionList']).asMutable({
+  return getValueFromUserInputObj(state != undefined && state.getIn(['optionList']).asMutable({
     deep: true
   }), fieldTreeName);
 }
@@ -2809,7 +2859,7 @@ function getOptionList(state, fieldTreeName) {
  */
 
 function getEvaluatedExpression(state, expression, fieldTreeName) {
-  return evaluater(expression, state.userInput, null, fieldTreeName);
+  return evaluater(expression, state != undefined && state.userInput, null, fieldTreeName);
 }
 /** get the value of the evaluated expression for Select One and Select All
  * @param {Partial<Store>} state - the redux store
@@ -2829,7 +2879,7 @@ function getEvaluatedExpressionForSelect(state, expression, options, fieldTreeNa
  */
 
 function isPresentInError(state, fieldTreeName) {
-  return state.errors.includes(fieldTreeName);
+  return state != undefined && state.errors.includes(fieldTreeName);
 }
 /** check if the field elements under group are empty or not
  * @param {Partial<Store>} state - the redux store
@@ -2838,7 +2888,7 @@ function isPresentInError(state, fieldTreeName) {
  */
 
 function isGroupFieldsEmpty(state, fieldTreeName) {
-  return checkGroupedValuesForEmpty(state.userInput, fieldTreeName);
+  return checkGroupedValuesForEmpty(state != undefined && state.userInput, fieldTreeName);
 }
 /** check if the field elements under group are present in errors or not
  * @param {Partial<Store>} state - the redux store
@@ -2861,7 +2911,7 @@ function isErrorsIncludeGroupFields(state, fieldTreeName) {
  */
 
 function isErrorsArrayEmpty(state) {
-  return state.errors && state.errors.length ? false : true;
+  return state != undefined && state.errors && state.errors.length ? false : true;
 }
 /** get the userInput object from store
  * @param {Partial<Store>} state - the redux store
@@ -2869,7 +2919,7 @@ function isErrorsArrayEmpty(state) {
  */
 
 function getUserInputFromStore(state) {
-  return state.getIn(['userInput']).asMutable({
+  return state != undefined && state.getIn(['userInput']).asMutable({
     deep: true
   });
 }
@@ -2879,7 +2929,7 @@ function getUserInputFromStore(state) {
  */
 
 function getFormSubmitStatus(state) {
-  return state.isFormSubmitted;
+  return state != undefined && state.isFormSubmitted;
 }
 /** get the file if present in store
  * @param {Partial<Store>} state - the redux store
@@ -2897,7 +2947,7 @@ function getFileObject(state, fileName) {
  */
 
 function getAllFileObjects(state) {
-  return state.getIn(['mediaList']);
+  return state != undefined && state.getIn(['mediaList']);
 }
 
 var GroupStyle = function GroupStyle(theme) {
@@ -2906,7 +2956,7 @@ var GroupStyle = function GroupStyle(theme) {
   return core.createStyles({
     root: {
       color: theme.palette.common.white,
-      '&.MuiExpansionPanelSummary-root': {
+      '&.MuiAccordionSummary-root': {
         borderTop: "5px solid " + theme.palette.primary.dark,
         color: theme.palette.primary.dark,
         '&:hover': {
@@ -3041,10 +3091,10 @@ function Group(props) {
   var classNames = useStyles();
 
   if (isComponentRender && (fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
-    return React.createElement(ExpansionPanel, null, React.createElement(ExpansionPanelSummary, {
+    return React.createElement(core.Accordion, null, React.createElement(core.AccordionSummary, {
       className: classNames.root,
       expandIcon: React.createElement(ExpandMoreIcon, null)
-    }, React.createElement(Typography, null, fieldLabel)), React.createElement(ExpansionPanelDetails, null, React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
+    }, React.createElement(Typography, null, fieldLabel)), React.createElement(core.AccordionDetails, null, React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
       className: "groupLabel"
     }, fieldLabel), fieldElement.children && React.createElement(ConnectedGroupTypeEvaluator, {
       choices: choices,
@@ -6693,6 +6743,8 @@ function (_React$Component) {
       _this.setState({
         defaultLanguage: languageName
       });
+
+      _this.props.setUserLanguageAction(_this.props.defaultLanguage);
     }; // tslint:disable-next-line: variable-name
 
 
@@ -6739,6 +6791,7 @@ function (_React$Component) {
       this.props.setUserInputAction(userInputJson);
     }
 
+    this.props.setUserLanguageAction(this.props.defaultLanguage);
     this.setState({
       defaultLanguage: this.props.defaultLanguage,
       isSubmissionError: false
@@ -6810,21 +6863,14 @@ var mapStateToProps$i = function mapStateToProps(state) {
 var mapDispatchToProps$h = {
   resetStoreActionCreator: resetStoreAction,
   setFormSubmitStatusAction: setFormSubmitStatus,
-  setUserInputAction: setUserInputObj
+  setUserInputAction: setUserInputObj,
+  setUserLanguageAction: setUserLanguage
 };
 /** connect Decimal component to the redux store */
 
 var ConnectedApp =
 /*#__PURE__*/
 reactRedux.connect(mapStateToProps$i, mapDispatchToProps$h)(App);
-
-/** The initial store */
-
-var store =
-/*#__PURE__*/
-redux.createStore(reducer,
-/*#__PURE__*/
-reduxDevtoolsExtension.composeWithDevTools());
 
 var OdkFormRenderer =
 /*#__PURE__*/

@@ -18,6 +18,7 @@ import {
   resetStoreAction,
   setFormSubmitStatus,
   setUserInputObj,
+  setUserLanguage,
 } from '../store/ducks/formState';
 
 library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
@@ -32,6 +33,7 @@ export interface AppProps {
   formTitle: string;
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
+  setUserLanguageAction: typeof setUserLanguage;
   languageOptions: any;
   setFormSubmitStatusAction: typeof setFormSubmitStatus;
   resetStoreActionCreator: typeof resetStoreAction;
@@ -55,6 +57,7 @@ class App extends React.Component<AppProps, AppState> {
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
+    this.props.setUserLanguageAction(this.props.defaultLanguage);
     this.setState({
       defaultLanguage: this.props.defaultLanguage,
       isSubmissionError: false,
@@ -63,6 +66,7 @@ class App extends React.Component<AppProps, AppState> {
 
   public handleSelect = (languageName: string) => {
     this.setState({ defaultLanguage: languageName });
+    this.props.setUserLanguageAction(this.props.defaultLanguage);
   };
 
   public render() {
@@ -166,6 +170,7 @@ const mapDispatchToProps = {
   resetStoreActionCreator: resetStoreAction,
   setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
+  setUserLanguageAction: setUserLanguage,
 };
 
 /** connect Decimal component to the redux store */

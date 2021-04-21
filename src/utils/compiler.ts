@@ -1,3 +1,5 @@
+import store from '../store';
+
 let actualExpression: string;
 let currentHierarchicalName: string = '';
 let formItemProperty: any = {};
@@ -534,6 +536,35 @@ function kbSelected(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+// tslint:disable-next-line: variable-name
+function kbChoice(funcName: any, params: any, _paramsTokens: any) {
+  if (funcName === 'jr:choice-name') {
+    const tmpHierchicalName = currentHierarchicalName.split('/');
+    let i;
+    let parent = '';
+    for (i = 0; i < tmpHierchicalName.length - 1; ) {
+      // tslint:disable-next-line: triple-equals
+      if (tmpHierchicalName[i] == 'repeat') {
+        i += 3;
+      } else {
+        // path.push(parent + tmpHierchicalName[i + 1]);
+        parent = parent + tmpHierchicalName[i + 1] + '/';
+        i += 2;
+      }
+    }
+    const state = store.getState();
+    const variableName = parent + params[params.length - 1].replace(/[^a-zA-Z ]/g, "");
+    if (variableName in state.optionList) {
+      for (let key in state.optionList[variableName]) {
+        if (state.optionList[variableName][key].name === params[0]) {
+          return [true, state.optionList[variableName][key].label[state.language]];
+        }
+      }
+    }
+  }
+  return [false, null];
+}
+
 /**
  * kbToday parses the function today and returns functionParseReturnObject
  * @param funcName - the function name of the token
@@ -841,7 +872,6 @@ function parseMostClosestScopedVariable(variableName: any) {
       );
       i += 2;
     } else {
-      // path.push(parent + tmpHierchicalName[i + 1]);
       parent = parent + tmpHierchicalName[i + 1] + '/';
       i += 2;
     }
@@ -930,6 +960,7 @@ function parseFunction(_output: any, tokens: any, current: any) {
   const possibleFunctions = [
     kbSelected,
     kbCountSelected,
+    kbChoice,
     kbToday,
     kbRegex,
     kbInt,
