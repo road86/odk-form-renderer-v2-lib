@@ -115,7 +115,7 @@ class App extends React.Component<AppProps, AppState> {
         <Row className="formFieldBody">
           <Col>
             <GroupTypeEvaluator {...props} />
-            <Row className="welcome-box">
+            <Row className="welcome-box" style={{ padding: 10 }}>
               <Col>
                 <Button className="btn btn-success" onClick={this.handleClick}>
                   Submit

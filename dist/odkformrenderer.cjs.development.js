@@ -2,18 +2,19 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var core = require('@material-ui/core');
 require('bootstrap/dist/css/bootstrap.min.css');
 var React = require('react');
 var React__default = _interopDefault(React);
 var reactRedux = require('react-redux');
+var styles = require('@material-ui/core/styles');
 var fontawesomeSvgCore = require('@fortawesome/fontawesome-svg-core');
 var freeSolidSvgIcons = require('@fortawesome/free-solid-svg-icons');
 var reactstrap = require('reactstrap');
 var Select = _interopDefault(require('react-select'));
-var core = require('@material-ui/core');
 var Typography = _interopDefault(require('@material-ui/core/Typography'));
 var ExpandMoreIcon = _interopDefault(require('@material-ui/icons/ExpandMore'));
-var styles = require('@material-ui/styles');
+var styles$1 = require('@material-ui/styles');
 var SeamlessImmutable = _interopDefault(require('seamless-immutable'));
 var redux = require('redux');
 var reduxDevtoolsExtension = require('redux-devtools-extension');
@@ -45,6 +46,184 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
 }
+
+var theme =
+/*#__PURE__*/
+styles.createMuiTheme({
+  palette: {
+    primary: {
+      main: '#649A6A',
+      dark: '#8ac390'
+    },
+    secondary: {
+      main: '#D2AB16',
+      light: '#EBFDED',
+      dark: '#AD8C0F'
+    },
+    // error: {
+    //   main: '#f44336',
+    // },
+    // warning: {
+    //   main: '#ff9800',
+    // },
+    //table stripe
+    info: {
+      dark: '#F5F4F4',
+      main: '#EBFDED',
+      light: '#F9F9F9'
+    },
+    // success: {
+    //   main: '#4caf50',
+    // },
+    text: {
+      primary: '#EBFDED',
+      secondary: '#000000',
+      disabled: 'rgba(0, 0, 0, 0.38)',
+      hint: 'rgba(0, 0, 0, 0.38)'
+    }
+  },
+  typography: {
+    h1: {
+      fontWeight: 700,
+      // lineHeight: 0.35,
+      fontSize: 30
+    },
+    h2: {
+      fontWeight: 500,
+      fontSize: 20
+    },
+    h3: {
+      fontWeight: 400,
+      fontSize: 18
+    },
+    h4: {
+      fontWeight: 700,
+      // lineHeight: 0.35,
+      fontSize: 26
+    },
+    body1: {
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+      // lineHeight: 1.18,
+      fontSize: 16
+    },
+    caption: {
+      fontFamily: 'Roboto',
+      fontWeight: 600,
+      // lineHeight: 0.18,
+      fontSize: 16
+    },
+    subtitle1: {
+      fontFamily: 'Roboto',
+      fontWeight: 400,
+      // lineHeight: 0.18,
+      fontSize: 16
+    },
+    subtitle2: {
+      fontFamily: 'Roboto',
+      fontWeight: 500,
+      // lineHeight: 0.18,
+      fontSize: 16
+    }
+  },
+  //menu
+  overrides: {
+    MuiListItem: {
+      root: {
+        paddingTop: 12,
+        paddingBottom: 12,
+        color: '#666666',
+        '&:hover': {
+          // backgroundColor: '#EBFDED',
+          textDecoration: 'none'
+        },
+        '&:selected': {
+          color: '#222222',
+          textDecoration: 'none'
+        }
+      }
+    },
+    MuiInputLabel: {
+      outlined: {
+        color: '#222222'
+      }
+    },
+    MuiInputBase: {
+      root: {
+        color: '#222222'
+      }
+    },
+    MuiStepIcon: {
+      active: {
+        color: '#649A6A'
+      }
+    },
+    MuiStepLabel: {
+      label: {
+        color: '#649A6A'
+      }
+    },
+    MuiStepConnector: {
+      line: {
+        color: '#EBFDED'
+      }
+    },
+    MuiTypography: {
+      root: {
+        fontStyle: 'normal'
+      }
+    },
+    MuiTextField: {
+      root: {
+        backgroundColor: '#EBFDED',
+        borderRadius: 5
+      }
+    },
+    // MuiTableCell: {
+    //   root: {
+    //     fontSize: 16,
+    //     lineHeight: 0.21,
+    //     fontWeight: 400,
+    //     whiteSpace: 'nowrap',
+    //   },
+    // },
+    // MuiSelect: {
+    //   icon: {
+    //     fill: '#666666',
+    //   },
+    // },
+    // MuiFormLabel: {
+    //   root: {
+    //     color: '#666666',
+    //   },
+    // },
+    MuiButton: {
+      root: {
+        height: 40
+      },
+      label: {
+        fontWeight: 400,
+        // fontSize: 16,
+        // lineHeight: 0.18,
+        // color: '#EBFDED',
+        fontFamily: 'Roboto'
+      },
+      containedPrimary: {
+        color: '#FFFFFF'
+      }
+    },
+    MuiRadio: {
+      root: {
+        color: '#EBFDED'
+      }
+    },
+    MuiSelect: {
+      select: {
+        color: '#222222'
+      }
+    }
+  }
+});
 
 var KbAlert =
 /*#__PURE__*/
@@ -3089,7 +3268,7 @@ function Group(props) {
   }
 
   var theme = core.useTheme();
-  var useStyles = styles.makeStyles(GroupStyle(theme));
+  var useStyles = styles$1.makeStyles(GroupStyle(theme));
   var classNames = useStyles();
 
   if (isComponentRender && (fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
@@ -5565,7 +5744,6 @@ function (_React$Component) {
         criteriaType = criteriaType.substring(1, criteriaType.length - 1).trim();
       }
 
-      console.log(csvName, criteriaType, filterCriterias);
       var options = [];
       var distinctOptions = [];
       var csv = _this.props.csvList;
@@ -5608,9 +5786,7 @@ function (_React$Component) {
           valueColumnName = _this.props.fieldElement.children[0].name;
         }
 
-        console.log(options);
         options.forEach(function (elem) {
-          console.log(elem[labelColumnName], elem[valueColumnName], valueColumnName);
           var tmpOpt = {};
           var label = 'label';
           var name = 'name';
@@ -6839,7 +7015,10 @@ function (_React$Component) {
     }), React.createElement(reactstrap.Row, {
       className: "formFieldBody"
     }, React.createElement(reactstrap.Col, null, React.createElement(ConnectedGroupTypeEvaluator, Object.assign({}, props)), React.createElement(reactstrap.Row, {
-      className: "welcome-box"
+      className: "welcome-box",
+      style: {
+        padding: 10
+      }
     }, React.createElement(reactstrap.Col, null, React.createElement(reactstrap.Button, {
       className: "btn btn-success",
       onClick: this.handleClick
@@ -6905,7 +7084,9 @@ function (_React$Component) {
     };
     return React.createElement(reactRedux.Provider, {
       store: store
-    }, React.createElement(ConnectedApp, Object.assign({}, props)));
+    }, React.createElement(core.MuiThemeProvider, {
+      theme: theme
+    }, React.createElement(ConnectedApp, Object.assign({}, props))));
   };
 
   return OdkFormRenderer;
