@@ -6,7 +6,7 @@ const GroupStyle = (theme: Theme) =>
       color: theme.palette.common.white,
       '&.MuiAccordionSummary-root': {
         borderTop: `5px solid ${theme.palette.primary.dark}`,
-        color: theme.palette.primary.dark,
+        color: `${theme.palette.primary.dark} !important`,
         '&:hover': {
           backgroundColor: theme.palette.primary.dark,
           color: theme.palette.common.white,

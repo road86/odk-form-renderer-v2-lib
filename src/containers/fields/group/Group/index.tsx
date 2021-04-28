@@ -65,7 +65,7 @@ function Group(props: GroupProps) {
       : true)
   ) {
     return (
-      <Accordion>
+      <Accordion defaultExpanded>
         <AccordionSummary
           className={classNames.root}
           expandIcon={<ExpandMoreIcon />}

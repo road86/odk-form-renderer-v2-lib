@@ -3134,7 +3134,7 @@ var GroupStyle = function GroupStyle(theme) {
       color: theme.palette.common.white,
       '&.MuiAccordionSummary-root': {
         borderTop: "5px solid " + theme.palette.primary.dark,
-        color: theme.palette.primary.dark,
+        color: theme.palette.primary.dark + " !important",
         '&:hover': {
           backgroundColor: theme.palette.primary.dark,
           color: theme.palette.common.white
@@ -3267,7 +3267,9 @@ function Group(props) {
   var classNames = useStyles();
 
   if (isComponentRender && (fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
-    return createElement(Accordion, null, createElement(AccordionSummary, {
+    return createElement(Accordion, {
+      defaultExpanded: true
+    }, createElement(AccordionSummary, {
       className: classNames.root,
       expandIcon: createElement(ExpandMoreIcon, null)
     }, createElement(Typography, null, fieldLabel)), createElement(AccordionDetails, null, createElement(FormGroup, null, createElement(Label, {
