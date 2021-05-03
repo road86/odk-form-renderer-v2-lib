@@ -3131,17 +3131,17 @@ var GroupStyle = function GroupStyle(theme) {
 
   return createStyles({
     root: {
-      color: theme.palette.common.white,
+      color: theme.palette.secondary.light + " !important",
       '&.MuiAccordionSummary-root': {
         borderTop: "5px solid " + theme.palette.primary.dark,
         color: theme.palette.primary.dark + " !important",
         '&:hover': {
           backgroundColor: theme.palette.primary.dark,
-          color: theme.palette.common.white
+          color: theme.palette.secondary.light
         },
         '&.Mui-expanded': {
           backgroundColor: theme.palette.primary.dark,
-          color: theme.palette.common.white
+          color: theme.palette.secondary.light
         }
       }
     },
