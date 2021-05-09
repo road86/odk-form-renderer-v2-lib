@@ -6,14 +6,14 @@ const GroupStyle = (theme: Theme) =>
       color: `${theme.palette.secondary.light} !important`,
       '&.MuiAccordionSummary-root': {
         borderTop: `5px solid ${theme.palette.primary.dark}`,
-        color: theme.palette.primary.dark,
+        color: `${theme.palette.primary.dark} !important`,
         '&:hover': {
-          backgroundColor: `${theme.palette.primary.dark} !important`,
-          color: `${theme.palette.secondary.light} !important`,
+          backgroundColor: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
         },
         '&.Mui-expanded': {
-          backgroundColor: `${theme.palette.primary.dark} !important`,
-          color: `${theme.palette.secondary.light} !important`,
+          backgroundColor: theme.palette.primary.dark,
+          color: theme.palette.secondary.light,
         },
       },
     },
