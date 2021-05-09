@@ -3,17 +3,16 @@ import { createStyles, Theme } from '@material-ui/core';
 const GroupStyle = (theme: Theme) =>
   createStyles({
     root: {
-      color: `${theme.palette.secondary.light} !important`,
       '&.MuiAccordionSummary-root': {
         borderTop: `5px solid ${theme.palette.primary.dark}`,
         color: `${theme.palette.primary.dark} !important`,
         '&:hover': {
-          backgroundColor: theme.palette.primary.dark,
-          color: theme.palette.secondary.light,
+          backgroundColor: `${theme.palette.primary.dark} !important`,
+          color: `${theme.palette.secondary.light} !important`,
         },
         '&.Mui-expanded': {
-          backgroundColor: theme.palette.primary.dark,
-          color: theme.palette.secondary.light,
+          backgroundColor: `${theme.palette.primary.dark} !important`,
+          color: `${theme.palette.secondary.light} !important`,
         },
       },
     },
