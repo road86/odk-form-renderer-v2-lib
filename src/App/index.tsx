@@ -112,8 +112,8 @@ class App extends React.Component<AppProps, AppState> {
             }
           />
         )}
-        <Row className="formFieldBody">
-          <Col>
+        <Row>
+          <Col style={{ padding: 0}}>
             <GroupTypeEvaluator {...props} />
             <Row className="welcome-box" style={{ padding: 10 }}>
               <Col>

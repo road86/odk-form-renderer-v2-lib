@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Label } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -60,21 +60,20 @@ function Group(props: GroupProps) {
   const classNames = useStyles();
   if (
     isComponentRender
-    && (fieldElement.control.bodyless
+    && (fieldElement.control && fieldElement.control.bodyless
       ? fieldElement.control.bodyless === false
       : true)
   ) {
     return (
-      <Accordion defaultExpanded>
+      <Accordion defaultExpanded style={{ marginBottom: 10 }}>
         <AccordionSummary
           className={classNames.root}
           expandIcon={<ExpandMoreIcon />}
         >
           <Typography>{fieldLabel}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <FormGroup>
-            <Label className="groupLabel">{fieldLabel}</Label>
+        <AccordionDetails className={classNames.backgroundProp}>
+          <FormGroup className={classNames.borderProp}>
             {fieldElement.children && (
               <GroupTypeEvaluator
                 choices={choices}

@@ -3060,6 +3060,20 @@ var GroupStyle = function GroupStyle(theme) {
         }
       }
     },
+    backgroundProp: {
+      backgroundColor: theme.palette.secondary.light,
+      display: 'block'
+    },
+    insideBackground: {
+      backgroundColor: 'white'
+    },
+    borderProp: {
+      boxShadow: "inset 0 0 2px " + theme.palette.primary.light,
+      backgroundColor: 'white',
+      marginTop: 10,
+      marginBottom: 5,
+      padding: 10
+    },
     toolbarIcon: _extends({
       display: 'flex',
       alignItems: 'center',
@@ -3181,15 +3195,20 @@ function Group(props) {
   var useStyles = styles$1.makeStyles(GroupStyle(theme));
   var classNames = useStyles();
 
-  if (isComponentRender && (fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
+  if (isComponentRender && (fieldElement.control && fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
     return React.createElement(core.Accordion, {
-      defaultExpanded: true
+      defaultExpanded: true,
+      style: {
+        marginBottom: 10
+      }
     }, React.createElement(core.AccordionSummary, {
       className: classNames.root,
       expandIcon: React.createElement(ExpandMoreIcon, null)
-    }, React.createElement(Typography, null, fieldLabel)), React.createElement(core.AccordionDetails, null, React.createElement(reactstrap.FormGroup, null, React.createElement(reactstrap.Label, {
-      className: "groupLabel"
-    }, fieldLabel), fieldElement.children && React.createElement(ConnectedGroupTypeEvaluator, {
+    }, React.createElement(Typography, null, fieldLabel)), React.createElement(core.AccordionDetails, {
+      className: classNames.backgroundProp
+    }, React.createElement(reactstrap.FormGroup, {
+      className: classNames.borderProp
+    }, fieldElement.children && React.createElement(ConnectedGroupTypeEvaluator, {
       choices: choices,
       fieldElements: fieldElement.children,
       fieldParentTreeName: fieldParentTreeName + "group/" + fieldElement.name + "/",
@@ -6750,9 +6769,8 @@ function (_React$Component) {
 
       return React.createElement(reactstrap.Col, {
         key: "group_" + fieldElement.name,
-        className: "groupTypeEvaluator",
-        md: value,
-        hidden: value === 0
+        className: value === 0 || fieldElement.type === CALCULATE_FIELD_TYPE ? "groupTypeEvaluator hideDiv" : "groupTypeEvaluator",
+        md: value
       }, _this2.typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage));
     }));
   }
@@ -6924,9 +6942,11 @@ function (_React$Component) {
       handleToggle: this.toggleStateValue,
       headerText: 'Oh snap! You got an error!',
       bodyText: 'Please make sure the required fields are not missing and there are no errors'
-    }), React.createElement(reactstrap.Row, {
-      className: "formFieldBody"
-    }, React.createElement(reactstrap.Col, null, React.createElement(ConnectedGroupTypeEvaluator, Object.assign({}, props)), React.createElement(reactstrap.Row, {
+    }), React.createElement(reactstrap.Row, null, React.createElement(reactstrap.Col, {
+      style: {
+        padding: 0
+      }
+    }, React.createElement(ConnectedGroupTypeEvaluator, Object.assign({}, props)), React.createElement(reactstrap.Row, {
       className: "welcome-box",
       style: {
         padding: 10

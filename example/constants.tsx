@@ -1642,7 +1642,7 @@ export const DEMO_FORM_JSON = {
       "children": [
         {
           "control": {
-            "appearance": "w12 horizontal-compact"
+            "appearance": "w5 horizontal-compact"
           },
           "name": "use_antibiotics",
           "bind": {
@@ -1669,1688 +1669,1751 @@ export const DEMO_FORM_JSON = {
         },
         {
           "control": {
-            "appearance": "w12 horizontal-compact"
+            "appearance": "w10"
           },
-          "name": "product1_type",
+          "name": "g1",
           "bind": {
             "relevant": "${use_antibiotics}=1"
           },
           "label": {
-            "English": "31. Type"
+            "English": "Antibiotic uses information (1)"
           },
-          "type": "select one",
+          "type": "group",
           "children": [
             {
-              "name": "1",
+              "control": {
+                "appearance": "w10 horizontal-compact"
+              },
+              "name": "product1_type",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
               "label": {
-                "English": "Product"
-              }
+                "English": "31. Type"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Product"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Generic"
+                  }
+                }
+              ]
             },
             {
-              "name": "2",
+              "control": {
+                "appearance": "w10 search('medicine') minimal"
+              },
+              "name": "product1",
+              "bind": {
+                "readonly": "${product1_type}=2",
+                "relevant": "${product1_type}=1"
+              },
               "label": {
-                "English": "Generic"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w12 search('medicine') minimal"
-          },
-          "name": "product1",
-          "bind": {
-            "readonly": "${product1_type}=2",
-            "relevant": "${product1_type}=1"
-          },
-          "label": {
-            "English": "Product name:"
-          },
-          "type": "select one",
-          "children": [
+                "English": "Product name:"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "product_id",
+                  "label": {
+                    "English": "product_label"
+                  }
+                }
+              ]
+            },
             {
-              "name": "product_id",
-              "label": {
-                "English": "product_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product1}),'')"
-          },
-          "type": "calculate",
-          "name": "p1_g1"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product1_generic1",
-          "bind": {
-            "readonly": "${product1_type}=1",
-            "relevant": "${product1_type}=1 or ${product1_type}=2",
-            "calculate": "${p1_g1}"
-          },
-          "label": {
-            "English": "Generic 1"
-          },
-          "type": "select one",
-          "children": [
+              "bind": {
+                "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product1}),'')"
+              },
+              "type": "calculate",
+              "name": "p1_g1"
+            },
             {
-              "name": "generic1",
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product1_generic1",
+              "bind": {
+                "readonly": "${product1_type}=1",
+                "relevant": "${product1_type}=1 or ${product1_type}=2",
+                "calculate": "${p1_g1}"
+              },
               "label": {
-                "English": "generic1_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product1}),'')"
-          },
-          "type": "calculate",
-          "name": "p1_g2"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product1_generic2",
-          "bind": {
-            "readonly": "${product1_type}=1",
-            "relevant": "${product1_type}=1 or ${product1_type}=2",
-            "calculate": "${p1_g2}"
-          },
-          "label": {
-            "English": "Generic 2"
-          },
-          "type": "select one",
-          "children": [
+                "English": "Generic 1"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic1",
+                  "label": {
+                    "English": "generic1_label"
+                  }
+                }
+              ]
+            },
             {
-              "name": "generic2",
-              "label": {
-                "English": "generic2_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product1}),'')"
-          },
-          "type": "calculate",
-          "name": "p1_g3"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product1_generic3",
-          "bind": {
-            "readonly": "${product1_type}=1",
-            "relevant": "${product1_type}=1 or ${product1_type}=2",
-            "calculate": "${p1_g3}"
-          },
-          "label": {
-            "English": "Generic 3"
-          },
-          "type": "select one",
-          "children": [
+              "bind": {
+                "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product1}),'')"
+              },
+              "type": "calculate",
+              "name": "p1_g2"
+            },
             {
-              "name": "generic3",
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product1_generic2",
+              "bind": {
+                "readonly": "${product1_type}=1",
+                "relevant": "${product1_type}=1 or ${product1_type}=2",
+                "calculate": "${p1_g2}"
+              },
               "label": {
-                "English": "generic3_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product1}),'')"
-          },
-          "type": "calculate",
-          "name": "p1_g4"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product1_generic4",
-          "bind": {
-            "readonly": "${product1_type}=1",
-            "relevant": "${product1_type}=1 or ${product1_type}=2",
-            "calculate": "${p1_g4}"
-          },
-          "label": {
-            "English": "Generic 4"
-          },
-          "type": "select one",
-          "children": [
+                "English": "Generic 2"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic2",
+                  "label": {
+                    "English": "generic2_label"
+                  }
+                }
+              ]
+            },
             {
-              "name": "generic4",
+              "bind": {
+                "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product1}),'')"
+              },
+              "type": "calculate",
+              "name": "p1_g3"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product1_generic3",
+              "bind": {
+                "readonly": "${product1_type}=1",
+                "relevant": "${product1_type}=1 or ${product1_type}=2",
+                "calculate": "${p1_g3}"
+              },
               "label": {
-                "English": "generic4_label"
-              }
+                "English": "Generic 3"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic3",
+                  "label": {
+                    "English": "generic3_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product1_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product1}),'')"
+              },
+              "type": "calculate",
+              "name": "p1_g4"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product1_generic4",
+              "bind": {
+                "readonly": "${product1_type}=1",
+                "relevant": "${product1_type}=1 or ${product1_type}=2",
+                "calculate": "${p1_g4}"
+              },
+              "label": {
+                "English": "Generic 4"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic4",
+                  "label": {
+                    "English": "generic4_label"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product1_source",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Source"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Salesman"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Govt"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Market"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Dealer"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Vet"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "Quack"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product1_purpose",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Purpose"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Infection/sick"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Prevention"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Faster growth/more eggs"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product1_route",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Route"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Drinking water"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Feed"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Injection"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product1_frequency",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Freuency"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Twice a day"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Once a day"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Once a week"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Once a month"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Continuously (Every day)"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "3 Times a day"
+                  }
+                }
+              ]
             }
           ]
         },
         {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product1_source",
           "bind": {
             "relevant": "${use_antibiotics}=1"
           },
           "label": {
-            "English": "Source"
+            "English": "Antibiotic uses information (2)"
           },
-          "type": "select one",
+          "type": "group",
           "children": [
             {
-              "name": "1",
+              "control": {
+                "appearance": "w10 horizontal-compact"
+              },
+              "name": "product2_type",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
               "label": {
-                "English": "Salesman"
-              }
+                "English": "32. Type"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Product"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Generic"
+                  }
+                }
+              ]
             },
             {
-              "name": "2",
+              "control": {
+                "appearance": "w10 search('medicine') minimal"
+              },
+              "name": "product2",
+              "bind": {
+                "readonly": "${product2_type}=2",
+                "relevant": "${product2_type}=1 or ${product2_type}=2"
+              },
               "label": {
-                "English": "Govt"
-              }
+                "English": "Product name:"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "product_id",
+                  "label": {
+                    "English": "product_label"
+                  }
+                }
+              ]
             },
             {
-              "name": "3",
-              "label": {
-                "English": "Market"
-              }
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product2}),'')"
+              },
+              "type": "calculate",
+              "name": "p2_g1"
             },
             {
-              "name": "4",
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product2_generic1",
+              "bind": {
+                "readonly": "${product2_type}=1",
+                "relevant": "${product2_type}=1 or ${product2_type}=2",
+                "calculate": "${p2_g1}"
+              },
               "label": {
-                "English": "Dealer"
-              }
+                "English": "Generic 1"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic1",
+                  "label": {
+                    "English": "generic1_label"
+                  }
+                }
+              ]
             },
             {
-              "name": "5",
-              "label": {
-                "English": "Vet"
-              }
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product2}),'')"
+              },
+              "type": "calculate",
+              "name": "p2_g2"
             },
             {
-              "name": "6",
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product2_generic2",
+              "bind": {
+                "readonly": "${product2_type}=1",
+                "relevant": "${product2_type}=1 or ${product2_type}=2",
+                "calculate": "${p2_g2}"
+              },
               "label": {
-                "English": "Quack"
-              }
+                "English": "Generic 2"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic2",
+                  "label": {
+                    "English": "generic2_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product2}),'')"
+              },
+              "type": "calculate",
+              "name": "p2_g3"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product2_generic3",
+              "bind": {
+                "readonly": "${product2_type}=1",
+                "relevant": "${product2_type}=1 or ${product2_type}=2",
+                "calculate": "${p2_g3}"
+              },
+              "label": {
+                "English": "Generic 3"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic3",
+                  "label": {
+                    "English": "generic3_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product2}),'')"
+              },
+              "type": "calculate",
+              "name": "p2_g4"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product2_generic4",
+              "bind": {
+                "readonly": "${product2_type}=1",
+                "relevant": "${product2_type}=1 or ${product2_type}=2",
+                "calculate": "${p2_g4}"
+              },
+              "label": {
+                "English": "Generic 4"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic4",
+                  "label": {
+                    "English": "generic4_label"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product2_source",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Source"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Salesman"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Govt"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Market"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Dealer"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Vet"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "Quack"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product2_purpose",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Purpose"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Infection/sick"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Prevention"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Faster growth/more eggs"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product2_route",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Route"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Drinking water"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Feed"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Injection"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product2_frequency",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Freuency"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Twice a day"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Once a day"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Once a week"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Once a month"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Continuously (Every day)"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "3 Times a day"
+                  }
+                }
+              ]
             }
-          ]
+          ],
+          "name": "g2"
         },
         {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product1_purpose",
           "bind": {
             "relevant": "${use_antibiotics}=1"
           },
           "label": {
-            "English": "Purpose"
+            "English": "Antibiotic uses information (3)"
           },
-          "type": "select one",
+          "type": "group",
           "children": [
             {
-              "name": "1",
+              "control": {
+                "appearance": "w10 horizontal-compact"
+              },
+              "name": "product3_type",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
               "label": {
-                "English": "Infection/sick"
-              }
+                "English": "33. Type"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Product"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Generic"
+                  }
+                }
+              ]
             },
             {
-              "name": "2",
+              "control": {
+                "appearance": "w10 search('medicine') minimal"
+              },
+              "name": "product3",
+              "bind": {
+                "readonly": "${product3_type}=2",
+                "relevant": "${product3_type}=1"
+              },
               "label": {
-                "English": "Prevention"
-              }
+                "English": "Product name:"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "product_id",
+                  "label": {
+                    "English": "product_label"
+                  }
+                }
+              ]
             },
             {
-              "name": "3",
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product3}),'')"
+              },
+              "type": "calculate",
+              "name": "p3_g1"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product3_generic1",
+              "bind": {
+                "readonly": "${product3_type}=1",
+                "relevant": "${product3_type}=1 or ${product3_type}=1",
+                "calculate": "${p3_g1}"
+              },
               "label": {
-                "English": "Faster growth/more eggs"
-              }
+                "English": "Generic 1"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic1",
+                  "label": {
+                    "English": "generic1_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product3}),'')"
+              },
+              "type": "calculate",
+              "name": "p3_g2"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product3_generic2",
+              "bind": {
+                "readonly": "${product3_type}=1",
+                "relevant": "${product3_type}=1 or ${product3_type}=1",
+                "calculate": "${p3_g2}"
+              },
+              "label": {
+                "English": "Generic 2"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic2",
+                  "label": {
+                    "English": "generic2_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product3}),'')"
+              },
+              "type": "calculate",
+              "name": "p3_g3"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product3_generic3",
+              "bind": {
+                "readonly": "${product3_type}=1",
+                "relevant": "${product3_type}=1 or ${product3_type}=1",
+                "calculate": "${p3_g3}"
+              },
+              "label": {
+                "English": "Generic 3"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic3",
+                  "label": {
+                    "English": "generic3_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product3}),'')"
+              },
+              "type": "calculate",
+              "name": "p3_g4"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product3_generic4",
+              "bind": {
+                "readonly": "${product3_type}=1",
+                "relevant": "${product3_type}=1 or ${product3_type}=1",
+                "calculate": "${p3_g4}"
+              },
+              "label": {
+                "English": "Generic 4"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic4",
+                  "label": {
+                    "English": "generic4_label"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product3_source",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Source"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Salesman"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Govt"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Market"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Dealer"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Vet"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "Quack"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product3_purpose",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Purpose"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Infection/sick"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Prevention"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Faster growth/more eggs"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product3_route",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Route"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Drinking water"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Feed"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Injection"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product3_frequency",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Freuency"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Twice a day"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Once a day"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Once a week"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Once a month"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Continuously (Every day)"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "3 Times a day"
+                  }
+                }
+              ]
             }
-          ]
+          ],
+          "name": "g3"
         },
         {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product1_route",
           "bind": {
             "relevant": "${use_antibiotics}=1"
           },
           "label": {
-            "English": "Route"
+            "English": "Antibiotic uses information (4)"
           },
-          "type": "select one",
+          "type": "group",
           "children": [
             {
-              "name": "1",
+              "control": {
+                "appearance": "w10 horizontal-compact"
+              },
+              "name": "product4_type",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
               "label": {
-                "English": "Drinking water"
-              }
+                "English": "34. Type"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Product"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Generic"
+                  }
+                }
+              ]
             },
             {
-              "name": "2",
+              "control": {
+                "appearance": "w10 search('medicine') minimal"
+              },
+              "name": "product4",
+              "bind": {
+                "readonly": "${product4_type}=2",
+                "relevant": "${product4_type}=1"
+              },
               "label": {
-                "English": "Feed"
-              }
+                "English": "Product name:"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "product_id",
+                  "label": {
+                    "English": "product_label"
+                  }
+                }
+              ]
             },
             {
-              "name": "3",
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product4}),'')"
+              },
+              "type": "calculate",
+              "name": "p4_g1"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product4_generic1",
+              "bind": {
+                "readonly": "${product4_type}=1",
+                "relevant": "${product4_type}=1 or ${product4_type}=1",
+                "calculate": "${p3_g1}"
+              },
               "label": {
-                "English": "Injection"
-              }
+                "English": "Generic 1"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic1",
+                  "label": {
+                    "English": "generic1_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product4}),'')"
+              },
+              "type": "calculate",
+              "name": "p4_g2"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product4_generic2",
+              "bind": {
+                "readonly": "${product4_type}=1",
+                "relevant": "${product4_type}=1 or ${product4_type}=1",
+                "calculate": "${p3_g2}"
+              },
+              "label": {
+                "English": "Generic 2"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic2",
+                  "label": {
+                    "English": "generic2_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product4}),'')"
+              },
+              "type": "calculate",
+              "name": "p4_g3"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product4_generic3",
+              "bind": {
+                "readonly": "${product4_type}=1",
+                "relevant": "${product4_type}=1 or ${product4_type}=1",
+                "calculate": "${p3_g3}"
+              },
+              "label": {
+                "English": "Generic 3"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic3",
+                  "label": {
+                    "English": "generic3_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product4}),'')"
+              },
+              "type": "calculate",
+              "name": "p4_g4"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product4_generic4",
+              "bind": {
+                "readonly": "${product4_type}=1",
+                "relevant": "${product4_type}=1 or ${product4_type}=1",
+                "calculate": "${p3_g4}"
+              },
+              "label": {
+                "English": "Generic 4"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic4",
+                  "label": {
+                    "English": "generic4_label"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product4_source",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Source"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Salesman"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Govt"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Market"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Dealer"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Vet"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "Quack"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product4_purpose",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Purpose"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Infection/sick"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Prevention"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Faster growth/more eggs"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product4_route",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Route"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Drinking water"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Feed"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Injection"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product4_frequency",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Freuency"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Twice a day"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Once a day"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Once a week"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Once a month"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Continuously (Every day)"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "3 Times a day"
+                  }
+                }
+              ]
             }
-          ]
+          ],
+          "name": "g4"
         },
         {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product1_frequency",
           "bind": {
             "relevant": "${use_antibiotics}=1"
           },
           "label": {
-            "English": "Freuency"
+            "English": "Antibiotic uses information (5)"
           },
-          "type": "select one",
+          "type": "group",
           "children": [
             {
-              "name": "1",
+              "control": {
+                "appearance": "w10 horizontal-compact"
+              },
+              "name": "product5_type",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
               "label": {
-                "English": "Twice a day"
-              }
+                "English": "35. Type"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Product"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Generic"
+                  }
+                }
+              ]
             },
             {
-              "name": "2",
+              "control": {
+                "appearance": "w10 search('medicine') minimal"
+              },
+              "name": "product5",
+              "bind": {
+                "readonly": "${product5_type}=2",
+                "relevant": "${product5_type}=1"
+              },
               "label": {
-                "English": "Once a day"
-              }
+                "English": "Product name:"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "product_id",
+                  "label": {
+                    "English": "product_label"
+                  }
+                }
+              ]
             },
             {
-              "name": "3",
-              "label": {
-                "English": "Once a week"
-              }
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product5}),'')"
+              },
+              "type": "calculate",
+              "name": "p5_g1"
             },
             {
-              "name": "4",
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product5_generic1",
+              "bind": {
+                "readonly": "${product5_type}=1",
+                "relevant": "${product5_type}=1 or ${product5_type}=1",
+                "calculate": "${p3_g1}"
+              },
               "label": {
-                "English": "Once a month"
-              }
+                "English": "Generic 1"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic1",
+                  "label": {
+                    "English": "generic1_label"
+                  }
+                }
+              ]
             },
             {
-              "name": "5",
-              "label": {
-                "English": "Continuously (Every day)"
-              }
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product5}),'')"
+              },
+              "type": "calculate",
+              "name": "p5_g2"
             },
             {
-              "name": "6",
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product5_generic2",
+              "bind": {
+                "readonly": "${product5_type}=1",
+                "relevant": "${product5_type}=1 or ${product5_type}=1",
+                "calculate": "${p3_g2}"
+              },
               "label": {
-                "English": "3 Times a day"
-              }
+                "English": "Generic 2"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic2",
+                  "label": {
+                    "English": "generic2_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product5}),'')"
+              },
+              "type": "calculate",
+              "name": "p5_g3"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product5_generic3",
+              "bind": {
+                "readonly": "${product5_type}=1",
+                "relevant": "${product5_type}=1 or ${product5_type}=1",
+                "calculate": "${p3_g3}"
+              },
+              "label": {
+                "English": "Generic 3"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic3",
+                  "label": {
+                    "English": "generic3_label"
+                  }
+                }
+              ]
+            },
+            {
+              "bind": {
+                "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product5}),'')"
+              },
+              "type": "calculate",
+              "name": "p5_g4"
+            },
+            {
+              "control": {
+                "appearance": "w5 search('medicine') minimal"
+              },
+              "name": "product5_generic4",
+              "bind": {
+                "readonly": "${product5_type}=1",
+                "relevant": "${product5_type}=1 or ${product5_type}=1",
+                "calculate": "${p3_g4}"
+              },
+              "label": {
+                "English": "Generic 4"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "generic4",
+                  "label": {
+                    "English": "generic4_label"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product5_source",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Source"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Salesman"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Govt"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Market"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Dealer"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Vet"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "Quack"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product5_purpose",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Purpose"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Infection/sick"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Prevention"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Faster growth/more eggs"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product5_route",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Route"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Drinking water"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Feed"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Injection"
+                  }
+                }
+              ]
+            },
+            {
+              "control": {
+                "appearance": "w5 minimal"
+              },
+              "name": "product5_frequency",
+              "bind": {
+                "relevant": "${use_antibiotics}=1"
+              },
+              "label": {
+                "English": "Freuency"
+              },
+              "type": "select one",
+              "children": [
+                {
+                  "name": "1",
+                  "label": {
+                    "English": "Twice a day"
+                  }
+                },
+                {
+                  "name": "2",
+                  "label": {
+                    "English": "Once a day"
+                  }
+                },
+                {
+                  "name": "3",
+                  "label": {
+                    "English": "Once a week"
+                  }
+                },
+                {
+                  "name": "4",
+                  "label": {
+                    "English": "Once a month"
+                  }
+                },
+                {
+                  "name": "5",
+                  "label": {
+                    "English": "Continuously (Every day)"
+                  }
+                },
+                {
+                  "name": "6",
+                  "label": {
+                    "English": "3 Times a day"
+                  }
+                }
+              ]
             }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w10 horizontal-compact"
-          },
-          "name": "product2_type",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "32. Type"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Product"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Generic"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product2",
-          "bind": {
-            "readonly": "${product2_type}=2",
-            "relevant": "${product2_type}=1 or ${product2_type}=2"
-          },
-          "label": {
-            "English": "Product name:"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "product_id",
-              "label": {
-                "English": "product_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product2}),'')"
-          },
-          "type": "calculate",
-          "name": "p2_g1"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product2_generic1",
-          "bind": {
-            "readonly": "${product2_type}=1",
-            "relevant": "${product2_type}=1 or ${product2_type}=2",
-            "calculate": "${p2_g1}"
-          },
-          "label": {
-            "English": "Generic 1"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic1",
-              "label": {
-                "English": "generic1_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product2}),'')"
-          },
-          "type": "calculate",
-          "name": "p2_g2"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product2_generic2",
-          "bind": {
-            "readonly": "${product2_type}=1",
-            "relevant": "${product2_type}=1 or ${product2_type}=2",
-            "calculate": "${p2_g2}"
-          },
-          "label": {
-            "English": "Generic 2"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic2",
-              "label": {
-                "English": "generic2_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product2}),'')"
-          },
-          "type": "calculate",
-          "name": "p2_g3"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product2_generic3",
-          "bind": {
-            "readonly": "${product2_type}=1",
-            "relevant": "${product2_type}=1 or ${product2_type}=2",
-            "calculate": "${p2_g3}"
-          },
-          "label": {
-            "English": "Generic 3"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic3",
-              "label": {
-                "English": "generic3_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product2}),'')"
-          },
-          "type": "calculate",
-          "name": "p2_g4"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product2_generic4",
-          "bind": {
-            "readonly": "${product2_type}=1",
-            "relevant": "${product2_type}=1 or ${product2_type}=2",
-            "calculate": "${p2_g4}"
-          },
-          "label": {
-            "English": "Generic 4"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic4",
-              "label": {
-                "English": "generic4_label"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product2_source",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Source"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Salesman"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Govt"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Market"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Dealer"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Vet"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "Quack"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product2_purpose",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Purpose"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Infection/sick"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Prevention"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Faster growth/more eggs"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product2_route",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Route"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Drinking water"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Feed"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Injection"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product2_frequency",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Freuency"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Twice a day"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Once a day"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Once a week"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Once a month"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Continuously (Every day)"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "3 Times a day"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w10 horizontal-compact"
-          },
-          "name": "product3_type",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "33. Type"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Product"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Generic"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product3",
-          "bind": {
-            "readonly": "${product3_type}=2",
-            "relevant": "${product3_type}=1"
-          },
-          "label": {
-            "English": "Product name:"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "product_id",
-              "label": {
-                "English": "product_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product3}),'')"
-          },
-          "type": "calculate",
-          "name": "p3_g1"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product3_generic1",
-          "bind": {
-            "readonly": "${product3_type}=1",
-            "relevant": "${product3_type}=1 or ${product3_type}=1",
-            "calculate": "${p3_g1}"
-          },
-          "label": {
-            "English": "Generic 1"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic1",
-              "label": {
-                "English": "generic1_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product3}),'')"
-          },
-          "type": "calculate",
-          "name": "p3_g2"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product3_generic2",
-          "bind": {
-            "readonly": "${product3_type}=1",
-            "relevant": "${product3_type}=1 or ${product3_type}=1",
-            "calculate": "${p3_g2}"
-          },
-          "label": {
-            "English": "Generic 2"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic2",
-              "label": {
-                "English": "generic2_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product3}),'')"
-          },
-          "type": "calculate",
-          "name": "p3_g3"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product3_generic3",
-          "bind": {
-            "readonly": "${product3_type}=1",
-            "relevant": "${product3_type}=1 or ${product3_type}=1",
-            "calculate": "${p3_g3}"
-          },
-          "label": {
-            "English": "Generic 3"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic3",
-              "label": {
-                "English": "generic3_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product3}),'')"
-          },
-          "type": "calculate",
-          "name": "p3_g4"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product3_generic4",
-          "bind": {
-            "readonly": "${product3_type}=1",
-            "relevant": "${product3_type}=1 or ${product3_type}=1",
-            "calculate": "${p3_g4}"
-          },
-          "label": {
-            "English": "Generic 4"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic4",
-              "label": {
-                "English": "generic4_label"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product3_source",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Source"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Salesman"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Govt"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Market"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Dealer"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Vet"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "Quack"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product3_purpose",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Purpose"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Infection/sick"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Prevention"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Faster growth/more eggs"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product3_route",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Route"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Drinking water"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Feed"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Injection"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product3_frequency",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Freuency"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Twice a day"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Once a day"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Once a week"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Once a month"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Continuously (Every day)"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "3 Times a day"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w10 horizontal-compact"
-          },
-          "name": "product4_type",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "34. Type"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Product"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Generic"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product4",
-          "bind": {
-            "readonly": "${product4_type}=2",
-            "relevant": "${product4_type}=1"
-          },
-          "label": {
-            "English": "Product name:"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "product_id",
-              "label": {
-                "English": "product_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product4}),'')"
-          },
-          "type": "calculate",
-          "name": "p4_g1"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product4_generic1",
-          "bind": {
-            "readonly": "${product4_type}=1",
-            "relevant": "${product4_type}=1 or ${product4_type}=1",
-            "calculate": "${p3_g1}"
-          },
-          "label": {
-            "English": "Generic 1"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic1",
-              "label": {
-                "English": "generic1_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product4}),'')"
-          },
-          "type": "calculate",
-          "name": "p4_g2"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product4_generic2",
-          "bind": {
-            "readonly": "${product4_type}=1",
-            "relevant": "${product4_type}=1 or ${product4_type}=1",
-            "calculate": "${p3_g2}"
-          },
-          "label": {
-            "English": "Generic 2"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic2",
-              "label": {
-                "English": "generic2_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product4}),'')"
-          },
-          "type": "calculate",
-          "name": "p4_g3"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product4_generic3",
-          "bind": {
-            "readonly": "${product4_type}=1",
-            "relevant": "${product4_type}=1 or ${product4_type}=1",
-            "calculate": "${p3_g3}"
-          },
-          "label": {
-            "English": "Generic 3"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic3",
-              "label": {
-                "English": "generic3_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product4}),'')"
-          },
-          "type": "calculate",
-          "name": "p4_g4"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product4_generic4",
-          "bind": {
-            "readonly": "${product4_type}=1",
-            "relevant": "${product4_type}=1 or ${product4_type}=1",
-            "calculate": "${p3_g4}"
-          },
-          "label": {
-            "English": "Generic 4"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic4",
-              "label": {
-                "English": "generic4_label"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product4_source",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Source"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Salesman"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Govt"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Market"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Dealer"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Vet"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "Quack"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product4_purpose",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Purpose"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Infection/sick"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Prevention"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Faster growth/more eggs"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product4_route",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Route"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Drinking water"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Feed"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Injection"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product4_frequency",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Freuency"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Twice a day"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Once a day"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Once a week"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Once a month"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Continuously (Every day)"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "3 Times a day"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w10 horizontal-compact"
-          },
-          "name": "product5_type",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "35. Type"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Product"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Generic"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product5",
-          "bind": {
-            "readonly": "${product5_type}=2",
-            "relevant": "${product5_type}=1"
-          },
-          "label": {
-            "English": "Product name:"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "product_id",
-              "label": {
-                "English": "product_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic1', 'product_id', ${product5}),'')"
-          },
-          "type": "calculate",
-          "name": "p5_g1"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product5_generic1",
-          "bind": {
-            "readonly": "${product5_type}=1",
-            "relevant": "${product5_type}=1 or ${product5_type}=1",
-            "calculate": "${p3_g1}"
-          },
-          "label": {
-            "English": "Generic 1"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic1",
-              "label": {
-                "English": "generic1_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic2', 'product_id', ${product5}),'')"
-          },
-          "type": "calculate",
-          "name": "p5_g2"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product5_generic2",
-          "bind": {
-            "readonly": "${product5_type}=1",
-            "relevant": "${product5_type}=1 or ${product5_type}=1",
-            "calculate": "${p3_g2}"
-          },
-          "label": {
-            "English": "Generic 2"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic2",
-              "label": {
-                "English": "generic2_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic3', 'product_id', ${product5}),'')"
-          },
-          "type": "calculate",
-          "name": "p5_g3"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product5_generic3",
-          "bind": {
-            "readonly": "${product5_type}=1",
-            "relevant": "${product5_type}=1 or ${product5_type}=1",
-            "calculate": "${p3_g3}"
-          },
-          "label": {
-            "English": "Generic 3"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic3",
-              "label": {
-                "English": "generic3_label"
-              }
-            }
-          ]
-        },
-        {
-          "bind": {
-            "calculate": "if(${product2_type}=1,pulldata('medicine', 'generic4', 'product_id', ${product5}),'')"
-          },
-          "type": "calculate",
-          "name": "p5_g4"
-        },
-        {
-          "control": {
-            "appearance": "w2 search('medicine') minimal"
-          },
-          "name": "product5_generic4",
-          "bind": {
-            "readonly": "${product5_type}=1",
-            "relevant": "${product5_type}=1 or ${product5_type}=1",
-            "calculate": "${p3_g4}"
-          },
-          "label": {
-            "English": "Generic 4"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "generic4",
-              "label": {
-                "English": "generic4_label"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product5_source",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Source"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Salesman"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Govt"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Market"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Dealer"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Vet"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "Quack"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product5_purpose",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Purpose"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Infection/sick"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Prevention"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Faster growth/more eggs"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product5_route",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Route"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Drinking water"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Feed"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Injection"
-              }
-            }
-          ]
-        },
-        {
-          "control": {
-            "appearance": "w5 minimal"
-          },
-          "name": "product5_frequency",
-          "bind": {
-            "relevant": "${use_antibiotics}=1"
-          },
-          "label": {
-            "English": "Freuency"
-          },
-          "type": "select one",
-          "children": [
-            {
-              "name": "1",
-              "label": {
-                "English": "Twice a day"
-              }
-            },
-            {
-              "name": "2",
-              "label": {
-                "English": "Once a day"
-              }
-            },
-            {
-              "name": "3",
-              "label": {
-                "English": "Once a week"
-              }
-            },
-            {
-              "name": "4",
-              "label": {
-                "English": "Once a month"
-              }
-            },
-            {
-              "name": "5",
-              "label": {
-                "English": "Continuously (Every day)"
-              }
-            },
-            {
-              "name": "6",
-              "label": {
-                "English": "3 Times a day"
-              }
-            }
-          ]
+          ],
+          "name": "g5"
         }
       ],
       "name": "antibacterial_use"
@@ -3490,7 +3553,7 @@ export const DEMO_FORM_JSON = {
       "children": [
         {
           "control": {
-            "appearance": "w2 search('staff') minimal"
+            "appearance": "w5 search('staff') minimal"
           },
           "label": {
             "English": "field_staff1"
@@ -3508,7 +3571,7 @@ export const DEMO_FORM_JSON = {
         },
         {
           "control": {
-            "appearance": "w2 search('staff') minimal"
+            "appearance": "w5 search('staff') minimal"
           },
           "label": {
             "English": "field_staff1"
@@ -3526,7 +3589,7 @@ export const DEMO_FORM_JSON = {
         },
         {
           "control": {
-            "appearance": "w2 search('staff') minimal"
+            "appearance": "w5 search('staff') minimal"
           },
           "name": "acknowledge",
           "bind": {
@@ -3547,7 +3610,7 @@ export const DEMO_FORM_JSON = {
         },
         {
           "control": {
-            "appearance": "w2 search('staff') minimal"
+            "appearance": "w5 search('staff') minimal"
           },
           "label": {
             "English": "Approved by:"

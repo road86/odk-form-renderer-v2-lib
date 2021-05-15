@@ -16,6 +16,21 @@ const GroupStyle = (theme: Theme) =>
         },
       },
     },
+    backgroundProp: {
+      backgroundColor: theme.palette.secondary.light,
+      display: 'block'
+    },
+    insideBackground: {
+      backgroundColor: 'white'
+    },
+    borderProp: {
+      boxShadow: `inset 0 0 2px ${theme.palette.primary.light}`,
+      backgroundColor: 'white',
+      marginTop: 10,
+      marginBottom: 5,
+      padding: 10,
+
+    },
     toolbarIcon: {
       display: 'flex',
       alignItems: 'center',

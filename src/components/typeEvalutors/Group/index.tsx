@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { Store } from 'redux';
-import { GROUP_FIELD_TYPE, REPEAT_FIELD_TYPE } from '../../../constants';
+import { CALCULATE_FIELD_TYPE, GROUP_FIELD_TYPE, REPEAT_FIELD_TYPE } from '../../../constants';
 import Group from '../../../containers/fields/group/Group';
 import Repeat from '../../../containers/fields/group/Repeat';
 import { getEvaluatedExpression } from '../../../store/ducks/formState';
@@ -41,9 +41,9 @@ class GroupTypeEvaluator extends React.Component<GroupTypeEvaluatorProps> {
           return (
             <Col
               key={`group_${fieldElement.name}`}
-              className="groupTypeEvaluator"
+              className={ value === 0 || fieldElement.type === CALCULATE_FIELD_TYPE ? "groupTypeEvaluator hideDiv" : "groupTypeEvaluator"}
               md={value}
-              hidden={value === 0}
+              // hidden={value === 0}
             >
               {this.typeEvaluator(
                 choices,
