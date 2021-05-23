@@ -1,3 +1,5 @@
+// import moment from 'moment';
+import moment from 'moment';
 import store from '../store';
 
 let actualExpression: string;
@@ -592,6 +594,24 @@ function kbToday(funcName: any, _params: any, _paramsTokens: any) {
 }
 
 /**
+ * kbToday parses the function today and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
+// tslint:disable-next-line: variable-name
+function kbFormatDate(funcName: any, _params: any, _paramsTokens: any) {
+  // tslint:disable-next-line: triple-equals
+  if (funcName == 'format-date') {
+    const format = _params.length == 2 ? _params[1].replace("%d", "DD").replace("%m", "MM").replace("%Y", "YYYY"): 'MM-DD-YYYY';
+    const d = _params.length > 1 && _params[0] != null ? moment(_params[0]).format(format) : null ;
+    return [true, d];
+  }
+  return [false, null];
+}
+
+/**
  * kbRound parses the function round and returns functionParseReturnObject
  * @param funcName - the function name of the token
  * @param params - calculated value of the params tokens
@@ -978,6 +998,7 @@ function parseFunction(_output: any, tokens: any, current: any) {
     kbConcat,
     kbSubstr,
     kbRound,
+    kbFormatDate,
   ];
   if (tokens[current].type === 'function') {
     const funcName = tokens[current].value;

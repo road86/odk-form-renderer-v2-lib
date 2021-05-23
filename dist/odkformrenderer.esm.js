@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/styles';
 import SeamlessImmutable from 'seamless-immutable';
+import moment from 'moment';
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -240,6 +241,7 @@ createStore(reducer,
 /*#__PURE__*/
 composeWithDevTools());
 
+// import moment from 'moment';
 var actualExpression;
 var currentHierarchicalName = '';
 var formItemProperty = {};
@@ -902,6 +904,26 @@ function kbToday(funcName, _params, _paramsTokens) {
   return [false, null];
 }
 /**
+ * kbToday parses the function today and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
+// tslint:disable-next-line: variable-name
+
+
+function kbFormatDate(funcName, _params, _paramsTokens) {
+  // tslint:disable-next-line: triple-equals
+  if (funcName == 'format-date') {
+    var format = _params.length == 2 ? _params[1].replace("%d", "DD").replace("%m", "MM").replace("%Y", "YYYY") : 'MM-DD-YYYY';
+    var d = _params.length > 1 && _params[0] != null ? moment(_params[0]).format(format) : null;
+    return [true, d];
+  }
+
+  return [false, null];
+}
+/**
  * kbRound parses the function round and returns functionParseReturnObject
  * @param funcName - the function name of the token
  * @param params - calculated value of the params tokens
@@ -1306,7 +1328,7 @@ function parseLiterals(_tmpOutput, tokens, current) {
 
 function parseFunction(_output, tokens, current) {
   // precedence of functions
-  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound];
+  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate];
 
   if (tokens[current].type === 'function') {
     var funcName = tokens[current].value;
