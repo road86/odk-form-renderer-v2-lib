@@ -1104,7 +1104,6 @@ function parseIf(_output: any, tokens: any, current: any) {
         if (tokens[current + i].type === 'comma' && tmpQueue.length === 1) {
           tmpTokens.pop();
           const tmpVal = parser(null, tmpTokens, 0);
-          // console.log(tmpTokens, tmpVal);
           arrayOfParams.push(tmpVal);
           tmpTokens = [];
         }
@@ -1811,7 +1810,6 @@ function parser(leftOutput: any, tokens: any, pos: any) {
         parsed = true;
         current += consumedTokens;
       }
-      // console.log(current);
       if (newOutput != null) {
         output = newOutput;
       }

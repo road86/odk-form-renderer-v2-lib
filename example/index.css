@@ -32,8 +32,8 @@
   margin-bottom: 20px;
   color: #2b475e;
   /* border-bottom: 1px solid #dfe3e8; */
-  border-bottom: 3px solid #8ac390!important;
-  border-top: 3px solid #8ac390!important;
+  border-bottom: 3px solid #BF4A51!important;
+  border-top: 3px solid #BF4A51!important;
   font-size: 24px;
 }
 
@@ -63,17 +63,17 @@
 
 .headerText {
   padding: 10 !important;
-  color: #8ac390 !important;
+  color: #BF4A51 !important;
 }
 
 .hrTag {
-  border-top: 3px solid #8ac390!important;
-  border-color: #8ac390 !important;
+  border-top: 3px solid #BF4A51!important;
+  border-color: #BF4A51 !important;
 }
 
 .header {
   margin-bottom: 0 !important;
-  color: #8ac390 !important;
+  color: #BF4A51 !important;
 }
 
 

@@ -48,8 +48,8 @@ var theme =
 createMuiTheme({
   palette: {
     primary: {
-      main: '#649A6A',
-      dark: '#8ac390'
+      main: '#EF6B73',
+      dark: '#BF4A51'
     },
     secondary: {
       main: '#D2AB16',
@@ -1429,8 +1429,7 @@ function parseIf(_output, tokens, current) {
 
         if (tokens[current + i].type === 'comma' && tmpQueue.length === 1) {
           tmpTokens.pop();
-          var tmpVal = parser(null, tmpTokens, 0); // console.log(tmpTokens, tmpVal);
-
+          var tmpVal = parser(null, tmpTokens, 0);
           arrayOfParams.push(tmpVal);
           tmpTokens = [];
         }
@@ -2166,8 +2165,7 @@ function parser(leftOutput, tokens, pos) {
       if (consumedTokens !== 0) {
         parsed = true;
         current += consumedTokens;
-      } // console.log(current);
-
+      }
 
       if (newOutput != null) {
         output = newOutput;
@@ -6881,6 +6879,10 @@ function (_React$Component) {
           mediaList = _this$props.mediaList;
 
       if (isNoErrors) {
+        _this.setState({
+          isSubmissionError: false
+        });
+
         handleSubmit(userInputObj, mediaList);
       } else {
         handleSubmit('Field Violated', mediaList);
