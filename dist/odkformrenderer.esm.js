@@ -716,7 +716,6 @@ function tokenizer(input) {
     _loop();
   }
 
-  console.log(tokens);
   return tokens;
 }
 /**
@@ -2018,8 +2017,7 @@ function parser(leftOutput, tokens, pos) {
     if (!parsed) {
       // throw new TypeError('syntax error');
       // tslint:disable-next-line: no-console
-      console.log('syntax error'); // tslint:disable-next-line: no-console
-
+      // tslint:disable-next-line: no-console
       console.log(actualExpression);
       return {
         v: null
@@ -6574,6 +6572,10 @@ function (_React$Component) {
           mediaList = _this$props.mediaList;
 
       if (isNoErrors) {
+        _this.setState({
+          isSubmissionError: true
+        });
+
         handleSubmit(userInputObj, mediaList);
       } else {
         handleSubmit('Field Violated', mediaList);

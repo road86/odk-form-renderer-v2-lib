@@ -507,7 +507,6 @@ function tokenizer(input: any) {
       );
     }
   }
-  console.log(tokens);
   return tokens;
 }
 
@@ -1755,7 +1754,6 @@ function parser(leftOutput: any, tokens: any, pos: any) {
     if (!parsed) {
       // throw new TypeError('syntax error');
       // tslint:disable-next-line: no-console
-      console.log('syntax error');
       // tslint:disable-next-line: no-console
       console.log(actualExpression);
       return null;
