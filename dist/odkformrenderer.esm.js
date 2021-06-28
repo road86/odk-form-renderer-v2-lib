@@ -6573,7 +6573,7 @@ function (_React$Component) {
 
       if (isNoErrors) {
         _this.setState({
-          isSubmissionError: true
+          isSubmissionError: false
         });
 
         handleSubmit(userInputObj, mediaList);

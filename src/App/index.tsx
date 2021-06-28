@@ -128,7 +128,7 @@ class App extends React.Component<AppProps, AppState> {
   private handleClick = (_event: React.MouseEvent<HTMLButtonElement>) => {
     const { handleSubmit, isNoErrors, userInputObj, mediaList } = this.props;
     if (isNoErrors) {
-      this.setState({ isSubmissionError: true });
+      this.setState({ isSubmissionError: false });
       handleSubmit(userInputObj, mediaList);
     } else {
       handleSubmit('Field Violated', mediaList);
