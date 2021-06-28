@@ -2180,8 +2180,7 @@ function parser(leftOutput, tokens, pos) {
     if (!parsed) {
       // throw new TypeError('syntax error');
       // tslint:disable-next-line: no-console
-      console.log('syntax error'); // tslint:disable-next-line: no-console
-
+      // tslint:disable-next-line: no-console
       console.log(actualExpression);
       return {
         v: null
