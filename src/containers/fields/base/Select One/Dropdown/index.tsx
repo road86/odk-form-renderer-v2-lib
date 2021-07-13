@@ -66,6 +66,7 @@ const customStyles = {
       ...styles,
       backgroundColor: isDisabled ? 'white' : 'white',
     }
+    
   },
 
     // For the select itself (not the options)
