@@ -28,6 +28,7 @@ import {
   getFieldLabelText,
   getHintLabelText,
   isInputRequired,
+  shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../../utils/helpers';
@@ -56,6 +57,25 @@ export interface Options {
   label: any;
   value: string;
 }
+
+
+const customStyles = {
+  // For the select itself (not the options)
+  control: (styles: any, { isDisabled }: any) => {
+    return {
+      ...styles,
+      backgroundColor: isDisabled ? 'white' : 'white',
+    }
+  },
+
+    // For the select itself (not the options)
+    container: (styles: any, { isDisabled }: any) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled ? 'white' : 'white',
+      }
+    },
+};
 
 class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
   public render() {
@@ -105,6 +125,12 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
           fieldElement.default
         );
       }
+
+      const isReadonly = shouldComponentBeReadOnly(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
+      );
 
       if (
         (isRequiredViolated || isConstraintViolated) &&
@@ -238,6 +264,21 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         );
       }
 
+      let calculatedValue: any = '';
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          calculatedValue
+        );
+      }
+
       const isError = isPresentInErrorSelector(
         fieldParentTreeName + fieldElement.name
       );
@@ -252,11 +293,13 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
           </Label>
           <div key={fieldElement.name} className="selectAllDropDown">
             <Select
+              styles={customStyles}
+              isDisabled={isReadonly}
               isMulti={true}
               name={fieldElement.name}
               options={options}
               onChange={this.onChangeHandler(fieldElement.name)}
-              value={selectedValues || []}
+              value={selectedValues || calculatedValue || []}
             />
           </div>
           {isFormSubmitted && isError && (

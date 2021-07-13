@@ -30,6 +30,7 @@ export declare const EMPTY_GROUP_FIELDS = "odk/reducer/form/EMPTY_GROUP_FIELDS";
 /** REMOVE_GROUP_FIELDS_FROM_ERRORS */
 export declare const REMOVE_GROUP_FIELDS_FROM_ERRORS = "odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS";
 export declare const SET_USER_INPUT_OBJ = "odk/reducer/form/SET_USER_INPUT_OBJ";
+export declare const SET_CSV_OBJ = "odk/reducer/form/SET_CSV_OBJ";
 export declare const SET_FORM_SUBMIT_STATUS = "odk/reducer/form/SET_FORM_SUBMIT_STATUS";
 export declare const SET_LANGUAGE = "odk/reducer/form/SET_LANGUAGE";
 /** interface for ASSIGN_FIELD_VALUE action */
@@ -89,6 +90,11 @@ export interface RemoveGroupFieldsFromErrors extends AnyAction {
 export interface SetUserInputObj extends AnyAction {
     userInputObj: any;
     type: typeof SET_USER_INPUT_OBJ;
+}
+/** interface for SET_CSV_OBJ action */
+export interface SetCSVObj extends AnyAction {
+    csvObj: any;
+    type: typeof SET_CSV_OBJ;
 }
 /** interface for SET_LANGUAGE action */
 export interface SetLanguage extends AnyAction {
@@ -156,6 +162,11 @@ export declare const removeGroupFieldsFromErrors: (fieldTreeName: string) => Rem
  * @returns {SetUserInputObj} - an action to set user input to redux store
  */
 export declare const setUserInputObj: (userInputObj: any) => SetUserInputObj;
+/** sets the csv object to redux store
+ * @param {any} userInputObj - the user input obj
+ * @returns {SetUserInputObj} - an action to set user input to redux store
+ */
+export declare const setCSVObj: (csvObj: any) => SetCSVObj;
 /** sets the language to redux store
  * @param {string} language - the user input obj
  * @returns {SetLanguage} - an action to set user input to redux store
@@ -167,7 +178,7 @@ export declare const setUserLanguage: (language: string) => SetLanguage;
  */
 export declare const setFormSubmitStatus: (isFormSubmitted: boolean) => SetFormSubmitStatus;
 /** Create type for forms reducer actions */
-export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | AddMediaListAction | RemoveFromMediaListAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | SetFormSubmitStatus | AnyAction;
+export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | AddMediaListAction | RemoveFromMediaListAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | SetCSVObj | SetFormSubmitStatus | AnyAction;
 /** Create an immutable form state */
 export declare type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
@@ -229,6 +240,11 @@ export declare function isErrorsArrayEmpty(state: Partial<Store>): any;
  * @return {boolean} the current userInputObject
  */
 export declare function getUserInputFromStore(state: Partial<Store>): any;
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current userInputObject
+ */
+export declare function getCSVFromStore(state: Partial<Store>): any;
 /** get the userInput object from store
  * @param {Partial<Store>} state - the redux store
  * @return {boolean} the current isFormSubmitted

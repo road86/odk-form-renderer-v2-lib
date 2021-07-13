@@ -246,6 +246,21 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
         });
       }
 
+      let calculatedValue: any = '';
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          calculatedValue
+        );
+      }
+
       const isError = isPresentInErrorSelector(
         fieldParentTreeName + fieldElement.name
       );
@@ -269,7 +284,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
                     value={elem.name}
                     onChange={this.onChangeHandlerRadio(fieldElement.name)}
                     readOnly={isReadonly}
-                    checked={elem.name === fieldValue}
+                    checked={elem.name === fieldValue || elem.name === calculatedValue}
                   />{' '}
                   {getFieldLabelText(elem, defaultLanguage)}
                 </Label>

@@ -315,6 +315,21 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         );
       }
 
+      let calculatedValue: any = '';
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          calculatedValue
+        );
+      }
+
       const isError = isPresentInErrorSelector(
         fieldParentTreeName + fieldElement.name
       );
@@ -338,7 +353,7 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
                     value={elem.name || []}
                     onChange={this.onChangeHandlerCheckBox}
                     readOnly={isReadonly}
-                    checked={selectedValues.includes(elem.name)}
+                    checked={selectedValues.includes(elem.name) || calculatedValue.includes(elem.name)}
                   />{' '}
                   {getFieldLabelText(elem, defaultLanguage)}
                 </Label>

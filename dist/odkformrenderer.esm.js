@@ -882,6 +882,26 @@ function kbChoice(funcName, params, _paramsTokens) {
   }
 
   return [false, null];
+} // tslint:disable-next-line: variable-name
+
+
+function kbPullData(funcName, params, _paramsTokens) {
+  if (funcName === 'pulldata') {
+    var state = store.getState();
+    var csv = state.csvList[params[0] + '.csv'];
+
+    if (params[3]) {
+      var item = csv.find(function (obj) {
+        return obj[params[2]] == params[3];
+      });
+
+      if (item != undefined && item != null) {
+        return [true, item[params[1]]];
+      }
+    }
+  }
+
+  return [false, null];
 }
 /**
  * kbToday parses the function today and returns functionParseReturnObject
@@ -1328,7 +1348,7 @@ function parseLiterals(_tmpOutput, tokens, current) {
 
 function parseFunction(_output, tokens, current) {
   // precedence of functions
-  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate];
+  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate, kbPullData];
 
   if (tokens[current].type === 'function') {
     var funcName = tokens[current].value;
@@ -2660,6 +2680,7 @@ var EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 
 var REMOVE_GROUP_FIELDS_FROM_ERRORS = 'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 var SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
+var SET_CSV_OBJ = 'odk/reducer/form/SET_CSV_OBJ';
 var SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
 var SET_LANGUAGE = 'odk/reducer/form/SET_LANGUAGE';
 /** Assigns the value to the proper field name
@@ -2775,6 +2796,17 @@ var setUserInputObj = function setUserInputObj(userInputObj) {
     userInputObj: userInputObj
   };
 };
+/** sets the csv object to redux store
+ * @param {any} userInputObj - the user input obj
+ * @returns {SetUserInputObj} - an action to set user input to redux store
+ */
+
+var setCSVObj = function setCSVObj(csvObj) {
+  return {
+    type: SET_CSV_OBJ,
+    csvObj: csvObj
+  };
+};
 /** sets the language to redux store
  * @param {string} language - the user input obj
  * @returns {SetLanguage} - an action to set user input to redux store
@@ -2807,7 +2839,8 @@ SeamlessImmutable({
   mediaList: {},
   optionList: {},
   userInput: {},
-  language: 'English'
+  language: 'English',
+  csvList: {}
 });
 /** the form reducer function */
 
@@ -2928,6 +2961,11 @@ function reducer(state, action) {
         userInput: action.userInputObj
       }));
 
+    case SET_CSV_OBJ:
+      return SeamlessImmutable(_extends({}, state, {
+        csvList: action.csvObj
+      }));
+
     case SET_FORM_SUBMIT_STATUS:
       return SeamlessImmutable(_extends({}, state, {
         isFormSubmitted: action.isFormSubmitted
@@ -3029,6 +3067,16 @@ function isErrorsArrayEmpty(state) {
 
 function getUserInputFromStore(state) {
   return state != undefined && state.getIn(['userInput']).asMutable({
+    deep: true
+  });
+}
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current userInputObject
+ */
+
+function getCSVFromStore(state) {
+  return state != undefined && state.getIn(['csvList']).asMutable({
     deep: true
   });
 }
@@ -4716,6 +4764,23 @@ var ConnectedNote =
 /*#__PURE__*/
 connect(mapStateToProps$a, mapDispatchToProps$a)(Note);
 
+var customStyles = {
+  // For the select itself (not the options)
+  control: function control(styles, _ref) {
+    var isDisabled = _ref.isDisabled;
+    return _extends({}, styles, {
+      backgroundColor: isDisabled ? 'white' : 'white'
+    });
+  },
+  // For the select itself (not the options)
+  container: function container(styles, _ref2) {
+    var isDisabled = _ref2.isDisabled;
+    return _extends({}, styles, {
+      backgroundColor: isDisabled ? 'white' : 'white'
+    });
+  }
+};
+
 var SelectAllDropDown =
 /*#__PURE__*/
 function (_React$Component) {
@@ -4900,6 +4965,8 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, fieldElement["default"]);
       }
 
+      var isReadonly = shouldComponentBeReadOnly(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+
       if ((isRequiredViolated || isConstraintViolated) && !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
         this.props.addErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       } else if (!isRequiredViolated && !isConstraintViolated && isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
@@ -4978,18 +5045,18 @@ function (_React$Component) {
         });
 
         for (var _iterator = fieldValue, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-          var _ref;
+          var _ref3;
 
           if (_isArray) {
             if (_i >= _iterator.length) break;
-            _ref = _iterator[_i++];
+            _ref3 = _iterator[_i++];
           } else {
             _i = _iterator.next();
             if (_i.done) break;
-            _ref = _i.value;
+            _ref3 = _i.value;
           }
 
-          var row = _ref;
+          var row = _ref3;
 
           if (!optionsValueArray.includes(row)) {
             isNotIncluded = true;
@@ -5008,18 +5075,18 @@ function (_React$Component) {
       if (fieldValue && fieldValue.length > 0) {
         options.map(function (elem) {
           for (var _iterator2 = fieldValue, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-            var _ref2;
+            var _ref4;
 
             if (_isArray2) {
               if (_i2 >= _iterator2.length) break;
-              _ref2 = _iterator2[_i2++];
+              _ref4 = _iterator2[_i2++];
             } else {
               _i2 = _iterator2.next();
               if (_i2.done) break;
-              _ref2 = _i2.value;
+              _ref4 = _i2.value;
             }
 
-            var _row = _ref2;
+            var _row = _ref4;
 
             if (elem.value === _row) {
               selectedValues.push(elem);
@@ -5033,6 +5100,16 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, seperatedValues);
       }
 
+      var calculatedValue = '';
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+      }
+
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
@@ -5040,11 +5117,13 @@ function (_React$Component) {
         key: fieldElement.name,
         className: "selectAllDropDown"
       }, createElement(Select, {
+        styles: customStyles,
+        isDisabled: isReadonly,
         isMulti: true,
         name: fieldElement.name,
         options: options,
         onChange: this.onChangeHandler(fieldElement.name),
-        value: selectedValues || []
+        value: selectedValues || calculatedValue || []
       })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
         className: "errorSign"
@@ -5501,6 +5580,16 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, seperatedValues);
       }
 
+      var calculatedValue = '';
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+      }
+
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
       return createElement("div", null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
@@ -5520,7 +5609,7 @@ function (_React$Component) {
           value: elem.name || [],
           onChange: _this2.onChangeHandlerCheckBox,
           readOnly: isReadonly,
-          checked: selectedValues.includes(elem.name)
+          checked: selectedValues.includes(elem.name) || calculatedValue.includes(elem.name)
         }), ' ', getFieldLabelText(elem, defaultLanguage)));
       })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
@@ -5620,6 +5709,23 @@ function (_React$Component) {
 
   return SelectAll;
 }(Component);
+
+var customStyles$1 = {
+  // For the select itself (not the options)
+  control: function control(styles, _ref) {
+    var isDisabled = _ref.isDisabled;
+    return _extends({}, styles, {
+      backgroundColor: isDisabled ? 'white' : 'white'
+    });
+  },
+  // For the select itself (not the options)
+  container: function container(styles, _ref2) {
+    var isDisabled = _ref2.isDisabled;
+    return _extends({}, styles, {
+      backgroundColor: isDisabled ? 'white' : 'white'
+    });
+  }
+};
 
 var SelectOneDropDown =
 /*#__PURE__*/
@@ -5781,6 +5887,8 @@ function (_React$Component) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, fieldElement["default"]);
       }
 
+      var isReadonly = shouldComponentBeReadOnly(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+
       if ((isRequiredViolated || isConstraintViolated) && !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
         this.props.addErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       } else if (!isRequiredViolated && !isConstraintViolated && isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
@@ -5853,6 +5961,16 @@ function (_React$Component) {
           selectedValue = elem;
         }
       });
+      var calculatedValue = '';
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+      }
+
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
@@ -5860,10 +5978,12 @@ function (_React$Component) {
         key: fieldElement.name,
         className: "selectOneDropDown"
       }, createElement(Select, {
+        styles: customStyles$1,
+        isDisabled: isReadonly,
         multi: false,
         name: fieldElement.name,
         options: options,
-        value: selectedValue || '',
+        value: selectedValue || calculatedValue || '',
         onChange: this.onChangeHandler(fieldElement.name)
       })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
@@ -6183,6 +6303,16 @@ function (_React$Component) {
         });
       }
 
+      var calculatedValue = '';
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+      }
+
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
       return createElement("div", null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
@@ -6202,7 +6332,7 @@ function (_React$Component) {
           value: elem.name,
           onChange: _this2.onChangeHandlerRadio(fieldElement.name),
           readOnly: isReadonly,
-          checked: elem.name === fieldValue
+          checked: elem.name === fieldValue || elem.name === calculatedValue
         }), ' ', getFieldLabelText(elem, defaultLanguage)));
       })), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
@@ -6533,13 +6663,23 @@ function (_React$Component) {
       }
 
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      var calculatedValue = '';
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+      }
+
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
       }, REQUIRED_SYMBOL)), createElement(Input, {
         type: "time",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
-        value: fieldValue || '',
+        value: fieldValue || calculatedValue || '',
         readOnly: isReadonly
       }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
@@ -6909,11 +7049,17 @@ function (_React$Component) {
   _proto.componentDidMount = function componentDidMount() {
     var _this$props2 = this.props,
         userInputJson = _this$props2.userInputJson,
-        userInputObj = _this$props2.userInputObj;
+        userInputObj = _this$props2.userInputObj,
+        csvList = _this$props2.csvList,
+        csvObj = _this$props2.csvObj;
     this.props.resetStoreActionCreator();
 
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
+    }
+
+    if (csvList && csvList !== csvObj) {
+      this.props.setCSVAction(csvList);
     }
 
     this.props.setUserLanguageAction(this.props.defaultLanguage);
@@ -6983,7 +7129,8 @@ var mapStateToProps$i = function mapStateToProps(state) {
   var result = {
     isNoErrors: isErrorsArrayEmpty(state),
     mediaList: getAllFileObjects(state),
-    userInputObj: getUserInputFromStore(state)
+    userInputObj: getUserInputFromStore(state),
+    csvObj: getCSVFromStore(state)
   };
   return result;
 };
@@ -6994,7 +7141,8 @@ var mapDispatchToProps$h = {
   resetStoreActionCreator: resetStoreAction,
   setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
-  setUserLanguageAction: setUserLanguage
+  setUserLanguageAction: setUserLanguage,
+  setCSVAction: setCSVObj
 };
 /** connect Decimal component to the redux store */
 
