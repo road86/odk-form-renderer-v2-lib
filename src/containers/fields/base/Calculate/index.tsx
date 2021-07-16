@@ -69,6 +69,7 @@ class Calculate extends React.Component<CalculateProps> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
+      
       if (
         (isRequiredViolated || isConstraintViolated) &&
         !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)

@@ -575,6 +575,22 @@ function kbChoice(funcName: any, params: any, _paramsTokens: any) {
   return [false, null];
 }
 
+// tslint:disable-next-line: variable-name
+function kbPullData(funcName: any, params: any, _paramsTokens: any) {
+  if (funcName === 'pulldata') {
+    const state = store.getState();
+    const csv = state.csvList[params[0] + '.csv'];
+    if (params[3]) {
+      const item = csv.find((obj: any) => obj[params[2]] == params[3]);
+      console.log(csv, item);
+      if (item != undefined && item != null) {
+        return [true, item[params[1]]];
+      }
+    }
+  }
+  return [false, null];
+}
+
 /**
  * kbToday parses the function today and returns functionParseReturnObject
  * @param funcName - the function name of the token
@@ -999,6 +1015,7 @@ function parseFunction(_output: any, tokens: any, current: any) {
     kbSubstr,
     kbRound,
     kbFormatDate,
+    kbPullData,
   ];
   if (tokens[current].type === 'function') {
     const funcName = tokens[current].value;

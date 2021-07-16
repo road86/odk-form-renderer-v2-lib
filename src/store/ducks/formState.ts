@@ -44,6 +44,7 @@ export const EMPTY_GROUP_FIELDS = 'odk/reducer/form/EMPTY_GROUP_FIELDS';
 export const REMOVE_GROUP_FIELDS_FROM_ERRORS =
   'odk/reducer/form/REMOVE_GROUP_FIELDS_FROM_ERRORS';
 export const SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
+export const SET_CSV_OBJ = 'odk/reducer/form/SET_CSV_OBJ';
 export const SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
 export const SET_LANGUAGE = 'odk/reducer/form/SET_LANGUAGE';
 
@@ -116,6 +117,11 @@ export interface SetUserInputObj extends AnyAction {
   type: typeof SET_USER_INPUT_OBJ;
 }
 
+/** interface for SET_CSV_OBJ action */
+export interface SetCSVObj extends AnyAction {
+  csvObj: any;
+  type: typeof SET_CSV_OBJ;
+}
 /** interface for SET_LANGUAGE action */
 export interface SetLanguage extends AnyAction {
   language: string;
@@ -247,6 +253,15 @@ export const setUserInputObj = (userInputObj: any): SetUserInputObj => ({
   userInputObj,
 });
 
+/** sets the csv object to redux store
+ * @param {any} userInputObj - the user input obj
+ * @returns {SetUserInputObj} - an action to set user input to redux store
+ */
+ export const setCSVObj = (csvObj: any): SetCSVObj => ({
+  type: SET_CSV_OBJ,
+  csvObj,
+});
+
 /** sets the language to redux store
  * @param {string} language - the user input obj
  * @returns {SetLanguage} - an action to set user input to redux store
@@ -280,6 +295,7 @@ export type FormActionTypes =
   | EmptyGroupFields
   | RemoveGroupFieldsFromErrors
   | SetUserInputObj
+  | SetCSVObj
   | SetFormSubmitStatus
   | AnyAction;
 
@@ -293,7 +309,8 @@ export const initialState: ImmutableFormState = SeamlessImmutable({
   mediaList: {},
   optionList: {},
   userInput: {},
-  language: 'English'
+  language: 'English',
+  csvList: {},
 });
 
 /** the form reducer function */
@@ -415,6 +432,12 @@ export default function reducer(
         userInput: (action as any).userInputObj,
       });
 
+    case SET_CSV_OBJ:
+      return SeamlessImmutable({
+        ...state,
+        csvList: (action as any).csvObj,
+      });
+      
     case SET_FORM_SUBMIT_STATUS:
       return SeamlessImmutable({
         ...state,
@@ -550,6 +573,15 @@ export function isErrorsArrayEmpty(state: Partial<Store>): any {
 export function getUserInputFromStore(state: Partial<Store>): any {
   return (state as any) != undefined && (state as any).getIn(['userInput']).asMutable({ deep: true });
 }
+
+/** get the userInput object from store
+ * @param {Partial<Store>} state - the redux store
+ * @return {boolean} the current userInputObject
+ */
+ export function getCSVFromStore(state: Partial<Store>): any {
+  return (state as any) != undefined && (state as any).getIn(['csvList']).asMutable({ deep: true });
+}
+
 
 /** get the userInput object from store
  * @param {Partial<Store>} state - the redux store

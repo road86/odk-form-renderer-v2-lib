@@ -115,6 +115,22 @@ class KbTime extends React.Component<TimeProps> {
         fieldParentTreeName + fieldElement.name
       );
 
+      let calculatedValue: any = '';
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          calculatedValue
+        );
+      }
+
+
       return (
         <FormGroup>
           <Label>
@@ -127,7 +143,7 @@ class KbTime extends React.Component<TimeProps> {
             type="time"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue || ''}
+            value={fieldValue || calculatedValue || ''}
             readOnly={isReadonly}
           />
           {isFormSubmitted && isError && (

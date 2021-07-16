@@ -28,9 +28,11 @@ import {
   getFieldLabelText,
   getHintLabelText,
   isInputRequired,
+  shouldComponentBeReadOnly,
   shouldComponentBeRelevant,
   shouldInputViolatesConstraint,
 } from '../../../../../utils/helpers';
+
 
 /** props interface for the SelectOne component */
 export interface SelectOneDropDownProps {
@@ -56,6 +58,25 @@ export interface Options {
   label: any;
   value: string;
 }
+
+const customStyles = {
+  // For the select itself (not the options)
+  control: (styles: any, { isDisabled }: any) => {
+    return {
+      ...styles,
+      backgroundColor: isDisabled ? 'white' : 'white',
+    }
+    
+  },
+
+    // For the select itself (not the options)
+    container: (styles: any, { isDisabled }: any) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled ? 'white' : 'white',
+      }
+    },
+};
 
 class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
   public render() {
@@ -105,6 +126,12 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
           fieldElement.default
         );
       }
+
+      const isReadonly = shouldComponentBeReadOnly(
+        fieldElement,
+        fieldParentTreeName,
+        getEvaluatedExpressionSelector
+      );
 
       if (
         (isRequiredViolated || isConstraintViolated) &&
@@ -205,6 +232,21 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
         }
       });
 
+      let calculatedValue: any = '';
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          calculatedValue
+        );
+      }
+
       const isError = isPresentInErrorSelector(
         fieldParentTreeName + fieldElement.name
       );
@@ -219,10 +261,12 @@ class SelectOneDropDown extends React.Component<SelectOneDropDownProps> {
           </Label>
           <div key={fieldElement.name} className="selectOneDropDown">
             <Select
+              styles={customStyles}
+              isDisabled={isReadonly}
               multi={false}
               name={fieldElement.name}
               options={options}
-              value={selectedValue || ''}
+              value={selectedValue || calculatedValue || ''}
               onChange={this.onChangeHandler(fieldElement.name)}
             />
           </div>

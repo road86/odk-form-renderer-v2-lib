@@ -13,9 +13,11 @@ import DropDown from '../components/DropDown';
 import GroupTypeEvaluator from '../components/typeEvalutors/Group';
 import {
   getAllFileObjects,
+  getCSVFromStore,
   getUserInputFromStore,
   isErrorsArrayEmpty,
   resetStoreAction,
+  setCSVObj,
   setFormSubmitStatus,
   setUserInputObj,
   setUserLanguage,
@@ -26,6 +28,7 @@ library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
 export interface AppProps {
   choices: any;
   csvList: any;
+  csvObj: any;
   isNoErrors: any;
   userInputObj: any;
   userInputJson: any;
@@ -33,6 +36,7 @@ export interface AppProps {
   formTitle: string;
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
+  setCSVAction: typeof setCSVObj;
   setUserLanguageAction: typeof setUserLanguage;
   languageOptions: any;
   setFormSubmitStatusAction: typeof setFormSubmitStatus;
@@ -52,10 +56,13 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   public componentDidMount() {
-    const { userInputJson, userInputObj } = this.props;
+    const { userInputJson, userInputObj, csvList, csvObj } = this.props;
     this.props.resetStoreActionCreator();
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
+    }
+    if (csvList && csvList !== csvObj) {
+      this.props.setCSVAction(csvList);
     }
     this.props.setUserLanguageAction(this.props.defaultLanguage);
     this.setState({
@@ -154,6 +161,7 @@ interface DispatchedStateProps {
   isNoErrors: any;
   userInputObj: any;
   mediaList: any;
+  csvObj: any;
 }
 
 /** Map props to state  */
@@ -162,6 +170,7 @@ const mapStateToProps = (state: Partial<Store>): DispatchedStateProps => {
     isNoErrors: isErrorsArrayEmpty(state),
     mediaList: getAllFileObjects(state),
     userInputObj: getUserInputFromStore(state),
+    csvObj: getCSVFromStore(state),
   };
   return result;
 };
@@ -172,6 +181,7 @@ const mapDispatchToProps = {
   setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
   setUserLanguageAction: setUserLanguage,
+  setCSVAction: setCSVObj,
 };
 
 /** connect Decimal component to the redux store */
