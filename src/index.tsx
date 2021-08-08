@@ -38,8 +38,8 @@ class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-        <App {...props} />
-      </MuiThemeProvider>
+          <App {...props} />
+        </MuiThemeProvider>
       </Provider>
     );
   }

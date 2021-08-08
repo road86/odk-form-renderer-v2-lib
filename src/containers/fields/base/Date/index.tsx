@@ -115,6 +115,23 @@ class KbDate extends React.Component<DateProps> {
         const modifiedDate = new Date(fieldValue);
         defaultValue = modifiedDate.toISOString().slice(0, 10);
       }
+
+
+      let calculatedValue: any = '';
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(
+          fieldElement.bind.calculate,
+          fieldParentTreeName + fieldElement.name
+        );
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(
+          fieldParentTreeName + fieldElement.name,
+          calculatedValue
+        );
+      }
+
       const isError = isPresentInErrorSelector(
         fieldParentTreeName + fieldElement.name
       );
@@ -130,7 +147,7 @@ class KbDate extends React.Component<DateProps> {
             type="date"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={defaultValue}
+            value={defaultValue || calculatedValue || ''}
             readOnly={isReadonly}
           />
           {isFormSubmitted && isError && (

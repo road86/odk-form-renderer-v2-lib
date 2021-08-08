@@ -832,7 +832,7 @@ function tokenizer(input) {
 // tslint:disable-next-line: variable-name
 
 
-function kbSelected(funcName, params, _paramsTokens) {
+function kbSelected(funcName, params, _paramsTokens, _output, _current) {
   if (funcName === 'selected') {
     var tmp = false;
 
@@ -852,7 +852,7 @@ function kbSelected(funcName, params, _paramsTokens) {
 } // tslint:disable-next-line: variable-name
 
 
-function kbChoice(funcName, params, _paramsTokens) {
+function kbChoice(funcName, params, _paramsTokens, _output, _current) {
   if (funcName === 'jr:choice-name') {
     var tmpHierchicalName = currentHierarchicalName.split('/');
     var i;
@@ -885,7 +885,7 @@ function kbChoice(funcName, params, _paramsTokens) {
 } // tslint:disable-next-line: variable-name
 
 
-function kbPullData(funcName, params, _paramsTokens) {
+function kbPullData(funcName, params, _paramsTokens, _output, _current) {
   if (funcName === 'pulldata') {
     var state = store.getState();
     var csv = state.csvList[params[0] + '.csv'];
@@ -894,7 +894,6 @@ function kbPullData(funcName, params, _paramsTokens) {
       var item = csv.find(function (obj) {
         return obj[params[2]] == params[3];
       });
-      console.log(csv, item);
 
       if (item != undefined && item != null) {
         return [true, item[params[1]]];
@@ -914,7 +913,7 @@ function kbPullData(funcName, params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbToday(funcName, _params, _paramsTokens) {
+function kbToday(funcName, _params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'today') {
     var d = new Date();
@@ -934,12 +933,71 @@ function kbToday(funcName, _params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbFormatDate(funcName, _params, _paramsTokens) {
+function kbDecimalDateTime(funcName, _params, _paramsTokens, _output, _current) {
+  // tslint:disable-next-line: triple-equals
+  if (funcName == 'decimal-date-time') {
+    if (_params[0]) {
+      var time_dif = new Date(_params[0]).getTime() - new Date("01/01/1970").getTime();
+      var day_diff = Math.round(Math.abs(time_dif / (1000 * 3600 * 24)));
+      return [true, day_diff];
+    }
+  }
+
+  return [false, null];
+}
+/**
+ * kbToday parses the function today and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
+// tslint:disable-next-line: variable-name
+
+
+function kbDate(funcName, _params, _paramsTokens, _output, _current) {
+  // tslint:disable-next-line: triple-equals
+  if (funcName == 'date') {
+    if (_params[0]) {
+      var date = new Date("01/01/1970").getTime() + _params[0] * 24 * 60 * 60 * 1000;
+      return [true, new Date(date)];
+    }
+  }
+
+  return [false, null];
+}
+/**
+ * kbFormatDate formats the given date and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
+// tslint:disable-next-line: variable-name
+
+
+function kbFormatDate(funcName, _params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'format-date') {
-    var format = _params.length == 2 ? _params[1].replace("%d", "DD").replace("%m", "MM").replace("%Y", "YYYY") : 'MM-DD-YYYY';
-    var d = _params.length > 1 && _params[0] != null ? moment(_params[0]).format(format) : null;
-    return [true, d];
+    if (_params.length == 2) {
+      var format = 'MM-DD-YYYY';
+      var date = null;
+
+      if (_params[1].includes('%a')) {
+        var day = _params[1].replace("%a", "ddd");
+
+        date = _params[0] != null ? moment(_params[0]).format("" + day) : null;
+      } else if (_params[1].includes('d')) {
+        format = _params[1].replace("%d", "DD").replace("%m", "MM").replace("%Y", "YYYY").replace("%y", "YY");
+        date = _params[0] != null ? moment(_params[0]).format(format) : null;
+      } else if (_params[1].includes('b')) {
+        var month = _params[1].replace("%b", "MMM");
+
+        date = _params[0] != null ? moment(_params[0]).format("" + month) : null;
+      }
+
+      return [true, date];
+    }
   }
 
   return [false, null];
@@ -954,7 +1012,7 @@ function kbFormatDate(funcName, _params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbRound(funcName, params, _paramsTokens) {
+function kbRound(funcName, params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'round') {
     if (params[0] && params[1]) {
@@ -980,7 +1038,7 @@ function kbRound(funcName, params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbRegex(funcName, params, _paramsTokens) {
+function kbRegex(funcName, params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'regex') {
     var regex = RegExp(params[1]);
@@ -999,7 +1057,7 @@ function kbRegex(funcName, params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbCountSelected(funcName, params, _paramsTokens) {
+function kbCountSelected(funcName, params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'count-selected') {
     if (params[0] && Array.isArray(params[0])) {
@@ -1025,7 +1083,7 @@ function kbCountSelected(funcName, params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbInt(funcName, params, _paramsTokens) {
+function kbInt(funcName, params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'int') {
     if (typeof params[0] === 'string') {
@@ -1045,7 +1103,7 @@ function kbInt(funcName, params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbCoalesce(funcName, params, _paramsTokens) {
+function kbCoalesce(funcName, params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'coalesce') {
     if (!params[0] && params[0] !== 0) {
@@ -1067,7 +1125,7 @@ function kbCoalesce(funcName, params, _paramsTokens) {
 // tslint:disable-next-line: variable-name
 
 
-function kbPosition(funcName, _params, _paramsTokens) {
+function kbPosition(funcName, _params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'position') {
     if (currentHierarchicalName) {
@@ -1349,7 +1407,7 @@ function parseLiterals(_tmpOutput, tokens, current) {
 
 function parseFunction(_output, tokens, current) {
   // precedence of functions
-  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate, kbPullData];
+  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate, kbPullData, kbDecimalDateTime, kbDate];
 
   if (tokens[current].type === 'function') {
     var funcName = tokens[current].value;
@@ -1401,7 +1459,7 @@ function parseFunction(_output, tokens, current) {
             return;
           }
 
-          var _functionFn = functionFn(funcName, arrayOfParams, arrayOfOriginalTokens);
+          var _functionFn = functionFn(funcName, arrayOfParams, arrayOfOriginalTokens, _output, current);
 
           parsedFn = _functionFn[0];
           parsedVal = _functionFn[1];
@@ -1733,7 +1791,15 @@ function parseLessThan(output, tokens, current) {
       newOutput = parser(null, tmpTokens, 0);
 
       if (flagLessThanOrEqual) {
+        if (typeof newOutput.getMonth === 'function') {
+          return [i, moment(output).startOf('day').isSameOrBefore(moment(newOutput).startOf('day'))];
+        }
+
         return [i, output <= newOutput];
+      }
+
+      if (typeof newOutput.getMonth === 'function') {
+        return [i, moment(output).startOf('day').isBefore(moment(newOutput).startOf('day'))];
       }
 
       return [i, output < newOutput];
@@ -2196,7 +2262,8 @@ function parser(leftOutput, tokens, pos) {
     if (!parsed) {
       // throw new TypeError('syntax error');
       // tslint:disable-next-line: no-console
-      // tslint:disable-next-line: no-console
+      console.log('syntax error'); // tslint:disable-next-line: no-console
+
       console.log(actualExpression);
       return {
         v: null
@@ -3901,6 +3968,16 @@ function (_React$Component) {
         defaultValue = modifiedDate.toISOString().slice(0, 10);
       }
 
+      var calculatedValue = '';
+
+      if (fieldElement.bind && fieldElement.bind.calculate) {
+        calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
+      }
+
+      if (calculatedValue && fieldValue !== calculatedValue) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
+      }
+
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
@@ -3908,7 +3985,7 @@ function (_React$Component) {
         type: "date",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
-        value: defaultValue,
+        value: defaultValue || calculatedValue || '',
         readOnly: isReadonly
       }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
