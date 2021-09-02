@@ -1,5173 +1,7795 @@
 /* tslint:disable */
 export const DEMO_FORM_JSON = {
-  "name": "LSD_Case_Report_by_VLSP",
-  "title": "LSD Case Report by VLSP",
-  "sms_keyword": "LSD_Case_Report_by_VLSP",
-  "default_language": "English",
-  "choices": {
-    "upazila": [
-      {
-        "name": "mirsarai",
-        "label": {
-          "Bangla": "মিরসরাই",
-          "English": "Mirsarai"
-        }
-      },
-      {
-        "name": "nawabganj",
-        "label": {
-          "Bangla": "নওয়াবগঞ্জ",
-          "English": "Nawabganj"
-        }
-      },
-      {
-        "name": "shahjadpur",
-        "label": {
-          "Bangla": "শাহজাদপুর",
-          "English": "Shahjadpur"
-        }
-      }
-    ],
-    "vlsp": [
-      {
-        "upazila": "nawabganj",
-        "name": "Abdul_Hanil",
-        "label": {
-          "Bangla": "Abdul Hanil",
-          "English": "Abdul Hanil"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Bazlur_Rahman",
-        "label": {
-          "Bangla": "Bazlur Rahman",
-          "English": "Bazlur Rahman"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Khabir_uddinn_",
-        "label": {
-          "Bangla": "Khabir uddinn",
-          "English": "Khabir uddinn"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Masud_rana",
-        "label": {
-          "Bangla": "Masud rana",
-          "English": "Masud rana"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Moshiur_rahman",
-        "label": {
-          "Bangla": "Moshiur rahman",
-          "English": "Moshiur rahman"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Mostafizur_Rahman",
-        "label": {
-          "Bangla": "Mostafizur Rahman",
-          "English": "Mostafizur Rahman"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Naimul_islam",
-        "label": {
-          "Bangla": "Naimul islam",
-          "English": "Naimul islam"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Proshanta_kumar_ray",
-        "label": {
-          "Bangla": "Proshanta kumar ray",
-          "English": "Proshanta kumar ray"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Rahel_mia",
-        "label": {
-          "Bangla": "Rahel mia",
-          "English": "Rahel mia"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Raihan_Kabir",
-        "label": {
-          "Bangla": "Raihan  Kabir",
-          "English": "Raihan  Kabir"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Sabdal_hossen_",
-        "label": {
-          "Bangla": "Sabdal hossen",
-          "English": "Sabdal hossen"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Shahinur_Islam",
-        "label": {
-          "Bangla": "Shahinur Islam",
-          "English": "Shahinur Islam"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Shohag_ali",
-        "label": {
-          "Bangla": "Shohag ali",
-          "English": "Shohag ali"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Shohel_rana_",
-        "label": {
-          "Bangla": "Shohel rana",
-          "English": "Shohel rana"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Abdul_Karim",
-        "label": {
-          "Bangla": "Abdul Karim",
-          "English": "Abdul Karim"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Abdul_Kuddus",
-        "label": {
-          "Bangla": "Abdul Kuddus",
-          "English": "Abdul Kuddus"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Abdul_Motaleb",
-        "label": {
-          "Bangla": "Abdul Motaleb",
-          "English": "Abdul Motaleb"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Abdur_Rahim",
-        "label": {
-          "Bangla": "Abdur Rahim",
-          "English": "Abdur Rahim"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Abul_Hossain",
-        "label": {
-          "Bangla": "Abul Hossain",
-          "English": "Abul Hossain"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Harunur_Rashid",
-        "label": {
-          "Bangla": "Harunur Rashid",
-          "English": "Harunur Rashid"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Khadiza_Khatun",
-        "label": {
-          "Bangla": "Khadiza Khatun",
-          "English": "Khadiza Khatun"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Manik_Chad",
-        "label": {
-          "Bangla": "Manik Chad",
-          "English": "Manik Chad"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Mukhlesur_Rahman",
-        "label": {
-          "Bangla": "Mukhlesur Rahman",
-          "English": "Mukhlesur Rahman"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Nobir_Hossain",
-        "label": {
-          "Bangla": "Nobir Hossain",
-          "English": "Nobir Hossain"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Rafikul_Islam",
-        "label": {
-          "Bangla": "Rafikul Islam",
-          "English": "Rafikul Islam"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Rafikul_Islam_Azad",
-        "label": {
-          "Bangla": "Rafikul Islam Azad",
-          "English": "Rafikul Islam Azad"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Rashidul_Islam",
-        "label": {
-          "Bangla": "Rashidul Islam",
-          "English": "Rashidul Islam"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Sadikul_Islam",
-        "label": {
-          "Bangla": "Sadikul Islam",
-          "English": "Sadikul Islam"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Shafikul_Islam",
-        "label": {
-          "Bangla": "Shafikul Islam",
-          "English": "Shafikul Islam"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Sudhansu_Kumar",
-        "label": {
-          "Bangla": "Sudhansu Kumar",
-          "English": "Sudhansu Kumar"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Amran_Hossan",
-        "label": {
-          "Bangla": "Amran Hossan",
-          "English": "Amran Hossan"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Emam_uddin",
-        "label": {
-          "Bangla": "Emam uddin",
-          "English": "Emam uddin"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Mehedi_Hasan",
-        "label": {
-          "Bangla": "Mehedi Hasan",
-          "English": "Mehedi Hasan"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Napalchi_Das",
-        "label": {
-          "Bangla": "Napalchi Das",
-          "English": "Napalchi Das"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Nasir_uddin",
-        "label": {
-          "Bangla": "Nasir uddin",
-          "English": "Nasir uddin"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Nurer_Nabi_Ridowan",
-        "label": {
-          "Bangla": "Nurer Nabi Ridowan",
-          "English": "Nurer Nabi Ridowan"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Nurul_Alam_Majumder",
-        "label": {
-          "Bangla": "Nurul Alam Majumder",
-          "English": "Nurul Alam Majumder"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Ranjan_Kumar_Sharma",
-        "label": {
-          "Bangla": "Ranjan Kumar Sharma",
-          "English": "Ranjan Kumar Sharma"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Rimesh_Barua",
-        "label": {
-          "Bangla": "Rimesh Barua",
-          "English": "Rimesh Barua"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Serjaul_Hoque",
-        "label": {
-          "Bangla": "Serjaul Hoque",
-          "English": "Serjaul Hoque"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Suparna_Rani_Das",
-        "label": {
-          "Bangla": "Suparna Rani Das",
-          "English": "Suparna Rani Das"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Tapan_Kumar_Sharma",
-        "label": {
-          "Bangla": "Tapan Kumar Sharma",
-          "English": "Tapan Kumar Sharma"
-        }
-      }
-    ],
-    "union_name": [
-      {
-        "upazila": "nawabganj",
-        "name": "Daudpur",
-        "label": {
-          "Bangla": "০১. দাউদপুর",
-          "English": "০১. দাউদপুর"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Shalkhuria",
-        "label": {
-          "Bangla": "০২. শালখুরিয়া",
-          "English": "০২. শালখুরিয়া"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Mahmudpur",
-        "label": {
-          "Bangla": "০৩. মাহমুদপুর",
-          "English": "০৩. মাহমুদপুর"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Binodnagar",
-        "label": {
-          "Bangla": "০৪. বিনোদনগর",
-          "English": "০৪. বিনোদনগর"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Vaduria",
-        "label": {
-          "Bangla": "০৫. ভাদুরিয়া",
-          "English": "০৫. ভাদুরিয়া"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Gopalganj",
-        "label": {
-          "Bangla": "১৩. গোপালগঞ্জ",
-          "English": "১৩. গোপালগঞ্জ"
-        }
-      },
-      {
-        "upazila": "nawabganj",
-        "name": "Kushdaha",
-        "label": {
-          "Bangla": "১৪. কুশদহ",
-          "English": "১৪. কুশদহ"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "shahjadpur_pourasava",
-        "label": {
-          "Bangla": "০৬. শাহজাদপুর পৌরসভা",
-          "English": "০৬. শাহজাদপুর পৌরসভা"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Kayempur",
-        "label": {
-          "Bangla": "০৭. কায়েমপুর",
-          "English": "০৭. কায়েমপুর"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "Garadaha",
-        "label": {
-          "Bangla": "০৮. গাড়াদহ",
-          "English": "০৮. গাড়াদহ"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "habibullahnagar",
-        "label": {
-          "Bangla": "০৯. হাবিবুল্লাহ নগর",
-          "English": "০৯. হাবিবুল্লাহ নগর"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "rupbati",
-        "label": {
-          "Bangla": "১৫. রূপবাটি",
-          "English": "১৫. রূপবাটি"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "gala",
-        "label": {
-          "Bangla": "১৬. গালা",
-          "English": "১৬. গালা"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "porjona",
-        "label": {
-          "Bangla": "১৭. পোরজনা",
-          "English": "১৭. পোরজনা"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "beltoil",
-        "label": {
-          "Bangla": "১৮. বেলতৈল",
-          "English": "১৮. বেলতৈল"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "khukni",
-        "label": {
-          "Bangla": "১৯. খুকনী",
-          "English": "১৯. খুকনী"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "koijuri",
-        "label": {
-          "Bangla": "২০. কৈজুরী",
-          "English": "২০. কৈজুরী"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "sonatoni",
-        "label": {
-          "Bangla": "২১. সোনাতনী",
-          "English": "২১. সোনাতনী"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "norina",
-        "label": {
-          "Bangla": "২২. নরিনা",
-          "English": "২২. নরিনা"
-        }
-      },
-      {
-        "upazila": "shahjadpur",
-        "name": "jalalpur",
-        "label": {
-          "Bangla": "২৩. জালালপুর",
-          "English": "২৩. জালালপুর"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Durgapur",
-        "label": {
-          "Bangla": "১০. দুর্গাপুর",
-          "English": "১০. দুর্গাপুর"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Mirsarai",
-        "label": {
-          "Bangla": "১১. মীরসরাই",
-          "English": "১১. মীরসরাই"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "Jorarganj",
-        "label": {
-          "Bangla": "১২. জোরারগঞ্জ",
-          "English": "১২. জোরারগঞ্জ"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "maghadiya",
-        "label": {
-          "Bangla": "২৪. মঘাদিয়া",
-          "English": "২৪. মঘাদিয়া"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "khoiyachhara",
-        "label": {
-          "Bangla": "২৫. খৈয়াছড়া",
-          "English": "২৫. খৈয়াছড়া"
-        }
-      },
-      {
-        "upazila": "mirsarai",
-        "name": "mayani",
-        "label": {
-          "Bangla": "২৬. মায়ানি",
-          "English": "২৬. মায়ানি"
-        }
-      }
-    ],
-    "village": [
-      {
-        "union_name": "Daudpur",
-        "name": "Akira",
-        "label": {
-          "Bangla": "১. আখিরা",
-          "English": "১. আখিরা"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Uttor Muradpur",
-        "label": {
-          "Bangla": "২. উত্তর মুরাদপুর",
-          "English": "২. উত্তর মুরাদপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Malarpara",
-        "label": {
-          "Bangla": "৩. মালারপাড়া",
-          "English": "৩. মালারপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Collegepara",
-        "label": {
-          "Bangla": "৪. কলেজপাড়া",
-          "English": "৪. কলেজপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Kanchondob",
-        "label": {
-          "Bangla": "৫. কাঞ্চনডোব",
-          "English": "৫. কাঞ্চনডোব"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Kadirapara",
-        "label": {
-          "Bangla": "৬. কাদিরাপাড়া",
-          "English": "৬. কাদিরাপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Shalpara",
-        "label": {
-          "Bangla": "৭. শালপাড়া",
-          "English": "৭. শালপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Kutub",
-        "label": {
-          "Bangla": "৮. কুতুব",
-          "English": "৮. কুতুব"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Kumarpara",
-        "label": {
-          "Bangla": "৯. কুমারপাড়া",
-          "English": "৯. কুমারপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Khoerguni",
-        "label": {
-          "Bangla": "১০. খয়েরগুনি",
-          "English": "১০. খয়েরগুনি"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Khodaipur",
-        "label": {
-          "Bangla": "১১. খোদাইপুর",
-          "English": "১১. খোদাইপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Gabgasi",
-        "label": {
-          "Bangla": "১২. গাবগাছি",
-          "English": "১২. গাবগাছি"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Chinirchora",
-        "label": {
-          "Bangla": "১৩. চিনিরচড়া",
-          "English": "১৩. চিনিরচড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Choto Gopalpur",
-        "label": {
-          "Bangla": "১৪. ছোট গোপালপুর",
-          "English": "১৪. ছোট গোপালপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Choto Roghunathput",
-        "label": {
-          "Bangla": "১৫. ছোট রঘুনাথপুর",
-          "English": "১৫. ছোট রঘুনাথপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Jaterpara",
-        "label": {
-          "Bangla": "১৬. জাতেরপাড়া",
-          "English": "১৬. জাতেরপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Jambari Bollobpur",
-        "label": {
-          "Bangla": "১৭. জামবাড়ী  বল্লভপুর",
-          "English": "১৭. জামবাড়ী  বল্লভপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Ziagor",
-        "label": {
-          "Bangla": "১৮. জিয়াগড়",
-          "English": "১৮. জিয়াগড়"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Zumarpara",
-        "label": {
-          "Bangla": "১৯. জুমারপাড়া",
-          "English": "১৯. জুমারপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Tati para",
-        "label": {
-          "Bangla": "২০. তাঁতীপারা",
-          "English": "২০. তাঁতীপারা"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Dokkinapara",
-        "label": {
-          "Bangla": "২১. দক্ষিনাপাড়া",
-          "English": "২১. দক্ষিনাপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Daudpur",
-        "label": {
-          "Bangla": "২২. দাউদপুর",
-          "English": "২২. দাউদপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Dauga",
-        "label": {
-          "Bangla": "২৩. দেওগাঁ",
-          "English": "২৩. দেওগাঁ"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Dhomile",
-        "label": {
-          "Bangla": "২৪. দোমাইল",
-          "English": "২৪. দোমাইল"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Dhornji Adorsopara",
-        "label": {
-          "Bangla": "২৫. ধরণজী আর্দশপারা",
-          "English": "২৫. ধরণজী আর্দশপারা"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Dhorndi",
-        "label": {
-          "Bangla": "২৬. ধরণডী",
-          "English": "২৬. ধরণডী"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Poromanandapur",
-        "label": {
-          "Bangla": "২৭. পরমান্দপুর",
-          "English": "২৭. পরমান্দপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Pasgassi",
-        "label": {
-          "Bangla": "২৮. পাঁচগাছি",
-          "English": "২৮. পাঁচগাছি"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Fajilpur",
-        "label": {
-          "Bangla": "২৯. ফজলিপুর",
-          "English": "২৯. ফজলিপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Bagichapara",
-        "label": {
-          "Bangla": "৩০. বাগিচাপাড়া",
-          "English": "৩০. বাগিচাপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Boraipur",
-        "label": {
-          "Bangla": "৩১. বাড়ইপুরা",
-          "English": "৩১. বাড়ইপুরা"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Belalpara",
-        "label": {
-          "Bangla": "৩২. বেলালপাড়া",
-          "English": "৩২. বেলালপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Boidahar",
-        "label": {
-          "Bangla": "৩৩. বৈদাহার",
-          "English": "৩৩. বৈদাহার"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Monipur",
-        "label": {
-          "Bangla": "৩৪. মনিপুর",
-          "English": "৩৪. মনিপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Monirampur",
-        "label": {
-          "Bangla": "৩৫. মনিরামপুর",
-          "English": "৩৫. মনিরামপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Mondolpara",
-        "label": {
-          "Bangla": "৩৬. মন্ডলপাড়া",
-          "English": "৩৬. মন্ডলপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Maldoho",
-        "label": {
-          "Bangla": "৩৭. মালদহ",
-          "English": "৩৭. মালদহ"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Malupara",
-        "label": {
-          "Bangla": "৩৮. মালুপাড়া",
-          "English": "৩৮. মালুপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Laogari",
-        "label": {
-          "Bangla": "৩৯. লাউগাড়ী",
-          "English": "৩৯. লাউগাড়ী"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Sibpur",
-        "label": {
-          "Bangla": "৪০. শিবপুর",
-          "English": "৪০. শিবপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Hotatpara",
-        "label": {
-          "Bangla": "৪১. হঠাৎপাড়া",
-          "English": "৪১. হঠাৎপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Hariharpur",
-        "label": {
-          "Bangla": "৪২. হরিহরপুর",
-          "English": "৪২. হরিহরপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Harirampur",
-        "label": {
-          "Bangla": "৪৩. হরিরামপুর",
-          "English": "৪৩. হরিরামপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Haluaghat",
-        "label": {
-          "Bangla": "৪৪. হালুয়াঘাট",
-          "English": "৪৪. হালুয়াঘাট"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Hasharpara",
-        "label": {
-          "Bangla": "৪৫. হাসারপাড়া",
-          "English": "৪৫. হাসারপাড়া"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Haiatpur",
-        "label": {
-          "Bangla": "৪৬. হেয়াতপুর",
-          "English": "৪৬. হেয়াতপুর"
-        }
-      },
-      {
-        "union_name": "Daudpur",
-        "name": "Mosipur_D",
-        "label": {
-          "Bangla": "৪৭. মশিপুর",
-          "English": "৪৭. মশিপুর"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "Amlagari",
-        "label": {
-          "Bangla": "১. আমলাগাড়ী",
-          "English": "১. আমলাগাড়ী"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "kashigari",
-        "label": {
-          "Bangla": "২. কাশিগাড়ি",
-          "English": "২. কাশিগাড়ি"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "soto_magura",
-        "label": {
-          "Bangla": "৩. ছোট মাগুড়া",
-          "English": "৩. ছোট মাগুড়া"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "ziagari",
-        "label": {
-          "Bangla": "৪. জিয়াগাড়ি",
-          "English": "৪. জিয়াগাড়ি"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "tikhur",
-        "label": {
-          "Bangla": "৫. তিখুর",
-          "English": "৫. তিখুর"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "pachakranji",
-        "label": {
-          "Bangla": "৬. পচাকরঞ্জি",
-          "English": "৬. পচাকরঞ্জি"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "boro_tetulia",
-        "label": {
-          "Bangla": "৭. বড় তেতুলিয়া",
-          "English": "৭. বড় তেতুলিয়া"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "shalkhuria",
-        "label": {
-          "Bangla": "৮. শালখুরিয়া",
-          "English": "৮. শালখুরিয়া"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "Sotarpara",
-        "label": {
-          "Bangla": "৯. সোতারপাড়া",
-          "English": "৯. সোতারপাড়া"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "Bera_Malia",
-        "label": {
-          "Bangla": "১০. বেড়া মলিয়া",
-          "English": "১০. বেড়া মলিয়া"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "Dola",
-        "label": {
-          "Bangla": "১১. দলা",
-          "English": "১১. দলা"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "Jiagari",
-        "label": {
-          "Bangla": "১২. জিয়াগাড়ী",
-          "English": "১২. জিয়াগাড়ী"
-        }
-      },
-      {
-        "union_name": "Shalkhuria",
-        "name": "Kurahar",
-        "label": {
-          "Bangla": "১৩. কুড়াহার",
-          "English": "১৩. কুড়াহার"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "ajampur",
-        "label": {
-          "Bangla": "১. আজমপুর",
-          "English": "১. আজমপুর"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "ambagan",
-        "label": {
-          "Bangla": "২. আমবাগান",
-          "English": "২. আমবাগান"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Chalni",
-        "label": {
-          "Bangla": "৩. চালনী",
-          "English": "৩. চালনী"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "chowdhuripara",
-        "label": {
-          "Bangla": "৪. চৌধুরিপাড়া",
-          "English": "৪. চৌধুরিপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Dhakopara",
-        "label": {
-          "Bangla": "৫. ঢাকোপাড়া",
-          "English": "৫. ঢাকোপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Chhatimtola",
-        "label": {
-          "Bangla": "৬. ছাতিমতলা",
-          "English": "৬. ছাতিমতলা"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "telipara",
-        "label": {
-          "Bangla": "৭. তেলিপাড়া",
-          "English": "৭. তেলিপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "dahapara",
-        "label": {
-          "Bangla": "৮. দহপাড়া",
-          "English": "৮. দহপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "daria",
-        "label": {
-          "Bangla": "৯. দাড়িয়া",
-          "English": "৯. দাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "denotpara",
-        "label": {
-          "Bangla": "১০. দেনতপাড়া",
-          "English": "১০. দেনতপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Patka_Para",
-        "label": {
-          "Bangla": "১১. পাটকা পাড়া",
-          "English": "১১. পাটকা পাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "moharajpur",
-        "label": {
-          "Bangla": "১২. মহারাজপুর",
-          "English": "১২. মহারাজপুর"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "mogorpara",
-        "label": {
-          "Bangla": "১৩. মোগরপাড়া",
-          "English": "১৩. মোগরপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "holaijana",
-        "label": {
-          "Bangla": "১৪. হলাইজানা",
-          "English": "১৪. হলাইজানা"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "hatvangi",
-        "label": {
-          "Bangla": "১৫. হাতভাঙ্গি",
-          "English": "১৫. হাতভাঙ্গি"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Shohidpur",
-        "label": {
-          "Bangla": "১৬. শহিদপুর",
-          "English": "১৬. শহিদপুর"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Kathalpara",
-        "label": {
-          "Bangla": "১৭. কাঠালপাড়া",
-          "English": "১৭. কাঠালপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Kabalipara",
-        "label": {
-          "Bangla": "১৮. কবলীপাড়া",
-          "English": "১৮. কবলীপাড়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Noleya",
-        "label": {
-          "Bangla": "১৯. নলেয়া",
-          "English": "১৯. নলেয়া"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Mahmudpur",
-        "label": {
-          "Bangla": "২০. মাহমুদপুর",
-          "English": "২০. মাহমুদপুর"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Namakathal",
-        "label": {
-          "Bangla": "২১. নামাকাঠাল",
-          "English": "২১. নামাকাঠাল"
-        }
-      },
-      {
-        "union_name": "Mahmudpur",
-        "name": "Padompur",
-        "label": {
-          "Bangla": "২২. পাদমপুর",
-          "English": "২২. পাদমপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "kamarpara",
-        "label": {
-          "Bangla": "১. কামারপাড়া",
-          "English": "১. কামারপাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Krisnapur",
-        "label": {
-          "Bangla": "২. কৃষ্ণপুর",
-          "English": "২. কৃষ্ণপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Gazipur",
-        "label": {
-          "Bangla": "৩. গাজীপুর",
-          "English": "৩. গাজীপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "gualapara",
-        "label": {
-          "Bangla": "৪. গুআলাপাড়া",
-          "English": "৪. গুআলাপাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "tentonpara",
-        "label": {
-          "Bangla": "৫. টেনটনপাড়া",
-          "English": "৫. টেনটনপাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Professor_para",
-        "label": {
-          "Bangla": "৬. প্রফেসর পাড়া",
-          "English": "৬. প্রফেসর পাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Pal_para",
-        "label": {
-          "Bangla": "৭. পালপাড়া",
-          "English": "৭. পালপাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "magura",
-        "label": {
-          "Bangla": "৮. মাগুরা",
-          "English": "৮. মাগুরা"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Kalamdarpur",
-        "label": {
-          "Bangla": "৯. কলমদারপুর",
-          "English": "৯. কলমদারপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Kachdaha",
-        "label": {
-          "Bangla": "১০. কাচদহ",
-          "English": "১০. কাচদহ"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Boalmari",
-        "label": {
-          "Bangla": "১১. বোয়ালমারী",
-          "English": "১১. বোয়ালমারী"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Voterpara",
-        "label": {
-          "Bangla": "১২. ভোটারপাড়া",
-          "English": "১২. ভোটারপাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Binodnagar",
-        "label": {
-          "Bangla": "১৩. বিনোদনগর",
-          "English": "১৩. বিনোদনগর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Kachuarpar",
-        "label": {
-          "Bangla": "১৪. কচুয়ারপাড়",
-          "English": "১৪. কচুয়ারপাড়"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Paharpur",
-        "label": {
-          "Bangla": "১৫. পাহাড়পুর",
-          "English": "১৫. পাহাড়পুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Pathanganj",
-        "label": {
-          "Bangla": "১৬. পাঠানগঙ্জ",
-          "English": "১৬. পাঠানগঙ্জ"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Narayanpur",
-        "label": {
-          "Bangla": "১৭. নারায়নপুর",
-          "English": "১৭. নারায়নপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Nandanpur_bin",
-        "label": {
-          "Bangla": "১৮. নন্দনপুর",
-          "English": "১৮. নন্দনপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Chakdulu",
-        "label": {
-          "Bangla": "১৯. চকদুলু",
-          "English": "১৯. চকদুলু"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Dhangsherghat",
-        "label": {
-          "Bangla": "২০. ঢাংশেরঘাট",
-          "English": "২০. ঢাংশেরঘাট"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Kapaldara",
-        "label": {
-          "Bangla": "২১. কপালদাড়া",
-          "English": "২১. কপালদাড়া"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Khamar_Debipur",
-        "label": {
-          "Bangla": "২২. খামার দেবিপুর",
-          "English": "২২. খামার দেবিপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Krishnajivanpur",
-        "label": {
-          "Bangla": "২৩. কৃষ্ঙজীবনপুর",
-          "English": "২৩. কৃষ্ঙজীবনপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Ragebendpur",
-        "label": {
-          "Bangla": "২৪. রাগেবেন্দপুর",
-          "English": "২৪. রাগেবেন্দপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Rambhadpur",
-        "label": {
-          "Bangla": "২৫. রামভদপুর",
-          "English": "২৫. রামভদপুর"
-        }
-      },
-      {
-        "union_name": "Binodnagar",
-        "name": "Rampur",
-        "label": {
-          "Bangla": "২৬. রামপুর",
-          "English": "২৬. রামপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Ambari",
-        "label": {
-          "Bangla": "১. আমবাড়ী",
-          "English": "১. আমবাড়ী"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "ithakhur",
-        "label": {
-          "Bangla": "২. ইঠাখুর",
-          "English": "২. ইঠাখুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "kandrupara",
-        "label": {
-          "Bangla": "৩. কানদ্রুপাড়া",
-          "English": "৩. কানদ্রুপাড়া"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "takamoti",
-        "label": {
-          "Bangla": "৪. টাকামতি",
-          "English": "৪. টাকামতি"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Palashbari",
-        "label": {
-          "Bangla": "৫. পলাশবাড়ী",
-          "English": "৫. পলাশবাড়ী"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "putihara",
-        "label": {
-          "Bangla": "৬. পুটিহারা",
-          "English": "৬. পুটিহারা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "borobaria",
-        "label": {
-          "Bangla": "৭. বড়বাড়িয়া",
-          "English": "৭. বড়বাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Ranjoypur",
-        "label": {
-          "Bangla": "৮. রন্জয়পুর",
-          "English": "৮. রন্জয়পুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Nirsha_Palashbari",
-        "label": {
-          "Bangla": "৯. র্নিশা পলাশবাড়ী",
-          "English": "৯. র্নিশা পলাশবাড়ী"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "shaltimuradpur",
-        "label": {
-          "Bangla": "১০.শাল্টিমুরাদপুর",
-          "English": "১০.শাল্টিমুরাদপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Satani_jamira",
-        "label": {
-          "Bangla": "১১. সাতআনী জামিরা",
-          "English": "১১. সাতআনী জামিরা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Hazipara",
-        "label": {
-          "Bangla": "১২. হাজী পাড়া",
-          "English": "১২. হাজী পাড়া"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Chhotamaheshpur",
-        "label": {
-          "Bangla": "১৩. ছোটমহেশপুর",
-          "English": "১৩. ছোটমহেশপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Harinathpur",
-        "label": {
-          "Bangla": "১৪. হরিনাথপুর",
-          "English": "১৪. হরিনাথপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Bhaduria",
-        "label": {
-          "Bangla": "১৫. ভাদুরিয়া",
-          "English": "১৫. ভাদুরিয়া"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Bajidpur",
-        "label": {
-          "Bangla": "১৬. বাজিদপুর",
-          "English": "১৬. বাজিদপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Shivrampur",
-        "label": {
-          "Bangla": "১৭. শিবরামপুর",
-          "English": "১৭. শিবরামপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Matihara",
-        "label": {
-          "Bangla": "১৮. মতিহারা",
-          "English": "১৮. মতিহারা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Kalia",
-        "label": {
-          "Bangla": "১৯. কালিয়া",
-          "English": "১৯. কালিয়া"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Dharanda",
-        "label": {
-          "Bangla": "২০. ধরন্দা",
-          "English": "২০. ধরন্দা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Digiranta",
-        "label": {
-          "Bangla": "২১. দিগীরন্তা",
-          "English": "২১. দিগীরন্তা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Harina",
-        "label": {
-          "Bangla": "২২.  হরিনা",
-          "English": "২২.  হরিনা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Helencha",
-        "label": {
-          "Bangla": "২৩. হেলেনচা",
-          "English": "২৩. হেলেনচা"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Pakuri",
-        "label": {
-          "Bangla": "২৪. পাকুড়ি",
-          "English": "২৪. পাকুড়ি"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Pania",
-        "label": {
-          "Bangla": "২৫.  পানিয়া",
-          "English": "২৫.  পানিয়া"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Shimmer",
-        "label": {
-          "Bangla": "২৬. শিমর",
-          "English": "২৬. শিমর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Rustampur",
-        "label": {
-          "Bangla": "২৭. রুস্তমপুর",
-          "English": "২৭. রুস্তমপুর"
-        }
-      },
-      {
-        "union_name": "Vaduria",
-        "name": "Itakhur",
-        "label": {
-          "Bangla": "২৮. ইটাখুর",
-          "English": "২৮. ইটাখুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Shagunkhola",
-        "label": {
-          "Bangla": "1. শগুনখোলা",
-          "English": "1. শগুনখোলা"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Palashbari_gop",
-        "label": {
-          "Bangla": "2. পলাশবাড়ী",
-          "English": "2. পলাশবাড়ী"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Poliramdevpur",
-        "label": {
-          "Bangla": "3.  পলিরামদেবপুর",
-          "English": "3.  পলিরামদেবপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Maras",
-        "label": {
-          "Bangla": "4. মাড়াস",
-          "English": "4. মাড়াস"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Mali Para",
-        "label": {
-          "Bangla": "5. মালি পাড়া",
-          "English": "5. মালি পাড়া"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Haripur",
-        "label": {
-          "Bangla": "6. হরিপুর",
-          "English": "6. হরিপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Jagannathpur_gop",
-        "label": {
-          "Bangla": "7. জগন্নাথপুর",
-          "English": "7. জগন্নাথপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Harillakhur",
-        "label": {
-          "Bangla": "8. হরিল্লাখুর",
-          "English": "8. হরিল্লাখুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Garibpara",
-        "label": {
-          "Bangla": "9. গরীবপাড়া",
-          "English": "9. গরীবপাড়া"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Maheshpur",
-        "label": {
-          "Bangla": "10. মহেশপুর",
-          "English": "10. মহেশপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Khatkhatia Krishnapur",
-        "label": {
-          "Bangla": "11. খটখটিয়া কৃষ্নপুর",
-          "English": "11. খটখটিয়া কৃষ্নপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Raghunathpur",
-        "label": {
-          "Bangla": "12. রগুনাথপুর",
-          "English": "12. রগুনাথপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Jahanpur",
-        "label": {
-          "Bangla": "13. জাহানপুর",
-          "English": "13. জাহানপুর"
-        }
-      },
-      {
-        "union_name": "Gopalganj",
-        "name": "Kashipur",
-        "label": {
-          "Bangla": "14. কাশিপুর",
-          "English": "14. কাশিপুর"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Binnagari",
-        "label": {
-          "Bangla": "15. বিন্নাগাড়ী",
-          "English": "15. বিন্নাগাড়ী"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Shibpur",
-        "label": {
-          "Bangla": "1. শিবপুর",
-          "English": "1. শিবপুর"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Rahimapur",
-        "label": {
-          "Bangla": "2. রহিমাপুর",
-          "English": "2. রহিমাপুর"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Bhabanipur",
-        "label": {
-          "Bangla": "3. ভবানীপুর",
-          "English": "3. ভবানীপুর"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Kachuas",
-        "label": {
-          "Bangla": "4. কচুয়স",
-          "English": "4. কচুয়স"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Madarpur",
-        "label": {
-          "Bangla": "5. মাদারপুর",
-          "English": "5. মাদারপুর"
-        }
-      },
-      {
-        "union_name": "Kushdaha",
-        "name": "Khalifpur",
-        "label": {
-          "Bangla": "6. খালিফপুর",
-          "English": "6. খালিফপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "azimpur",
-        "label": {
-          "Bangla": "১. আজিমপুর",
-          "English": "১. আজিমপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "kayemkola",
-        "label": {
-          "Bangla": "২. কায়েমকোলা",
-          "English": "২. কায়েমকোলা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "kayempur",
-        "label": {
-          "Bangla": "৩. কায়েমপুর",
-          "English": "৩. কায়েমপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "kashinathpur",
-        "label": {
-          "Bangla": "৪. কাশিনাথপুর",
-          "English": "৪. কাশিনাথপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "khalifapara",
-        "label": {
-          "Bangla": "৫. খলিফাপাড়া",
-          "English": "৫. খলিফাপাড়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "kharuajongla",
-        "label": {
-          "Bangla": "৬. খারুয়াজংলা",
-          "English": "৬. খারুয়াজংলা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "gupinathpur",
-        "label": {
-          "Bangla": "৭. গুপিনাথপুর",
-          "English": "৭. গুপিনাথপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "gobindapur",
-        "label": {
-          "Bangla": "৮. গোবিন্দপুর",
-          "English": "৮. গোবিন্দপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "chakkristapur",
-        "label": {
-          "Bangla": "৯. চককৃষ্টপুর",
-          "English": "৯. চককৃষ্টপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "chakhoripur",
-        "label": {
-          "Bangla": "১০. চকহরিপুর",
-          "English": "১০. চকহরিপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "charangaru",
-        "label": {
-          "Bangla": "১১. চরআঙ্গারু",
-          "English": "১১. চরআঙ্গারু"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "chithulia",
-        "label": {
-          "Bangla": "১২. চিখুলিয়া",
-          "English": "১২. চিখুলিয়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "chinadhukuria",
-        "label": {
-          "Bangla": "১৩. চিনাধুকুরিয়া",
-          "English": "১৩. চিনাধুকুরিয়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "chuldhori",
-        "label": {
-          "Bangla": "১৪. চুলধরী",
-          "English": "১৪. চুলধরী"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "jagannathpur",
-        "label": {
-          "Bangla": "১৫. জগন্নাথপুর",
-          "English": "১৫. জগন্নাথপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "durgapur_kay",
-        "label": {
-          "Bangla": "১৬. দূর্গাপুর",
-          "English": "১৬. দূর্গাপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "pachpara",
-        "label": {
-          "Bangla": "১৭. পাঁচপাড়া",
-          "English": "১৭. পাঁচপাড়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "briangaru",
-        "label": {
-          "Bangla": "১৮. বৃ আঙ্গারু",
-          "English": "১৮. বৃ আঙ্গারু"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "banagram",
-        "label": {
-          "Bangla": "১৯. বনগ্রাম",
-          "English": "১৯. বনগ্রাম"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "boldipara",
-        "label": {
-          "Bangla": "২০. বল্দিপারা",
-          "English": "২০. বল্দিপারা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "bangalpara",
-        "label": {
-          "Bangla": "২১. বাঙ্গালপারা",
-          "English": "২১. বাঙ্গালপারা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "batiarpara",
-        "label": {
-          "Bangla": "২২. বাতিয়ারপাড়া",
-          "English": "২২. বাতিয়ারপাড়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "bileril",
-        "label": {
-          "Bangla": "২৩. বিলএরিল",
-          "English": "২৩. বিলএরিল"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "brajabala_kuthirpara",
-        "label": {
-          "Bangla": "২৪. ব্রজবালা কুঠিরপারা",
-          "English": "২৪. ব্রজবালা কুঠিরপারা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "brajabala_nedhurpara",
-        "label": {
-          "Bangla": "২৫. ব্রজবালা নেধুরপারা",
-          "English": "২৫. ব্রজবালা নেধুরপারা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "brajabala_puranpara",
-        "label": {
-          "Bangla": "২৬. ব্রজবালা পুরানপারা",
-          "English": "২৬. ব্রজবালা পুরানপারা"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "murutia",
-        "label": {
-          "Bangla": "২৭. মুরুটিয়া",
-          "English": "২৭. মুরুটিয়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "shimultoli",
-        "label": {
-          "Bangla": "২৮. শিমুলতলী",
-          "English": "২৮. শিমুলতলী"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "shaymbaria",
-        "label": {
-          "Bangla": "২৯. শ্যামবাড়িয়া",
-          "English": "২৯. শ্যামবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "sartoil",
-        "label": {
-          "Bangla": "৩০. সড়াতৈল",
-          "English": "৩০. সড়াতৈল"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "sayestabad",
-        "label": {
-          "Bangla": "৩১. সায়েস্তাবাদ",
-          "English": "৩১. সায়েস্তাবাদ"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "swaruppur",
-        "label": {
-          "Bangla": "৩২. স্বরুপপুর",
-          "English": "৩২. স্বরুপপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "horirampur",
-        "label": {
-          "Bangla": "৩৩. হরিরামপুর",
-          "English": "৩৩. হরিরামপুর"
-        }
-      },
-      {
-        "union_name": "Kayempur",
-        "name": "holdighar",
-        "label": {
-          "Bangla": "৩৪. হল্দিঘর",
-          "English": "৩৪. হল্দিঘর"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "kashiyakola",
-        "label": {
-          "Bangla": "১. কাশিয়াকোলা",
-          "English": "১. কাশিয়াকোলা"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "garadaha",
-        "label": {
-          "Bangla": "২. গাড়াদহ",
-          "English": "২. গাড়াদহ"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "garadaha_charpara",
-        "label": {
-          "Bangla": "৩. গাড়াদহ চরপাড়া",
-          "English": "৩. গাড়াদহ চরপাড়া"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "char_tepri",
-        "label": {
-          "Bangla": "৪. চর টেপরি",
-          "English": "৪. চর টেপরি"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "charnabipur",
-        "label": {
-          "Bangla": "৫. চরনবীপুর",
-          "English": "৫. চরনবীপুর"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "charnorina",
-        "label": {
-          "Bangla": "৬. চরনরীনা",
-          "English": "৬. চরনরীনা"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "tekuapara",
-        "label": {
-          "Bangla": "৭. টেকুয়াপাড়া",
-          "English": "৭. টেকুয়াপাড়া"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "talgachhi",
-        "label": {
-          "Bangla": "৮. তালগাছি",
-          "English": "৮. তালগাছি"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "durgadoho",
-        "label": {
-          "Bangla": "৯. দুর্গাদহ",
-          "English": "৯. দুর্গাদহ"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "nobipur",
-        "label": {
-          "Bangla": "১০. নবিপুর",
-          "English": "১০. নবিপুর"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "pashchim_moshipur",
-        "label": {
-          "Bangla": "১১. পশ্চিম মশিপুর",
-          "English": "১১. পশ্চিম মশিপুর"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "purantepori",
-        "label": {
-          "Bangla": "১২. পুরানটেপরী",
-          "English": "১২. পুরানটেপরী"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "bowshagari",
-        "label": {
-          "Bangla": "১৩. বওশাগাড়ী",
-          "English": "১৩. বওশাগাড়ী"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "bazarghati",
-        "label": {
-          "Bangla": "১৪. বাজারঘাটি",
-          "English": "১৪. বাজারঘাটি"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "baroi_tepri",
-        "label": {
-          "Bangla": "১৫. বারই টেপরী",
-          "English": "১৫. বারই টেপরী"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "votto_garadaha",
-        "label": {
-          "Bangla": "১৬. ভট্ট গাড়াদহ",
-          "English": "১৬. ভট্ট গাড়াদহ"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "vaya_biswas",
-        "label": {
-          "Bangla": "১৭. ভায়া বিশ্বাস",
-          "English": "১৭. ভায়া বিশ্বাস"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "moshipur",
-        "label": {
-          "Bangla": "১৮. মশিপুর",
-          "English": "১৮. মশিপুর"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "makorkola",
-        "label": {
-          "Bangla": "১৯. মাকরকোলা",
-          "English": "১৯. মাকরকোলা"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "lalpur",
-        "label": {
-          "Bangla": "২০. লালপুর",
-          "English": "২০. লালপুর"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "sardarpara",
-        "label": {
-          "Bangla": "২১. সরদার পাড়া",
-          "English": "২১. সরদার পাড়া"
-        }
-      },
-      {
-        "union_name": "Garadaha",
-        "name": "sorishakol",
-        "label": {
-          "Bangla": "২২. সরিষাকোল",
-          "English": "২২. সরিষাকোল"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "andharkothapara",
-        "label": {
-          "Bangla": "১. অন্ধারকোঠাপাড়া",
-          "English": "১. অন্ধারকোঠাপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "aikbari_parkola",
-        "label": {
-          "Bangla": "২. আইকবাড়ি পাড়কোলা",
-          "English": "২. আইকবাড়ি পাড়কোলা"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "aikbari_shaktipur",
-        "label": {
-          "Bangla": "৩. আইকবাড়ি শক্তিপুর",
-          "English": "৩. আইকবাড়ি শক্তিপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "uttar_dariapur",
-        "label": {
-          "Bangla": "৪. উত্তর দ্বারিয়াপুর",
-          "English": "৪. উত্তর দ্বারিয়াপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "uttar_barabil",
-        "label": {
-          "Bangla": "৫. উত্তর বাড়াবিল",
-          "English": "৫. উত্তর বাড়াবিল"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "kandapara",
-        "label": {
-          "Bangla": "৬. কান্দাপাড়া",
-          "English": "৬. কান্দাপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "khanjandiar",
-        "label": {
-          "Bangla": "৭. খঞ্জনদিয়ার",
-          "English": "৭. খঞ্জনদিয়ার"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "choruapara",
-        "label": {
-          "Bangla": "৮. চরুয়াপাড়া",
-          "English": "৮. চরুয়াপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "chala_shahjadpue",
-        "label": {
-          "Bangla": "৯. চালা শাহজাদপুর",
-          "English": "৯. চালা শাহজাদপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "chuniakhalipara",
-        "label": {
-          "Bangla": "১০. চুনিয়াখালীপাড়া",
-          "English": "১০. চুনিয়াখালীপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "chhoyanipara",
-        "label": {
-          "Bangla": "১১. ছয়আনিপাড়া",
-          "English": "১১. ছয়আনিপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "dakbanglapara",
-        "label": {
-          "Bangla": "১২. ডাকবাংলা পাড়া",
-          "English": "১২. ডাকবাংলা পাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "taltola_notunpara",
-        "label": {
-          "Bangla": "১৩. তালতলা (নতুন পাড়া)",
-          "English": "১৩. তালতলা (নতুন পাড়া)"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "dakshin_barabil",
-        "label": {
-          "Bangla": "১৪. দক্ষিণ বাড়াবিল",
-          "English": "১৪. দক্ষিণ বাড়াবিল"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "dargahpara",
-        "label": {
-          "Bangla": "১৫. দরগাহপাড়া",
-          "English": "১৫. দরগাহপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "dabaria",
-        "label": {
-          "Bangla": "১৬. দাবারিয়া",
-          "English": "১৬. দাবারিয়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "dariapur",
-        "label": {
-          "Bangla": "১৭. দ্বারিয়াপুর",
-          "English": "১৭. দ্বারিয়াপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "nolua",
-        "label": {
-          "Bangla": "১৮. নলুয়া",
-          "English": "১৮. নলুয়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "pathanpara",
-        "label": {
-          "Bangla": "১৯. পাঠানপাড়া",
-          "English": "১৯. পাঠানপাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "parkola",
-        "label": {
-          "Bangla": "২০. পাড়কোলা",
-          "English": "২০. পাড়কোলা"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "pukurpar",
-        "label": {
-          "Bangla": "২১. পুকুরপাড়",
-          "English": "২১. পুকুরপাড়"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "prannathpur",
-        "label": {
-          "Bangla": "২২. প্রাণনাথপুর",
-          "English": "২২. প্রাণনাথপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "veruadaha",
-        "label": {
-          "Bangla": "২৩. ভেরুয়াদহ",
-          "English": "২৩. ভেরুয়াদহ"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "manirampur",
-        "label": {
-          "Bangla": "২৪. মনিরামপুর",
-          "English": "২৪. মনিরামপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "rambari",
-        "label": {
-          "Bangla": "২৫. রামবাড়ি",
-          "English": "২৫. রামবাড়ি"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "raypara",
-        "label": {
-          "Bangla": "২৬. রায়পাড়া",
-          "English": "২৬. রায়পাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "ruppur",
-        "label": {
-          "Bangla": "২৭. রূপপুর",
-          "English": "২৭. রূপপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "shaktipur",
-        "label": {
-          "Bangla": "২৮. শক্তিপুর",
-          "English": "২৮. শক্তিপুর"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "shahpara",
-        "label": {
-          "Bangla": "২৯. শাহ পাড়া",
-          "English": "২৯. শাহ পাড়া"
-        }
-      },
-      {
-        "union_name": "shahjadpur_pourasava",
-        "name": "sherkhali",
-        "label": {
-          "Bangla": "৩০. শেরখালী",
-          "English": "৩০. শেরখালী"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Bajiarpara",
-        "label": {
-          "Bangla": "১. বাজিয়ারপাড়া",
-          "English": "১. বাজিয়ারপাড়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Kumir_goaria",
-        "label": {
-          "Bangla": "২. কুমির গোয়ারিয়া",
-          "English": "২. কুমির গোয়ারিয়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Ghossrifoltola",
-        "label": {
-          "Bangla": "৩. ঘোষ শ্রীফলতলা",
-          "English": "৩. ঘোষ শ্রীফলতলা"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Dargarchar",
-        "label": {
-          "Bangla": "৪. দরগারচর",
-          "English": "৪. দরগারচর"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Nagardala",
-        "label": {
-          "Bangla": "৫. নগরডালা",
-          "English": "৫. নগরডালা"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Notunpara",
-        "label": {
-          "Bangla": "৬. নতুনপাড়া",
-          "English": "৬. নতুনপাড়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Narua",
-        "label": {
-          "Bangla": "৭. নারুয়া",
-          "English": "৭. নারুয়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Farid_pangashi",
-        "label": {
-          "Bangla": "৮. ফরিদ পাঙ্গাশী",
-          "English": "৮. ফরিদ পাঙ্গাশী"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Baghutia",
-        "label": {
-          "Bangla": "৯. বাঘুটিয়া",
-          "English": "৯. বাঘুটিয়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "badalbari",
-        "label": {
-          "Bangla": "১০. বাদলবাড়ি",
-          "English": "১০. বাদলবাড়ি"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Bera_kuchutia",
-        "label": {
-          "Bangla": "১১. বেড়া কুচুটিয়া",
-          "English": "১১. বেড়া কুচুটিয়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Via",
-        "label": {
-          "Bangla": "১২. ভায়া",
-          "English": "১২. ভায়া"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Ratankandi",
-        "label": {
-          "Bangla": "১৩. রতনকান্দি",
-          "English": "১৩. রতনকান্দি"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Raypur_hab",
-        "label": {
-          "Bangla": "১৪. রায়পুর",
-          "English": "১৪. রায়পুর"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Srifaltola",
-        "label": {
-          "Bangla": "১৫. শ্রীফলতলা",
-          "English": "১৫. শ্রীফলতলা"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "Hamlakola",
-        "label": {
-          "Bangla": "১৬. হামলাকোলা",
-          "English": "১৬. হামলাকোলা"
-        }
-      },
-      {
-        "union_name": "habibullahnagar",
-        "name": "hashakola",
-        "label": {
-          "Bangla": "১৭. হাশাকোলা",
-          "English": "১৭. হাশাকোলা"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Baghabari",
-        "label": {
-          "Bangla": "1. বাঘাবাড়ী",
-          "English": "1. বাঘাবাড়ী"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Chakayama",
-        "label": {
-          "Bangla": "2. চকআয়মা",
-          "English": "2. চকআয়মা"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Khamarshanila",
-        "label": {
-          "Bangla": "3. খামারশানিলা",
-          "English": "3. খামারশানিলা"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Bilkolmi",
-        "label": {
-          "Bangla": "4. বিলকলমি",
-          "English": "4. বিলকলমি"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Chhotobinyadair",
-        "label": {
-          "Bangla": "5. ছোটবিন্যাদাইর",
-          "English": "5. ছোটবিন্যাদাইর"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Ramkharuya",
-        "label": {
-          "Bangla": "6. রামখারুয়",
-          "English": "6. রামখারুয়"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Choyra",
-        "label": {
-          "Bangla": "7. চয়ড়া",
-          "English": "7. চয়ড়া"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Shelachapari",
-        "label": {
-          "Bangla": "8. শেলাচাপড়ী",
-          "English": "8. শেলাচাপড়ী"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Bhulbakutia",
-        "label": {
-          "Bangla": "9. ভুলবাকুটিয়া",
-          "English": "9. ভুলবাকুটিয়া"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Ahmedpur",
-        "label": {
-          "Bangla": "10. আহম্মদপুর",
-          "English": "10. আহম্মদপুর"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Moakola",
-        "label": {
-          "Bangla": "11. মোয়াকোলা",
-          "English": "11. মোয়াকোলা"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Sadamara",
-        "label": {
-          "Bangla": "12. সদামারা",
-          "English": "12. সদামারা"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Cob",
-        "label": {
-          "Bangla": "13. কব",
-          "English": "13. কব"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Aruyapangasi",
-        "label": {
-          "Bangla": "14. আড়ুয়াপাঙ্গাসী",
-          "English": "14. আড়ুয়াপাঙ্গাসী"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Shuklai",
-        "label": {
-          "Bangla": "15. শুকলাই",
-          "English": "15. শুকলাই"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Shukalhat",
-        "label": {
-          "Bangla": "16. শুকলহাট",
-          "English": "16. শুকলহাট"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Narsinghpara",
-        "label": {
-          "Bangla": "17. নরসিংহপাড়া",
-          "English": "17. নরসিংহপাড়া"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Bara_dhunail",
-        "label": {
-          "Bangla": "18. বড় ধুনাইল",
-          "English": "18. বড় ধুনাইল"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Andharamanik",
-        "label": {
-          "Bangla": "19. আন্ধারমানিক",
-          "English": "19. আন্ধারমানিক"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "Karshalika",
-        "label": {
-          "Bangla": "20. করশালিকা",
-          "English": "20. করশালিকা"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "bagdhunail",
-        "label": {
-          "Bangla": "21. বাগধুনাইল",
-          "English": "21. বাগধুনাইল"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "kaliachar",
-        "label": {
-          "Bangla": "22. কালিয়াচর",
-          "English": "22. কালিয়াচর"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "kuthibari",
-        "label": {
-          "Bangla": "23. কুঠিবাড়ি",
-          "English": "23. কুঠিবাড়ি"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "santosh",
-        "label": {
-          "Bangla": "24. সন্তোশ",
-          "English": "24. সন্তোশ"
-        }
-      },
-      {
-        "union_name": "rupbati",
-        "name": "rupbati",
-        "label": {
-          "Bangla": "25. রুপবাটি",
-          "English": "25. রুপবাটি"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Gala",
-        "label": {
-          "Bangla": "1. গালা",
-          "English": "1. গালা"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Fakir_Para",
-        "label": {
-          "Bangla": "2. ফকির পাড়া",
-          "English": "2. ফকির পাড়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Hariyakandi",
-        "label": {
-          "Bangla": "3. হাড়িয়াকান্দি",
-          "English": "3. হাড়িয়াকান্দি"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Marjan",
-        "label": {
-          "Bangla": "4. মার্জান",
-          "English": "4. মার্জান"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "ghorjan",
-        "label": {
-          "Bangla": "5. ঘোড়জান",
-          "English": "5. ঘোড়জান"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Kashipur_gala",
-        "label": {
-          "Bangla": "6. কাশিপুর",
-          "English": "6. কাশিপুর"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "bhul_bhayra",
-        "label": {
-          "Bangla": "7. ভুল ভায়ড়া",
-          "English": "7. ভুল ভায়ড়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Dugali",
-        "label": {
-          "Bangla": "8. দুগালী",
-          "English": "8. দুগালী"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Bara_dugali",
-        "label": {
-          "Bangla": "9. বড় দুগালী",
-          "English": "9. বড় দুগালী"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Para_Dugali",
-        "label": {
-          "Bangla": "10. পাড়া দুগালী",
-          "English": "10. পাড়া দুগালী"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Char_Dugali",
-        "label": {
-          "Bangla": "11. চর দুগালী",
-          "English": "11. চর দুগালী"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Mirzapur",
-        "label": {
-          "Bangla": "12. মির্জাপুর",
-          "English": "12. মির্জাপুর"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Char_Barnia",
-        "label": {
-          "Bangla": "13. চর বর্ণিয়া",
-          "English": "13. চর বর্ণিয়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Barnia_Haldarpara",
-        "label": {
-          "Bangla": "14. বর্ণিয়া হলদারপাড়া",
-          "English": "14. বর্ণিয়া হলদারপাড়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "gachh_bayra",
-        "label": {
-          "Bangla": "15. গাছ বায়ড়া",
-          "English": "15. গাছ বায়ড়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Datta_Darta",
-        "label": {
-          "Bangla": "16. দত্ত দরতা",
-          "English": "16. দত্ত দরতা"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Datta_Darta_Madhya",
-        "label": {
-          "Bangla": "17. দত্ত দরতা মধ্য",
-          "English": "17. দত্ত দরতা মধ্য"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Gobindpur",
-        "label": {
-          "Bangla": "18. গোবিন্দপুর",
-          "English": "18. গোবিন্দপুর"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Khaschar_Picola",
-        "label": {
-          "Bangla": "19. খাসচর পাইকোলা",
-          "English": "19. খাসচর পাইকোলা"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Pikhond",
-        "label": {
-          "Bangla": "20. পাইখন্ড",
-          "English": "20. পাইখন্ড"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Binotia",
-        "label": {
-          "Bangla": "21. বিনোটিয়া",
-          "English": "21. বিনোটিয়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Ratandia",
-        "label": {
-          "Bangla": "22. রতনদিয়া",
-          "English": "22. রতনদিয়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "purba_verakhola",
-        "label": {
-          "Bangla": "23. পূব ভেড়াখোলা",
-          "English": "23. পূব ভেড়াখোলা"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Gopinathpur_gala",
-        "label": {
-          "Bangla": "24. গোপিনাথপুর",
-          "English": "24. গোপিনাথপুর"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "barnia",
-        "label": {
-          "Bangla": "25. বর্ণিয়া",
-          "English": "25. বর্ণিয়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Char_Bayra",
-        "label": {
-          "Bangla": "26. চর বায়ড়া",
-          "English": "26. চর বায়ড়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Paschim_verakola",
-        "label": {
-          "Bangla": "27. পশ্চিম ভেড়াকোলা",
-          "English": "27. পশ্চিম ভেড়াকোলা"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Tarutia",
-        "label": {
-          "Bangla": "28. টারুটিয়া",
-          "English": "28. টারুটিয়া"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "bri_hatkhola",
-        "label": {
-          "Bangla": "29. বৃ-হাতখোলা",
-          "English": "29. বৃ-হাতখোলা"
-        }
-      },
-      {
-        "union_name": "gala",
-        "name": "Dewan_Tarutia",
-        "label": {
-          "Bangla": "30. দেওয়ান টারুটিয়া",
-          "English": "30. দেওয়ান টারুটিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Porjana",
-        "label": {
-          "Bangla": "1. পোরজনা",
-          "English": "1. পোরজনা"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Chhotamaharajpur",
-        "label": {
-          "Bangla": "2. ছোটমহারাজপুর",
-          "English": "2. ছোটমহারাজপুর"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Ranikola",
-        "label": {
-          "Bangla": "3. রানীকোলা",
-          "English": "3. রানীকোলা"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Ultadab",
-        "label": {
-          "Bangla": "4. উল্টাডাব",
-          "English": "4. উল্টাডাব"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Charkadai",
-        "label": {
-          "Bangla": "5. চরকাদাই",
-          "English": "5. চরকাদাই"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Baramaharajpur",
-        "label": {
-          "Bangla": "6. বড়মহারাজপুর",
-          "English": "6. বড়মহারাজপুর"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Kakuria",
-        "label": {
-          "Bangla": "7. কাকুরিয়া",
-          "English": "7. কাকুরিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Khidraputhiya",
-        "label": {
-          "Bangla": "8. ক্ষিদ্রপুঠিয়া",
-          "English": "8. ক্ষিদ্রপুঠিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Bhagirtha_puthiya",
-        "label": {
-          "Bangla": "9. ভগিরথ পুঠিয়া",
-          "English": "9. ভগিরথ পুঠিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Jamirta_South",
-        "label": {
-          "Bangla": "10. জামিরতা দক্ষিন",
-          "English": "10. জামিরতা দক্ষিন"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Jamirta_north",
-        "label": {
-          "Bangla": "11. জামিরতা উত্তর",
-          "English": "11. জামিরতা উত্তর"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Barabashuria",
-        "label": {
-          "Bangla": "12. বড়বাশুরিয়া",
-          "English": "12. বড়বাশুরিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Kanda_Bashuria",
-        "label": {
-          "Bangla": "13. কান্দা বাশুরিয়া",
-          "English": "13. কান্দা বাশুরিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Charbashuria",
-        "label": {
-          "Bangla": "14. চরবাশুরিয়া",
-          "English": "14. চরবাশুরিয়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Jotpara",
-        "label": {
-          "Bangla": "15. জোতপাড়া",
-          "English": "15. জোতপাড়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Fetuyamara",
-        "label": {
-          "Bangla": "16. ফেচুয়ামারা",
-          "English": "16. ফেচুয়ামারা"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Charbachara",
-        "label": {
-          "Bangla": "17. চরবাচড়া",
-          "English": "17. চরবাচড়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Bachra",
-        "label": {
-          "Bangla": "18. বাচড়া",
-          "English": "18. বাচড়া"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Harinathpur_por",
-        "label": {
-          "Bangla": "19. হরিণাথপুর",
-          "English": "19. হরিণাথপুর"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Nandalalpur",
-        "label": {
-          "Bangla": "20. নন্দলালপুর",
-          "English": "20. নন্দলালপুর"
-        }
-      },
-      {
-        "union_name": "porjona",
-        "name": "Jigar_baria",
-        "label": {
-          "Bangla": "21. জিগার বাড়ীয়া",
-          "English": "21. জিগার বাড়ীয়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni_Natunpara",
-        "label": {
-          "Bangla": "1. খুকনী নতুনপাড়া",
-          "English": "1. খুকনী নতুনপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Ratkhola",
-        "label": {
-          "Bangla": "2. রতখোলা",
-          "English": "2. রতখোলা"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni_Kandipara",
-        "label": {
-          "Bangla": "3. খুকনী কান্দিপাড়া",
-          "English": "3. খুকনী কান্দিপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Jhaugara",
-        "label": {
-          "Bangla": "4. ঝাউগাড়া",
-          "English": "4. ঝাউগাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni",
-        "label": {
-          "Bangla": "5. খুকনী",
-          "English": "5. খুকনী"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni_Uttarpara",
-        "label": {
-          "Bangla": "6. খুকনী উত্তরপাড়া",
-          "English": "6. খুকনী উত্তরপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni_Mollapara",
-        "label": {
-          "Bangla": "7. খুকনী মোল্লাপাড়া",
-          "English": "7. খুকনী মোল্লাপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni_Madhyapara",
-        "label": {
-          "Bangla": "8. খুকনী মধ্যপাড়া",
-          "English": "8. খুকনী মধ্যপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Zugibari",
-        "label": {
-          "Bangla": "9. যুগিবাড়ী",
-          "English": "9. যুগিবাড়ী"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Kamalpur",
-        "label": {
-          "Bangla": "10. কামালপুর",
-          "English": "10. কামালপুর"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khukni_Paschimpara",
-        "label": {
-          "Bangla": "11. খুকনী পশ্চিমপাড়া",
-          "English": "11. খুকনী পশ্চিমপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Kalipur",
-        "label": {
-          "Bangla": "12. কলিপুর",
-          "English": "12. কলিপুর"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Gachhpara",
-        "label": {
-          "Bangla": "13. গাছপাড়া",
-          "English": "13. গাছপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Sonatala",
-        "label": {
-          "Bangla": "14. সোনাতলা",
-          "English": "14. সোনাতলা"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Rupnai",
-        "label": {
-          "Bangla": "15. রুপনাই",
-          "English": "15. রুপনাই"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Rupnai_Pubpara",
-        "label": {
-          "Bangla": "16. রুপনাই পুবপাড়া",
-          "English": "16. রুপনাই পুবপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Purnai_Uttarpara",
-        "label": {
-          "Bangla": "17. পুরনাই উত্তরপাড়া",
-          "English": "17. পুরনাই উত্তরপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Rupshi",
-        "label": {
-          "Bangla": "18. রুপসী",
-          "English": "18. রুপসী"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Shibpur_khu",
-        "label": {
-          "Bangla": "19. শিবপুর",
-          "English": "19. শিবপুর"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Bishwanathpur",
-        "label": {
-          "Bangla": "20. বিশ্বনাথপুর",
-          "English": "20. বিশ্বনাথপুর"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Aikbari",
-        "label": {
-          "Bangla": "21. আইকবাড়ী",
-          "English": "21. আইকবাড়ী"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Aikbari_Natunpara",
-        "label": {
-          "Bangla": "22. আইকবাড়ী নতুনপাড়া",
-          "English": "22. আইকবাড়ী নতুনপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Jelepara",
-        "label": {
-          "Bangla": "23. জেলেপাড়া",
-          "English": "23. জেলেপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Gopinathpur_khu",
-        "label": {
-          "Bangla": "24. গোপিনাথপুর",
-          "English": "24. গোপিনাথপুর"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Brahmbaria",
-        "label": {
-          "Bangla": "25. ব্রাক্ষ্মবাড়ীয়া",
-          "English": "25. ব্রাক্ষ্মবাড়ীয়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Brahmabaria_Dakshinpara",
-        "label": {
-          "Bangla": "26. ব্রাক্ষ্মবাড়ীয়া দক্ষিণপাড়া",
-          "English": "26. ব্রাক্ষ্মবাড়ীয়া দক্ষিণপাড়া"
-        }
-      },
-      {
-        "union_name": "khukni",
-        "name": "Khokshabari",
-        "label": {
-          "Bangla": "27. খোকশাবাড়ী",
-          "English": "27. খোকশাবাড়ী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Thutiya",
-        "label": {
-          "Bangla": "1. ঠুটিয়া",
-          "English": "1. ঠুটিয়া"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Bhatpara_koi",
-        "label": {
-          "Bangla": "2. ভাটপাড়া",
-          "English": "2. ভাটপাড়া"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Chourapachil",
-        "label": {
-          "Bangla": "3. চৌড়াপাচিল",
-          "English": "3. চৌড়াপাচিল"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Hatpachil",
-        "label": {
-          "Bangla": "4. হাটপাচিল",
-          "English": "4. হাটপাচিল"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Jaipur",
-        "label": {
-          "Bangla": "5. জয়পুর",
-          "English": "5. জয়পুর"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Monaksha",
-        "label": {
-          "Bangla": "6. মোনাকষা",
-          "English": "6. মোনাকষা"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Koijuri",
-        "label": {
-          "Bangla": "7. কৈজুরী",
-          "English": "7. কৈজুরী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Pathaliapara",
-        "label": {
-          "Bangla": "8. পাথালিয়াপাড়া",
-          "English": "8. পাথালিয়াপাড়া"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Chargudhibari",
-        "label": {
-          "Bangla": "9. চরগুধিবাড়ী",
-          "English": "9. চরগুধিবাড়ী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Gopalpur_koi",
-        "label": {
-          "Bangla": "10. গোপালপুর",
-          "English": "10. গোপালপুর"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Purvachar_Kaijuri",
-        "label": {
-          "Bangla": "11. পূর্বচর কৈজুরী",
-          "English": "11. পূর্বচর কৈজুরী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Charkaijuri",
-        "label": {
-          "Bangla": "12. চরকৈজুরী",
-          "English": "12. চরকৈজুরী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Gupiakhali",
-        "label": {
-          "Bangla": "13. গুপিয়াখালী",
-          "English": "13. গুপিয়াখালী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Lahindakandi",
-        "label": {
-          "Bangla": "14. লহিন্দাকান্দি",
-          "English": "14. লহিন্দাকান্দি"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Gudhibari",
-        "label": {
-          "Bangla": "15. গুধিবাড়ী",
-          "English": "15. গুধিবাড়ী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Bhatpara",
-        "label": {
-          "Bangla": "16. ভাটপাড়া",
-          "English": "16. ভাটপাড়া"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Jagatla",
-        "label": {
-          "Bangla": "17. জগতলা",
-          "English": "17. জগতলা"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Baliata",
-        "label": {
-          "Bangla": "18. বালিয়াটা",
-          "English": "18. বালিয়াটা"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Maukuri",
-        "label": {
-          "Bangla": "19. মৌকুরী",
-          "English": "19. মৌকুরী"
-        }
-      },
-      {
-        "union_name": "koijuri",
-        "name": "Kharuya",
-        "label": {
-          "Bangla": "20. খারুয়া",
-          "English": "20. খারুয়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Norina",
-        "label": {
-          "Bangla": "1. নরিনা",
-          "English": "1. নরিনা"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Narina_Uttar_Para",
-        "label": {
-          "Bangla": "2. নরিনা উত্তর পাড়া",
-          "English": "2. নরিনা উত্তর পাড়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Narina_Dakshin_Para",
-        "label": {
-          "Bangla": "3. নরিনা দক্ষিণ পাড়া",
-          "English": "3. নরিনা দক্ষিণ পাড়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Jugnidaha",
-        "label": {
-          "Bangla": "4. জুগ্নীদহ",
-          "English": "4. জুগ্নীদহ"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Parakola_Uttar_Para",
-        "label": {
-          "Bangla": "5. পাড়কোলা উত্তর পাড়া",
-          "English": "5. পাড়কোলা উত্তর পাড়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Bachamara",
-        "label": {
-          "Bangla": "6. বাচামাড়া",
-          "English": "6. বাচামাড়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Dangapara",
-        "label": {
-          "Bangla": "7. ডাঙ্গাপাড়া",
-          "English": "7. ডাঙ্গাপাড়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Narayandaha",
-        "label": {
-          "Bangla": "8. নারায়নদহ",
-          "English": "8. নারায়নদহ"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Kanglakandha",
-        "label": {
-          "Bangla": "9. কাংলাকান্ধা",
-          "English": "9. কাংলাকান্ধা"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Tetiarkanda",
-        "label": {
-          "Bangla": "10. টেটিয়ারকান্দা",
-          "English": "10. টেটিয়ারকান্দা"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Batia",
-        "label": {
-          "Bangla": "11. বাতিয়া",
-          "English": "11. বাতিয়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Charbatiya",
-        "label": {
-          "Bangla": "12. চরবাতিয়া",
-          "English": "12. চরবাতিয়া"
-        }
-      },
-      {
-        "union_name": "norina",
-        "name": "Jayrampur",
-        "label": {
-          "Bangla": "13. জয়রামপুর",
-          "English": "13. জয়রামপুর"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Veka",
-        "label": {
-          "Bangla": "1. ভেকা",
-          "English": "1. ভেকা"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Chantara_Char",
-        "label": {
-          "Bangla": "2. চানতারা চর",
-          "English": "2. চানতারা চর"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Dashuria",
-        "label": {
-          "Bangla": "3. দাশুরিয়া",
-          "English": "3. দাশুরিয়া"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Gudibari",
-        "label": {
-          "Bangla": "4. গুদিবাড়ী",
-          "English": "4. গুদিবাড়ী"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Jalalpur",
-        "label": {
-          "Bangla": "5. জালালপুর",
-          "English": "5. জালালপুর"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Lochanapara",
-        "label": {
-          "Bangla": "6. লোচনাপাড়া",
-          "English": "6. লোচনাপাড়া"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Chuck_Rupsey",
-        "label": {
-          "Bangla": "7. চক রুপসি",
-          "English": "7. চক রুপসি"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Mulkandi",
-        "label": {
-          "Bangla": "8. মুলকান্দি",
-          "English": "8. মুলকান্দি"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Chowbari",
-        "label": {
-          "Bangla": "9. চৌবাড়ী",
-          "English": "9. চৌবাড়ী"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Pakurtala",
-        "label": {
-          "Bangla": "10. পাকুরতলা",
-          "English": "10. পাকুরতলা"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "East_Saratail",
-        "label": {
-          "Bangla": "11. পূব সড়াতৈল",
-          "English": "11. পূব সড়াতৈল"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Syedpur",
-        "label": {
-          "Bangla": "12. সৈয়দপুর",
-          "English": "12. সৈয়দপুর"
-        }
-      },
-      {
-        "union_name": "jalalpur",
-        "name": "Shaktidharpur",
-        "label": {
-          "Bangla": "13. শক্তিধরপুর",
-          "English": "13. শক্তিধরপুর"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Satbaria_North",
-        "label": {
-          "Bangla": "1. সাতবাড়ীয়া উত্তর",
-          "English": "1. সাতবাড়ীয়া উত্তর"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Kuthisatbaria",
-        "label": {
-          "Bangla": "2. কুঠিসাতবাড়ীয়া",
-          "English": "2. কুঠিসাতবাড়ীয়া"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Batijyapara",
-        "label": {
-          "Bangla": "3. বাটিজ্যপাড়া",
-          "English": "3. বাটিজ্যপাড়া"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Agnukali",
-        "label": {
-          "Bangla": "4. আগনুকালী",
-          "English": "4. আগনুকালী"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Lichinpur",
-        "label": {
-          "Bangla": "5. লিচিনপুর",
-          "English": "5. লিচিনপুর"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Maltidanga_paschim",
-        "label": {
-          "Bangla": "6. মালতীডাঙ্গা পঃ",
-          "English": "6. মালতীডাঙ্গা পঃ"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Satbaria_South",
-        "label": {
-          "Bangla": "7. সাতবাড়ীয়া দঃ",
-          "English": "7. সাতবাড়ীয়া দঃ"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "telkupi",
-        "label": {
-          "Bangla": "8. তেলকুপি",
-          "English": "8. তেলকুপি"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "agbera",
-        "label": {
-          "Bangla": "9. আগবেড়া",
-          "English": "9. আগবেড়া"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Vennagachi",
-        "label": {
-          "Bangla": "10. ভেন্নাগাছি",
-          "English": "10. ভেন্নাগাছি"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Betkandi",
-        "label": {
-          "Bangla": "11. বেতকান্দী",
-          "English": "11. বেতকান্দী"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Hatbetkandi",
-        "label": {
-          "Bangla": "12. হাটবেতকান্দী",
-          "English": "12. হাটবেতকান্দী"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Maltidanga_East",
-        "label": {
-          "Bangla": "13. মালতীডাঙ্গা পূর্ব",
-          "English": "13. মালতীডাঙ্গা পূর্ব"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Charbetkandi",
-        "label": {
-          "Bangla": "14. চরবেতকান্দী",
-          "English": "14. চরবেতকান্দী"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Shivrampur_bel",
-        "label": {
-          "Bangla": "15. শিবরামপুর",
-          "English": "15. শিবরামপুর"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Khakdiyar",
-        "label": {
-          "Bangla": "16. খাকদিয়ার",
-          "English": "16. খাকদিয়ার"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Senbetkandi",
-        "label": {
-          "Bangla": "17. সেনবেতকান্দী",
-          "English": "17. সেনবেতকান্দী"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Mohammadpur",
-        "label": {
-          "Bangla": "18. মোহাম্মদপুর",
-          "English": "18. মোহাম্মদপুর"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Morakadai",
-        "label": {
-          "Bangla": "19. মরাকাদাই",
-          "English": "19. মরাকাদাই"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "kadaibadla",
-        "label": {
-          "Bangla": "20. কাদাইবাদলা",
-          "English": "20. কাদাইবাদলা"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Charkadai_bel",
-        "label": {
-          "Bangla": "21. চরকাদাই",
-          "English": "21. চরকাদাই"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "ghorshal",
-        "label": {
-          "Bangla": "22. ঘোড়শাল",
-          "English": "22. ঘোড়শাল"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Digharbeltel",
-        "label": {
-          "Bangla": "23. দিঘরবেলতেল",
-          "English": "23. দিঘরবেলতেল"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "charbeltoil",
-        "label": {
-          "Bangla": "24. চরবেলতৈল",
-          "English": "24. চরবেলতৈল"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Gopinathpur_bel",
-        "label": {
-          "Bangla": "25. গোপিনাথপুর",
-          "English": "25. গোপিনাথপুর"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Chuck_Bashbaria",
-        "label": {
-          "Bangla": "26. চক বাশবাড়ীয়া",
-          "English": "26. চক বাশবাড়ীয়া"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Dharjamatail",
-        "label": {
-          "Bangla": "27. ধরজামতৈল",
-          "English": "27. ধরজামতৈল"
-        }
-      },
-      {
-        "union_name": "beltoil",
-        "name": "Bashbaria",
-        "label": {
-          "Bangla": "28. বাশবাড়ীয়া",
-          "English": "28. বাশবাড়ীয়া"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "uttardurgapur",
-        "label": {
-          "Bangla": "১. উত্তর দুর্গাপুর",
-          "English": "১. উত্তর দুর্গাপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "uttar_hazisharai",
-        "label": {
-          "Bangla": "২. উত্তর হাজীশ্বরাই",
-          "English": "২. উত্তর হাজীশ্বরাই"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "gopalpur",
-        "label": {
-          "Bangla": "৩. গোপালপুর",
-          "English": "৩. গোপালপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "janardanpur",
-        "label": {
-          "Bangla": "৪. জনার্দ্দনপুর",
-          "English": "৪. জনার্দ্দনপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "dakshindurgapur",
-        "label": {
-          "Bangla": "৫. দক্ষিণ দুর্গাপুর",
-          "English": "৫. দক্ষিণ দুর্গাপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "dakshin_hazirsarai",
-        "label": {
-          "Bangla": "৬. দক্ষিণ হাজীশ্বরাই",
-          "English": "৬. দক্ষিণ হাজীশ্বরাই"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "paschimdurgapur",
-        "label": {
-          "Bangla": "৭. পশ্চিম দুর্গাপুর",
-          "English": "৭. পশ্চিম দুর্গাপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "palgram",
-        "label": {
-          "Bangla": "৮. পালগ্রাম",
-          "English": "৮. পালগ্রাম"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "purbadurgapur",
-        "label": {
-          "Bangla": "৯. পূর্বদুর্গাপুর",
-          "English": "৯. পূর্বদুর্গাপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "purbadurgapur_south",
-        "label": {
-          "Bangla": "১০. পূর্বদুর্গাপুর (দক্ষিণ অংশ)",
-          "English": "১০. পূর্বদুর্গাপুর (দক্ষিণ অংশ)"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "purbadurgapur_middle",
-        "label": {
-          "Bangla": "১১. পূর্বদুর্গাপুর (মধ্যম অংশ)",
-          "English": "১১. পূর্বদুর্গাপুর (মধ্যম অংশ)"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "muraripur",
-        "label": {
-          "Bangla": "১২. মুরারীপুর",
-          "English": "১২. মুরারীপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "roghunathpur",
-        "label": {
-          "Bangla": "১৩. রঘুনাথপুর",
-          "English": "১৩. রঘুনাথপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "raypur",
-        "label": {
-          "Bangla": "১৪. রায়পুর",
-          "English": "১৪. রায়পুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "shikar",
-        "label": {
-          "Bangla": "১৫. শিকার জনার্দ্দনপুর",
-          "English": "১৫. শিকার জনার্দ্দনপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "shikarpur",
-        "label": {
-          "Bangla": "১৬. শিকারপুর",
-          "English": "১৬. শিকারপুর"
-        }
-      },
-      {
-        "union_name": "Durgapur",
-        "name": "horiharpur",
-        "label": {
-          "Bangla": "১৭. হরিহরপুর",
-          "English": "১৭. হরিহরপুর"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "abunagar",
-        "label": {
-          "Bangla": "১. আবুনগর",
-          "English": "১. আবুনগর"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "tarakatia_2",
-        "label": {
-          "Bangla": "২.  ২ নং তারাকাটিয়া",
-          "English": "২.  ২ নং তারাকাটিয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "ambaria",
-        "label": {
-          "Bangla": "৩.  আমবাড়িয়া",
-          "English": "৩.  আমবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "amola",
-        "label": {
-          "Bangla": "৪.  আমাোলা",
-          "English": "৪.  আমাোলা"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "ukilpara",
-        "label": {
-          "Bangla": "৫.  উকিল পাড়া",
-          "English": "৫.  উকিল পাড়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "uttartalbaria",
-        "label": {
-          "Bangla": "৬.  উত্তর তালবাড়িয়া",
-          "English": "৬.  উত্তর তালবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "goriaish",
-        "label": {
-          "Bangla": "৭.  গড়িয়াইশ",
-          "English": "৭.  গড়িয়াইশ"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "govnia",
-        "label": {
-          "Bangla": "৮.  গোভনিয়া",
-          "English": "৮.  গোভনিয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "jorpuni",
-        "label": {
-          "Bangla": "৯.  জোড়পুনী",
-          "English": "৯.  জোড়পুনী"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "tarakatia",
-        "label": {
-          "Bangla": "১০.  তারাকাটিয়া",
-          "English": "১০.  তারাকাটিয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "dakshintalbaria",
-        "label": {
-          "Bangla": "১১.  দক্ষিণ তালবাড়িয়া",
-          "English": "১১.  দক্ষিণ তালবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "najirpara",
-        "label": {
-          "Bangla": "১২.  নাজিরপাড়া",
-          "English": "১২.  নাজিরপাড়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "noapara",
-        "label": {
-          "Bangla": "১৩.  নোয়াপাড়া",
-          "English": "১৩.  নোয়াপাড়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "pashchimkismat",
-        "label": {
-          "Bangla": "১৪.  পশ্চিম কিছমত জাফরাবাদ",
-          "English": "১৪.  পশ্চিম কিছমত জাফরাবাদ"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "pashchimirsarai",
-        "label": {
-          "Bangla": "১৫.  পশ্চিম মীরসরাই",
-          "English": "১৫.  পশ্চিম মীরসরাই"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "purbakismat",
-        "label": {
-          "Bangla": "১৬.  পূর্ব কিছমত জাফরাবাদ",
-          "English": "১৬.  পূর্ব কিছমত জাফরাবাদ"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "purba_govnia",
-        "label": {
-          "Bangla": "১৭.  পূর্ব গোঘনিয়া",
-          "English": "১৭.  পূর্ব গোঘনিয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "purba_mothbaria",
-        "label": {
-          "Bangla": "১৮.  পূর্ব মঠবাড়িয়া",
-          "English": "১৮.  পূর্ব মঠবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "purba_mirsarai",
-        "label": {
-          "Bangla": "১৯.  পূর্ব মীরসরাই",
-          "English": "১৯.  পূর্ব মীরসরাই"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "poddar_taluk",
-        "label": {
-          "Bangla": "২০.  পোদ্দার তালুক",
-          "English": "২০.  পোদ্দার তালুক"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "bakkhola",
-        "label": {
-          "Bangla": "২১.  বাকখোলা",
-          "English": "২১.  বাকখোলা"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "modhyaaaamtalbaria",
-        "label": {
-          "Bangla": "২২.  মধ্যম তালবাড়িয়া",
-          "English": "২২.  মধ্যম তালবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "modhyam_moghadia",
-        "label": {
-          "Bangla": "২৩.  মধ্যম মঘাদিয়া",
-          "English": "২৩.  মধ্যম মঘাদিয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "mandarbaria",
-        "label": {
-          "Bangla": "২৪.  মান্দারবাড়িয়া",
-          "English": "২৪.  মান্দারবাড়িয়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "mithasara",
-        "label": {
-          "Bangla": "২৫.  মিঠাছড়া",
-          "English": "২৫.  মিঠাছড়া"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "mirsarai",
-        "label": {
-          "Bangla": "২৬.  মীরসইরাই",
-          "English": "২৬.  মীরসইরাই"
-        }
-      },
-      {
-        "union_name": "Mirsarai",
-        "name": "sripur",
-        "label": {
-          "Bangla": "২৭.  শ্রীপুর",
-          "English": "২৭.  শ্রীপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "gopinathpur",
-        "label": {
-          "Bangla": "১. গোপিনাথপুর",
-          "English": "১. গোপিনাথপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "imampur",
-        "label": {
-          "Bangla": "২. ইমামপুর",
-          "English": "২. ইমামপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "uttar_tajpur",
-        "label": {
-          "Bangla": "৩. উত্তর তাজপুর",
-          "English": "৩. উত্তর তাজপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "uttar_sonapahar",
-        "label": {
-          "Bangla": "৪. উত্তর সোনাপাহার",
-          "English": "৪. উত্তর সোনাপাহার"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "khilmurari",
-        "label": {
-          "Bangla": "৫. খিলমুরারী",
-          "English": "৫. খিলমুরারী"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "gobindopur",
-        "label": {
-          "Bangla": "৬. গোবিন্দপুর",
-          "English": "৬. গোবিন্দপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "daksin_tajpur",
-        "label": {
-          "Bangla": "৭. দক্ষিণ তাজপুর",
-          "English": "৭. দক্ষিণ তাজপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "dakshin_sonapahar",
-        "label": {
-          "Bangla": "৮. দক্ষিণ সোনাপাহার",
-          "English": "৮. দক্ষিণ সোনাপাহার"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "dewanpur",
-        "label": {
-          "Bangla": "৯. দেওয়ানপুর",
-          "English": "৯. দেওয়ানপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "nandanpur",
-        "label": {
-          "Bangla": "১০. নন্দনপুর",
-          "English": "১০. নন্দনপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "poragalpur",
-        "label": {
-          "Bangla": "১১. পরাগলপুর",
-          "English": "১১. পরাগলপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "vagabatipur",
-        "label": {
-          "Bangla": "১২. ভগবতীপুর",
-          "English": "১২. ভগবতীপুর"
-        }
-      },
-      {
-        "union_name": "Jorarganj",
-        "name": "madhyam_sonapahar",
-        "label": {
-          "Bangla": "১৩. মধ্যম সোনাপাহার",
-          "English": "১৩. মধ্যম সোনাপাহার"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "badiullahpara",
-        "label": {
-          "Bangla": "Badiullahpara",
-          "English": "Badiullahpara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "banikpara",
-        "label": {
-          "Bangla": "Banikpara",
-          "English": "Banikpara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "bhuiya_taluk",
-        "label": {
-          "Bangla": "Bhuiya Taluk",
-          "English": "Bhuiya Taluk"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "bujurga_umed_nagar",
-        "label": {
-          "Bangla": "Bujurga Umed Nagar",
-          "English": "Bujurga Umed Nagar"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "daspara",
-        "label": {
-          "Bangla": "Daspara",
-          "English": "Daspara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "Dorgahpara",
-        "label": {
-          "Bangla": "Dorgahpara",
-          "English": "Dorgahpara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "gazitola",
-        "label": {
-          "Bangla": "Gazitola",
-          "English": "Gazitola"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "Gozaria",
-        "label": {
-          "Bangla": "Gozaria",
-          "English": "Gozaria"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "hadinagar",
-        "label": {
-          "Bangla": "Hadinagar",
-          "English": "Hadinagar"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "hasimnagar",
-        "label": {
-          "Bangla": "Hasimnagar",
-          "English": "Hasimnagar"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "hindupara",
-        "label": {
-          "Bangla": "Hindupara",
-          "English": "Hindupara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "jafrabad",
-        "label": {
-          "Bangla": "Jafrabad",
-          "English": "Jafrabad"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "kazirtaluk",
-        "label": {
-          "Bangla": "Kazirtaluk",
-          "English": "Kazirtaluk"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "khormawala",
-        "label": {
-          "Bangla": "Khormawala",
-          "English": "Khormawala"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "kochua",
-        "label": {
-          "Bangla": "Kochua",
-          "English": "Kochua"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "mahanandabad",
-        "label": {
-          "Bangla": "Mahanandabad",
-          "English": "Mahanandabad"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "masterpara",
-        "label": {
-          "Bangla": "Masterpara",
-          "English": "Masterpara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "miapara",
-        "label": {
-          "Bangla": "Miapara",
-          "English": "Miapara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "safiullahpara",
-        "label": {
-          "Bangla": "Safiullahpara",
-          "English": "Safiullahpara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "samdighirpara",
-        "label": {
-          "Bangla": "Samdighirpara",
-          "English": "Samdighirpara"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "sarkartola",
-        "label": {
-          "Bangla": "Sarkartola",
-          "English": "Sarkartola"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "shekher_taluk",
-        "label": {
-          "Bangla": "Shekher Taluk",
-          "English": "Shekher Taluk"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "Shekhtola",
-        "label": {
-          "Bangla": "Shekhtola",
-          "English": "Shekhtola"
-        }
-      },
-      {
-        "union_name": "maghadiya",
-        "name": "tinghoria_tola",
-        "label": {
-          "Bangla": "Tinghoria Tola",
-          "English": "Tinghoria Tola"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "bhuiya_para",
-        "label": {
-          "Bangla": "Bhuiya Para",
-          "English": "Bhuiya Para"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "bhuiya_gram",
-        "label": {
-          "Bangla": "Bhuiya Gram",
-          "English": "Bhuiya Gram"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "bhujnagar",
-        "label": {
-          "Bangla": "Bhujnagar",
-          "English": "Bhujnagar"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "chhagolkhaiya",
-        "label": {
-          "Bangla": "Chhagolkhaiya",
-          "English": "Chhagolkhaiya"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "chharar_kul",
-        "label": {
-          "Bangla": "Chharar Kul",
-          "English": "Chharar Kul"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "chowdhuri_para",
-        "label": {
-          "Bangla": "Chowdhuripara",
-          "English": "Chowdhuripara"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "dakshin_ambaria",
-        "label": {
-          "Bangla": "Dakshin Ambaria",
-          "English": "Dakshin Ambaria"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "duaru",
-        "label": {
-          "Bangla": "Duaru",
-          "English": "Duaru"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "fenafuni",
-        "label": {
-          "Bangla": "Fenafuni",
-          "English": "Fenafuni"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "machimar_taluk",
-        "label": {
-          "Bangla": "Machimar Taluk",
-          "English": "Machimar Taluk"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "masjidia_hindu_gram",
-        "label": {
-          "Bangla": "Masjidia Hindu Gram",
-          "English": "Masjidia Hindu Gram"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "nichinta",
-        "label": {
-          "Bangla": "Nichinta",
-          "English": "Nichinta"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "nijtaluk",
-        "label": {
-          "Bangla": "Nijtaluk",
-          "English": "Nijtaluk"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "pachim_polmogra",
-        "label": {
-          "Bangla": "Pachim Polmogra",
-          "English": "Pachim Polmogra"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "paschim_gobhania",
-        "label": {
-          "Bangla": "Paschim Gobhania",
-          "English": "Paschim Gobhania"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "paschim_khoiyachhara",
-        "label": {
-          "Bangla": "Paschim Khoiyachhara",
-          "English": "Paschim Khoiyachhara"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "poddabaz",
-        "label": {
-          "Bangla": "Poddabaz",
-          "English": "Poddabaz"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "purba_khoiyachhara",
-        "label": {
-          "Bangla": "Purba Khoiyachhara",
-          "English": "Purba Khoiyachhara"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "purba_masjidia",
-        "label": {
-          "Bangla": "Purba Masjidia",
-          "English": "Purba Masjidia"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "purba_polmogra",
-        "label": {
-          "Bangla": "Purba Polmogra",
-          "English": "Purba Polmogra"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "tripura_para",
-        "label": {
-          "Bangla": "Tripura Para",
-          "English": "Tripura Para"
-        }
-      },
-      {
-        "union_name": "khoiyachhara",
-        "name": "uttar_ambaria",
-        "label": {
-          "Bangla": "Uttar Ambaria",
-          "English": "Uttar Ambaria"
-        }
-      },
-      {
-        "union_name": "mayani",
-        "name": "barua_para",
-        "label": {
-          "Bangla": "Barua Para",
-          "English": "Barua Para"
-        }
-      },
-      {
-        "union_name": "mayani",
-        "name": "madhyam_mayani",
-        "label": {
-          "Bangla": "Madhyam Mayani",
-          "English": "Madhyam Mayani"
-        }
-      },
-      {
-        "union_name": "mayani",
-        "name": "paschim_mayani",
-        "label": {
-          "Bangla": "Paschim Mayani",
-          "English": "Paschim Mayani"
-        }
-      },
-      {
-        "union_name": "mayani",
-        "name": "purba_mayani",
-        "label": {
-          "Bangla": "Purba Mayani",
-          "English": "Purba Mayani"
-        }
-      },
-      {
-        "union_name": "mayani",
-        "name": "soidali",
-        "label": {
-          "Bangla": "Soidali",
-          "English": "Soidali"
-        }
-      }
-    ]
-  },
-  "version": "7 (2021-06-23 13:47:45)",
-  "id_string": "LSD_Case_Report_by_VLSP",
-  "type": "survey",
-  "children": [
-    {
-      "bind": {
-        "required": "true"
-      },
-      "label": {
-        "Bangla": "উপজেলা",
-        "English": "Upazila"
-      },
-      "type": "select one",
-      "children": [
+     "style":"theme-grid",
+     "name":"patient_registrydyncsv_live",
+     "title":"Patient Registry V2 Live",
+     "sms_keyword":"patient_registrydyncsv_live",
+     "default_language":"English",
+     "choices":{
+        "clinical_signss":[
+           {
+              "name":"signid",
+              "label":{
+                 "Bangla":"signnames",
+                 "English":"signnames"
+              }
+           }
+        ],
+        "speciess_breed_type":[
+           {
+              "myfilter":"3",
+              "name":"1",
+              "label":{
+                 "Bangla":"Cross",
+                 "English":"Cross"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"2",
+              "label":{
+                 "Bangla":"Local",
+                 "English":"Local"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"3",
+              "label":{
+                 "Bangla":"Exotic",
+                 "English":"Exotic"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"1",
+              "label":{
+                 "Bangla":"Broiler",
+                 "English":"Broiler"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"2",
+              "label":{
+                 "Bangla":"Layer",
+                 "English":"Layer"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"3",
+              "label":{
+                 "Bangla":"Sonali",
+                 "English":"Sonali"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"4",
+              "label":{
+                 "Bangla":"Deshi",
+                 "English":"Deshi"
+              }
+           }
+        ],
+        "patient_type":[
+           {
+              "myfilter":"1",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           },
+           {
+              "myfilter":"001",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"001",
+              "name":"2",
+              "label":{
+                 "Bangla":"Herd",
+                 "English":"Herd"
+              }
+           },
+           {
+              "myfilter":"002",
+              "name":"1",
+              "label":{
+                 "Bangla":"Household",
+                 "English":"Household"
+              }
+           },
+           {
+              "myfilter":"002",
+              "name":"3",
+              "label":{
+                 "Bangla":"Flock",
+                 "English":"Flock"
+              }
+           }
+        ],
+        "postmortem_findings_mammal":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"1",
+                 "English":"1"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"2",
+                 "English":"2"
+              }
+           }
+        ],
+        "intensity":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"+",
+                 "English":"+"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"++",
+                 "English":"++"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"+++",
+                 "English":"+++"
+              }
+           }
+        ],
+        "microscopic_test_skin":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Mites",
+                 "English":"Mites"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Lice",
+                 "English":"Lice"
+              }
+           },
+           {
+              "name":"00",
+              "label":{
+                 "Bangla":"Other",
+                 "English":"Other"
+              }
+           }
+        ],
+        "microscopic_test_urine_strip":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Biliruubin",
+                 "English":"Biliruubin"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Blood",
+                 "English":"Blood"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Glucose",
+                 "English":"Glucose"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Keteone",
+                 "English":"Keteone"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"Leukocytes",
+                 "English":"Leukocytes"
+              }
+           },
+           {
+              "name":"6",
+              "label":{
+                 "Bangla":"Nitrite",
+                 "English":"Nitrite"
+              }
+           },
+           {
+              "name":"7",
+              "label":{
+                 "Bangla":"Protein",
+                 "English":"Protein"
+              }
+           },
+           {
+              "name":"8",
+              "label":{
+                 "Bangla":"Urobilinogen",
+                 "English":"Urobilinogen"
+              }
+           },
+           {
+              "name":"00",
+              "label":{
+                 "Bangla":"Others",
+                 "English":"Others"
+              }
+           },
+           {
+              "name":"0",
+              "label":{
+                 "Bangla":"No Findings",
+                 "English":"No Findings"
+              }
+           }
+        ],
+        "test_tool":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Microscopic",
+                 "English":"Microscopic"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Rapid Test",
+                 "English":"Rapid Test"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Postmortem examination",
+                 "English":"Postmortem examination"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Ear Examination",
+                 "English":"Ear Examination"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"Urine strip test",
+                 "English":"Urine strip test"
+              }
+           }
+        ],
+        "speciess_rearing_purpose":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Milk",
+                 "English":"Milk"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Working",
+                 "English":"Working"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"Fiber/Wool",
+                 "English":"Fiber/Wool"
+              }
+           },
+           {
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"5",
+              "label":{
+                 "Bangla":"Milk",
+                 "English":"Milk"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"5",
+              "label":{
+                 "Bangla":"Milk",
+                 "English":"Milk"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"7",
+              "label":{
+                 "Bangla":"Working",
+                 "English":"Working"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"5",
+              "label":{
+                 "Bangla":"Milk",
+                 "English":"Milk"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"7",
+              "label":{
+                 "Bangla":"Working",
+                 "English":"Working"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"2",
+              "label":{
+                 "Bangla":"Fiber/Wool",
+                 "English":"Fiber/Wool"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"5",
+              "label":{
+                 "Bangla":"Milk",
+                 "English":"Milk"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"1",
+              "label":{
+                 "Bangla":"Egg",
+                 "English":"Egg"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"1",
+              "label":{
+                 "Bangla":"Egg",
+                 "English":"Egg"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"1",
+              "label":{
+                 "Bangla":"Egg",
+                 "English":"Egg"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"7",
+              "label":{
+                 "Bangla":"Working",
+                 "English":"Working"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"7",
+              "label":{
+                 "Bangla":"Working",
+                 "English":"Working"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"1",
+              "label":{
+                 "Bangla":"Egg",
+                 "English":"Egg"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"1",
+              "label":{
+                 "Bangla":"Egg",
+                 "English":"Egg"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"4",
+              "label":{
+                 "Bangla":"Meat",
+                 "English":"Meat"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           },
+           {
+              "myfilter":"00",
+              "name":"3",
+              "label":{
+                 "Bangla":"Hobby",
+                 "English":"Hobby"
+              }
+           },
+           {
+              "myfilter":"00",
+              "name":"6",
+              "label":{
+                 "Bangla":"Multi-purpose",
+                 "English":"Multi-purpose"
+              }
+           }
+        ],
+        "district":[
+           {
+              "name":"district_code",
+              "label":{
+                 "Bangla":"district_name",
+                 "English":"district_name"
+              }
+           }
+        ],
+        "union":[
+           {
+              "name":"union_code",
+              "label":{
+                 "Bangla":"union_name",
+                 "English":"union_name"
+              }
+           }
+        ],
+        "mouza":[
+           {
+              "name":"mouza_code",
+              "label":{
+                 "Bangla":"mouza_name",
+                 "English":"mouza_name"
+              }
+           }
+        ],
+        "microscopic":[
+           {
+              "myfilter":"2",
+              "name":"1",
+              "label":{
+                 "Bangla":"Fecal examination",
+                 "English":"Fecal examination"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"2",
+              "label":{
+                 "Bangla":"Blood Parasites examination",
+                 "English":"Blood Parasites examination"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"3",
+              "label":{
+                 "Bangla":"Skin examination",
+                 "English":"Skin examination"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"1",
+              "label":{
+                 "Bangla":"Fecal examination",
+                 "English":"Fecal examination"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"2",
+              "label":{
+                 "Bangla":"Blood Parasites examination",
+                 "English":"Blood Parasites examination"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"3",
+              "label":{
+                 "Bangla":"Skin examination",
+                 "English":"Skin examination"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"4",
+              "label":{
+                 "Bangla":"Urine examination",
+                 "English":"Urine examination"
+              }
+           }
+        ],
+        "treatment":[
+           {
+              "name":"treatmentid",
+              "label":{
+                 "Bangla":"treatmentname",
+                 "English":"treatmentname"
+              }
+           }
+        ],
+        "postmortem":[
+           {
+              "myfilter":"2",
+              "name":"2",
+              "label":{
+                 "Bangla":"Cardiovascular system",
+                 "English":"Cardiovascular system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"3",
+              "label":{
+                 "Bangla":"Digestive system",
+                 "English":"Digestive system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"6",
+              "label":{
+                 "Bangla":"Immune system",
+                 "English":"Immune system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"7",
+              "label":{
+                 "Bangla":"Integumetary system",
+                 "English":"Integumetary system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"8",
+              "label":{
+                 "Bangla":"Musculoskeletal system",
+                 "English":"Musculoskeletal system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"10",
+              "label":{
+                 "Bangla":"Nervous systems & important sensory organs",
+                 "English":"Nervous systems & important sensory organs"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"11",
+              "label":{
+                 "Bangla":"Renal system",
+                 "English":"Renal system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"12",
+              "label":{
+                 "Bangla":"Reproductive system",
+                 "English":"Reproductive system"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"13",
+              "label":{
+                 "Bangla":"Respiratory system",
+                 "English":"Respiratory system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"1",
+              "label":{
+                 "Bangla":"Abdominal and thoracic cavity",
+                 "English":"Abdominal and thoracic cavity"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"2",
+              "label":{
+                 "Bangla":"Cardiovascular system",
+                 "English":"Cardiovascular system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"3",
+              "label":{
+                 "Bangla":"Digestive system",
+                 "English":"Digestive system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"4",
+              "label":{
+                 "Bangla":"External appearance",
+                 "English":"External appearance"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"5",
+              "label":{
+                 "Bangla":"Genital system",
+                 "English":"Genital system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"6",
+              "label":{
+                 "Bangla":"Immune system",
+                 "English":"Immune system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"9",
+              "label":{
+                 "Bangla":"Nervous system",
+                 "English":"Nervous system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"13",
+              "label":{
+                 "Bangla":"Respiratory system",
+                 "English":"Respiratory system"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"14",
+              "label":{
+                 "Bangla":"Subcutaneous tissue and musculature",
+                 "English":"Subcutaneous tissue and musculature"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"15",
+              "label":{
+                 "Bangla":"Urinary system",
+                 "English":"Urinary system"
+              }
+           }
+        ],
+        "microscopic_test_parasite":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Anaplasma",
+                 "English":"Anaplasma"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Babesia",
+                 "English":"Babesia"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Haemoproteus",
+                 "English":"Haemoproteus"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Leucocytozoon",
+                 "English":"Leucocytozoon"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"Plasmodium",
+                 "English":"Plasmodium"
+              }
+           },
+           {
+              "name":"6",
+              "label":{
+                 "Bangla":"Rickettsiae",
+                 "English":"Rickettsiae"
+              }
+           },
+           {
+              "name":"7",
+              "label":{
+                 "Bangla":"Schistosoma",
+                 "English":"Schistosoma"
+              }
+           },
+           {
+              "name":"8",
+              "label":{
+                 "Bangla":"Theileria",
+                 "English":"Theileria"
+              }
+           },
+           {
+              "name":"9",
+              "label":{
+                 "Bangla":"Trypansoma",
+                 "English":"Trypansoma"
+              }
+           },
+           {
+              "name":"00",
+              "label":{
+                 "Bangla":"Other",
+                 "English":"Other"
+              }
+           }
+        ],
+        "microscopic_test_urine":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Bacteria",
+                 "English":"Bacteria"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Crystals",
+                 "English":"Crystals"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Cylindruria (Casts)",
+                 "English":"Cylindruria (Casts)"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Lipids",
+                 "English":"Lipids"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"RBCs",
+                 "English":"RBCs"
+              }
+           },
+           {
+              "name":"6",
+              "label":{
+                 "Bangla":"Spermatozoa",
+                 "English":"Spermatozoa"
+              }
+           },
+           {
+              "name":"7",
+              "label":{
+                 "Bangla":"Squamous cells",
+                 "English":"Squamous cells"
+              }
+           },
+           {
+              "name":"8",
+              "label":{
+                 "Bangla":"Yeast",
+                 "English":"Yeast"
+              }
+           },
+           {
+              "name":"00",
+              "label":{
+                 "Bangla":"Others",
+                 "English":"Others"
+              }
+           }
+        ],
+        "rapid_test_result":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Positive",
+                 "English":"Positive"
+              }
+           },
+           {
+              "name":"0",
+              "label":{
+                 "Bangla":"Negative",
+                 "English":"Negative"
+              }
+           }
+        ],
+        "speciess":[
+           {
+              "name":"speciesid",
+              "label":{
+                 "Bangla":"speciesname",
+                 "English":"speciesname"
+              }
+           }
+        ],
+        "postmortem_findings":[
+           {
+              "myfilter":"3",
+              "name":"4",
+              "label":{
+                 "English":"Air saculitis"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"39",
+              "label":{
+                 "English":"Fibrinous exudate"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"16",
+              "label":{
+                 "English":"Clotted blood"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"22",
+              "label":{
+                 "English":"Dilated blood vessel"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"9",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"9",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"5",
+              "label":{
+                 "English":"Atrophied"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"83",
+              "label":{
+                 "English":"Swollen"
+              }
+           },
+           {
+              "myfilter":"11",
+              "name":"8",
+              "label":{
+                 "English":"Atropy"
+              }
+           },
+           {
+              "myfilter":"11",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"11",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"11",
+              "name":"96",
+              "label":{
+                 "English":"Ulcerative lesion"
+              }
+           },
+           {
+              "myfilter":"12",
+              "name":"16",
+              "label":{
+                 "English":"Clotted blood"
+              }
+           },
+           {
+              "myfilter":"12",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"12",
+              "name":"32",
+              "label":{
+                 "English":"Enlargment"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"15",
+              "label":{
+                 "English":"Cheesy exudateds"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"85",
+              "label":{
+                 "English":"Thickening of cloaca membrane wall"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"88",
+              "label":{
+                 "English":"Thinning of cloaca membrane wall"
+              }
+           },
+           {
+              "myfilter":"16",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"16",
+              "name":"28",
+              "label":{
+                 "English":"Edema"
+              }
+           },
+           {
+              "myfilter":"16",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"16",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"17",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"17",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"17",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"17",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"17",
+              "name":"96",
+              "label":{
+                 "English":"Ulcerative lesion"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"24",
+              "label":{
+                 "English":"Diphtheritic lesions"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"96",
+              "label":{
+                 "English":"Ulcerative lesion"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"24",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"25",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"16",
+              "label":{
+                 "English":"Clotted blood"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"39",
+              "label":{
+                 "English":"Fibrinous exudate"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"72",
+              "label":{
+                 "English":"Pericarditis"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"28",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"28",
+              "name":"54",
+              "label":{
+                 "English":"Inflammation"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"58",
+              "label":{
+                 "English":"Lumen of intestine filled with blood"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"86",
+              "label":{
+                 "English":"Thickening of membrane wall"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"89",
+              "label":{
+                 "English":"Thinning of membrane wall"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"95",
+              "label":{
+                 "English":"Turkish towel appearance of the mucosa of intstine"
+              }
+           },
+           {
+              "myfilter":"29",
+              "name":"96",
+              "label":{
+                 "English":"Ulcerative lesion"
+              }
+           },
+           {
+              "myfilter":"30",
+              "name":"26",
+              "label":{
+                 "English":"Discolored iris"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"54",
+              "label":{
+                 "English":"Inflammation"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"68",
+              "label":{
+                 "English":"Pale"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"83",
+              "label":{
+                 "English":"Swollen"
+              }
+           },
+           {
+              "myfilter":"32",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"19",
+              "label":{
+                 "English":"Copper colored"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"39",
+              "label":{
+                 "English":"Fibrinous exudate"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"46",
+              "label":{
+                 "English":"Frigile liver"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"51",
+              "label":{
+                 "English":"Hemorrhage"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"52",
+              "label":{
+                 "English":"Hepatomegaly"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"69",
+              "label":{
+                 "English":"Pale liver"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"73",
+              "label":{
+                 "English":"Pinpoint whitish spots"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"96",
+              "label":{
+                 "English":"Ulcerative lesion"
+              }
+           },
+           {
+              "myfilter":"36",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"36",
+              "name":"39",
+              "label":{
+                 "English":"Fibrinous exudate"
+              }
+           },
+           {
+              "myfilter":"36",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"36",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"36",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"36",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"41",
+              "name":"18",
+              "label":{
+                 "English":"Congestion in mesentery"
+              }
+           },
+           {
+              "myfilter":"41",
+              "name":"30",
+              "label":{
+                 "English":"Edematous mesentery"
+              }
+           },
+           {
+              "myfilter":"50",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"50",
+              "name":"29",
+              "label":{
+                 "English":"Edematous"
+              }
+           },
+           {
+              "myfilter":"50",
+              "name":"67",
+              "label":{
+                 "English":"Ovarian regression"
+              }
+           },
+           {
+              "myfilter":"50",
+              "name":"78",
+              "label":{
+                 "English":"Rupture of ovary"
+              }
+           },
+           {
+              "myfilter":"51",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"51",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"51",
+              "name":"29",
+              "label":{
+                 "English":"Edematous"
+              }
+           },
+           {
+              "myfilter":"52",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"52",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"52",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"56",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"56",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"56",
+              "name":"96",
+              "label":{
+                 "English":"Ulcerative lesion"
+              }
+           },
+           {
+              "myfilter":"57",
+              "name":"56",
+              "label":{
+                 "English":"Irregular pupil"
+              }
+           },
+           {
+              "myfilter":"61",
+              "name":"31",
+              "label":{
+                 "English":"Enlargement"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"54",
+              "label":{
+                 "English":"Inflammation"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"79",
+              "label":{
+                 "English":"Scabbing"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"83",
+              "label":{
+                 "English":"Swollen"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"80",
+              "label":{
+                 "English":"Splenitis"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"81",
+              "label":{
+                 "English":"Splenomegaly"
+              }
+           },
+           {
+              "myfilter":"67",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"67",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"69",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"69",
+              "name":"91",
+              "label":{
+                 "English":"Thymic atrophy"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"24",
+              "label":{
+                 "English":"Diphtheritic lesions"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"35",
+              "label":{
+                 "English":"Excess mucus"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"79",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"79",
+              "name":"28",
+              "label":{
+                 "English":"Edema"
+              }
+           },
+           {
+              "myfilter":"79",
+              "name":"64",
+              "label":{
+                 "English":"Nodules"
+              }
+           },
+           {
+              "myfilter":"79",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"80",
+              "name":"7",
+              "label":{
+                 "English":"Atrophy of yolk sac"
+              }
+           },
+           {
+              "myfilter":"80",
+              "name":"23",
+              "label":{
+                 "English":"Dilated yolk sac blood vessels"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"2",
+              "label":{
+                 "English":"Accumulation of fluid"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"27",
+              "label":{
+                 "English":"Displacement of organ"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"40",
+              "label":{
+                 "English":"Fibrinous or fibrous adhesions"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"41",
+              "label":{
+                 "English":"Filled with bloodt fkuid"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"21",
+              "label":{
+                 "English":"Dark-tarry blood discharge"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"43",
+              "label":{
+                 "English":"Fluid discgharge"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"83",
+              "label":{
+                 "English":"Swollen"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"3",
+              "label":{
+                 "English":"Adhesions"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"9",
+              "label":{
+                 "English":"Blood Clot"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"40",
+              "label":{
+                 "English":"Fibrinous or fibrous adhesions"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"50",
+              "label":{
+                 "English":"Hardening of blood vessel"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"61",
+              "label":{
+                 "English":"Necrotic foci"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"90",
+              "label":{
+                 "English":"Thrombi"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"3",
+              "label":{
+                 "English":"Adhesions"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"9",
+              "label":{
+                 "English":"Blood Clot"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"40",
+              "label":{
+                 "English":"Fibrinous or fibrous adhesions"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"50",
+              "label":{
+                 "English":"Hardening of blood vessel"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"61",
+              "label":{
+                 "English":"Necrotic foci"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"90",
+              "label":{
+                 "English":"Thrombi"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"82",
+              "label":{
+                 "English":"Swelling"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"92",
+              "label":{
+                 "English":"Tiger striping"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"55",
+              "label":{
+                 "English":"Intussuception"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"93",
+              "label":{
+                 "English":"Torsion"
+              }
+           },
+           {
+              "myfilter":"18",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"19",
+              "name":"33",
+              "label":{
+                 "English":"Erosion"
+              }
+           },
+           {
+              "myfilter":"19",
+              "name":"100",
+              "label":{
+                 "English":"Wound"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"20",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"21",
+              "name":"74",
+              "label":{
+                 "English":"Polyp"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"33",
+              "label":{
+                 "English":"Erosion"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"65",
+              "label":{
+                 "English":"Ocular neoplasia"
+              }
+           },
+           {
+              "myfilter":"22",
+              "name":"100",
+              "label":{
+                 "English":"Wound"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"23",
+              "name":"84",
+              "label":{
+                 "English":"Thickened wall"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"3",
+              "label":{
+                 "English":"Adhesions"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"9",
+              "label":{
+                 "English":"Blood Clot"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"11",
+              "label":{
+                 "English":"Blood in pericardial sac"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"40",
+              "label":{
+                 "English":"Fibrinous or fibrous adhesions"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"44",
+              "label":{
+                 "English":"Fluid in pericardial sac"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"50",
+              "label":{
+                 "English":"Hardening of blood vessel"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"60",
+              "label":{
+                 "English":"Necrosis of heart muscle"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"61",
+              "label":{
+                 "English":"Necrotic foci"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"76",
+              "label":{
+                 "English":"Pus in pericardial sac"
+              }
+           },
+           {
+              "myfilter":"26",
+              "name":"90",
+              "label":{
+                 "English":"Thrombi"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"55",
+              "label":{
+                 "English":"Intussuception"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"93",
+              "label":{
+                 "English":"Torsion"
+              }
+           },
+           {
+              "myfilter":"27",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"55",
+              "label":{
+                 "English":"Intussuception"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"93",
+              "label":{
+                 "English":"Torsion"
+              }
+           },
+           {
+              "myfilter":"31",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"14",
+              "label":{
+                 "English":"Calculi"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"20",
+              "label":{
+                 "English":"Cyst"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"49",
+              "label":{
+                 "English":"Hardening"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"33",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"34",
+              "name":"74",
+              "label":{
+                 "English":"Polyp"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"45",
+              "label":{
+                 "English":"Fragile liver"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"53",
+              "label":{
+                 "English":"Hypertrophy"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"35",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"13",
+              "label":{
+                 "English":"Calcification"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"25",
+              "label":{
+                 "English":"Diphtheritic membrane"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"37",
+              "name":"74",
+              "label":{
+                 "English":"Polyp"
+              }
+           },
+           {
+              "myfilter":"38",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"38",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"38",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"38",
+              "name":"53",
+              "label":{
+                 "English":"Hypertrophy"
+              }
+           },
+           {
+              "myfilter":"38",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"39",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"39",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"39",
+              "name":"82",
+              "label":{
+                 "English":"Swelling"
+              }
+           },
+           {
+              "myfilter":"40",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"40",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"40",
+              "name":"53",
+              "label":{
+                 "English":"Hypertrophy"
+              }
+           },
+           {
+              "myfilter":"40",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"42",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"42",
+              "name":"43",
+              "label":{
+                 "English":"Fluid discgharge"
+              }
+           },
+           {
+              "myfilter":"42",
+              "name":"57",
+              "label":{
+                 "English":"Large masses of yellow-grey materials"
+              }
+           },
+           {
+              "myfilter":"43",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"43",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"43",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"43",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"13",
+              "label":{
+                 "English":"Calcification"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"37",
+              "label":{
+                 "English":"Fat deposition"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"51",
+              "label":{
+                 "English":"Hemorrhage"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"44",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"45",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"45",
+              "name":"43",
+              "label":{
+                 "English":"Fluid discgharge"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"13",
+              "label":{
+                 "English":"Calcification"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"46",
+              "name":"74",
+              "label":{
+                 "English":"Polyp"
+              }
+           },
+           {
+              "myfilter":"47",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"47",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"47",
+              "name":"82",
+              "label":{
+                 "English":"Swelling"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"48",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"20",
+              "label":{
+                 "English":"Cyst"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"42",
+              "label":{
+                 "English":"Fluid"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"53",
+              "label":{
+                 "English":"Hypertrophy"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"49",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"53",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"53",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"53",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"53",
+              "name":"53",
+              "label":{
+                 "English":"Hypertrophy"
+              }
+           },
+           {
+              "myfilter":"53",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"53",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"54",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"54",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"54",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"54",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"55",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"55",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"55",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"55",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"58",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"62",
+              "label":{
+                 "English":"Needle or hard objects in reticulum"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"59",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"34",
+              "label":{
+                 "English":"Erosions"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"71",
+              "label":{
+                 "English":"Perforation"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"87",
+              "label":{
+                 "English":"Thickening of wall of intestine"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"98",
+              "label":{
+                 "English":"Ulcers"
+              }
+           },
+           {
+              "myfilter":"60",
+              "name":"99",
+              "label":{
+                 "English":"Undigested feed"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"12",
+              "label":{
+                 "English":"Burn"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"33",
+              "label":{
+                 "English":"Erosion"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"47",
+              "label":{
+                 "English":"Gangrene"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"77",
+              "label":{
+                 "English":"Ring worm"
+              }
+           },
+           {
+              "myfilter":"62",
+              "name":"100",
+              "label":{
+                 "English":"Wound"
+              }
+           },
+           {
+              "myfilter":"63",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"63",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"63",
+              "name":"82",
+              "label":{
+                 "English":"Swelling"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"6",
+              "label":{
+                 "English":"Atrophy"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"53",
+              "label":{
+                 "English":"Hypertrophy"
+              }
+           },
+           {
+              "myfilter":"64",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"13",
+              "label":{
+                 "English":"Calcification"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"37",
+              "label":{
+                 "English":"Fat deposition"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"51",
+              "label":{
+                 "English":"Hemorrhage"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"65",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"66",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"66",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"66",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"1",
+              "label":{
+                 "English":"Abscess"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"2",
+              "label":{
+                 "English":"Accumulation of fluid"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"27",
+              "label":{
+                 "English":"Displacement of organ"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"40",
+              "label":{
+                 "English":"Fibrinous or fibrous adhesions"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"68",
+              "name":"94",
+              "label":{
+                 "English":"Tumor"
+              }
+           },
+           {
+              "myfilter":"70",
+              "name":"49",
+              "label":{
+                 "English":"Hardening"
+              }
+           },
+           {
+              "myfilter":"70",
+              "name":"82",
+              "label":{
+                 "English":"Swelling"
+              }
+           },
+           {
+              "myfilter":"70",
+              "name":"97",
+              "label":{
+                 "English":"Ulcerative lesions"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"36",
+              "label":{
+                 "English":"Exudate"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"71",
+              "name":"74",
+              "label":{
+                 "English":"Polyp"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"14",
+              "label":{
+                 "English":"Calculi"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"49",
+              "label":{
+                 "English":"Hardening"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"72",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"14",
+              "label":{
+                 "English":"Calculi"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"49",
+              "label":{
+                 "English":"Hardening"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"73",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"14",
+              "label":{
+                 "English":"Calculi"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"49",
+              "label":{
+                 "English":"Hardening"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"63",
+              "label":{
+                 "English":"Nodule"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"74",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"38",
+              "label":{
+                 "English":"Fetus in uterus"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"42",
+              "label":{
+                 "English":"Fluid"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"75",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"76",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"76",
+              "name":"42",
+              "label":{
+                 "English":"Fluid"
+              }
+           },
+           {
+              "myfilter":"76",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"76",
+              "name":"59",
+              "label":{
+                 "English":"Necrosis"
+              }
+           },
+           {
+              "myfilter":"76",
+              "name":"66",
+              "label":{
+                 "English":"Oedema"
+              }
+           },
+           {
+              "myfilter":"76",
+              "name":"75",
+              "label":{
+                 "English":"Pus"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"3",
+              "label":{
+                 "English":"Adhesions"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"9",
+              "label":{
+                 "English":"Blood Clot"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"17",
+              "label":{
+                 "English":"Congestion"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"40",
+              "label":{
+                 "English":"Fibrinous or fibrous adhesions"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"48",
+              "label":{
+                 "English":"Haemorrhage"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"50",
+              "label":{
+                 "English":"Hardening of blood vessel"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"61",
+              "label":{
+                 "English":"Necrotic foci"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"70",
+              "label":{
+                 "English":"Parasites"
+              }
+           },
+           {
+              "myfilter":"77",
+              "name":"90",
+              "label":{
+                 "English":"Thrombi"
+              }
+           },
+           {
+              "myfilter":"78",
+              "name":"10",
+              "label":{
+                 "English":"Blood discharge"
+              }
+           },
+           {
+              "myfilter":"78",
+              "name":"43",
+              "label":{
+                 "English":"Fluid discgharge"
+              }
+           },
+           {
+              "myfilter":"78",
+              "name":"83",
+              "label":{
+                 "English":"Swollen"
+              }
+           }
+        ],
+        "division":[
+           {
+              "name":"division_code",
+              "label":{
+                 "Bangla":"division_name",
+                 "English":"division_name"
+              }
+           }
+        ],
+        "postmortem_organ":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Organ-1",
+                 "English":"Organ-1"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Organ-2",
+                 "English":"Organ-2"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Organ-3",
+                 "English":"Organ-3"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"7",
+              "label":{
+                 "Bangla":"Blood vessel",
+                 "English":"Blood vessel"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"26",
+              "label":{
+                 "Bangla":"Heart",
+                 "English":"Heart"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"12",
+              "label":{
+                 "Bangla":"Cecum",
+                 "English":"Cecum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"14",
+              "label":{
+                 "Bangla":"Cloaca",
+                 "English":"Cloaca"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"17",
+              "label":{
+                 "Bangla":"Crop",
+                 "English":"Crop"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"20",
+              "label":{
+                 "Bangla":"Esophagus",
+                 "English":"Esophagus"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"24",
+              "label":{
+                 "Bangla":"Gall bladder",
+                 "English":"Gall bladder"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"25",
+              "label":{
+                 "Bangla":"Gizzards",
+                 "English":"Gizzards"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"29",
+              "label":{
+                 "Bangla":"Intestine",
+                 "English":"Intestine"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"35",
+              "label":{
+                 "Bangla":"Liver",
+                 "English":"Liver"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"41",
+              "label":{
+                 "Bangla":"Mesentery",
+                 "English":"Mesentery"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"52",
+              "label":{
+                 "Bangla":"Pancreas",
+                 "English":"Pancreas"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"56",
+              "label":{
+                 "Bangla":"Proventriculus",
+                 "English":"Proventriculus"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"10",
+              "label":{
+                 "Bangla":"Bursa",
+                 "English":"Bursa"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"11",
+              "label":{
+                 "Bangla":"Caecal tonsil",
+                 "English":"Caecal tonsil"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"64",
+              "label":{
+                 "Bangla":"Spleen",
+                 "English":"Spleen"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"69",
+              "label":{
+                 "Bangla":"Thymus",
+                 "English":"Thymus"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"16",
+              "label":{
+                 "Bangla":"Comb",
+                 "English":"Comb"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"62",
+              "label":{
+                 "Bangla":"Skin",
+                 "English":"Skin"
+              }
+           },
+           {
+              "myfilter":"7",
+              "name":"79",
+              "label":{
+                 "Bangla":"Wattle",
+                 "English":"Wattle"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"9",
+              "label":{
+                 "Bangla":"Breast muscle",
+                 "English":"Breast muscle"
+              }
+           },
+           {
+              "myfilter":"8",
+              "name":"67",
+              "label":{
+                 "Bangla":"Thigh muscle",
+                 "English":"Thigh muscle"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"30",
+              "label":{
+                 "Bangla":"Iris",
+                 "English":"Iris"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"57",
+              "label":{
+                 "Bangla":"Pupil",
+                 "English":"Pupil"
+              }
+           },
+           {
+              "myfilter":"10",
+              "name":"61",
+              "label":{
+                 "Bangla":"Sciatic nerve",
+                 "English":"Sciatic nerve"
+              }
+           },
+           {
+              "myfilter":"11",
+              "name":"32",
+              "label":{
+                 "Bangla":"Kidney",
+                 "English":"Kidney"
+              }
+           },
+           {
+              "myfilter":"12",
+              "name":"50",
+              "label":{
+                 "Bangla":"Ovary",
+                 "English":"Ovary"
+              }
+           },
+           {
+              "myfilter":"12",
+              "name":"51",
+              "label":{
+                 "Bangla":"Oviduct",
+                 "English":"Oviduct"
+              }
+           },
+           {
+              "myfilter":"12",
+              "name":"80",
+              "label":{
+                 "Bangla":"Yolk sac",
+                 "English":"Yolk sac"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"3",
+              "label":{
+                 "Bangla":"Air sac",
+                 "English":"Air sac"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"28",
+              "label":{
+                 "Bangla":"Infra-orbital sinus",
+                 "English":"Infra-orbital sinus"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"36",
+              "label":{
+                 "Bangla":"Lung",
+                 "English":"Lung"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"71",
+              "label":{
+                 "Bangla":"Trachea",
+                 "English":"Trachea"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"1",
+              "label":{
+                 "Bangla":"Abdominal cavity",
+                 "English":"Abdominal cavity"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"68",
+              "label":{
+                 "Bangla":"Thoracic cavity",
+                 "English":"Thoracic cavity"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"5",
+              "label":{
+                 "Bangla":"Aorta",
+                 "English":"Aorta"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"6",
+              "label":{
+                 "Bangla":"Arteries",
+                 "English":"Arteries"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"26",
+              "label":{
+                 "Bangla":"Heart",
+                 "English":"Heart"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"77",
+              "label":{
+                 "Bangla":"Veins",
+                 "English":"Veins"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"2",
+              "label":{
+                 "Bangla":"Abomasum",
+                 "English":"Abomasum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"15",
+              "label":{
+                 "Bangla":"Colon",
+                 "English":"Colon"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"18",
+              "label":{
+                 "Bangla":"Duodenum",
+                 "English":"Duodenum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"20",
+              "label":{
+                 "Bangla":"Esophagus",
+                 "English":"Esophagus"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"23",
+              "label":{
+                 "Bangla":"Gall bbladder",
+                 "English":"Gall bbladder"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"27",
+              "label":{
+                 "Bangla":"Ileum",
+                 "English":"Ileum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"31",
+              "label":{
+                 "Bangla":"Jejunum",
+                 "English":"Jejunum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"35",
+              "label":{
+                 "Bangla":"Liver",
+                 "English":"Liver"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"40",
+              "label":{
+                 "Bangla":"Mesenteric lymphnode",
+                 "English":"Mesenteric lymphnode"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"43",
+              "label":{
+                 "Bangla":"Mouth cavity",
+                 "English":"Mouth cavity"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"48",
+              "label":{
+                 "Bangla":"Omasum",
+                 "English":"Omasum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"53",
+              "label":{
+                 "Bangla":"Pancrease",
+                 "English":"Pancrease"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"58",
+              "label":{
+                 "Bangla":"Rectum",
+                 "English":"Rectum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"59",
+              "label":{
+                 "Bangla":"Riticulum",
+                 "English":"Riticulum"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"60",
+              "label":{
+                 "Bangla":"Rumen",
+                 "English":"Rumen"
+              }
+           },
+           {
+              "myfilter":"3",
+              "name":"70",
+              "label":{
+                 "Bangla":"Tongue",
+                 "English":"Tongue"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"4",
+              "label":{
+                 "Bangla":"Anus",
+                 "English":"Anus"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"19",
+              "label":{
+                 "Bangla":"Ear",
+                 "English":"Ear"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"22",
+              "label":{
+                 "Bangla":"Eye",
+                 "English":"Eye"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"42",
+              "label":{
+                 "Bangla":"Mouth",
+                 "English":"Mouth"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"45",
+              "label":{
+                 "Bangla":"Nares",
+                 "English":"Nares"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"62",
+              "label":{
+                 "Bangla":"Skin",
+                 "English":"Skin"
+              }
+           },
+           {
+              "myfilter":"4",
+              "name":"78",
+              "label":{
+                 "Bangla":"Vulva",
+                 "English":"Vulva"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"13",
+              "label":{
+                 "Bangla":"Cervix",
+                 "English":"Cervix"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"49",
+              "label":{
+                 "Bangla":"Ovaries",
+                 "English":"Ovaries"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"54",
+              "label":{
+                 "Bangla":"Penis",
+                 "English":"Penis"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"55",
+              "label":{
+                 "Bangla":"Prepuce",
+                 "English":"Prepuce"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"66",
+              "label":{
+                 "Bangla":"Testicles",
+                 "English":"Testicles"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"75",
+              "label":{
+                 "Bangla":"Uterus",
+                 "English":"Uterus"
+              }
+           },
+           {
+              "myfilter":"5",
+              "name":"76",
+              "label":{
+                 "Bangla":"Vagina",
+                 "English":"Vagina"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"38",
+              "label":{
+                 "Bangla":"Lymphnode",
+                 "English":"Lymphnode"
+              }
+           },
+           {
+              "myfilter":"6",
+              "name":"64",
+              "label":{
+                 "Bangla":"Spleen",
+                 "English":"Spleen"
+              }
+           },
+           {
+              "myfilter":"9",
+              "name":"8",
+              "label":{
+                 "Bangla":"Brain",
+                 "English":"Brain"
+              }
+           },
+           {
+              "myfilter":"9",
+              "name":"39",
+              "label":{
+                 "Bangla":"Meninges",
+                 "English":"Meninges"
+              }
+           },
+           {
+              "myfilter":"9",
+              "name":"47",
+              "label":{
+                 "Bangla":"Nerves",
+                 "English":"Nerves"
+              }
+           },
+           {
+              "myfilter":"9",
+              "name":"63",
+              "label":{
+                 "Bangla":"Spinal cord",
+                 "English":"Spinal cord"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"21",
+              "label":{
+                 "Bangla":"External nares",
+                 "English":"External nares"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"34",
+              "label":{
+                 "Bangla":"Larynx",
+                 "English":"Larynx"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"37",
+              "label":{
+                 "Bangla":"Lungs",
+                 "English":"Lungs"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"46",
+              "label":{
+                 "Bangla":"Nasal passage",
+                 "English":"Nasal passage"
+              }
+           },
+           {
+              "myfilter":"13",
+              "name":"71",
+              "label":{
+                 "Bangla":"Trachea",
+                 "English":"Trachea"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"44",
+              "label":{
+                 "Bangla":"Muscle",
+                 "English":"Muscle"
+              }
+           },
+           {
+              "myfilter":"14",
+              "name":"65",
+              "label":{
+                 "Bangla":"Subcutaneous tissue",
+                 "English":"Subcutaneous tissue"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"33",
+              "label":{
+                 "Bangla":"Kidneys",
+                 "English":"Kidneys"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"72",
+              "label":{
+                 "Bangla":"Ureter",
+                 "English":"Ureter"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"73",
+              "label":{
+                 "Bangla":"Urethra",
+                 "English":"Urethra"
+              }
+           },
+           {
+              "myfilter":"15",
+              "name":"74",
+              "label":{
+                 "Bangla":"Urinary bladder",
+                 "English":"Urinary bladder"
+              }
+           }
+        ],
+        "lab":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Lab",
+                 "English":"Lab"
+              }
+           }
+        ],
+        "microscopic_test_fecal":[
+           {
+              "myfilter":"1",
+              "name":"1",
+              "label":{
+                 "Bangla":"Ancylostoma (Hookworm)",
+                 "English":"Ancylostoma (Hookworm)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"2",
+              "label":{
+                 "Bangla":"Ascaris (roundworm)",
+                 "English":"Ascaris (roundworm)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"3",
+              "label":{
+                 "Bangla":"Balantidium",
+                 "English":"Balantidium"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"4",
+              "label":{
+                 "Bangla":"Bunostomum (Hookworm)",
+                 "English":"Bunostomum (Hookworm)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"5",
+              "label":{
+                 "Bangla":"Capillaria",
+                 "English":"Capillaria"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"6",
+              "label":{
+                 "Bangla":"Coccidia",
+                 "English":"Coccidia"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"7",
+              "label":{
+                 "Bangla":"Fasciola (liver fluke)",
+                 "English":"Fasciola (liver fluke)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"8",
+              "label":{
+                 "Bangla":"Oesophagostomum",
+                 "English":"Oesophagostomum"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"9",
+              "label":{
+                 "Bangla":"Paramphistomum (Rumen fluke)",
+                 "English":"Paramphistomum (Rumen fluke)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"10",
+              "label":{
+                 "Bangla":"Strongyloides (threadworm)",
+                 "English":"Strongyloides (threadworm)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"11",
+              "label":{
+                 "Bangla":"Toxocara",
+                 "English":"Toxocara"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"12",
+              "label":{
+                 "Bangla":"Toxoplasma",
+                 "English":"Toxoplasma"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"13",
+              "label":{
+                 "Bangla":"Trichuris (Whip worm)",
+                 "English":"Trichuris (Whip worm)"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"00",
+              "label":{
+                 "Bangla":"Other",
+                 "English":"Other"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"2",
+              "label":{
+                 "Bangla":"Ascaris (roundworm)",
+                 "English":"Ascaris (roundworm)"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"5",
+              "label":{
+                 "Bangla":"Capillaria",
+                 "English":"Capillaria"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"6",
+              "label":{
+                 "Bangla":"Coccidia",
+                 "English":"Coccidia"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"1",
+              "label":{
+                 "Bangla":"Heterakis",
+                 "English":"Heterakis"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"00",
+              "label":{
+                 "Bangla":"Other",
+                 "English":"Other"
+              }
+           }
+        ],
+        "upazila":[
+           {
+              "name":"upazila_code",
+              "label":{
+                 "Bangla":"upazila_name",
+                 "English":"upazila_name"
+              }
+           }
+        ],
+        "sex":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"পুরুষ",
+                 "English":"Male"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"মহিলা",
+                 "English":"Female"
+              }
+           }
+        ],
+        "speciess_type_other":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Mammal",
+                 "English":"Mammal"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Bird",
+                 "English":"Bird"
+              }
+           }
+        ],
+        "yes_no":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Yes",
+                 "English":"Yes"
+              }
+           },
+           {
+              "name":"0",
+              "label":{
+                 "Bangla":"No",
+                 "English":"No"
+              }
+           }
+        ],
+        "positive_negative":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Positive",
+                 "English":"Positive"
+              }
+           },
+           {
+              "name":"0",
+              "label":{
+                 "Bangla":"Negative",
+                 "English":"Negative"
+              }
+           }
+        ],
+        "tentative_diagnosis":[
+           {
+              "myfilter":"B",
+              "name":"diagnosisid",
+              "label":{
+                 "Bangla":"diagnosisname",
+                 "English":"diagnosisname"
+              }
+           }
+        ],
+        "rapid_test_bird":[
+           {
+              "myfilter":"2",
+              "name":"1",
+              "label":{
+                 "Bangla":"Avian influenza",
+                 "English":"Avian influenza"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"2",
+              "label":{
+                 "Bangla":"CMT",
+                 "English":"CMT"
+              }
+           },
+           {
+              "myfilter":"1",
+              "name":"00",
+              "label":{
+                 "Bangla":"Other",
+                 "English":"Other"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"3",
+              "label":{
+                 "Bangla":"Mycoplasma",
+                 "English":"Mycoplasma"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"4",
+              "label":{
+                 "Bangla":"Newcastle Disease",
+                 "English":"Newcastle Disease"
+              }
+           },
+           {
+              "myfilter":"2",
+              "name":"00",
+              "label":{
+                 "Bangla":"Other",
+                 "English":"Other"
+              }
+           }
+        ],
+        "microscopic_test_ear":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Auricular chondritis",
+                 "English":"Auricular chondritis"
+              }
+           },
+           {
+              "name":"2",
+              "label":{
+                 "Bangla":"Deafness",
+                 "English":"Deafness"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Hair loss on the outer ear",
+                 "English":"Hair loss on the outer ear"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Lice",
+                 "English":"Lice"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"Mite",
+                 "English":"Mite"
+              }
+           },
+           {
+              "name":"6",
+              "label":{
+                 "Bangla":"Nodular granulomatous dermatitis",
+                 "English":"Nodular granulomatous dermatitis"
+              }
+           },
+           {
+              "name":"7",
+              "label":{
+                 "Bangla":"Tick",
+                 "English":"Tick"
+              }
+           },
+           {
+              "name":"8",
+              "label":{
+                 "Bangla":"Tissue death of the pinna",
+                 "English":"Tissue death of the pinna"
+              }
+           },
+           {
+              "name":"00",
+              "label":{
+                 "Bangla":"Others",
+                 "English":"Others"
+              }
+           }
+        ],
+        "microscopic_test_ear_1":[
+           {
+              "name":"1",
+              "label":{
+                 "Bangla":"Auricular chondritis",
+                 "English":"Auricular chondritis"
+              }
+           },
+           {
+              "name":"3",
+              "label":{
+                 "Bangla":"Hair loss on the outer ear",
+                 "English":"Hair loss on the outer ear"
+              }
+           },
+           {
+              "name":"4",
+              "label":{
+                 "Bangla":"Lice",
+                 "English":"Lice"
+              }
+           },
+           {
+              "name":"5",
+              "label":{
+                 "Bangla":"Mite",
+                 "English":"Mite"
+              }
+           },
+           {
+              "name":"6",
+              "label":{
+                 "Bangla":"Nodular granulomatous dermatitis",
+                 "English":"Nodular granulomatous dermatitis"
+              }
+           },
+           {
+              "name":"7",
+              "label":{
+                 "Bangla":"Tick",
+                 "English":"Tick"
+              }
+           },
+           {
+              "name":"8",
+              "label":{
+                 "Bangla":"Tissue death of the pinna",
+                 "English":"Tissue death of the pinna"
+              }
+           },
+           {
+              "name":"00",
+              "label":{
+                 "Bangla":"Others",
+                 "English":"Others"
+              }
+           }
+        ]
+     },
+     "version":"1.0.1",
+     "id_string":"patient_registrydyncsv_live",
+     "type":"survey",
+     "children":[
         {
-          "name": "mirsarai",
-          "label": {
-            "Bangla": "মিরসরাই",
-            "English": "Mirsarai"
-          }
+           "type":"start",
+           "name":"start"
         },
         {
-          "name": "nawabganj",
-          "label": {
-            "Bangla": "নওয়াবগঞ্জ",
-            "English": "Nawabganj"
-          }
+           "type":"end",
+           "name":"end"
         },
         {
-          "name": "shahjadpur",
-          "label": {
-            "Bangla": "শাহজাদপুর",
-            "English": "Shahjadpur"
-          }
+           "type":"username",
+           "name":"username"
+        },
+        {
+           "control":{
+              "appearance":"w12"
+           },
+           "label":{
+              "Bangla":"Owner Information",
+              "English":"Owner Information"
+           },
+           "type":"group",
+           "children":[
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "type":"date",
+                 "name":"date",
+                 "label":{
+                    "Bangla":"Date of visit",
+                    "English":"Date of visit"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 search('geo') minimal"
+                 },
+                 "name":"division",
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "label":{
+                    "Bangla":"Division",
+                    "English":"Division"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"division_code",
+                       "label":{
+                          "Bangla":"division_name",
+                          "English":"division_name"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6 search('geo', 'matches', 'division_code', ${division}) minimal"
+                 },
+                 "name":"district",
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "label":{
+                    "Bangla":"District",
+                    "English":"District"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"district_code",
+                       "label":{
+                          "Bangla":"district_name",
+                          "English":"district_name"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6 search('geo', 'matches', 'district_code', ${district}) minimal"
+                 },
+                 "name":"upazila",
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "label":{
+                    "Bangla":"Upazila",
+                    "English":"Upazila"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"upazila_code",
+                       "label":{
+                          "Bangla":"upazila_name",
+                          "English":"upazila_name"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "type":"text",
+                 "name":"owner",
+                 "label":{
+                    "Bangla":"Owner’s name",
+                    "English":"Owner’s name"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 search('geo', 'matches', 'upazila_code', ${upazila}) minimal"
+                 },
+                 "name":"union",
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "label":{
+                    "Bangla":"Union",
+                    "English":"Union"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"union_code",
+                       "label":{
+                          "Bangla":"union_name",
+                          "English":"union_name"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6 search('geo', 'matches', 'union_code', ${union}) minimal"
+                 },
+                 "name":"mouza",
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "label":{
+                    "Bangla":"Mouza",
+                    "English":"Mouza"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"mouza_code",
+                       "label":{
+                          "Bangla":"mouza_name",
+                          "English":"mouza_name"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "required":"TRUE"
+                 },
+                 "type":"text",
+                 "name":"village",
+                 "label":{
+                    "Bangla":"Village",
+                    "English":"Village/Ward"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "jr:constraintMsg":{
+                       "Bangla":"Put 11 digit",
+                       "English":"Put 11 digit"
+                    },
+                    "constraint":"regex(., '^[0-9]{11}$')"
+                 },
+                 "type":"text",
+                 "name":"mobile",
+                 "label":{
+                    "Bangla":"Mobile Number",
+                    "English":"Mobile Number"
+                 }
+              }
+           ],
+           "name":"basic_info"
+        },
+        {
+           "control":{
+              "appearance":"w12"
+           },
+           "label":{
+              "Bangla":"Patient Information",
+              "English":"Patient Information"
+           },
+           "type":"group",
+           "children":[
+              {
+                 "control":{
+                    "appearance":"w6 search('species_live') minimal"
+                 },
+                 "name":"speciess",
+                 "default":"1",
+                 "bind":{
+                    "required":"Yes"
+                 },
+                 "label":{
+                    "Bangla":"প্রাণী প্রজাতি",
+                    "English":"speciess"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"speciesid",
+                       "label":{
+                          "Bangla":"speciesname",
+                          "English":"speciesname"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "bind":{
+                    "calculate":"jr:choice-name(${speciess},'${speciess}')"
+                 },
+                 "type":"calculate",
+                 "name":"speciess_label",
+                 "label":{
+                    "Bangla":"speciess_label"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "relevant":"${speciess}=00",
+                    "required":"Yes"
+                 },
+                 "type":"text",
+                 "name":"speciess_other",
+                 "label":{
+                    "Bangla":"প্রাণী প্রজাতি - অন্যান্য",
+                    "English":"speciess - Other"
+                 }
+              },
+              {
+                 "bind":{
+                    "calculate":"if(${speciess}='00',${speciess_other},${speciess_label})"
+                 },
+                 "type":"calculate",
+                 "name":"speciess_label_final",
+                 "label":{
+                    "Bangla":"speciess_label_final"
+                 }
+              },
+              {
+                 "bind":{
+                    "calculate":"if(${speciess}=1,'M1',if(${speciess}=2,'M2',if(${speciess}=3,'M3',if(${speciess}=4,'M4',if(${speciess}=5,'M5',if(${speciess}=6,'M6',if(${speciess}=7,'M7',if(${speciess}=8,'M8',if(${speciess}='00' and ${speciess_type_other}=1,'M_Other',if(${speciess}=21,'B',if(${speciess}=22,'B',if(${speciess}=23,'B',if(${speciess}=24,'B',if(${speciess}=25,'B',if(${speciess}=26,'B',if(${speciess}=27,'B',if(${speciess}='00' and ${speciess_type_other}=2,'B','')))))))))))))))))"
+                 },
+                 "type":"calculate",
+                 "name":"speciess_value",
+                 "label":{
+                    "Bangla":"speciess_value"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"speciess_type_other",
+                 "bind":{
+                    "relevant":"${speciess}=00",
+                    "required":"Yes"
+                 },
+                 "label":{
+                    "Bangla":"প্রাণিসম্পদ",
+                    "English":"Livestock"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"1",
+                       "label":{
+                          "Bangla":"Mammal",
+                          "English":"Mammal"
+                       }
+                    },
+                    {
+                       "name":"2",
+                       "label":{
+                          "Bangla":"Bird",
+                          "English":"Bird"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "bind":{
+                    "calculate":"concat(${speciess},${speciess_type_other})"
+                 },
+                 "type":"calculate",
+                 "name":"speciess_concat"
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"patient_type",
+                 "choice_filter":"myfilter=${speciess_concat}",
+                 "bind":{
+                    "required":"Yes"
+                 },
+                 "label":{
+                    "Bangla":"Patinet Type",
+                    "English":"Patinet Type"
+                 },
+                 "itemset":"patient_type",
+                 "type":"select one"
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "name":"speciess_type",
+                 "bind":{
+                    "required":"No",
+                    "calculate":"if((${speciess}>0 and ${speciess}<21) or ${speciess_type_other}=1,1,if((${speciess}>20 and ${speciess}<50) or ${speciess_type_other}=2,2,''))"
+                 },
+                 "label":{
+                    "Bangla":"Livestock type",
+                    "English":"Livestock type"
+                 },
+                 "media":{
+                    "image":"speciess_type_other"
+                 },
+                 "type":"calculate"
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"speciess_breed_type",
+                 "choice_filter":"myfilter=${speciess}",
+                 "bind":{
+                    "relevant":"${speciess}=3 or ${speciess}=21",
+                    "required":"No"
+                 },
+                 "label":{
+                    "Bangla":"প্রাণির ধরণ",
+                    "English":"Type / breed"
+                 },
+                 "itemset":"speciess_breed_type",
+                 "type":"select one"
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"speciess_rearing_purpose",
+                 "choice_filter":"myfilter=${speciess}",
+                 "bind":{
+                    "required":"Yes"
+                 },
+                 "label":{
+                    "Bangla":"Purpose [${speciess_label_final}]",
+                    "English":"Purpose [${speciess_label_final}]"
+                 },
+                 "itemset":"speciess_rearing_purpose",
+                 "type":"select one"
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "type":"integer",
+                 "name":"herd_flock",
+                 "label":{
+                    "Bangla":"Number of [${speciess_label_final}] in the herd / flock",
+                    "English":"Number of [${speciess_label_final}] in the herd / flock"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "relevant":"${patient_type}=1",
+                    "required":"No"
+                 },
+                 "type":"decimal",
+                 "name":"age_month",
+                 "label":{
+                    "Bangla":"[${speciess_label_final}] এর বয়স (মাস)",
+                    "English":"Age (Month) [${speciess_label_final}]"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"sex",
+                 "bind":{
+                    "relevant":"${patient_type}=1",
+                    "required":"No"
+                 },
+                 "label":{
+                    "Bangla":"[${speciess_label_final}] এর লিঙ্গ",
+                    "English":"Sex [${speciess_label_final}]"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"1",
+                       "label":{
+                          "Bangla":"পুরুষ",
+                          "English":"Male"
+                       }
+                    },
+                    {
+                       "name":"2",
+                       "label":{
+                          "Bangla":"মহিলা",
+                          "English":"Female"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "jr:constraintMsg":{
+                       "Bangla":"Value must be less than or equal herd",
+                       "English":"Value must be less than or equal herd"
+                    },
+                    "required":"Yes",
+                    "constraint":". <=${herd_flock}"
+                 },
+                 "type":"integer",
+                 "name":"sick_number",
+                 "label":{
+                    "Bangla":"আক্রান্ত [${speciess_label_final}] এর সংখ্যা",
+                    "English":"Number of sick [${speciess_label_final}]"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "jr:constraintMsg":{
+                       "Bangla":"Value must be less than or equal herd",
+                       "English":"Value must be less than or equal herd"
+                    },
+                    "required":"Yes",
+                    "constraint":". <=${herd_flock}-${sick_number}"
+                 },
+                 "type":"integer",
+                 "name":"dead_number",
+                 "label":{
+                    "Bangla":"মৃত [${speciess_label_final}] এর সংখ্যা",
+                    "English":"Number of dead [${speciess_label_final}]"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "required":"No"
+                 },
+                 "type":"text",
+                 "name":"disease_history",
+                 "label":{
+                    "Bangla":"রোগের ইতিহাস",
+                    "English":"Owner's Complain / Disease History"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 search('clinical_species', 'matches', 'speciestype', ${speciess_type}) minimal"
+                 },
+                 "name":"clinical_signss",
+                 "bind":{
+                    "required":"Yes"
+                 },
+                 "label":{
+                    "Bangla":"রোগের লক্ষণ",
+                    "English":"Clinical Signs"
+                 },
+                 "type":"select all that apply",
+                 "children":[
+                    {
+                       "name":"signid",
+                       "label":{
+                          "Bangla":"signnames",
+                          "English":"signnames"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "relevant":"selected(${clinical_signss},'00')",
+                    "required":"Yes"
+                 },
+                 "type":"text",
+                 "name":"clinical_signs_other",
+                 "label":{
+                    "Bangla":"রোগের লক্ষণ - অন্যান্য",
+                    "English":"Clinical Signs - Other"
+                 }
+              }
+           ],
+           "name":"patient_info"
+        },
+        {
+           "control":{
+              "appearance":"w12"
+           },
+           "label":{
+              "Bangla":"Diagnostics",
+              "English":"Diagnostics"
+           },
+           "type":"group",
+           "children":[
+              {
+                 "control":{
+                    "appearance":"horizontal-compact"
+                 },
+                 "name":"test_tool",
+                 "bind":{
+                    "required":"yes"
+                 },
+                 "label":{
+                    "Bangla":"Test tool",
+                    "English":"Test tool"
+                 },
+                 "type":"select all that apply",
+                 "children":[
+                    {
+                       "name":"1",
+                       "label":{
+                          "Bangla":"Microscopic",
+                          "English":"Microscopic"
+                       }
+                    },
+                    {
+                       "name":"2",
+                       "label":{
+                          "Bangla":"Rapid Test",
+                          "English":"Rapid Test"
+                       }
+                    },
+                    {
+                       "name":"3",
+                       "label":{
+                          "Bangla":"Postmortem examination",
+                          "English":"Postmortem examination"
+                       }
+                    },
+                    {
+                       "name":"4",
+                       "label":{
+                          "Bangla":"Ear Examination",
+                          "English":"Ear Examination"
+                       }
+                    },
+                    {
+                       "name":"5",
+                       "label":{
+                          "Bangla":"Urine strip test",
+                          "English":"Urine strip test"
+                       }
+                    }
+                 ]
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"microscopic",
+                 "choice_filter":"myfilter=${speciess_type}",
+                 "bind":{
+                    "relevant":"selected(${test_tool},'1')",
+                    "required":"Yes"
+                 },
+                 "label":{
+                    "Bangla":"Microscopic",
+                    "English":"Microscopic"
+                 },
+                 "itemset":"microscopic",
+                 "type":"select all that apply"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${microscopic},'1') and selected(${test_tool},'1')"
+                 },
+                 "label":{
+                    "Bangla":"Fecal Examination",
+                    "English":"Fecal Examination"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"${speciess_type}"
+                       },
+                       "type":"calculate",
+                       "name":"speciess_recode_fecal"
+                    },
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_fecal"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"microscopic_test_fecal",
+                       "choice_filter":"myfilter=${speciess_recode_fecal}",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'1') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"মাইক্রোস্কপিক পরীক্ষা - মল",
+                          "English":"Microscopic test for faeces"
+                       },
+                       "itemset":"microscopic_test_fecal",
+                       "type":"select one"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2"
+                       },
+                       "bind":{
+                          "relevant":"selected(${microscopic_test_fecal},'00') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "type":"text",
+                       "name":"microscopic_test_fecal_other",
+                       "label":{
+                          "Bangla":"Microscopic test for faeces - Other",
+                          "English":"Microscopic test for faeces - Other"
+                       }
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2 minimal"
+                       },
+                       "name":"microscopic_test_fecal_intensity",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'1') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Intensity",
+                          "English":"Intensity"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"+",
+                                "English":"+"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"++",
+                                "English":"++"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"+++",
+                                "English":"+++"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"fecal"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${microscopic},'2') and selected(${test_tool},'1')"
+                 },
+                 "label":{
+                    "Bangla":"Blood Parasite Examination",
+                    "English":"Blood Parasite Examination"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"${speciess_type}"
+                       },
+                       "type":"calculate",
+                       "name":"speciess_recode_parasite"
+                    },
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_parasite"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"microscopic_test_parasite",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'2') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"মাইক্রোস্কপিক পরীক্ষা - রক্ত",
+                          "English":"Microscopic test for blood parasites"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Anaplasma",
+                                "English":"Anaplasma"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"Babesia",
+                                "English":"Babesia"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"Haemoproteus",
+                                "English":"Haemoproteus"
+                             }
+                          },
+                          {
+                             "name":"4",
+                             "label":{
+                                "Bangla":"Leucocytozoon",
+                                "English":"Leucocytozoon"
+                             }
+                          },
+                          {
+                             "name":"5",
+                             "label":{
+                                "Bangla":"Plasmodium",
+                                "English":"Plasmodium"
+                             }
+                          },
+                          {
+                             "name":"6",
+                             "label":{
+                                "Bangla":"Rickettsiae",
+                                "English":"Rickettsiae"
+                             }
+                          },
+                          {
+                             "name":"7",
+                             "label":{
+                                "Bangla":"Schistosoma",
+                                "English":"Schistosoma"
+                             }
+                          },
+                          {
+                             "name":"8",
+                             "label":{
+                                "Bangla":"Theileria",
+                                "English":"Theileria"
+                             }
+                          },
+                          {
+                             "name":"9",
+                             "label":{
+                                "Bangla":"Trypansoma",
+                                "English":"Trypansoma"
+                             }
+                          },
+                          {
+                             "name":"00",
+                             "label":{
+                                "Bangla":"Other",
+                                "English":"Other"
+                             }
+                          }
+                       ]
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2"
+                       },
+                       "bind":{
+                          "relevant":"selected(${microscopic_test_parasite},'00') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "type":"text",
+                       "name":"microscopic_test_parasite_other",
+                       "label":{
+                          "Bangla":"Microscopic test for blood parasites - Other",
+                          "English":"Microscopic test for blood parasites - Other"
+                       }
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2 minimal"
+                       },
+                       "name":"microscopic_test_parasite_intensity",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'2') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Intensity",
+                          "English":"Intensity"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"+",
+                                "English":"+"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"++",
+                                "English":"++"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"+++",
+                                "English":"+++"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"parasite"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${microscopic},'3') and selected(${test_tool},'1')"
+                 },
+                 "label":{
+                    "Bangla":"Skin Examination",
+                    "English":"Skin Examination"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"${speciess_type}"
+                       },
+                       "type":"calculate",
+                       "name":"speciess_recode_skin"
+                    },
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_skin"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"microscopic_test_skin",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'3') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"মাইক্রোস্কপিক পরীক্ষা - স্কিন স্ক্রাব",
+                          "English":"Microscopic test for skin"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Mites",
+                                "English":"Mites"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"Lice",
+                                "English":"Lice"
+                             }
+                          },
+                          {
+                             "name":"00",
+                             "label":{
+                                "Bangla":"Other",
+                                "English":"Other"
+                             }
+                          }
+                       ]
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2"
+                       },
+                       "bind":{
+                          "relevant":"selected(${microscopic_test_skin},'00') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "type":"text",
+                       "name":"microscopic_test_skin_other",
+                       "label":{
+                          "Bangla":"Microscopic test for skin - Other",
+                          "English":"Microscopic test for skin - Other"
+                       }
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2 minimal"
+                       },
+                       "name":"skin_positive_negative",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'3') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Result",
+                          "English":"Result"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Positive",
+                                "English":"Positive"
+                             }
+                          },
+                          {
+                             "name":"0",
+                             "label":{
+                                "Bangla":"Negative",
+                                "English":"Negative"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"skin"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${microscopic},'4') and selected(${test_tool},'1')"
+                 },
+                 "label":{
+                    "Bangla":"Urine Examination",
+                    "English":"Urine Examination"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"${speciess_type}"
+                       },
+                       "type":"calculate",
+                       "name":"speciess_recode_urine"
+                    },
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_urine"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"microscopic_test_urine",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'4') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"মাইক্রোস্কপিক পরীক্ষা - স্কিন স্ক্রাব",
+                          "English":"Microscopic test for unrine"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Bacteria",
+                                "English":"Bacteria"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"Crystals",
+                                "English":"Crystals"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"Cylindruria (Casts)",
+                                "English":"Cylindruria (Casts)"
+                             }
+                          },
+                          {
+                             "name":"4",
+                             "label":{
+                                "Bangla":"Lipids",
+                                "English":"Lipids"
+                             }
+                          },
+                          {
+                             "name":"5",
+                             "label":{
+                                "Bangla":"RBCs",
+                                "English":"RBCs"
+                             }
+                          },
+                          {
+                             "name":"6",
+                             "label":{
+                                "Bangla":"Spermatozoa",
+                                "English":"Spermatozoa"
+                             }
+                          },
+                          {
+                             "name":"7",
+                             "label":{
+                                "Bangla":"Squamous cells",
+                                "English":"Squamous cells"
+                             }
+                          },
+                          {
+                             "name":"8",
+                             "label":{
+                                "Bangla":"Yeast",
+                                "English":"Yeast"
+                             }
+                          },
+                          {
+                             "name":"00",
+                             "label":{
+                                "Bangla":"Others",
+                                "English":"Others"
+                             }
+                          }
+                       ]
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2"
+                       },
+                       "bind":{
+                          "relevant":"selected(${microscopic_test_urine},'00') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "type":"text",
+                       "name":"microscopic_test_urine_other",
+                       "label":{
+                          "Bangla":"Microscopic test for skin - Other",
+                          "English":"Microscopic test for urine_other"
+                       }
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2 minimal"
+                       },
+                       "name":"urine_positive_negative",
+                       "bind":{
+                          "relevant":"selected(${microscopic},'4') and selected(${test_tool},'1')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Result",
+                          "English":"Result"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"+",
+                                "English":"+"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"++",
+                                "English":"++"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"+++",
+                                "English":"+++"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"urine"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${test_tool},'4')"
+                 },
+                 "label":{
+                    "Bangla":"Ear Examination",
+                    "English":"Ear Examination"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_ear"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"microscopic_test_ear",
+                       "bind":{
+                          "relevant":"selected(${test_tool},'4')"
+                       },
+                       "label":{
+                          "Bangla":"Microscopic test for Ear",
+                          "English":"Microscopic test for Ear"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Auricular chondritis",
+                                "English":"Auricular chondritis"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"Deafness",
+                                "English":"Deafness"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"Hair loss on the outer ear",
+                                "English":"Hair loss on the outer ear"
+                             }
+                          },
+                          {
+                             "name":"4",
+                             "label":{
+                                "Bangla":"Lice",
+                                "English":"Lice"
+                             }
+                          },
+                          {
+                             "name":"5",
+                             "label":{
+                                "Bangla":"Mite",
+                                "English":"Mite"
+                             }
+                          },
+                          {
+                             "name":"6",
+                             "label":{
+                                "Bangla":"Nodular granulomatous dermatitis",
+                                "English":"Nodular granulomatous dermatitis"
+                             }
+                          },
+                          {
+                             "name":"7",
+                             "label":{
+                                "Bangla":"Tick",
+                                "English":"Tick"
+                             }
+                          },
+                          {
+                             "name":"8",
+                             "label":{
+                                "Bangla":"Tissue death of the pinna",
+                                "English":"Tissue death of the pinna"
+                             }
+                          },
+                          {
+                             "name":"00",
+                             "label":{
+                                "Bangla":"Others",
+                                "English":"Others"
+                             }
+                          }
+                       ]
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2"
+                       },
+                       "bind":{
+                          "relevant":"${microscopic_test_ear}=99"
+                       },
+                       "type":"text",
+                       "name":"microscopic_test_ear_other",
+                       "label":{
+                          "Bangla":"Microscopic test for Ear - Other",
+                          "English":"Microscopic test for Ear - Other"
+                       }
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2 minimal"
+                       },
+                       "name":"ear_positive_negative",
+                       "bind":{
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Result",
+                          "English":"Result"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Positive",
+                                "English":"Positive"
+                             }
+                          },
+                          {
+                             "name":"0",
+                             "label":{
+                                "Bangla":"Negative",
+                                "English":"Negative"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"ear"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${test_tool},'5')"
+                 },
+                 "label":{
+                    "Bangla":"Urine Strip Test",
+                    "English":"Urine Strip Test"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_urine_strip"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"microscopic_test_urine_strip",
+                       "bind":{
+                          "relevant":"selected(${test_tool},'5')"
+                       },
+                       "label":{
+                          "Bangla":"Urine Strip tests",
+                          "English":"Urine Strip tests"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Biliruubin",
+                                "English":"Biliruubin"
+                             }
+                          },
+                          {
+                             "name":"2",
+                             "label":{
+                                "Bangla":"Blood",
+                                "English":"Blood"
+                             }
+                          },
+                          {
+                             "name":"3",
+                             "label":{
+                                "Bangla":"Glucose",
+                                "English":"Glucose"
+                             }
+                          },
+                          {
+                             "name":"4",
+                             "label":{
+                                "Bangla":"Keteone",
+                                "English":"Keteone"
+                             }
+                          },
+                          {
+                             "name":"5",
+                             "label":{
+                                "Bangla":"Leukocytes",
+                                "English":"Leukocytes"
+                             }
+                          },
+                          {
+                             "name":"6",
+                             "label":{
+                                "Bangla":"Nitrite",
+                                "English":"Nitrite"
+                             }
+                          },
+                          {
+                             "name":"7",
+                             "label":{
+                                "Bangla":"Protein",
+                                "English":"Protein"
+                             }
+                          },
+                          {
+                             "name":"8",
+                             "label":{
+                                "Bangla":"Urobilinogen",
+                                "English":"Urobilinogen"
+                             }
+                          },
+                          {
+                             "name":"00",
+                             "label":{
+                                "Bangla":"Others",
+                                "English":"Others"
+                             }
+                          },
+                          {
+                             "name":"0",
+                             "label":{
+                                "Bangla":"No Findings",
+                                "English":"No Findings"
+                             }
+                          }
+                       ]
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"urine_strip_test_positive_negative",
+                       "bind":{
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Result",
+                          "English":"Result"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Positive",
+                                "English":"Positive"
+                             }
+                          },
+                          {
+                             "name":"0",
+                             "label":{
+                                "Bangla":"Negative",
+                                "English":"Negative"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"urine_strip"
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"postmortem",
+                 "choice_filter":"myfilter=${speciess_type}",
+                 "bind":{
+                    "relevant":"selected(${test_tool},'3')",
+                    "required":"yes"
+                 },
+                 "label":{
+                    "Bangla":"Postmortem",
+                    "English":"Postmortem"
+                 },
+                 "itemset":"postmortem",
+                 "type":"select all that apply"
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"postmortem_organ",
+                 "choice_filter":"selected(${postmortem},myfilter)",
+                 "bind":{
+                    "relevant":"selected(${test_tool},'3')",
+                    "required":"yes"
+                 },
+                 "label":{
+                    "Bangla":"Organ",
+                    "English":"Organ"
+                 },
+                 "itemset":"postmortem_organ",
+                 "type":"select all that apply"
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"postmortem_findings",
+                 "choice_filter":"selected(${postmortem_organ},myfilter)",
+                 "bind":{
+                    "relevant":"selected(${test_tool},'3')"
+                 },
+                 "label":{
+                    "Bangla":"Postmortem Findings",
+                    "English":"Postmortem Findings"
+                 },
+                 "itemset":"postmortem_findings",
+                 "type":"select all that apply"
+              },
+              {
+                 "bind":{
+                    "relevant":"selected(${test_tool},'2')"
+                 },
+                 "label":{
+                    "Bangla":"Rapid Test",
+                    "English":"Rapid Test"
+                 },
+                 "type":"repeat",
+                 "children":[
+                    {
+                       "bind":{
+                          "calculate":"${speciess_type}"
+                       },
+                       "type":"calculate",
+                       "name":"speciess_recode_2"
+                    },
+                    {
+                       "bind":{
+                          "calculate":"position(..)"
+                       },
+                       "type":"calculate",
+                       "name":"position_rapid_test"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w6 minimal"
+                       },
+                       "name":"rapid_test",
+                       "choice_filter":"myfilter=${speciess_recode_2}",
+                       "bind":{
+                          "relevant":"selected(${test_tool},'2')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"Rapid test",
+                          "English":"Rapid test"
+                       },
+                       "itemset":"rapid_test_bird",
+                       "type":"select one"
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2"
+                       },
+                       "bind":{
+                          "relevant":"selected(${rapid_test},'00')",
+                          "required":"Yes"
+                       },
+                       "type":"text",
+                       "name":"rapid_test_other",
+                       "label":{
+                          "Bangla":"Rapid test - Other",
+                          "English":"Rapid test - Animal - Other"
+                       }
+                    },
+                    {
+                       "control":{
+                          "appearance":"w2 minimal"
+                       },
+                       "name":"rapid_test_result",
+                       "bind":{
+                          "relevant":"selected(${test_tool},'2')",
+                          "required":"Yes"
+                       },
+                       "label":{
+                          "Bangla":"র‍্যাপিড টেস্টের ফলাফল",
+                          "English":"Rapid test result"
+                       },
+                       "type":"select one",
+                       "children":[
+                          {
+                             "name":"1",
+                             "label":{
+                                "Bangla":"Positive",
+                                "English":"Positive"
+                             }
+                          },
+                          {
+                             "name":"0",
+                             "label":{
+                                "Bangla":"Negative",
+                                "English":"Negative"
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "name":"rapid"
+              }
+           ],
+           "name":"diagnostic"
+        },
+        {
+           "control":{
+              "appearance":"w12"
+           },
+           "label":{
+              "Bangla":"Diagnosis and Treatment",
+              "English":"Diagnosis and Treatment"
+           },
+           "type":"group",
+           "children":[
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "name":"tentative_diagnosis",
+                 "choice_filter":"myfilter=${speciess_value}",
+                 "label":{
+                    "Bangla":"সম্ভাব্য রোগ",
+                    "English":"Tentative diagnosis"
+                 },
+                 "itemset":"tentative_diagnosis",
+                 "type":"select all that apply"
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "relevant":"selected(${tentative_diagnosis},'00')"
+                 },
+                 "type":"text",
+                 "name":"tentative_diagnosis_other",
+                 "label":{
+                    "Bangla":"সম্ভাব্য রোগ - অন্যান্য",
+                    "English":"Tentative diagnosis - other"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "jr:constraintMsg":{
+                       "Bangla":"Value must be less than or equal herd",
+                       "English":"Value must be less than or equal herd"
+                    },
+                    "constraint":". <=${herd_flock}"
+                 },
+                 "type":"integer",
+                 "name":"treated",
+                 "label":{
+                    "Bangla":"Number of treated",
+                    "English":"Number of treated"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "jr:constraintMsg":{
+                       "Bangla":"Value must be less than or equal herd",
+                       "English":"Value must be less than or equal herd"
+                    },
+                    "constraint":". <=${herd_flock}"
+                 },
+                 "type":"integer",
+                 "name":"advised",
+                 "label":{
+                    "Bangla":"Number of advised animals",
+                    "English":"Number of advised animals"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "label":{
+                    "Bangla":"Treatment (Government provided) (Start writing the desired name to see the available medicine)",
+                    "English":"Treatment (Government provided) (Start writing the desired name to see the available medicine)"
+                 },
+                 "type":"select all that apply",
+                 "children":[
+                    {
+                       "name":"treatmentid",
+                       "label":{
+                          "Bangla":"treatmentname",
+                          "English":"treatmentname"
+                       }
+                    }
+                 ],
+                 "name":"treatment_govt"
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "relevant":"selected(${treatment_govt},'00')"
+                 },
+                 "type":"text",
+                 "name":"treatment_govt_other",
+                 "label":{
+                    "Bangla":"চিকিৎসা - অন্যান্য",
+                    "English":"Treatment (Government provided) - other"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "label":{
+                    "Bangla":"Treatment (Own Purchase) (Start writing the desired name to see the available medicine)",
+                    "English":"Treatment (Own Purchase) (Start writing the desired name to see the available medicine)"
+                 },
+                 "type":"select all that apply",
+                 "children":[
+                    {
+                       "name":"treatmentid",
+                       "label":{
+                          "Bangla":"treatmentname",
+                          "English":"treatmentname"
+                       }
+                    }
+                 ],
+                 "name":"treatment_own"
+              },
+              {
+                 "control":{
+                    "appearance":"w6"
+                 },
+                 "bind":{
+                    "relevant":"selected(${treatment_own},'00')"
+                 },
+                 "type":"text",
+                 "name":"treatment_own_other",
+                 "label":{
+                    "Bangla":"চিকিৎসা - অন্যান্য",
+                    "English":"Treatment (Government provided) - other"
+                 }
+              },
+              {
+                 "control":{
+                    "appearance":"w6 minimal"
+                 },
+                 "label":{
+                    "Bangla":"পরীক্ষাগারে নমুনা প্রেরণ",
+                    "English":"Sample send to laboratory"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"1",
+                       "label":{
+                          "Bangla":"Yes",
+                          "English":"Yes"
+                       }
+                    },
+                    {
+                       "name":"0",
+                       "label":{
+                          "Bangla":"No",
+                          "English":"No"
+                       }
+                    }
+                 ],
+                 "name":"sample_sent_lab"
+              },
+              {
+                 "bind":{
+                    "relevant":"${sample_sent_lab}=1"
+                 },
+                 "label":{
+                    "Bangla":"Lab Name",
+                    "English":"Lab Name"
+                 },
+                 "type":"select one",
+                 "children":[
+                    {
+                       "name":"1",
+                       "label":{
+                          "Bangla":"Lab",
+                          "English":"Lab"
+                       }
+                    }
+                 ],
+                 "name":"lab"
+              }
+           ],
+           "name":"diagnosis_treatment"
+        },
+        {
+           "control":{
+              "bodyless":true
+           },
+           "type":"group",
+           "children":[
+              {
+                 "bind":{
+                    "readonly":"true()",
+                    "calculate":"concat('uuid:', uuid())"
+                 },
+                 "type":"calculate",
+                 "name":"instanceID"
+              }
+           ],
+           "name":"meta"
         }
-      ],
-      "name": "upazila"
-    },
-    {
-      "name": "informer",
-      "choice_filter": "upazila=${upazila}",
-      "bind": {
-        "required": "true"
-      },
-      "label": {
-        "Bangla": "তথ্য দাতার নামঃ",
-        "English": "Name of VLSP"
-      },
-      "itemset": "vlsp",
-      "type": "select one"
-    },
-    {
-      "control": {
-        "appearance": "numbers"
-      },
-      "bind": {
-        "jr:constraintMsg": "mobile number should be 11 digit",
-        "required": "true",
-        "calculate": "pulldata('Codes', 'mobile', 'name', ${informer} )",
-        "constraint": "regex(.,'^[0-9]{11}$')"
-      },
-      "type": "text",
-      "name": "mobile_informer",
-      "label": {
-        "Bangla": "মোবাইল",
-        "English": "Mobile"
-      }
-    },
-    {
-      "bind": {
-        "required": "true",
-        "constraint": ".<today() and format-date(.,'%a')='Fri'"
-      },
-      "type": "date",
-      "name": "week_start",
-      "label": {
-        "Bangla": "সপ্তাহের শুরুর তারিখ",
-        "English": "Week start Date:"
-      }
-    },
-    {
-      "bind": {
-        "readonly": "TRUE",
-        "required": "true",
-        "calculate": "format-date(date(decimal-date-time(${week_start})+6), \"%Y-%m-%d\")"
-      },
-      "type": "date",
-      "name": "week_end",
-      "label": {
-        "Bangla": "সপ্তাহের শেষ তারিখ",
-        "English": "Week End Date:"
-      }
-    },
-    {
-      "control": {
-        "appearance": "numbers"
-      },
-      "bind": {
-        "required": "true"
-      },
-      "type": "text",
-      "name": "num_village",
-      "label": {
-        "Bangla": "কতটি গ্রাম থেকে আপনি উক্ত আক্রান্ত বাড়ি/খামারগুলো পেয়েছেন?",
-        "English": "How many villages have you visited this week to search LSD cases?"
-      }
-    },
-    {
-      "control": {
-        "appearance": "numbers"
-      },
-      "bind": {
-        "required": "true"
-      },
-      "type": "text",
-      "name": "num_cases",
-      "label": {
-        "Bangla": "গত সপ্তাহে এলএসডি’র মতো লক্ষণযুক্ত কতটি বাড়ি/খামার আক্রান্ত পেয়েছেন?",
-        "English": "How many HH/farms have you found with suspected LSD cases in this week?"
-      }
-    },
-    {
-      "bind": {
-        "relevant": "${num_cases} != '0'",
-        "required": "false"
-      },
-      "label": {
-        "Bangla": "যে সমস্ত বাড়িতে/খামারে এলএসডি’র মতো লক্ষণযুক্ত আক্রান্ত গরু পেয়েছেন তার তালিকা দিন",
-        "English": "list of the affected HH/farmers"
-      },
-      "type": "repeat",
-      "children": [
-        {
-          "name": "union_name",
-          "choice_filter": "upazila=${upazila}",
-          "bind": {
-            "required": "true"
-          },
-          "label": {
-            "Bangla": "ইউনিয়ন",
-            "English": "Union"
-          },
-          "itemset": "union_name",
-          "type": "select one"
-        },
-        {
-          "control": {
-            "appearance": "minimal"
-          },
-          "name": "village",
-          "choice_filter": "union_name=${union_name}",
-          "bind": {
-            "required": "true"
-          },
-          "label": {
-            "Bangla": "গ্রাম",
-            "English": "Village"
-          },
-          "itemset": "village",
-          "type": "select one"
-        },
-        {
-          "bind": {
-            "required": "true"
-          },
-          "type": "text",
-          "name": "farmer",
-          "label": {
-            "Bangla": "খামারির নাম",
-            "English": "Farmer's name"
-          }
-        },
-        {
-          "control": {
-            "appearance": "numbers"
-          },
-          "bind": {
-            "jr:constraintMsg": "mobile number should be 11 digit",
-            "required": "true",
-            "constraint": "regex(.,'^[0-9]{11}$')"
-          },
-          "type": "text",
-          "name": "mobile",
-          "label": {
-            "Bangla": "মোবাইল:",
-            "English": "Mobile no. of farmer"
-          }
-        }
-      ],
-      "name": "a"
-    },
-    {
-      "control": {
-        "bodyless": true
-      },
-      "type": "group",
-      "children": [
-        {
-          "bind": {
-            "readonly": "true()",
-            "calculate": "concat('uuid:', uuid())"
-          },
-          "type": "calculate",
-          "name": "instanceID"
-        }
-      ],
-      "name": "meta"
-    }
-  ]
+     ]
+  }
+}
+
+export const sampleUserInput = {
+  "username":"fao_admin"
 };
-
-
-export const sampleUserInput = {};
 
 // export const CSV_LIST = {"geo.csv":[{"mouza_loc_type":"5","mouza_code":"20030431142","mouza_name":"ALIKADAM","mouza_parent":"20030431","division_name":"CHITTAGONG","union_code":"20030431","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"ALIKADAM","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030431284","mouza_name":"CHAIMFRA","mouza_parent":"20030431","division_name":"CHITTAGONG","union_code":"20030431","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"ALIKADAM","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030431994","mouza_name":"TAINFA","mouza_parent":"20030431","division_name":"CHITTAGONG","union_code":"20030431","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"ALIKADAM","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463426","mouza_name":"CHOKHYONG","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463568","mouza_name":"MANGU","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463700","mouza_name":"MATAMUHURI R.F.","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463852","mouza_name":"TAIN","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463999","mouza_name":"CHOKHYONG","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"}]};
 
 export const CSV_LIST = {
-  "Codes.csv": [
+  "clinical_species.csv": [
     {
-      "mobile": "01751331225",
-      "cast(p.category_id as int)": 24,
-      "name": "Abdul_Hanil",
-      "cast(s.id as int)": 24
+      "signnames": "Abdominal pain",
+      "speciestype": "1",
+      "signid": "1"
     },
     {
-      "mobile": "01721787472",
-      "cast(p.category_id as int)": 24,
-      "name": "Bazlur_Rahman",
-      "cast(s.id as int)": 24
+      "signnames": "Abortion in first trimester",
+      "speciestype": "1",
+      "signid": "2"
+    },
+    {
+      "signnames": "Abnormal eggs",
+      "speciestype": "2",
+      "signid": "1"
+    },
+    {
+      "signnames": "Anaemia",
+      "speciestype": "2",
+      "signid": "7"
+    }
+  ],
+  "species_live.csv": [
+    {
+      "speciesid": "1",
+      "speciesname": "Buffalo"
+    },
+    {
+      "speciesid": "2",
+      "speciesname": "Cat"
+    },
+    {
+      "speciesid": "21",
+      "speciesname": "Chicken"
     }
   ]
 };
@@ -5186,3 +7808,5 @@ export const languageOptions = [
 
 // tslint: enable
 export type DEMO_FORM_JSON = typeof DEMO_FORM_JSON;
+
+

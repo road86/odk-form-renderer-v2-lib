@@ -504,6 +504,10 @@ class SelectAllRadio extends React.Component<SelectAllRadioProps> {
         });
 
         let j = 0;
+
+        if(filterResult === null) filterResult = [];
+        if( !Array.isArray(filterResult) ) filterResult = [filterResult];
+        
         filterResult.map(() => {
           options.map(option => {
             if (option[nameOfKey] === filterResult[j]) {

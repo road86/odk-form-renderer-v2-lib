@@ -452,9 +452,13 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         });
 
         let j = 0;
+        
+        if(filterResult === null) filterResult = [];
+        if( !Array.isArray(filterResult) ) filterResult = [filterResult];
+        
         filterResult.map(() => {
           options.map(option => {
-            if (option[nameOfKey] === filterResult[j]) {
+            if (option[nameOfKey] == filterResult[j]) {
               finalRes.push(option);
             }
           });
