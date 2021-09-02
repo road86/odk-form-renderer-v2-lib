@@ -7746,6 +7746,7 @@ export const DEMO_FORM_JSON = {
             "name":"meta"
          }
       ]
+   }
 }
 
 export const sampleUserInput = {

@@ -4968,6 +4968,7 @@ function (_React$Component) {
           var j = 0;
           if (filterResult === null) filterResult = [];
           if (!Array.isArray(filterResult)) filterResult = [filterResult];
+          console.log("hello chocolate cookies");
           filterResult.map(function () {
             options.map(function (option) {
               if (option[nameOfKey] == filterResult[j]) {

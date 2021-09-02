@@ -455,7 +455,8 @@ class SelectAllDropDown extends React.Component<SelectAllDropDownProps> {
         
         if(filterResult === null) filterResult = [];
         if( !Array.isArray(filterResult) ) filterResult = [filterResult];
-        
+
+        console.log("hello chocolate cookies");
         filterResult.map(() => {
           options.map(option => {
             if (option[nameOfKey] == filterResult[j]) {
