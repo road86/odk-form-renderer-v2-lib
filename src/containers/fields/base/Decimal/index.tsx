@@ -70,15 +70,21 @@ class Decimal extends React.Component<DecimalProps, DecimalState> {
     const isRequiredViolated =
       isRequired &&
       (fieldValue === null || fieldValue === '' || fieldValue === undefined);
-    const isConstraintViolated =
-      fieldValue !== '' &&
-      fieldValue !== null &&
-      fieldValue !== undefined &&
-      shouldInputViolatesConstraint(
-        fieldElement,
-        fieldParentTreeName,
-        getEvaluatedExpressionSelector
-      );
+    let  isConstraintViolated = false;
+    try {
+       isConstraintViolated =
+        fieldValue !== '' &&
+        fieldValue !== null &&
+        fieldValue !== undefined &&
+        shouldInputViolatesConstraint(
+          fieldElement,
+          fieldParentTreeName,
+          getEvaluatedExpressionSelector
+        );
+    } catch(ex) {
+      console.log('got the constraint violation error');
+      isConstraintViolated = true;
+    }
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
       getEvaluatedExpressionSelector,
