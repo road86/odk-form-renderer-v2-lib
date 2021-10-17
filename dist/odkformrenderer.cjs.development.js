@@ -4631,7 +4631,15 @@ function (_React$Component) {
     var isRequired = isInputRequired(fieldElement);
     var isFormSubmitted = getFormSubmitStatusSelector;
     var isRequiredViolated = isRequired && (fieldValue === null || fieldValue === '' || fieldValue === undefined);
-    var isConstraintViolated = fieldValue !== '' && fieldValue !== null && fieldValue !== undefined && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+    var isConstraintViolated = false;
+
+    try {
+      isConstraintViolated = fieldValue !== '' && fieldValue !== null && fieldValue !== undefined && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+    } catch (err) {
+      console.log('constraint violation in integer component');
+      isConstraintViolated = true;
+    }
+
     var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     var modifiedFieldLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, fieldLabel, fieldParentTreeName + fieldElement.name);
     var constraintLabel = getConstraintLabelText(fieldElement, defaultLanguage);

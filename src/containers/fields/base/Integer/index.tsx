@@ -68,7 +68,9 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
       isRequired &&
       (fieldValue === null || fieldValue === '' || fieldValue === undefined);
 
-    const isConstraintViolated =
+    let isConstraintViolated = false
+    try {
+      isConstraintViolated =
       fieldValue !== '' &&
       fieldValue !== null &&
       fieldValue !== undefined &&
@@ -77,6 +79,10 @@ class Integer extends React.Component<IntegerProps, IntegerState> {
         fieldParentTreeName,
         getEvaluatedExpressionSelector
       );
+    } catch (err) {
+      console.log('constraint violation in integer component');
+      isConstraintViolated = true;
+    }
 
     const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
     const modifiedFieldLabel = customizeLabelsWithPreviousInputs(
