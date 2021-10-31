@@ -283,7 +283,7 @@ class SelectOneRadio extends React.Component<SelectOneRadioProps> {
                     name={fieldElement.name}
                     value={elem.name}
                     onChange={this.onChangeHandlerRadio(fieldElement.name)}
-                    readOnly={isReadonly}
+                    disabled={isReadonly}
                     checked={elem.name === fieldValue || elem.name === calculatedValue}
                   />{' '}
                   {getFieldLabelText(elem, defaultLanguage)}

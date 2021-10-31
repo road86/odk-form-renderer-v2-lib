@@ -6432,7 +6432,7 @@ function (_React$Component) {
           name: fieldElement.name,
           value: elem.name,
           onChange: _this2.onChangeHandlerRadio(fieldElement.name),
-          readOnly: isReadonly,
+          disabled: isReadonly,
           checked: elem.name === fieldValue || elem.name === calculatedValue
         }), ' ', getFieldLabelText(elem, defaultLanguage)));
       })), isFormSubmitted && isError && React.createElement(reactFontawesome.FontAwesomeIcon, {
