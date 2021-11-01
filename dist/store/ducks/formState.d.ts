@@ -9,6 +9,8 @@ export interface FormState {
     mediaList: object;
     language: string;
 }
+/** COLOR SET action type */
+export declare const SET_COLOR = "odk/reducer/form/SET_COLOR";
 /** FIELD_VALUE_ASSIGNED action type */
 export declare const FIELD_VALUE_ASSIGNED = "odk/reducer/form/FIELD_VALUE_ASSIGNED";
 /** OPTION_LIST_ASSIGNED action type */
@@ -33,6 +35,10 @@ export declare const SET_USER_INPUT_OBJ = "odk/reducer/form/SET_USER_INPUT_OBJ";
 export declare const SET_CSV_OBJ = "odk/reducer/form/SET_CSV_OBJ";
 export declare const SET_FORM_SUBMIT_STATUS = "odk/reducer/form/SET_FORM_SUBMIT_STATUS";
 export declare const SET_LANGUAGE = "odk/reducer/form/SET_LANGUAGE";
+export interface SetColorAction extends AnyAction {
+    color: any;
+    type: typeof SET_COLOR;
+}
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
     fieldTreeName: string;
@@ -106,6 +112,10 @@ export interface SetFormSubmitStatus extends AnyAction {
     isFormSubmitted: boolean;
     type: typeof SET_FORM_SUBMIT_STATUS;
 }
+/** SET COLOR
+ * @param {string} color - color code
+ */
+export declare const setColorAction: (color: any) => SetColorAction;
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the value that will be assigned
@@ -178,13 +188,14 @@ export declare const setUserLanguage: (language: string) => SetLanguage;
  */
 export declare const setFormSubmitStatus: (isFormSubmitted: boolean) => SetFormSubmitStatus;
 /** Create type for forms reducer actions */
-export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | AddMediaListAction | RemoveFromMediaListAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | SetCSVObj | SetFormSubmitStatus | AnyAction;
+export declare type FormActionTypes = AssignFieldValueAction | AssignOptionListAction | RemoveFromOptionList | AddMediaListAction | RemoveFromMediaListAction | ResetStoreAction | AddErrorInputId | RemoveErrorInputId | EmptyGroupFields | RemoveGroupFieldsFromErrors | SetUserInputObj | SetCSVObj | SetFormSubmitStatus | SetColorAction | AnyAction;
 /** Create an immutable form state */
 export declare type ImmutableFormState = SeamlessImmutable.ImmutableObject<FormState>;
 /** initial form state */
 export declare const initialState: ImmutableFormState;
 /** the form reducer function */
 export default function reducer(state: SeamlessImmutable.ImmutableObject<FormState> | undefined, action: FormActionTypes): ImmutableFormState;
+export declare function getThemeColor(state: Partial<Store>): any;
 /** get the value by their respective element tree name
  * @param {Partial<Store>} state - the redux store
  * @param {string} fieldTreeName - the hierchical tree name of the field

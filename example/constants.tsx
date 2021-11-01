@@ -7,6 +7,7 @@ export const DEMO_FORM_JSON = {
   "default_language": "English",
   "id_string": "farm_assessment_closer_p2",
   "type": "survey",
+  // "theme_color": "#EEFF41",
   "children": [
     {
       "type": "start",

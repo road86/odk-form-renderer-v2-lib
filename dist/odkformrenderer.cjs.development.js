@@ -54,7 +54,7 @@ styles.createMuiTheme({
   palette: {
     primary: {
       main: '#EF6B73',
-      dark: '#BF4A51'
+      dark: '#649a6a'
     },
     secondary: {
       main: '#D2AB16',
@@ -2719,6 +2719,9 @@ function checkGroupedValuesForEmpty(userInputObj, groupTreeName) {
   return isEmpty;
 }
 
+/** COLOR SET action type */
+
+var SET_COLOR = 'odk/reducer/form/SET_COLOR';
 /** FIELD_VALUE_ASSIGNED action type */
 
 var FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
@@ -2753,6 +2756,16 @@ var SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
 var SET_CSV_OBJ = 'odk/reducer/form/SET_CSV_OBJ';
 var SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
 var SET_LANGUAGE = 'odk/reducer/form/SET_LANGUAGE';
+/** SET COLOR
+ * @param {string} color - color code
+ */
+
+var setColorAction = function setColorAction(color) {
+  return {
+    color: color,
+    type: SET_COLOR
+  };
+};
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
  * @param {any} fieldValue - the value that will be assigned
@@ -2910,7 +2923,8 @@ SeamlessImmutable({
   optionList: {},
   userInput: {},
   language: 'English',
-  csvList: {}
+  csvList: {},
+  color: ''
 });
 /** the form reducer function */
 
@@ -2922,6 +2936,14 @@ function reducer(state, action) {
   }
 
   switch (action.type) {
+    case SET_COLOR:
+      var colorState = state.asMutable({
+        deep: true
+      });
+      return SeamlessImmutable(_extends({}, colorState, {
+        color: action.color
+      }));
+
     case FIELD_VALUE_ASSIGNED:
       var modifiedUserInputObj = getModifiedUserInputObject(state.getIn(['userInput']).asMutable({
         deep: true
@@ -3046,6 +3068,9 @@ function reducer(state, action) {
   }
 } // selectors
 
+function getThemeColor(state) {
+  return state != undefined && state.getIn(['color']);
+}
 /** get the value by their respective element tree name
  * @param {Partial<Store>} state - the redux store
  * @param {string} fieldTreeName - the hierchical tree name of the field
@@ -3177,20 +3202,20 @@ function getAllFileObjects(state) {
   return state != undefined && state.getIn(['mediaList']);
 }
 
-var GroupStyle = function GroupStyle(theme) {
+var GroupStyle = function GroupStyle(theme, customColor) {
   var _drawerPaperClose, _drawerClose;
 
   return core.createStyles({
     root: {
       '&.MuiAccordionSummary-root': {
-        borderTop: "5px solid " + theme.palette.primary.dark,
-        color: theme.palette.primary.dark + " !important",
+        borderTop: "5px solid " + (customColor || theme.palette.primary.dark),
+        color: (customColor || theme.palette.primary.dark) + " !important",
         '&:hover': {
-          backgroundColor: theme.palette.primary.dark + " !important",
+          backgroundColor: (customColor || theme.palette.primary.dark) + " !important",
           color: theme.palette.secondary.light + " !important"
         },
         '&.Mui-expanded': {
-          backgroundColor: theme.palette.primary.dark + " !important",
+          backgroundColor: (customColor || theme.palette.primary.dark) + " !important",
           color: theme.palette.secondary.light + " !important"
         }
       }
@@ -3228,7 +3253,7 @@ var GroupStyle = function GroupStyle(theme) {
       width: theme.spacing(7)
     }, _drawerPaperClose[theme.breakpoints.up('sm')] = {
       width: theme.spacing(9)
-    }, _drawerPaperClose.background = theme.palette.primary.dark, _drawerPaperClose),
+    }, _drawerPaperClose.background = customColor || theme.palette.primary.dark, _drawerPaperClose),
     paper: {
       padding: theme.spacing(2),
       display: 'flex',
@@ -3283,7 +3308,7 @@ var GroupStyle = function GroupStyle(theme) {
         },
         '&:hover': {
           color: theme.palette.common.white,
-          backgroundColor: theme.palette.primary.dark
+          backgroundColor: customColor || theme.palette.primary.dark
         }
       }
     },
@@ -3296,7 +3321,7 @@ var GroupStyle = function GroupStyle(theme) {
       width: theme.spacing(7) + 1
     }, _drawerClose[theme.breakpoints.up('sm')] = {
       width: theme.spacing(7) + 1
-    }, _drawerClose.background = theme.palette.primary.dark, _drawerClose),
+    }, _drawerClose.background = customColor || theme.palette.primary.dark, _drawerClose),
     drawerOpen: {
       '&:hover': {
         overflowY: 'auto'
@@ -3316,7 +3341,8 @@ function Group(props) {
       fieldElement = props.fieldElement,
       fieldParentTreeName = props.fieldParentTreeName,
       defaultLanguage = props.defaultLanguage,
-      isComponentRender = props.isComponentRender;
+      isComponentRender = props.isComponentRender,
+      themeColor = props.themeColor;
   var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
   var isAppearanceApplicable = false;
 
@@ -3327,7 +3353,7 @@ function Group(props) {
   }
 
   var theme = core.useTheme();
-  var useStyles = styles$1.makeStyles(GroupStyle(theme));
+  var useStyles = styles$1.makeStyles(GroupStyle(theme, themeColor));
   var classNames = useStyles();
 
   if (isComponentRender && (fieldElement.control && fieldElement.control.bodyless ? fieldElement.control.bodyless === false : true)) {
@@ -3383,6 +3409,7 @@ var mapStateToProps = function mapStateToProps(state, parentProps) {
   };
 
   var result = {
+    themeColor: getThemeColor(state),
     getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
     isErrorsIncludeGroupFieldsSelector: isErrorsIncludeGroupFieldsSelector,
@@ -7158,6 +7185,7 @@ function (_React$Component) {
         csvList = _this$props2.csvList,
         csvObj = _this$props2.csvObj;
     this.props.resetStoreActionCreator();
+    this.props.setThemeColor(this.props.themeColor);
 
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
@@ -7180,7 +7208,8 @@ function (_React$Component) {
         fieldElements = _this$props3.fieldElements,
         formTitle = _this$props3.formTitle,
         languageOptions = _this$props3.languageOptions,
-        choices = _this$props3.choices;
+        choices = _this$props3.choices,
+        themeColor = _this$props3.themeColor;
 
     var _ref = this.state || this.props,
         defaultLanguage = _ref.defaultLanguage;
@@ -7197,9 +7226,16 @@ function (_React$Component) {
     return React.createElement(reactstrap.Container, {
       className: "form-container"
     }, React.createElement(reactstrap.Row, {
-      className: 'form-title formTitle'
+      className: "formTitle",
+      style: {
+        borderBottom: "3px solid " + themeColor,
+        borderTop: "3px solid " + themeColor
+      }
     }, React.createElement(reactstrap.Col, null, React.createElement("h3", {
-      className: "headerText"
+      className: "headerText",
+      style: {
+        color: (themeColor || '#649a6a') + " "
+      }
     }, formTitle)), React.createElement(DropDown, {
       languages: languageOptions,
       onChangeSelect: this.handleSelect,
@@ -7247,7 +7283,8 @@ var mapDispatchToProps$h = {
   setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
   setUserLanguageAction: setUserLanguage,
-  setCSVAction: setCSVObj
+  setCSVAction: setCSVObj,
+  setThemeColor: setColorAction
 };
 /** connect Decimal component to the redux store */
 
@@ -7282,7 +7319,8 @@ function (_React$Component) {
       formTitle: formDefinitionJson.title,
       handleSubmit: handleSubmit,
       languageOptions: languageOptions,
-      userInputJson: userInputJson
+      userInputJson: userInputJson,
+      themeColor: formDefinitionJson.theme_color
     };
     return React.createElement(reactRedux.Provider, {
       store: store

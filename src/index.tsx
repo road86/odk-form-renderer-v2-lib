@@ -34,6 +34,7 @@ class OdkFormRenderer extends React.Component<OdkFormRendererProps> {
       handleSubmit,
       languageOptions,
       userInputJson,
+      themeColor: formDefinitionJson.theme_color,
     };
     return (
       <Provider store={store}>

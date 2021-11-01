@@ -21,6 +21,7 @@ import {
   setFormSubmitStatus,
   setUserInputObj,
   setUserLanguage,
+  setColorAction,
 } from '../store/ducks/formState';
 
 library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
@@ -37,12 +38,14 @@ export interface AppProps {
   fieldElements: any;
   setUserInputAction: typeof setUserInputObj;
   setCSVAction: typeof setCSVObj;
+  setThemeColor: typeof setColorAction;
   setUserLanguageAction: typeof setUserLanguage;
   languageOptions: any;
   setFormSubmitStatusAction: typeof setFormSubmitStatus;
   resetStoreActionCreator: typeof resetStoreAction;
   mediaList: any;
   handleSubmit(userInput: any, mediaList: any): any;
+  themeColor: string;
 }
 
 export interface AppState {
@@ -58,6 +61,7 @@ class App extends React.Component<AppProps, AppState> {
   public componentDidMount() {
     const { userInputJson, userInputObj, csvList, csvObj } = this.props;
     this.props.resetStoreActionCreator();
+    this.props.setThemeColor(this.props.themeColor);
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
@@ -83,6 +87,7 @@ class App extends React.Component<AppProps, AppState> {
       formTitle,
       languageOptions,
       choices,
+      themeColor,
     } = this.props;
     const { defaultLanguage } = this.state || this.props;
 
@@ -98,9 +103,9 @@ class App extends React.Component<AppProps, AppState> {
 
     return (
       <Container className="form-container">
-        <Row className={'form-title formTitle'}>
+        <Row className="formTitle" style={{borderBottom: `3px solid ${themeColor}`, borderTop: `3px solid ${themeColor}`}}>
           <Col>
-            <h3 className="headerText">{formTitle}</h3>
+            <h3 className="headerText" style={{color: `${themeColor || '#649a6a'} `}}>{formTitle}</h3>
           </Col>
           <DropDown
             languages={...languageOptions}
@@ -182,6 +187,7 @@ const mapDispatchToProps = {
   setUserInputAction: setUserInputObj,
   setUserLanguageAction: setUserLanguage,
   setCSVAction: setCSVObj,
+  setThemeColor: setColorAction,
 };
 
 /** connect Decimal component to the redux store */

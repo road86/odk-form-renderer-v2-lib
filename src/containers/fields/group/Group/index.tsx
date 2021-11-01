@@ -18,6 +18,7 @@ import {
   isErrorsIncludeGroupFields,
   isGroupFieldsEmpty,
   removeGroupFieldsFromErrors,
+  getThemeColor,
 } from '../../../../store/ducks/formState';
 import {
   getFieldLabelText,
@@ -37,6 +38,7 @@ export interface GroupProps {
   isErrorsIncludeGroupFieldsSelector: any;
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
+  themeColor: string;
 }
 
 function Group(props: GroupProps) {
@@ -47,6 +49,7 @@ function Group(props: GroupProps) {
     fieldParentTreeName,
     defaultLanguage,
     isComponentRender,
+    themeColor,
   } = props;
   const fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
   let isAppearanceApplicable = false;
@@ -56,7 +59,7 @@ function Group(props: GroupProps) {
     }
   }
   const theme = useTheme();
-  const useStyles = makeStyles(GroupStyle(theme));
+  const useStyles = makeStyles(GroupStyle(theme, themeColor));
   const classNames = useStyles();
   if (
     isComponentRender
@@ -141,6 +144,7 @@ const mapStateToProps = (
   const isErrorsIncludeGroupFieldsSelector = (fieldTreeName: string) =>
     isErrorsIncludeGroupFields(state, fieldTreeName);
   const result = {
+    themeColor: getThemeColor(state),
     getEvaluatedExpressionSelector,
     isComponentRender: shouldComponentBeRelevant(
       fieldElement,

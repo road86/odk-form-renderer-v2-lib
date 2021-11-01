@@ -13,6 +13,7 @@ export interface GroupProps {
     isErrorsIncludeGroupFieldsSelector: any;
     emptyGroupFieldsActionCreator: typeof emptyGroupFields;
     removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
+    themeColor: string;
 }
 declare function Group(props: GroupProps): JSX.Element | null;
 /** Interface to describe props from parent */
@@ -22,5 +23,5 @@ interface ParentProps {
     defaultLanguage: string;
 }
 /** connect Group component to the redux store */
-declare const ConnectedGroup: import("react-redux").ConnectedComponent<typeof Group, Pick<GroupProps, "choices" | "csvList" | "fieldElement" | "fieldParentTreeName" | "defaultLanguage"> & ParentProps>;
+declare const ConnectedGroup: import("react-redux").ConnectedComponent<typeof Group, Pick<GroupProps, "choices" | "csvList" | "fieldElement" | "fieldParentTreeName" | "defaultLanguage" | "themeColor"> & ParentProps>;
 export default ConnectedGroup;

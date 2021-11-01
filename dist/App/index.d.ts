@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { resetStoreAction, setCSVObj, setFormSubmitStatus, setUserInputObj, setUserLanguage } from '../store/ducks/formState';
+import { resetStoreAction, setCSVObj, setFormSubmitStatus, setUserInputObj, setUserLanguage, setColorAction } from '../store/ducks/formState';
 export interface AppProps {
     choices: any;
     csvList: any;
@@ -12,12 +12,14 @@ export interface AppProps {
     fieldElements: any;
     setUserInputAction: typeof setUserInputObj;
     setCSVAction: typeof setCSVObj;
+    setThemeColor: typeof setColorAction;
     setUserLanguageAction: typeof setUserLanguage;
     languageOptions: any;
     setFormSubmitStatusAction: typeof setFormSubmitStatus;
     resetStoreActionCreator: typeof resetStoreAction;
     mediaList: any;
     handleSubmit(userInput: any, mediaList: any): any;
+    themeColor: string;
 }
 export interface AppState {
     defaultLanguage: string;
@@ -32,5 +34,5 @@ declare class App extends React.Component<AppProps, AppState> {
     private toggleStateValue;
 }
 /** connect Decimal component to the redux store */
-declare const ConnectedApp: import("react-redux").ConnectedComponent<typeof App, Pick<AppProps, "choices" | "csvList" | "userInputJson" | "defaultLanguage" | "formTitle" | "fieldElements" | "languageOptions" | "handleSubmit">>;
+declare const ConnectedApp: import("react-redux").ConnectedComponent<typeof App, Pick<AppProps, "choices" | "csvList" | "userInputJson" | "defaultLanguage" | "formTitle" | "fieldElements" | "languageOptions" | "handleSubmit" | "themeColor">>;
 export default ConnectedApp;

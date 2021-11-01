@@ -32,8 +32,8 @@
   margin-bottom: 20px;
   color: #2b475e;
   /* border-bottom: 1px solid #dfe3e8; */
-  border-bottom: 3px solid #BF4A51!important;
-  border-top: 3px solid #BF4A51!important;
+  border-bottom: 3px solid #649a6a;
+  border-top: 3px solid #649a6a;
   font-size: 24px;
 }
 
@@ -63,17 +63,17 @@
 
 .headerText {
   padding: 10 !important;
-  color: #BF4A51 !important;
+  color: #649a6a;
 }
 
 .hrTag {
-  border-top: 3px solid #BF4A51!important;
-  border-color: #BF4A51 !important;
+  border-top: 3px solid #649a6a;
+  border-color: #649a6a;
 }
 
 .header {
-  margin-bottom: 0 !important;
-  color: #BF4A51 !important;
+  margin-bottom: 0 ;
+  color: #649a6a;
 }
 
 

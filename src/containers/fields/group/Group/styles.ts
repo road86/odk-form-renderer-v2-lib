@@ -1,17 +1,17 @@
 import { createStyles, Theme } from '@material-ui/core';
 
-const GroupStyle = (theme: Theme) =>
-  createStyles({
+const GroupStyle = (theme: Theme, customColor: any) =>{ 
+  return createStyles({
     root: {
       '&.MuiAccordionSummary-root': {
-        borderTop: `5px solid ${theme.palette.primary.dark}`,
-        color: `${theme.palette.primary.dark} !important`,
+        borderTop: `5px solid ${customColor || theme.palette.primary.dark}`,
+        color: `${customColor || theme.palette.primary.dark} !important`,
         '&:hover': {
-          backgroundColor: `${theme.palette.primary.dark} !important`,
+          backgroundColor: `${customColor || theme.palette.primary.dark} !important`,
           color: `${theme.palette.secondary.light} !important`,
         },
         '&.Mui-expanded': {
-          backgroundColor: `${theme.palette.primary.dark} !important`,
+          backgroundColor: `${customColor || theme.palette.primary.dark} !important`,
           color: `${theme.palette.secondary.light} !important`,
         },
       },
@@ -51,7 +51,7 @@ const GroupStyle = (theme: Theme) =>
       [theme.breakpoints.up('sm')]: {
         width: theme.spacing(9),
       },
-      background: theme.palette.primary.dark,
+      background: customColor || theme.palette.primary.dark,
     },
     paper: {
       padding: theme.spacing(2),
@@ -104,7 +104,7 @@ const GroupStyle = (theme: Theme) =>
         '&.Mui-selected': { color: theme.palette.common.white, backgroundColor: theme.palette.primary.main },
         '&:hover': {
           color: theme.palette.common.white,
-          backgroundColor: theme.palette.primary.dark,
+          backgroundColor: customColor || theme.palette.primary.dark,
         },
       },
     },
@@ -118,7 +118,7 @@ const GroupStyle = (theme: Theme) =>
       [theme.breakpoints.up('sm')]: {
         width: theme.spacing(7) + 1,
       },
-      background: theme.palette.primary.dark,
+      background: customColor || theme.palette.primary.dark,
     },
     drawerOpen: {
       '&:hover': {
@@ -131,5 +131,7 @@ const GroupStyle = (theme: Theme) =>
       }),
     },
   });
+
+}
 
 export default GroupStyle;

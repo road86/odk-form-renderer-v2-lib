@@ -21,6 +21,8 @@ export interface FormState {
 
 // actions
 
+/** COLOR SET action type */
+export const SET_COLOR = 'odk/reducer/form/SET_COLOR';
 /** FIELD_VALUE_ASSIGNED action type */
 export const FIELD_VALUE_ASSIGNED = 'odk/reducer/form/FIELD_VALUE_ASSIGNED';
 /** OPTION_LIST_ASSIGNED action type */
@@ -47,6 +49,11 @@ export const SET_USER_INPUT_OBJ = 'odk/reducer/form/SET_USER_INPUT_OBJ';
 export const SET_CSV_OBJ = 'odk/reducer/form/SET_CSV_OBJ';
 export const SET_FORM_SUBMIT_STATUS = 'odk/reducer/form/SET_FORM_SUBMIT_STATUS';
 export const SET_LANGUAGE = 'odk/reducer/form/SET_LANGUAGE';
+
+export interface SetColorAction extends AnyAction {
+  color: any;
+  type: typeof SET_COLOR;
+}
 
 /** interface for ASSIGN_FIELD_VALUE action */
 export interface AssignFieldValueAction extends AnyAction {
@@ -133,6 +140,15 @@ export interface SetFormSubmitStatus extends AnyAction {
   isFormSubmitted: boolean;
   type: typeof SET_FORM_SUBMIT_STATUS;
 }
+
+/** SET COLOR
+ * @param {string} color - color code
+ */
+ export const setColorAction = (color: any): SetColorAction => ({
+  color,
+  type: SET_COLOR,
+});
+
 
 /** Assigns the value to the proper field name
  * @param {string} fieldTreeName - the extended field name
@@ -297,6 +313,7 @@ export type FormActionTypes =
   | SetUserInputObj
   | SetCSVObj
   | SetFormSubmitStatus
+  | SetColorAction
   | AnyAction;
 
 /** Create an immutable form state */
@@ -311,6 +328,7 @@ export const initialState: ImmutableFormState = SeamlessImmutable({
   userInput: {},
   language: 'English',
   csvList: {},
+  color: '',
 });
 
 /** the form reducer function */
@@ -319,6 +337,10 @@ export default function reducer(
   action: FormActionTypes
 ): ImmutableFormState {
   switch (action.type) {
+    case SET_COLOR:
+      const colorState = state.asMutable({ deep: true });
+      return SeamlessImmutable({ ...colorState, color: action.color });
+
     case FIELD_VALUE_ASSIGNED:
       const modifiedUserInputObj = getModifiedUserInputObject(
         state.getIn(['userInput']).asMutable({ deep: true }),
@@ -450,6 +472,10 @@ export default function reducer(
 }
 
 // selectors
+
+export function getThemeColor(state: Partial<Store>): any {
+  return (state as any) != undefined && (state as any).getIn(['color']);
+}
 
 /** get the value by their respective element tree name
  * @param {Partial<Store>} state - the redux store
