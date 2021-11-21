@@ -924,6 +924,26 @@ function kbToday(funcName, _params, _paramsTokens, _output, _current) {
   return [false, null];
 }
 /**
+ * kbNow parses the function now and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
+// tslint:disable-next-line: variable-name
+
+
+function kbNow(funcName, _params, _paramsTokens, _output, _current) {
+  // tslint:disable-next-line: triple-equals
+  if (funcName == 'now') {
+    var d = new Date();
+    var time = d.getHours() + ":" + d.getMinutes();
+    return [true, time];
+  }
+
+  return [false, null];
+}
+/**
  * kbToday parses the function today and returns functionParseReturnObject
  * @param funcName - the function name of the token
  * @param params - calculated value of the params tokens
@@ -1407,7 +1427,7 @@ function parseLiterals(_tmpOutput, tokens, current) {
 
 function parseFunction(_output, tokens, current) {
   // precedence of functions
-  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate, kbPullData, kbDecimalDateTime, kbDate];
+  var possibleFunctions = [kbSelected, kbCountSelected, kbChoice, kbToday, kbNow, kbRegex, kbInt, kbCoalesce, kbPosition, kbSum, kbConcat, kbSubstr, kbRound, kbFormatDate, kbPullData, kbDecimalDateTime, kbDate];
 
   if (tokens[current].type === 'function') {
     var funcName = tokens[current].value;
@@ -6763,6 +6783,8 @@ function (_React$Component) {
     _this = _React$Component.apply(this, arguments) || this;
 
     _this.onChangeHandler = function (event) {
+      console.log('time event: ', event.currentTarget.value);
+
       _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? event.currentTarget.value : null);
     };
 
@@ -6811,10 +6833,11 @@ function (_React$Component) {
         calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
       }
 
-      if (calculatedValue && fieldValue !== calculatedValue) {
+      if ((fieldValue === undefined || fieldValue == '') && calculatedValue) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
       }
 
+      console.log('time field value: ', fieldValue, calculatedValue);
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
       }, REQUIRED_SYMBOL)), createElement(Input, {

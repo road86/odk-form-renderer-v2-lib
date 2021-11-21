@@ -609,6 +609,24 @@ function kbToday(funcName: any, _params: any, _paramsTokens: any, _output: any, 
 }
 
 /**
+ * kbNow parses the function now and returns functionParseReturnObject
+ * @param funcName - the function name of the token
+ * @param params - calculated value of the params tokens
+ * @param _paramsTokens - orginal param tokens
+ * @returns functionParseReturnObject
+ */
+// tslint:disable-next-line: variable-name
+function kbNow(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+  // tslint:disable-next-line: triple-equals
+  if (funcName == 'now') {
+    const d = new Date();
+    const time = d.getHours() + ":" + d.getMinutes();
+    return [true, time];
+  }
+  return [false, null];
+}
+
+/**
  * kbToday parses the function today and returns functionParseReturnObject
  * @param funcName - the function name of the token
  * @param params - calculated value of the params tokens
@@ -1057,6 +1075,7 @@ function parseFunction(_output: any, tokens: any, current: any) {
     kbCountSelected,
     kbChoice,
     kbToday,
+    kbNow,
     kbRegex,
     kbInt,
     kbCoalesce,

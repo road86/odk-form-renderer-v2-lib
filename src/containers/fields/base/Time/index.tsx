@@ -123,12 +123,14 @@ class KbTime extends React.Component<TimeProps> {
         );
       }
 
-      if (calculatedValue && fieldValue !== calculatedValue) {
+      if ((fieldValue === undefined || fieldValue == '') && calculatedValue) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
           calculatedValue
         );
       }
+
+      console.log('time field value: ', fieldValue, calculatedValue);
 
 
       return (
@@ -175,6 +177,7 @@ class KbTime extends React.Component<TimeProps> {
   }
 
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    console.log('time event: ', event.currentTarget.value)
     this.props.assignFieldValueActionCreator(
       this.props.fieldParentTreeName + event.currentTarget.name,
       event.currentTarget.value !== '' ? event.currentTarget.value : null

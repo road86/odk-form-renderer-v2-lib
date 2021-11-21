@@ -33,7 +33,7 @@ export const DEMO_FORM_JSON = {
             "appearance": "w6"
           },
           "bind": {
-            "readonly": "TRUE"
+            // "readonly": "TRUE"
           },
           "type": "text",
           "name": "farm_id",
@@ -46,11 +46,11 @@ export const DEMO_FORM_JSON = {
             "appearance": "w6"
           },
           "bind": {
-            // "calculate": "today()",
+            "calculate": "now()",
             // "readonly": "TRUE",
           },
-          "type": "date",
-          "name": "date",
+          "type": "time",
+          "name": "timelapse",
           "label": {
             "English": "2.. Date of visit"
           }
@@ -63,19 +63,9 @@ export const DEMO_FORM_JSON = {
 }
 
 export const sampleUserInput = {
-  "username": "fao_admin",
-  "basic_info/address": "test",
-  "basic_info/mouza": "10041923102",
-  "basic_info/ownership_type": "1",
-  "basic_info/upazila": "100419",
-  "basic_info/village": "test",
-  "basic_info/owner": "sayem",
-  "basic_info/district": "1004",
-  "basic_info/person_interviewed": "2",
-  "basic_info/division": "10",
-  "basic_info/union": "10041923",
-  "basic_info/mobile": "01717842553",
-  "antibacterial_use/use_antibiotics": "0",
+  "basic_info/timelapse": "15:00",
+  "basic_info/farm_id": "1212121"
+
 };
 
 // export const CSV_LIST = {"geo.csv":[{"mouza_loc_type":"5","mouza_code":"20030431142","mouza_name":"ALIKADAM","mouza_parent":"20030431","division_name":"CHITTAGONG","union_code":"20030431","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"ALIKADAM","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030431284","mouza_name":"CHAIMFRA","mouza_parent":"20030431","division_name":"CHITTAGONG","union_code":"20030431","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"ALIKADAM","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030431994","mouza_name":"TAINFA","mouza_parent":"20030431","division_name":"CHITTAGONG","union_code":"20030431","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"ALIKADAM","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463426","mouza_name":"CHOKHYONG","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463568","mouza_name":"MANGU","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463700","mouza_name":"MATAMUHURI R.F.","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463852","mouza_name":"TAIN","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"},{"mouza_loc_type":"5","mouza_code":"20030463999","mouza_name":"CHOKHYONG","mouza_parent":"20030463","division_name":"CHITTAGONG","union_code":"20030463","upazila_code":"200304","upazila_name":"ALIKADAM","district_code":"2003","division_code":"20","union_name":"CHOKHYONG","district_name":"BANDARBAN"}]};
