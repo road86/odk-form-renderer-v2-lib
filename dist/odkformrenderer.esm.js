@@ -3947,7 +3947,7 @@ function (_React$Component) {
      */
 
     _this.onChangeHandler = function (event) {
-      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? new Date(event.currentTarget.value) : null);
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + _this.props.fieldElement.name, event !== '' ? new Date(event) : null);
     };
 
     return _this;
@@ -3956,6 +3956,8 @@ function (_React$Component) {
   var _proto = KbDate.prototype;
 
   _proto.render = function render() {
+    var _this2 = this;
+
     var _this$props = this.props,
         fieldElement = _this$props.fieldElement,
         fieldParentTreeName = _this$props.fieldParentTreeName,
@@ -3988,32 +3990,49 @@ function (_React$Component) {
         this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
       }
 
-      var defaultValue = '';
+      var defaultValue = null;
 
       if (fieldValue && fieldValue !== '') {
-        var modifiedDate = new Date(fieldValue);
-        defaultValue = modifiedDate.toISOString().slice(0, 10);
+        defaultValue = new Date(fieldValue);
       }
 
-      var calculatedValue = '';
+      var calculatedValue = null;
 
       if (fieldElement.bind && fieldElement.bind.calculate) {
         calculatedValue = this.props.getEvaluatedExpressionSelector(fieldElement.bind.calculate, fieldParentTreeName + fieldElement.name);
       }
 
-      if (calculatedValue && fieldValue !== calculatedValue) {
+      if ((fieldValue === undefined || fieldValue == '') && calculatedValue) {
         this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, calculatedValue);
       }
 
       var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
-      }, REQUIRED_SYMBOL)), createElement(Input, {
-        type: "date",
+      }, REQUIRED_SYMBOL)), createElement(DatePicker, {
+        className: "react-custom-datepicker",
+        dateFormat: "dd/MM/yyyy",
         name: fieldElement.name,
-        onChange: this.onChangeHandler,
-        value: defaultValue || calculatedValue || '',
-        readOnly: isReadonly
+        selected: defaultValue,
+        onChange: function onChange(e) {
+          return _this2.onChangeHandler(e);
+        },
+        readOnly: isReadonly,
+        placeholderText: "dd/mm/yyyy",
+        popperPlacement: "top",
+        popperModifiers: [{
+          name: "offset",
+          options: {
+            offset: [5, 10]
+          }
+        }, {
+          name: "preventOverflow",
+          options: {
+            rootBoundary: "viewport",
+            tether: false,
+            altAxis: true
+          }
+        }]
       }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
         className: "errorSign"

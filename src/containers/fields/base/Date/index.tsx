@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Input, Label } from 'reactstrap';
+import {FormGroup, Label} from 'reactstrap';
+import DatePicker from 'react-datepicker';
 import { Store } from 'redux';
 import {
   FieldElement,
@@ -110,14 +111,14 @@ class KbDate extends React.Component<DateProps> {
           fieldParentTreeName + fieldElement.name
         );
       }
-      let defaultValue: string = '';
+
+      let defaultValue: any = null;
       if (fieldValue && fieldValue !== '') {
-        const modifiedDate = new Date(fieldValue);
-        defaultValue = modifiedDate.toISOString().slice(0, 10);
+        defaultValue = new Date(fieldValue);
       }
 
 
-      let calculatedValue: any = '';
+      let calculatedValue: any = null;
       if (fieldElement.bind && fieldElement.bind.calculate) {
         calculatedValue = this.props.getEvaluatedExpressionSelector(
           fieldElement.bind.calculate,
@@ -125,7 +126,7 @@ class KbDate extends React.Component<DateProps> {
         );
       }
 
-      if (calculatedValue && fieldValue !== calculatedValue) {
+      if ((fieldValue === undefined || fieldValue == '') && calculatedValue) {
         this.props.assignFieldValueActionCreator(
           fieldParentTreeName + fieldElement.name,
           calculatedValue
@@ -143,12 +144,31 @@ class KbDate extends React.Component<DateProps> {
               <span className="requiredTextSteric">{REQUIRED_SYMBOL}</span>
             )}
           </Label>
-          <Input
-            type="date"
+          <DatePicker
+            className="react-custom-datepicker"
+            dateFormat="dd/MM/yyyy"
             name={fieldElement.name}
-            onChange={this.onChangeHandler}
-            value={defaultValue || calculatedValue || ''}
+            selected={defaultValue}
+            onChange={(e: any) => this.onChangeHandler(e)}
             readOnly={isReadonly}
+            placeholderText="dd/mm/yyyy"
+            popperPlacement="top"
+            popperModifiers={[
+              {
+                name: "offset",
+                options: {
+                  offset: [5, 10],
+                },
+              },
+              {
+                name: "preventOverflow",
+                options: {
+                  rootBoundary: "viewport",
+                  tether: false,
+                  altAxis: true,
+                },
+              },
+            ] as any}
           />
           {isFormSubmitted && isError && (
             <FontAwesomeIcon icon="exclamation-circle" className="errorSign" />
@@ -181,11 +201,11 @@ class KbDate extends React.Component<DateProps> {
   /** sets the value of field element in store
    * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
    */
-  private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+  private onChangeHandler = (event: any) => {
     this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + event.currentTarget.name,
-      event.currentTarget.value !== ''
-        ? new Date(event.currentTarget.value)
+      this.props.fieldParentTreeName + this.props.fieldElement.name,
+      event !== ''
+        ? new Date(event)
         : null
     );
   };

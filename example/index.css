@@ -1,5 +1,10 @@
-.react-datepicker-wrapper {
+.react-custom-datepicker {
+  display: block;
   width: 100%;
+  padding: "5px";
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
 }
 
 .hintText,
