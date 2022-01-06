@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { resetStoreAction, setCSVObj, setFormSubmitStatus, setUserInputObj, setUserLanguage, setColorAction } from '../store/ducks/formState';
+import { resetStoreAction, setCSVObj, setFormSubmitStatus, setUserInputObj, setUserLanguage, setColorAction, assignFieldValueAction } from '../store/ducks/formState';
 export interface AppProps {
     choices: any;
     csvList: any;
@@ -20,6 +20,7 @@ export interface AppProps {
     mediaList: any;
     handleSubmit(userInput: any, mediaList: any): any;
     themeColor: string;
+    assignFieldValueActionCreator: typeof assignFieldValueAction;
 }
 export interface AppState {
     defaultLanguage: string;
@@ -28,6 +29,7 @@ export interface AppState {
 declare class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps);
     componentDidMount(): void;
+    componentWillUnmount(): void;
     handleSelect: (languageName: string) => void;
     render(): JSX.Element;
     private handleClick;

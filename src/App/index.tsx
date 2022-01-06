@@ -22,6 +22,7 @@ import {
   setUserInputObj,
   setUserLanguage,
   setColorAction,
+  assignFieldValueAction,
 } from '../store/ducks/formState';
 
 library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
@@ -46,6 +47,7 @@ export interface AppProps {
   mediaList: any;
   handleSubmit(userInput: any, mediaList: any): any;
   themeColor: string;
+  assignFieldValueActionCreator: typeof assignFieldValueAction;
 }
 
 export interface AppState {
@@ -60,6 +62,10 @@ class App extends React.Component<AppProps, AppState> {
 
   public componentDidMount() {
     const { userInputJson, userInputObj, csvList, csvObj } = this.props;
+    /** assigning the start date by default */
+    const _start = userInputJson.start;
+    this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
+
     this.props.resetStoreActionCreator();
     this.props.setThemeColor(this.props.themeColor);
     if (userInputJson && userInputJson !== userInputObj) {
@@ -68,11 +74,18 @@ class App extends React.Component<AppProps, AppState> {
     if (csvList && csvList !== csvObj) {
       this.props.setCSVAction(csvList);
     }
+
     this.props.setUserLanguageAction(this.props.defaultLanguage);
     this.setState({
       defaultLanguage: this.props.defaultLanguage,
       isSubmissionError: false,
     });
+  }
+
+  public componentWillUnmount() {
+    /** assigning the end date by default */
+    const _end: any = this.props.userInputJson.end;
+    this.props.assignFieldValueActionCreator('end', _end ? _end : new Date());
   }
 
   public handleSelect = (languageName: string) => {
@@ -103,9 +116,9 @@ class App extends React.Component<AppProps, AppState> {
 
     return (
       <Container className="form-container">
-        <Row className="formTitle" style={{borderBottom: `3px solid ${themeColor}`, borderTop: `3px solid ${themeColor}`}}>
+        <Row className="formTitle" style={{ borderBottom: `3px solid ${themeColor}`, borderTop: `3px solid ${themeColor}` }}>
           <Col>
-            <h3 className="headerText" style={{color: `${themeColor || '#649a6a'} `}}>{formTitle}</h3>
+            <h3 className="headerText" style={{ color: `${themeColor || '#649a6a'} ` }}>{formTitle}</h3>
           </Col>
           <DropDown
             languages={...languageOptions}
@@ -125,7 +138,7 @@ class App extends React.Component<AppProps, AppState> {
           />
         )}
         <Row>
-          <Col style={{ padding: 0}}>
+          <Col style={{ padding: 0 }}>
             <GroupTypeEvaluator {...props} />
             <Row className="welcome-box" style={{ padding: 10 }}>
               <Col>
@@ -188,6 +201,7 @@ const mapDispatchToProps = {
   setUserLanguageAction: setUserLanguage,
   setCSVAction: setCSVObj,
   setThemeColor: setColorAction,
+  assignFieldValueActionCreator: assignFieldValueAction,
 };
 
 /** connect Decimal component to the redux store */

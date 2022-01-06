@@ -7221,6 +7221,10 @@ function (_React$Component) {
         userInputObj = _this$props2.userInputObj,
         csvList = _this$props2.csvList,
         csvObj = _this$props2.csvObj;
+    /** assigning the start date by default */
+
+    var _start = userInputJson.start;
+    this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
     this.props.resetStoreActionCreator();
     this.props.setThemeColor(this.props.themeColor);
 
@@ -7237,6 +7241,12 @@ function (_React$Component) {
       defaultLanguage: this.props.defaultLanguage,
       isSubmissionError: false
     });
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    /** assigning the end date by default */
+    var _end = this.props.userInputJson.end;
+    this.props.assignFieldValueActionCreator('end', _end ? _end : new Date());
   };
 
   _proto.render = function render() {
@@ -7321,7 +7331,8 @@ var mapDispatchToProps$h = {
   setUserInputAction: setUserInputObj,
   setUserLanguageAction: setUserLanguage,
   setCSVAction: setCSVObj,
-  setThemeColor: setColorAction
+  setThemeColor: setColorAction,
+  assignFieldValueActionCreator: assignFieldValueAction
 };
 /** connect Decimal component to the redux store */
 
