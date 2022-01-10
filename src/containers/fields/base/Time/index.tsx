@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from 'moment';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, Input, Label } from 'reactstrap';
@@ -131,7 +132,10 @@ class KbTime extends React.Component<TimeProps> {
       }
 
       console.log('time field value: ', fieldValue, calculatedValue);
-
+      const formatTime = (d: any) => {
+        if (d === undefined) return '';
+        return moment(d).format('HH:mm');
+      }
 
       return (
         <FormGroup>
@@ -145,7 +149,7 @@ class KbTime extends React.Component<TimeProps> {
             type="time"
             name={fieldElement.name}
             onChange={this.onChangeHandler}
-            value={fieldValue || calculatedValue || ''}
+            value={formatTime(fieldValue) || formatTime(calculatedValue) || ''}
             readOnly={isReadonly}
           />
           {isFormSubmitted && isError && (
@@ -177,11 +181,21 @@ class KbTime extends React.Component<TimeProps> {
   }
 
   private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log('time event: ', event.currentTarget.value)
-    this.props.assignFieldValueActionCreator(
-      this.props.fieldParentTreeName + event.currentTarget.name,
-      event.currentTarget.value !== '' ? event.currentTarget.value : null
-    );
+    console.log('time event: ', event.currentTarget.value);
+
+    if (event.currentTarget.value != '') {
+      const hour = event.currentTarget.value.split(':')[0];
+      const minutes = event.currentTarget.value.split(':')[1];
+
+      const time = moment(this.props.fieldValue).toDate();
+      time.setHours(parseInt(hour));
+      time.setMinutes(parseInt(minutes));
+
+      this.props.assignFieldValueActionCreator(
+        this.props.fieldParentTreeName + event.currentTarget.name,
+        moment(time).format(),
+      );
+    }
   };
 }
 

@@ -526,7 +526,7 @@ function tokenizer(input: any) {
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbSelected(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbSelected(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   if (funcName === 'selected') {
     let tmp = false;
     if (Array.isArray(params[0])) {
@@ -543,12 +543,12 @@ function kbSelected(funcName: any, params: any, _paramsTokens: any, _output: any
 }
 
 // tslint:disable-next-line: variable-name
-function kbChoice(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbChoice(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   if (funcName === 'jr:choice-name') {
     const tmpHierchicalName = currentHierarchicalName.split('/');
     let i;
     let parent = '';
-    for (i = 0; i < tmpHierchicalName.length - 1; ) {
+    for (i = 0; i < tmpHierchicalName.length - 1;) {
       // tslint:disable-next-line: triple-equals
       if (tmpHierchicalName[i] == 'repeat') {
         i += 3;
@@ -576,7 +576,7 @@ function kbChoice(funcName: any, params: any, _paramsTokens: any, _output: any, 
 }
 
 // tslint:disable-next-line: variable-name
-function kbPullData(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbPullData(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   if (funcName === 'pulldata') {
     const state = store.getState();
     const csv = state.csvList[params[0] + '.csv'];
@@ -598,7 +598,7 @@ function kbPullData(funcName: any, params: any, _paramsTokens: any, _output: any
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbToday(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbToday(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'today') {
     const d = new Date();
@@ -616,12 +616,11 @@ function kbToday(funcName: any, _params: any, _paramsTokens: any, _output: any, 
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbNow(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbNow(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'now') {
-    const d = new Date();
-    const time = d.getHours() + ":" + d.getMinutes();
-    return [true, time];
+    const d = moment().format();
+    return [true, d];
   }
   return [false, null];
 }
@@ -634,7 +633,7 @@ function kbNow(funcName: any, _params: any, _paramsTokens: any, _output: any, _c
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbDecimalDateTime(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbDecimalDateTime(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'decimal-date-time') {
     if (_params[0]) {
@@ -654,11 +653,11 @@ function kbDecimalDateTime(funcName: any, _params: any, _paramsTokens: any, _out
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbDate(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbDate(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'date') {
     if (_params[0]) {
-      const date = (new Date("01/01/1970")).getTime() + _params[0]*24*60*60*1000;
+      const date = (new Date("01/01/1970")).getTime() + _params[0] * 24 * 60 * 60 * 1000;
       return [true, new Date(date)];
     }
   }
@@ -674,7 +673,7 @@ function kbDate(funcName: any, _params: any, _paramsTokens: any, _output: any, _
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbFormatDate(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbFormatDate(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'format-date') {
     if (_params.length == 2) {
@@ -682,13 +681,13 @@ function kbFormatDate(funcName: any, _params: any, _paramsTokens: any, _output: 
       let date = null;
       if (_params[1].includes('%a')) {
         const day = _params[1].replace("%a", "ddd");
-        date = _params[0] != null ? moment(_params[0]).format(`${day}`) : null ;
-      } else if(_params[1].includes('d')) {
+        date = _params[0] != null ? moment(_params[0]).format(`${day}`) : null;
+      } else if (_params[1].includes('d')) {
         format = _params[1].replace("%d", "DD").replace("%m", "MM").replace("%Y", "YYYY").replace("%y", "YY");
-        date = _params[0] != null ? moment(_params[0]).format(format) : null ;
+        date = _params[0] != null ? moment(_params[0]).format(format) : null;
       } else if (_params[1].includes('b')) {
         const month = _params[1].replace("%b", "MMM");
-        date = _params[0] != null ? moment(_params[0]).format(`${month}`) : null ;
+        date = _params[0] != null ? moment(_params[0]).format(`${month}`) : null;
       }
       return [true, date];
     }
@@ -704,7 +703,7 @@ function kbFormatDate(funcName: any, _params: any, _paramsTokens: any, _output: 
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbRound(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbRound(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'round') {
     if (params[0] && params[1]) {
@@ -727,7 +726,7 @@ function kbRound(funcName: any, params: any, _paramsTokens: any, _output: any, _
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbRegex(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbRegex(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'regex') {
     const regex = RegExp(params[1]);
@@ -744,7 +743,7 @@ function kbRegex(funcName: any, params: any, _paramsTokens: any, _output: any, _
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbCountSelected(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbCountSelected(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'count-selected') {
     if (params[0] && Array.isArray(params[0])) {
@@ -766,7 +765,7 @@ function kbCountSelected(funcName: any, params: any, _paramsTokens: any, _output
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbInt(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbInt(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'int') {
     if (typeof params[0] === 'string') {
@@ -784,7 +783,7 @@ function kbInt(funcName: any, params: any, _paramsTokens: any, _output: any, _cu
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbCoalesce(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbCoalesce(funcName: any, params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'coalesce') {
     if (!params[0] && params[0] !== 0) {
@@ -803,7 +802,7 @@ function kbCoalesce(funcName: any, params: any, _paramsTokens: any, _output: any
  * @returns functionParseReturnObject
  */
 // tslint:disable-next-line: variable-name
-function kbPosition(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any ) {
+function kbPosition(funcName: any, _params: any, _paramsTokens: any, _output: any, _current: any) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'position') {
     if (currentHierarchicalName) {
@@ -973,7 +972,7 @@ function parseMostClosestScopedVariable(variableName: any) {
     tmpUserInput
   );
   let parent = '';
-  for (i = 0; i < tmpHierchicalName.length - 1; ) {
+  for (i = 0; i < tmpHierchicalName.length - 1;) {
     // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;
@@ -1002,7 +1001,7 @@ function parseDot() {
   let tmpUserInput = userInput;
   let parent = '';
   const path = [];
-  for (i = 0; i < tmpHierchicalName.length - 1; ) {
+  for (i = 0; i < tmpHierchicalName.length - 1;) {
     // tslint:disable-next-line: triple-equals
     if (tmpHierchicalName[i] == 'repeat') {
       i += 1;

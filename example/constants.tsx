@@ -45,16 +45,21 @@ export const DEMO_FORM_JSON = {
           "control": {
             "appearance": "w6"
           },
-          "bind": {
-            "calculate": "now()",
-            // "readonly": "TRUE",
-          },
+          // "bind": {
+          //   "calculate": "now()",
+          //   // "readonly": "TRUE",
+          // },
           "type": "time",
           "name": "timelapse",
           "label": {
             "English": "2.. Date of visit"
           }
-        }
+        },
+        {
+          "name": "gps",
+          "label": "GPS",
+          "type": "gps"
+        },
       ],
       "name": "basic_info",
       "type": "group"
@@ -63,7 +68,8 @@ export const DEMO_FORM_JSON = {
 }
 
 export const sampleUserInput = {
-  "basic_info/timelapse": "15:00",
+  // "basic_info/timelapse": "15:00",
+  // "basic_info/timelapse": "2022-01-10T10:01:50+06:00",
   "basic_info/farm_id": "1212121",
   "start": "2022-01-06T10:20:16.936Z",
   "end": "2022-01-06T10:22:16.936Z",

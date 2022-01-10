@@ -228,7 +228,8 @@ var FILE_FIELD_TYPE = 'file';
 var NOTE_FIELD_TYPE = 'note';
 var SELECT_ONE_FIELD_TYPE = 'select one';
 var SELECT_ALL_FIELD_TYPE = 'select all that apply';
-var CALCULATE_FIELD_TYPE = 'calculate'; // Required Properties
+var CALCULATE_FIELD_TYPE = 'calculate';
+var GPS_FIELD_TYPE = 'gps'; // Required Properties
 
 var REQUIRED_FIELD_MSG = 'This field is required';
 var REQUIRED_SYMBOL = '*';
@@ -936,9 +937,8 @@ function kbToday(funcName, _params, _paramsTokens, _output, _current) {
 function kbNow(funcName, _params, _paramsTokens, _output, _current) {
   // tslint:disable-next-line: triple-equals
   if (funcName == 'now') {
-    var d = new Date();
-    var time = d.getHours() + ":" + d.getMinutes();
-    return [true, time];
+    var d = moment().format();
+    return [true, d];
   }
 
   return [false, null];
@@ -4641,6 +4641,197 @@ var ConnectedFile =
 /*#__PURE__*/
 connect(mapStateToProps$8, mapDispatchToProps$8)(File);
 
+var Text =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(Text, _React$Component);
+
+  function Text(props) {
+    var _this;
+
+    _this = _React$Component.call(this, props) || this;
+
+    _this.geoLocation = function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(_this.showPosition, _this.showError);
+        console.log("geolocation ache: ", navigator.geolocation);
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    };
+
+    _this.showPosition = function (position) {
+      console.log('----- lat lan ---------');
+
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + _this.props.fieldElement.name, position.coords.latitude + ", " + position.coords.longitude);
+
+      console.log(position.coords);
+    };
+
+    _this.showError = function (error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          console.log("User denied the request for Geolocation.");
+          break;
+
+        case error.POSITION_UNAVAILABLE:
+          console.log("Location information is unavailable.");
+          break;
+
+        case error.TIMEOUT:
+          console.log("The request to get user location timed out.");
+          break;
+
+        case error.UNKNOWN_ERROR:
+          console.log("An unknown error occurred.");
+          break;
+      }
+    };
+    /** sets the value of field element in store
+     * @param {React.FormEvent<HTMLInputElement>} event - the onchange input event
+     */
+    // private onChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    //     this.geoLocation();
+    //     this.setState({
+    //         ...this.state,
+    //         fieldValue: event.currentTarget.value || '',
+    //         isFocused: true,
+    //     });
+    // };
+
+
+    _this.onBlurHandler = function (event) {
+      _this.setState(_extends({}, _this.state, {
+        fieldValue: event.currentTarget.value || '',
+        isFocused: false
+      }));
+
+      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value || '');
+    };
+
+    _this.state = {
+      fieldValue: '',
+      isFocused: false
+    };
+    return _this;
+  }
+
+  var _proto = Text.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.geoLocation();
+  };
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        fieldElement = _this$props.fieldElement,
+        fieldParentTreeName = _this$props.fieldParentTreeName,
+        fieldValue = _this$props.fieldValue,
+        isComponentRender = _this$props.isComponentRender,
+        getEvaluatedExpressionSelector = _this$props.getEvaluatedExpressionSelector,
+        getFormSubmitStatusSelector = _this$props.getFormSubmitStatusSelector,
+        isPresentInErrorSelector = _this$props.isPresentInErrorSelector,
+        defaultLanguage = _this$props.defaultLanguage;
+    var isRequired = isInputRequired(fieldElement);
+    var isFormSubmitted = getFormSubmitStatusSelector;
+    var isRequiredViolated = isRequired && (!fieldValue || fieldValue === '');
+    var isConstraintViolated = fieldValue && fieldValue !== '' && shouldInputViolatesConstraint(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector);
+    var fieldLabel = getFieldLabelText(fieldElement, defaultLanguage);
+    var modifiedFieldLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, fieldLabel, fieldParentTreeName + fieldElement.name);
+    var constraintLabel = getConstraintLabelText(fieldElement, defaultLanguage);
+    var modifiedConstraintLabel = customizeLabelsWithPreviousInputs(getEvaluatedExpressionSelector, constraintLabel, fieldParentTreeName + fieldElement.name);
+    var hintLabel = getHintLabelText(fieldElement, defaultLanguage);
+
+    if (isComponentRender) {
+      if (fieldValue == null && 'default' in fieldElement) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, fieldElement["default"]);
+      }
+
+      if ((isRequiredViolated || isConstraintViolated) && !isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+        this.props.addErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
+      } else if (!isRequiredViolated && !isConstraintViolated && isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+        this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
+      }
+
+      var isError = isPresentInErrorSelector(fieldParentTreeName + fieldElement.name);
+      return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
+        className: "requiredTextSteric"
+      }, REQUIRED_SYMBOL)), createElement(Input, {
+        type: "text",
+        name: fieldElement.name,
+        onBlur: this.onBlurHandler,
+        value: this.state.isFocused ? this.state.fieldValue || '' : fieldValue || '',
+        readOnly: true
+      }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
+        icon: "exclamation-circle",
+        className: "errorSign"
+      }), fieldElement.hint && createElement(Label, {
+        className: "hintText"
+      }, hintLabel), isFormSubmitted && isRequiredViolated && createElement(Label, {
+        className: "requiredText"
+      }, REQUIRED_FIELD_MSG), isConstraintViolated && createElement(Label, {
+        className: "constraintText"
+      }, modifiedConstraintLabel));
+    } else {
+      if (this.state.isFocused) {
+        this.setState(_extends({}, this.state, {
+          isFocused: false
+        }));
+      }
+
+      if (fieldValue != null) {
+        this.props.assignFieldValueActionCreator(fieldParentTreeName + fieldElement.name, null);
+
+        if (isPresentInErrorSelector(fieldParentTreeName + fieldElement.name)) {
+          this.props.removeErrorInputIdActionCreator(fieldParentTreeName + fieldElement.name);
+        }
+      }
+
+      return null;
+    }
+  };
+
+  return Text;
+}(Component);
+/** Map props to state  */
+
+
+var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
+  var fieldElement = parentProps.fieldElement,
+      fieldParentTreeName = parentProps.fieldParentTreeName;
+
+  var getEvaluatedExpressionSelector = function getEvaluatedExpressionSelector(expression, fieldTreeName) {
+    return getEvaluatedExpression(state, expression, fieldTreeName);
+  };
+
+  var isPresentInErrorSelector = function isPresentInErrorSelector(fieldTreeName) {
+    return isPresentInError(state, fieldTreeName);
+  };
+
+  var getFormSubmitStatusSelector = getFormSubmitStatus(state);
+  var result = {
+    fieldValue: getFieldValue(state, fieldParentTreeName + fieldElement.name),
+    getEvaluatedExpressionSelector: getEvaluatedExpressionSelector,
+    getFormSubmitStatusSelector: getFormSubmitStatusSelector,
+    isComponentRender: shouldComponentBeRelevant(fieldElement, fieldParentTreeName, getEvaluatedExpressionSelector),
+    isPresentInErrorSelector: isPresentInErrorSelector
+  };
+  return result;
+};
+/** map props to actions */
+
+
+var mapDispatchToProps$9 = {
+  addErrorInputIdActionCreator: addErrorInputId,
+  assignFieldValueActionCreator: assignFieldValueAction,
+  removeErrorInputIdActionCreator: removeErrorInputId
+};
+/** connect Text component to the redux store */
+
+var ConnectedText =
+/*#__PURE__*/
+connect(mapStateToProps$9, mapDispatchToProps$9)(Text);
+
 var Integer =
 /*#__PURE__*/
 function (_React$Component) {
@@ -4784,7 +4975,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
+var mapStateToProps$a = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4809,7 +5000,7 @@ var mapStateToProps$9 = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$9 = {
+var mapDispatchToProps$a = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -4818,7 +5009,7 @@ var mapDispatchToProps$9 = {
 
 var ConnectedInteger =
 /*#__PURE__*/
-connect(mapStateToProps$9, mapDispatchToProps$9)(Integer);
+connect(mapStateToProps$a, mapDispatchToProps$a)(Integer);
 
 var Note =
 /*#__PURE__*/
@@ -4887,7 +5078,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$a = function mapStateToProps(state, parentProps) {
+var mapStateToProps$b = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -4910,7 +5101,7 @@ var mapStateToProps$a = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$a = {
+var mapDispatchToProps$b = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -4919,7 +5110,7 @@ var mapDispatchToProps$a = {
 
 var ConnectedNote =
 /*#__PURE__*/
-connect(mapStateToProps$a, mapDispatchToProps$a)(Note);
+connect(mapStateToProps$b, mapDispatchToProps$b)(Note);
 
 var customStyles = {
   // For the select itself (not the options)
@@ -5316,7 +5507,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$b = function mapStateToProps(state, parentProps) {
+var mapStateToProps$c = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -5347,7 +5538,7 @@ var mapStateToProps$b = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$b = {
+var mapDispatchToProps$c = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -5357,7 +5548,7 @@ var mapDispatchToProps$b = {
 
 var ConnectedSelectAllDropDown =
 /*#__PURE__*/
-connect(mapStateToProps$b, mapDispatchToProps$b)(SelectAllDropDown);
+connect(mapStateToProps$c, mapDispatchToProps$c)(SelectAllDropDown);
 
 var SelectAllRadio =
 /*#__PURE__*/
@@ -5805,7 +5996,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$c = function mapStateToProps(state, parentProps) {
+var mapStateToProps$d = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -5836,7 +6027,7 @@ var mapStateToProps$c = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$c = {
+var mapDispatchToProps$d = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -5846,7 +6037,7 @@ var mapDispatchToProps$c = {
 
 var ConnectedSelectAllRadio =
 /*#__PURE__*/
-connect(mapStateToProps$c, mapDispatchToProps$c)(SelectAllRadio);
+connect(mapStateToProps$d, mapDispatchToProps$d)(SelectAllRadio);
 
 var SelectAll =
 /*#__PURE__*/
@@ -6175,7 +6366,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$d = function mapStateToProps(state, parentProps) {
+var mapStateToProps$e = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -6206,7 +6397,7 @@ var mapStateToProps$d = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$d = {
+var mapDispatchToProps$e = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -6216,7 +6407,7 @@ var mapDispatchToProps$d = {
 
 var ConnectedSelectOneDropDown =
 /*#__PURE__*/
-connect(mapStateToProps$d, mapDispatchToProps$d)(SelectOneDropDown);
+connect(mapStateToProps$e, mapDispatchToProps$e)(SelectOneDropDown);
 
 var SelectOneRadio =
 /*#__PURE__*/
@@ -6524,7 +6715,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$e = function mapStateToProps(state, parentProps) {
+var mapStateToProps$f = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -6555,7 +6746,7 @@ var mapStateToProps$e = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$e = {
+var mapDispatchToProps$f = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   assignOptionListActionCreator: assignOptionListAction,
@@ -6565,7 +6756,7 @@ var mapDispatchToProps$e = {
 
 var ConnectedSelectOneRadio =
 /*#__PURE__*/
-connect(mapStateToProps$e, mapDispatchToProps$e)(SelectOneRadio);
+connect(mapStateToProps$f, mapDispatchToProps$f)(SelectOneRadio);
 
 var SelectOne =
 /*#__PURE__*/
@@ -6591,7 +6782,7 @@ function (_React$Component) {
   return SelectOne;
 }(Component);
 
-var Text =
+var Text$1 =
 /*#__PURE__*/
 function (_React$Component) {
   _inheritsLoose(Text, _React$Component);
@@ -6736,7 +6927,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$f = function mapStateToProps(state, parentProps) {
+var mapStateToProps$g = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -6761,16 +6952,16 @@ var mapStateToProps$f = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$f = {
+var mapDispatchToProps$g = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
 };
 /** connect Text component to the redux store */
 
-var ConnectedText =
+var ConnectedText$1 =
 /*#__PURE__*/
-connect(mapStateToProps$f, mapDispatchToProps$f)(Text);
+connect(mapStateToProps$g, mapDispatchToProps$g)(Text$1);
 
 var KbTime =
 /*#__PURE__*/
@@ -6785,7 +6976,15 @@ function (_React$Component) {
     _this.onChangeHandler = function (event) {
       console.log('time event: ', event.currentTarget.value);
 
-      _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, event.currentTarget.value !== '' ? event.currentTarget.value : null);
+      if (event.currentTarget.value != '') {
+        var hour = event.currentTarget.value.split(':')[0];
+        var minutes = event.currentTarget.value.split(':')[1];
+        var time = moment(_this.props.fieldValue).toDate();
+        time.setHours(parseInt(hour));
+        time.setMinutes(parseInt(minutes));
+
+        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.currentTarget.name, moment(time).format());
+      }
     };
 
     return _this;
@@ -6838,13 +7037,20 @@ function (_React$Component) {
       }
 
       console.log('time field value: ', fieldValue, calculatedValue);
+
+      var formatTime = function formatTime(d) {
+        if (d === undefined) return ''; // return d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+
+        return moment(d).format('HH:mm');
+      };
+
       return createElement(FormGroup, null, createElement(Label, null, modifiedFieldLabel, ' ', isRequired && createElement("span", {
         className: "requiredTextSteric"
       }, REQUIRED_SYMBOL)), createElement(Input, {
         type: "time",
         name: fieldElement.name,
         onChange: this.onChangeHandler,
-        value: fieldValue || calculatedValue || '',
+        value: formatTime(fieldValue) || formatTime(calculatedValue) || '',
         readOnly: isReadonly
       }), isFormSubmitted && isError && createElement(FontAwesomeIcon, {
         icon: "exclamation-circle",
@@ -6874,7 +7080,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$g = function mapStateToProps(state, parentProps) {
+var mapStateToProps$h = function mapStateToProps(state, parentProps) {
   var fieldElement = parentProps.fieldElement,
       fieldParentTreeName = parentProps.fieldParentTreeName;
 
@@ -6899,7 +7105,7 @@ var mapStateToProps$g = function mapStateToProps(state, parentProps) {
 /** map props to actions */
 
 
-var mapDispatchToProps$g = {
+var mapDispatchToProps$h = {
   addErrorInputIdActionCreator: addErrorInputId,
   assignFieldValueActionCreator: assignFieldValueAction,
   removeErrorInputIdActionCreator: removeErrorInputId
@@ -6908,7 +7114,7 @@ var mapDispatchToProps$g = {
 
 var ConnectedTime =
 /*#__PURE__*/
-connect(mapStateToProps$g, mapDispatchToProps$g)(KbTime);
+connect(mapStateToProps$h, mapDispatchToProps$h)(KbTime);
 
 var BaseTypeEvaluator =
 /*#__PURE__*/
@@ -6941,7 +7147,7 @@ function (_React$Component) {
   _proto.typeEvaluator = function typeEvaluator(choices, csvList, fieldElement, fieldParentTreeName, defaultLanguage) {
     switch (fieldElement.type) {
       case TEXT_FIELD_TYPE:
-        return createElement(ConnectedText, {
+        return createElement(ConnectedText$1, {
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage
@@ -7023,6 +7229,13 @@ function (_React$Component) {
 
       case FILE_FIELD_TYPE:
         return createElement(ConnectedFile, {
+          fieldElement: fieldElement,
+          fieldParentTreeName: fieldParentTreeName,
+          defaultLanguage: defaultLanguage
+        });
+
+      case GPS_FIELD_TYPE:
+        return createElement(ConnectedText, {
           fieldElement: fieldElement,
           fieldParentTreeName: fieldParentTreeName,
           defaultLanguage: defaultLanguage
@@ -7140,7 +7353,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$h = function mapStateToProps(state) {
+var mapStateToProps$i = function mapStateToProps(state) {
   var getEvaluatedExpressionSelector = function getEvaluatedExpressionSelector(expression, fieldTreeName) {
     return getEvaluatedExpression(state, expression, fieldTreeName);
   };
@@ -7155,7 +7368,7 @@ var mapStateToProps$h = function mapStateToProps(state) {
 
 var ConnectedGroupTypeEvaluator =
 /*#__PURE__*/
-connect(mapStateToProps$h)(GroupTypeEvaluator);
+connect(mapStateToProps$i)(GroupTypeEvaluator);
 
 library.add(faPlusCircle, faMinusCircle, faExclamationCircle);
 
@@ -7313,7 +7526,7 @@ function (_React$Component) {
 /** Map props to state  */
 
 
-var mapStateToProps$i = function mapStateToProps(state) {
+var mapStateToProps$j = function mapStateToProps(state) {
   var result = {
     isNoErrors: isErrorsArrayEmpty(state),
     mediaList: getAllFileObjects(state),
@@ -7325,7 +7538,7 @@ var mapStateToProps$i = function mapStateToProps(state) {
 /** map props to actions */
 
 
-var mapDispatchToProps$h = {
+var mapDispatchToProps$i = {
   resetStoreActionCreator: resetStoreAction,
   setFormSubmitStatusAction: setFormSubmitStatus,
   setUserInputAction: setUserInputObj,
@@ -7338,7 +7551,7 @@ var mapDispatchToProps$h = {
 
 var ConnectedApp =
 /*#__PURE__*/
-connect(mapStateToProps$i, mapDispatchToProps$h)(App);
+connect(mapStateToProps$j, mapDispatchToProps$i)(App);
 
 var OdkFormRenderer =
 /*#__PURE__*/

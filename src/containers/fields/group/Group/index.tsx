@@ -38,7 +38,7 @@ export interface GroupProps {
   isErrorsIncludeGroupFieldsSelector: any;
   emptyGroupFieldsActionCreator: typeof emptyGroupFields;
   removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
-  themeColor: string;
+  themeColor?: string;
 }
 
 function Group(props: GroupProps) {

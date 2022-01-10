@@ -13,7 +13,7 @@ export interface GroupProps {
     isErrorsIncludeGroupFieldsSelector: any;
     emptyGroupFieldsActionCreator: typeof emptyGroupFields;
     removeGroupFieldsFromErrorsActionCreator: typeof removeGroupFieldsFromErrors;
-    themeColor: string;
+    themeColor?: string;
 }
 declare function Group(props: GroupProps): JSX.Element | null;
 /** Interface to describe props from parent */

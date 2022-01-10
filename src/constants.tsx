@@ -27,6 +27,8 @@ export const SELECT_ALL_FIELD_TYPE = 'select all that apply';
 export type SELECT_ALL_FIELD_TYPE = typeof SELECT_ALL_FIELD_TYPE;
 export const CALCULATE_FIELD_TYPE = 'calculate';
 export type CALCULATE_FIELD_TYPE = typeof CALCULATE_FIELD_TYPE;
+export const GPS_FIELD_TYPE = 'gps';
+export type GPS_FIELD_TYPE = typeof GPS_FIELD_TYPE;
 
 // Required Properties
 export const REQUIRED_FIELD_MSG = 'This field is required';

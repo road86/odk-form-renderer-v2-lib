@@ -5,6 +5,7 @@ import {
   DATE_TIME_FIELD_TYPE,
   DECIMAL_FIELD_TYPE,
   FILE_FIELD_TYPE,
+  GPS_FIELD_TYPE,
   INTEGER_FIELD_TYPE,
   NOTE_FIELD_TYPE,
   PHOTO_FIELD_TYPE,
@@ -18,6 +19,7 @@ import KbDate from '../../../containers/fields/base/Date';
 import DateTime from '../../../containers/fields/base/Date Time';
 import Decimal from '../../../containers/fields/base/Decimal';
 import File from '../../../containers/fields/base/File';
+import GPS from '../../../containers/fields/base/GPS';
 import Integer from '../../../containers/fields/base/Integer';
 import Note from '../../../containers/fields/base/Note';
 import SelectAll from '../../../containers/fields/base/Select All';
@@ -189,6 +191,14 @@ class BaseTypeEvaluator extends React.Component<BaseTypeEvaluatorProps> {
       case FILE_FIELD_TYPE:
         return (
           <File
+            fieldElement={fieldElement}
+            fieldParentTreeName={fieldParentTreeName}
+            defaultLanguage={defaultLanguage}
+          />
+        );
+      case GPS_FIELD_TYPE:
+        return (
+          <GPS
             fieldElement={fieldElement}
             fieldParentTreeName={fieldParentTreeName}
             defaultLanguage={defaultLanguage}
