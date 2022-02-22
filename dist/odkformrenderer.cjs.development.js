@@ -4862,13 +4862,13 @@ function (_React$Component) {
 
     return React__default.createElement(React__default.Fragment, null, React__default.createElement("p", {
       className: "text-muted"
-    }, "Uploaded File Name: ", React__default.createElement("strong", {
+    }, "Uploaded Audio File Name: ", React__default.createElement("strong", {
       className: "text-primary"
     }, " ", fieldValue, " ")), React__default.createElement("br", null), React__default.createElement(reactstrap.Button, {
       size: "sm",
       color: "danger",
       onClick: removeHandler
-    }, "Remove File"));
+    }, "Remove Audio File"));
   };
 
   return AudioPreview;
