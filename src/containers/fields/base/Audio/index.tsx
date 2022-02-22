@@ -176,7 +176,7 @@ class Audio extends React.Component<FileProps> {
         if (event.target.files[0]) {
             this.props.assignFieldValueActionCreator(
                 this.props.fieldParentTreeName + event.target.name,
-                event.target.files[0]
+                event.target.files[0].name
             );
             this.props.addMediaListActionCreator(event.target.files[0]);
         } else {

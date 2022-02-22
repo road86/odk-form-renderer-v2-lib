@@ -4864,11 +4864,7 @@ function (_React$Component) {
       className: "text-muted"
     }, "Uploaded File Name: ", React__default.createElement("strong", {
       className: "text-primary"
-    }, " ", fieldValue.name, " ")), React__default.createElement("audio", {
-      id: "sound",
-      controls: true,
-      src: URL.createObjectURL(fieldValue)
-    }), React__default.createElement("br", null), React__default.createElement(reactstrap.Button, {
+    }, " ", fieldValue, " ")), React__default.createElement("br", null), React__default.createElement(reactstrap.Button, {
       size: "sm",
       color: "danger",
       onClick: removeHandler
@@ -4914,7 +4910,7 @@ function (_React$Component) {
 
     _this.onChangeHandler = function (event) {
       if (event.target.files[0]) {
-        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.target.name, event.target.files[0]);
+        _this.props.assignFieldValueActionCreator(_this.props.fieldParentTreeName + event.target.name, event.target.files[0].name);
 
         _this.props.addMediaListActionCreator(event.target.files[0]);
       } else {

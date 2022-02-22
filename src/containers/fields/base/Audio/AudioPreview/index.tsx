@@ -24,9 +24,9 @@ class AudioPreview extends React.Component<AudioPreviewProps> {
         return (
             <>
                 <p className="text-muted">
-                    Uploaded File Name: <strong className="text-primary"> {fieldValue.name} </strong>
+                    Uploaded File Name: <strong className="text-primary"> {fieldValue} </strong>
                 </p>
-                <audio id="sound" controls src={URL.createObjectURL(fieldValue)}></audio>
+                {/* <audio id="sound" controls src={URL.createObjectURL(fieldValue)}></audio> */}
                 <br></br>
                 <Button size="sm" color="danger" onClick={removeHandler}>
                     Remove File
