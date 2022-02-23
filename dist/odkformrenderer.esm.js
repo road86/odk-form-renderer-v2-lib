@@ -7709,7 +7709,8 @@ function (_React$Component) {
       bodyText: 'Please make sure the required fields are not missing and there are no errors'
     }), createElement(Row, null, createElement(Col, {
       style: {
-        padding: 0
+        padding: 0,
+        paddingBottom: 250
       }
     }, createElement(ConnectedGroupTypeEvaluator, Object.assign({}, props)), createElement(Row, {
       className: "welcome-box",
