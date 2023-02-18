@@ -66,6 +66,11 @@ class App extends React.Component<AppProps, AppState> {
     const _start = userInputJson.start;
     this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
 
+    /** assign the meta/instanceID field (if present) */
+    if (userInputJson && userInputJson['meta/instanceID']) {
+        this.props.assignFieldValueActionCreator('group/meta/instanceID', userInputJson['meta/instanceID']);
+    }
+
     this.props.resetStoreActionCreator();
     this.props.setThemeColor(this.props.themeColor);
     if (userInputJson && userInputJson !== userInputObj) {
@@ -155,10 +160,10 @@ class App extends React.Component<AppProps, AppState> {
 
   // tslint:disable-next-line: variable-name
   private handleClick = (_event: React.MouseEvent<HTMLButtonElement>) => {
-    const { handleSubmit, isNoErrors, userInputObj, mediaList } = this.props;
+    const { handleSubmit, isNoErrors, userInputJson, mediaList } = this.props;
     if (isNoErrors) {
       this.setState({ isSubmissionError: false });
-      handleSubmit(userInputObj, mediaList);
+      handleSubmit(userInputJson, mediaList);
     } else {
       handleSubmit('Field Violated', mediaList);
       this.setState({ isSubmissionError: true });
