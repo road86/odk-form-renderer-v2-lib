@@ -36,5 +36,5 @@ declare class App extends React.Component<AppProps, AppState> {
     private toggleStateValue;
 }
 /** connect Decimal component to the redux store */
-declare const ConnectedApp: import("react-redux").ConnectedComponent<typeof App, Pick<AppProps, "choices" | "csvList" | "userInputJson" | "defaultLanguage" | "formTitle" | "fieldElements" | "languageOptions" | "handleSubmit" | "themeColor">>;
+declare const ConnectedApp: import("react-redux").ConnectedComponent<typeof App, Pick<AppProps, "userInputJson" | "choices" | "csvList" | "defaultLanguage" | "formTitle" | "fieldElements" | "languageOptions" | "handleSubmit" | "themeColor">>;
 export default ConnectedApp;

@@ -7596,7 +7596,7 @@ function (_React$Component) {
       var _this$props = _this.props,
           handleSubmit = _this$props.handleSubmit,
           isNoErrors = _this$props.isNoErrors,
-          userInputObj = _this$props.userInputObj,
+          userInputJson = _this$props.userInputJson,
           mediaList = _this$props.mediaList;
 
       if (isNoErrors) {
@@ -7604,7 +7604,7 @@ function (_React$Component) {
           isSubmissionError: false
         });
 
-        handleSubmit(userInputObj, mediaList);
+        handleSubmit(userInputJson, mediaList);
       } else {
         handleSubmit('Field Violated', mediaList);
 
@@ -7639,6 +7639,12 @@ function (_React$Component) {
 
     var _start = userInputJson.start;
     this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
+    /** assign the meta/instanceID field (if present) */
+
+    if (userInputJson && userInputJson['meta/instanceID']) {
+      this.props.assignFieldValueActionCreator('group/meta/instanceID', userInputJson['meta/instanceID']);
+    }
+
     this.props.resetStoreActionCreator();
     this.props.setThemeColor(this.props.themeColor);
 
