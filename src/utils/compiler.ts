@@ -2,7 +2,7 @@
 import moment from 'moment';
 import store from '../store';
 
-let actualExpression: string;
+// let actualExpression: string;
 let currentHierarchicalName: string = '';
 let formItemProperty: any = {};
 let userInput: any = {};
@@ -1913,9 +1913,9 @@ function parser(leftOutput: any, tokens: any, pos: any) {
     if (!parsed) {
       // throw new TypeError('syntax error');
       // tslint:disable-next-line: no-console
-      console.log('syntax error');
+    //   console.log('syntax error');
       // tslint:disable-next-line: no-console
-      console.log(actualExpression);
+    //   console.log(actualExpression);
       return null;
     }
   }
@@ -1940,7 +1940,7 @@ export default function evaluater(
     tmpUserInput = {};
   }
   currentHierarchicalName = tmpCurrentHierarchicalName;
-  actualExpression = expression;
+//   actualExpression = expression;
   userInput = tmpUserInput;
   formItemProperty = tmpFormItemProperty;
   return parser(null, tokenizer(expression), 0);
