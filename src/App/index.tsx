@@ -62,20 +62,19 @@ class App extends React.Component<AppProps, AppState> {
 
   public componentDidMount() {
     const { userInputJson, userInputObj, csvList, csvObj } = this.props;
-    /** assigning the start date by default */
-    const _start = userInputJson.start;
-    this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
 
-    /** assign the meta/instanceID field (if present) */
-    if (userInputJson && userInputJson['meta/instanceID']) {
-        this.props.assignFieldValueActionCreator('group/meta/instanceID', userInputJson['meta/instanceID']);
-    }
-
+    // set userInputObj to defaults provided by userInputJson
     this.props.resetStoreActionCreator();
-    this.props.setThemeColor(this.props.themeColor);
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
     }
+
+    // assigning the start datetime
+    const _start = userInputJson.start;
+    this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
+
+    // this.props.resetStoreActionCreator();
+    this.props.setThemeColor(this.props.themeColor);
     if (csvList && csvList !== csvObj) {
       this.props.setCSVAction(csvList);
     }
@@ -160,10 +159,17 @@ class App extends React.Component<AppProps, AppState> {
 
   // tslint:disable-next-line: variable-name
   private handleClick = (_event: React.MouseEvent<HTMLButtonElement>) => {
-    const { handleSubmit, isNoErrors, userInputJson, mediaList } = this.props;
+    const { handleSubmit, isNoErrors, userInputObj, userInputJson, mediaList } = this.props;
+    console.log('userInputJson', userInputJson)
+    console.log('userInputObj', userInputObj)
+    // assign the meta/instanceID field of the original data (if present)
+    if (userInputJson['meta/instanceID']) {
+        userInputObj['meta/instanceID'] = userInputJson['meta/instanceID'];
+    }
+    console.log('userInputObj', userInputObj)
     if (isNoErrors) {
       this.setState({ isSubmissionError: false });
-      handleSubmit(userInputJson, mediaList);
+      handleSubmit(userInputObj, mediaList);
     } else {
       handleSubmit('Field Violated', mediaList);
       this.setState({ isSubmissionError: true });
