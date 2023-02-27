@@ -249,7 +249,7 @@ redux.createStore(reducer,
 reduxDevtoolsExtension.composeWithDevTools());
 
 // import moment from 'moment';
-var actualExpression;
+
 var currentHierarchicalName = '';
 var formItemProperty = {};
 var userInput = {};
@@ -2288,9 +2288,9 @@ function parser(leftOutput, tokens, pos) {
     if (!parsed) {
       // throw new TypeError('syntax error');
       // tslint:disable-next-line: no-console
-      console.log('syntax error'); // tslint:disable-next-line: no-console
-
-      console.log(actualExpression);
+      //   console.log('syntax error');
+      // tslint:disable-next-line: no-console
+      //   console.log(actualExpression);
       return {
         v: null
       };
@@ -2320,8 +2320,8 @@ function evaluater(expression, tmpUserInput, tmpFormItemProperty, tmpCurrentHier
     tmpUserInput = {};
   }
 
-  currentHierarchicalName = tmpCurrentHierarchicalName;
-  actualExpression = expression;
+  currentHierarchicalName = tmpCurrentHierarchicalName; //   actualExpression = expression;
+
   userInput = tmpUserInput;
   formItemProperty = tmpFormItemProperty;
   return parser(null, tokenizer(expression), 0);
@@ -7602,7 +7602,16 @@ function (_React$Component) {
           handleSubmit = _this$props.handleSubmit,
           isNoErrors = _this$props.isNoErrors,
           userInputObj = _this$props.userInputObj,
+          userInputJson = _this$props.userInputJson,
           mediaList = _this$props.mediaList;
+      console.log('userInputJson', userInputJson);
+      console.log('userInputObj', userInputObj); // assign the meta/instanceID field of the original data (if present)
+
+      if (userInputJson['meta/instanceID']) {
+        userInputObj['meta/instanceID'] = userInputJson['meta/instanceID'];
+      }
+
+      console.log('userInputObj', userInputObj);
 
       if (isNoErrors) {
         _this.setState({
@@ -7639,17 +7648,19 @@ function (_React$Component) {
         userInputJson = _this$props2.userInputJson,
         userInputObj = _this$props2.userInputObj,
         csvList = _this$props2.csvList,
-        csvObj = _this$props2.csvObj;
-    /** assigning the start date by default */
+        csvObj = _this$props2.csvObj; // set userInputObj to defaults provided by userInputJson
 
-    var _start = userInputJson.start;
-    this.props.assignFieldValueActionCreator('start', _start ? _start : new Date());
     this.props.resetStoreActionCreator();
-    this.props.setThemeColor(this.props.themeColor);
 
     if (userInputJson && userInputJson !== userInputObj) {
       this.props.setUserInputAction(userInputJson);
-    }
+    } // assigning the start datetime
+
+
+    var _start = userInputJson.start;
+    this.props.assignFieldValueActionCreator('start', _start ? _start : new Date()); // this.props.resetStoreActionCreator();
+
+    this.props.setThemeColor(this.props.themeColor);
 
     if (csvList && csvList !== csvObj) {
       this.props.setCSVAction(csvList);
